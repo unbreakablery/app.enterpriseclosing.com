@@ -1,0 +1,281 @@
+body {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.top-layer {
+    z-index: 9999;
+}
+
+.bg-black {
+    background-color: #000 !important;
+    color: #fff;
+}
+
+.no-max-width {
+    max-width: inherit !important;
+}
+
+.n-b-r {
+    border-radius: 0;
+}
+
+.n-p-lr {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.main-container,
+.container-login {
+    margin: -1.5rem 0;
+    min-height: calc(100vh - 66px);
+}
+.container-login {
+    .login-form {
+        height: calc(100vh - 66px);
+        padding: 0;
+    }
+    .card {
+        border: 0;
+        border-radius: 0;
+        margin-top: 10rem;
+
+        .login-logo {
+            width: 250px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            margin-left: 5rem;
+        }
+
+        .form-control {
+            border-radius: 0;
+        }
+
+        button.btn-secondary {
+            border-radius: 0;
+            padding: 12px 40px;
+            text-transform: uppercase;
+        }
+    }
+}
+
+/*
+ * Sidebar
+ */
+#sidebarMenu {
+    border-right: 1px solid #fff;
+    min-height: calc(100vh - 66px);
+}
+ .sidebar {
+    // position: fixed;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // z-index: 100; /* Behind the navbar */
+    // padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  }
+  
+  @media (max-width: 767.98px) {
+    .sidebar {
+      top: 5rem;
+    }
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+    //   position: -webkit-sticky;
+    //   position: sticky;
+    }
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 600;
+    color: #fff;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+  }
+  
+  .sidebar .nav-link.active {
+    color: #007bff;
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }
+  
+  .sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+  }
+  
+  /*
+   * Navbar
+   */
+  
+  .navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+  }
+  
+  .navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+  }
+  
+  .navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+  }
+  
+  .form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+  }
+  
+  .form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+  }
+
+/*
+* task sections
+*/
+.form-inline {
+    h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+    .task-section {
+        font-size: 1rem;
+        font-weight: 400;
+  
+        input[type=radio],
+        input[type=checkbox] {
+            width: 15px;
+            height: 15px;
+            margin-right: 20px;
+        }
+  
+        .form-check {
+            justify-content: left;
+            height: 40px;
+            // padding-left: 2px;
+        }
+
+        .input-group-prepend {
+            .input-group-text {
+                border-radius: 0;
+                background: #000;
+                border-color: #000;
+                color: #fff;
+            }
+        }
+        
+        input.form-control {
+            border-radius: 0;
+        }
+    }
+}
+
+/*
+* datatable
+*/
+.dataTables_wrapper .dataTables_length select {
+    background-color: #fff;
+    margin: 0 5px;
+}
+
+.dataTables_wrapper .dataTables_length, 
+.dataTables_wrapper .dataTables_filter, 
+.dataTables_wrapper .dataTables_info, 
+.dataTables_wrapper .dataTables_processing, 
+.dataTables_wrapper .dataTables_paginate {
+    color: #fff;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background-color: #fff;
+    margin-left: 5px;
+}
+
+table.dataTable tfoot th, table.dataTable tfoot td {
+    padding: 5px 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    display: none;
+}
+
+thead input {
+    width: 100%;
+}
+
+.table-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/*
+* radio button
+*/
+input[type='radio'] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+    // box-shadow: 0 0 0 2px #409fff;
+    box-shadow: 0 0 0 2px #fff;
+    // border: 1px solid #fff;
+}
+
+input[type='radio']:before {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 60%;
+    margin: 20% auto;
+    border-radius: 50%;
+}
+
+input[type='radio']:checked:before {
+    background: #fff;
+}
+
+/*
+* checkbox button
+*/
+input[type='checkbox'] {
+    width: 15px;
+    height: 15px;
+    outline: none;
+    box-shadow: 0 0 0 2px #fff;
+}
