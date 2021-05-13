@@ -29,7 +29,8 @@ body {
     margin: -1.5rem 0;
     min-height: calc(100vh - 66px);
 }
-.container-login {
+.container-login,
+.container-register {
     .login-form {
         height: calc(100vh - 66px);
         padding: 0;
@@ -175,13 +176,17 @@ body {
         input[type=checkbox] {
             width: 15px;
             height: 15px;
-            margin-right: 20px;
+            margin-right: 15px;
+            // width: 30px;
+            // height: 30px;
+            // padding: 0.2rem 0.5rem;
         }
   
         .form-check {
             justify-content: left;
-            height: 40px;
+            height: 30px;
             // padding-left: 2px;
+            padding: 0.2rem 0.5rem;
         }
 
         .input-group-prepend {
@@ -195,6 +200,10 @@ body {
         
         input.form-control {
             border-radius: 0;
+        }
+
+        .mr-task-input {
+            margin-left: calc(0.5rem + 30px);
         }
     }
 }
@@ -239,8 +248,13 @@ thead input {
 }
 
 .table-wrapper {
-    max-height: 500px;
-    overflow-y: auto;
+    // max-height: 350px;
+    // overflow-y: auto;
+}
+
+table.dataTable tbody td {
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 /*
@@ -278,4 +292,14 @@ input[type='checkbox'] {
     height: 15px;
     outline: none;
     box-shadow: 0 0 0 2px #fff;
+}
+
+@media (min-width: 768px) {
+    .pl-md-4, .px-md-4 {
+        padding-left: 3rem !important;
+    }
+
+    .pr-md-4, .px-md-4 {
+        padding-right: 3rem !important;
+    }
 }

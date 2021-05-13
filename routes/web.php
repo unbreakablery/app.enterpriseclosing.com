@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('/tasks', 'HomeController@index')->name('tasks');
+Route::post('/tasks/add', 'TasksController@addTask')->name('tasks.add');
+
 Route::get('/outbound', 'HomeController@outbound')->name('outbound');
 Route::get('/opportunities', 'HomeController@opportunities')->name('opportunities');
 Route::get('/scripts', 'HomeController@scripts')->name('scripts');

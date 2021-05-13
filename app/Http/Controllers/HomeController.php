@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tasks;
 
 class HomeController extends Controller
 {
@@ -23,8 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $tasks = Tasks::orderBy('by_date', 'ASC')->get()->all();
+
         return view('pages.tasks', [
-            'nl_tasks_class' => 'active'
+            'nl_tasks_class'    => 'active',
+            'tasks'             => $tasks
         ]);
     }
 

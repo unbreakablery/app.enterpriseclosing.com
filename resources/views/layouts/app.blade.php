@@ -86,89 +86,10 @@
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <!-- <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script> -->
     <script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
-    
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.noConflict();
-            // $('.datatable').DataTable( {
-            //     initComplete: function () {
-            //         this.api().columns().every( function () {
-            //             var column = this;
-            //             var select = $('<select style="width: 100%"><option value=""></option></select>')
-            //                 .appendTo( $(column.header()).empty() )
-            //                 .on( 'change', function () {
-            //                     var val = $.fn.dataTable.util.escapeRegex(
-            //                         $(this).val()
-            //                     );
-        
-            //                     column
-            //                         .search( val ? '^'+val+'$' : '', true, false )
-            //                         .draw();
-            //                 } );
-        
-            //             column.data().unique().sort().each( function ( d, j ) {
-            //                 select.append( '<option value="'+d+'">'+d+'</option>' )
-            //             } );
-            //         } );
-            //     }
-            // } );
+    <script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/date-eu.js"></script>
 
-
-            // Setup - add a text input to each footer cell
-            $('#table-1 thead tr').clone(true).appendTo( '#table-1 thead' );
-            $('#table-1 thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();
-                var class_name = (i == 1 || i == 2 || i == 3) ? 'date' : '';
-
-                $(this).html( '<input class="' + class_name + '" type="text" placeholder="Search '+title+'" />' );
-        
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table1.column(i).search() !== this.value ) {
-                        table1
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                    }
-                } );
-            } );
-
-            $('#table-2 thead tr').clone(true).appendTo( '#table-2 thead' );
-            $('#table-2 thead tr:eq(1) th').each( function (i) {
-                var title = $(this).text();
-                var class_name = (i == 2) ? 'date' : '';
-
-                $(this).html( '<input class="' + class_name + '" type="text" placeholder="Search '+title+'" />' );
-        
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table2.column(i).search() !== this.value ) {
-                        table2
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                    }
-                } );
-            } );
-        
-            var table1 = $('#table-1').DataTable( {
-                orderCellsTop: true,
-                fixedHeader: true,
-                info: false,
-                paging: false
-            } );
-            var table2 = $('#table-2').DataTable( {
-                orderCellsTop: true,
-                fixedHeader: true,
-                info: false,
-                paging: false
-            } );
-
-            $('.date').datepicker({
-                format: 'dd-mm-yyyy',
-                todayBtn: "linked",
-                todayHighlight: true,
-                clearBtn: true
-            });
-        } );
-    </script>
+    @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'tasks')
+        <script src="js/tasks.js"></script>
+    @endif
 </body>
 </html>

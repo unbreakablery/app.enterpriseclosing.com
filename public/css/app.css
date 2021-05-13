@@ -10034,27 +10034,33 @@ body {
   min-height: calc(100vh - 66px);
 }
 
-.container-login .login-form {
+.container-login .login-form,
+.container-register .login-form {
   height: calc(100vh - 66px);
   padding: 0;
 }
-.container-login .card {
+.container-login .card,
+.container-register .card {
   border: 0;
   border-radius: 0;
   margin-top: 10rem;
 }
-.container-login .card .login-logo {
+.container-login .card .login-logo,
+.container-register .card .login-logo {
   width: 250px;
 }
-.container-login .card .img-fluid {
+.container-login .card .img-fluid,
+.container-register .card .img-fluid {
   max-width: 100%;
   height: auto;
   margin-left: 5rem;
 }
-.container-login .card .form-control {
+.container-login .card .form-control,
+.container-register .card .form-control {
   border-radius: 0;
 }
-.container-login .card button.btn-secondary {
+.container-login .card button.btn-secondary,
+.container-register .card button.btn-secondary {
   border-radius: 0;
   padding: 12px 40px;
   text-transform: uppercase;
@@ -10160,11 +10166,12 @@ body {
 .form-inline .task-section input[type=checkbox] {
   width: 15px;
   height: 15px;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 .form-inline .task-section .form-check {
   justify-content: left;
-  height: 40px;
+  height: 30px;
+  padding: 0.2rem 0.5rem;
 }
 .form-inline .task-section .input-group-prepend .input-group-text {
   border-radius: 0;
@@ -10174,6 +10181,9 @@ body {
 }
 .form-inline .task-section input.form-control {
   border-radius: 0;
+}
+.form-inline .task-section .mr-task-input {
+  margin-left: calc(0.5rem + 30px);
 }
 
 /*
@@ -10215,9 +10225,9 @@ thead input {
   width: 100%;
 }
 
-.table-wrapper {
-  max-height: 500px;
-  overflow-y: auto;
+table.dataTable tbody td {
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 
 /*
@@ -10253,4 +10263,14 @@ input[type=checkbox] {
   height: 15px;
   outline: none;
   box-shadow: 0 0 0 2px #fff;
+}
+
+@media (min-width: 768px) {
+  .pl-md-4, .px-md-4 {
+    padding-left: 3rem !important;
+  }
+
+  .pr-md-4, .px-md-4 {
+    padding-right: 3rem !important;
+  }
 }
