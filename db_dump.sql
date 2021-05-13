@@ -12,8 +12,6 @@ MySQL - 10.4.17-MariaDB : Database - enterpriseclosing
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`enterpriseclosing` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
 /*Table structure for table `failed_jobs` */
 
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -39,14 +37,15 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `migrations` */
 
 insert  into `migrations`(`id`,`migration`,`batch`) values 
 (1,'2014_10_12_000000_create_users_table',1),
 (2,'2014_10_12_100000_create_password_resets_table',1),
-(3,'2019_08_19_000000_create_failed_jobs_table',1);
+(3,'2019_08_19_000000_create_failed_jobs_table',1),
+(4,'2021_05_12_224353_create_tasks_table',1);
 
 /*Table structure for table `password_resets` */
 
@@ -60,6 +59,27 @@ CREATE TABLE `password_resets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `password_resets` */
+
+/*Table structure for table `tasks` */
+
+DROP TABLE IF EXISTS `tasks`;
+
+CREATE TABLE `tasks` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(11) NOT NULL,
+  `action` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `step` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_to_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opportunity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `priority` enum('1','2','3') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '3',
+  `by_date` date DEFAULT NULL,
+  `completed_at` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+/*Data for the table `tasks` */
 
 /*Table structure for table `users` */
 
@@ -81,7 +101,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Anthony','anthonyheitzeberg8@gmail.com',NULL,'$2y$10$UOtuOwnjhuIZ/WX1C878COFmNw/p4i6hYA6SBKBjJuOad4H5o.BrO',NULL,'2021-05-10 02:38:25','2021-05-10 02:38:25');
+(1,'Anthony','anthonyheitzeberg8@gmail.com',NULL,'$2y$10$9aJnCAnMNfGporVZph7r.eQ9.wpmg7Lw.vDJWx7.2dOQukW3RjQHG',NULL,'2021-05-13 01:54:59','2021-05-13 01:54:59');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
