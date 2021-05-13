@@ -10121,6 +10121,11 @@ body {
 /*
  * Navbar
  */
+.navbar {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
 .navbar-brand {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -10157,6 +10162,7 @@ body {
 .form-inline h3 {
   font-size: 1.3rem;
   font-weight: 600;
+  text-transform: uppercase;
 }
 .form-inline .task-section {
   font-size: 1rem;
@@ -10170,7 +10176,7 @@ body {
 }
 .form-inline .task-section .form-check {
   justify-content: left;
-  height: 30px;
+  height: 22px;
   padding: 0.2rem 0.5rem;
 }
 .form-inline .task-section .input-group-prepend .input-group-text {
@@ -10181,14 +10187,25 @@ body {
 }
 .form-inline .task-section input.form-control {
   border-radius: 0;
+  height: 1.5rem;
 }
-.form-inline .task-section .mr-task-input {
-  margin-left: calc(0.5rem + 30px);
+.form-inline .task-section input[type=text].form-control {
+  width: 100%;
+}
+.form-inline .task-section .mr-20 {
+  margin-right: 20px;
+}
+.form-inline .task-section .col-20 {
+  width: 20% !important;
 }
 
 /*
 * datatable
 */
+.dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
+  background-color: #fff;
+}
+
 .dataTables_wrapper .dataTables_length select {
   background-color: #fff;
   margin: 0 5px;
@@ -10223,6 +10240,12 @@ table.dataTable tfoot th, table.dataTable tfoot td {
 
 thead input {
   width: 100%;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  padding-top: 3px;
+  padding-bottom: 4px;
 }
 
 table.dataTable tbody td {

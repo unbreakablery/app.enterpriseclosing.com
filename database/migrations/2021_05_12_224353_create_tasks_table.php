@@ -23,6 +23,7 @@ class CreateTasksTable extends Migration
             $table->enum('priority', [1, 2, 3])->default(3);
             $table->date('by_date')->format('dd-mm-yyyy')->nullable();
             $table->date('completed_at')->nullable();
+            $table->enum('status', [0, 1, 2])->default(0);
             $table->timestamps();
         });
     }

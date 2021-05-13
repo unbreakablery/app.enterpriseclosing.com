@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/tasks', 'HomeController@index')->name('tasks');
 Route::post('/tasks/add', 'TasksController@addTask')->name('tasks.add');
+Route::post('/tasks/save', 'TasksController@saveTask')->name('tasks.save');
 
 Route::get('/outbound', 'HomeController@outbound')->name('outbound');
 Route::get('/opportunities', 'HomeController@opportunities')->name('opportunities');

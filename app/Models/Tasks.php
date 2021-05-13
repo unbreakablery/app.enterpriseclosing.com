@@ -16,8 +16,7 @@ class Tasks extends Model
         'opportunity',
         'priority',
         'by_date',
-        'completed_at'
+        'completed_at',
+        'status'
     ];
-
-    public $timestamps = true;
 }

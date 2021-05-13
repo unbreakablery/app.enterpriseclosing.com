@@ -24,7 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = Tasks::orderBy('by_date', 'ASC')->get()->all();
+        $tasks = Tasks::where('status', '=', '0')
+                        ->orderBy('by_date', 'ASC')
+                        ->get()
+                        ->all();
 
         return view('pages.tasks', [
             'nl_tasks_class'    => 'active',
