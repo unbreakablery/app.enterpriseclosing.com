@@ -31,11 +31,14 @@ $(document).ready(function() {
         orderCellsTop: true,
         fixedHeader: true,
         info: false,
-        scrollY: 311,
+        scrollY: 187,
         scrollCollapse: false,
         paging: false,
         order: [[ 2, "asc" ]],
-        columnDefs: [ { orderable: false, targets: 'no-sort' }, { type: 'date-eu', targets: 2 } ]
+        columnDefs: [ { orderable: false, targets: 'no-sort' }, { type: 'date-eu', targets: 2 } ],
+        language: {
+            emptyTable: 'There is no tasks for you to complete.'
+        }
     } );
 
     $('.date').datepicker({
@@ -86,5 +89,79 @@ $(document).ready(function() {
 
     $('input#ts-2-other').change(function() {
         $('#ts-2-rg-other').val($(this).val());
+    });
+    // $(function () {
+    //     $('[data-toggle="tooltip"]').tooltip();
+    // });
+    $('button#btn-create-task').click(function() {
+        var isActionChecked = false;
+        var isStepChecked = false;
+        $('input[type=radio][name=action]').each(function(idx, element) {
+            if ($(element).is(':checked')) {
+                isActionChecked = true;
+            }
+        });
+        $('input[type=radio][name=step]').each(function(idx, element) {
+            if ($(element).is(':checked')) {
+                isStepChecked = true;
+            }
+        });
+
+        if (!isActionChecked) {
+            $('#action-label').tooltip('show');
+            return;
+        } else {
+            $('#action-label').tooltip('hide');
+        }
+
+        if (!isStepChecked) {
+            $('#step-label').tooltip('show');
+            return;
+        } else {
+            $('#step-label').tooltip('hide');
+        }
+
+        //check from/to/account && opportunity
+        if ($('input#ts-3-from-to').val() == '' && $('input#ts-6-opportunity').val() == '') {
+            $('h3#ts-3-from-to-label').tooltip('show');
+            $('h3#ts-6-opportunity-label').tooltip('show');
+            return;
+        } else {
+            $('h3#ts-3-from-to-label').tooltip('hide');
+            $('h3#ts-6-opportunity-label').tooltip('hide');
+        }
+
+        //check by_date
+        if ($('input#ts-4-by-date').val() == '') {
+            $('h3#ts-4-by-date-label').tooltip('show');
+            return;
+        } else {
+            $('h3#ts-4-by-date-label').tooltip('hide');
+        }
+
+        //check priority
+        var isPriorityChecked = false;
+        $('input[type=radio][name=priority]').each(function(idx, element) {
+            if ($(element).is(':checked')) {
+                isPriorityChecked = true;
+            }
+        });
+        
+        if (!isPriorityChecked) {
+            $('#priority-label').tooltip('show');
+            return;
+        } else {
+            $('#priority-label').tooltip('hide');
+        }
+
+        $("form#tasks-form").submit();
+    });
+
+    $('input#ts-3-from-to').change(function() {
+        $('input#ts-6-opportunity').val('');
+    });
+
+    $('input#ts-6-opportunity').change(function() {
+        $('input#ts-3-from-to').val('');
     });
 } );

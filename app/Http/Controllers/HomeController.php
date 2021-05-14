@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tasks;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tasks = Tasks::where('status', '=', '0')
+        $tasks = Tasks::where([
+                                ['status', '=', '0'],
+                                ['user', '=', Auth::user()->id]
+                            ])
                         ->orderBy('by_date', 'ASC')
                         ->get()
                         ->all();

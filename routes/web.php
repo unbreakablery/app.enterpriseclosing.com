@@ -33,4 +33,6 @@ Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('/resources', 'HomeController@resources')->name('resources');
 Route::get('/skills', 'HomeController@skills')->name('skills');
 Route::get('/analytics', 'HomeController@analytics')->name('analytics');
+
 Route::get('/settings', 'HomeController@settings')->name('settings');
+Route::get('/settings/save', 'SettingsController@save')->name('settings.save');

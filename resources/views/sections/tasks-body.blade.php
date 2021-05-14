@@ -1,4 +1,4 @@
-<form class="form-inline mt-4" action="{{ route('tasks.add') }}" method="POST" autocomplete="off">
+<form class="form-inline mt-4" action="{{ route('tasks.add') }}" method="POST" autocomplete="off" id="tasks-form">
 	@csrf
 	<h3 class="mb-0">Tasks To Complete</h3>
 	<div class="table-responsive table-wrapper mt-4 mb-4">
@@ -59,7 +59,7 @@
 		</table>
 	</div>
 
-	<h3>Action</h3>
+	<h3 id="action-label" data-toggle="tooltip" data-placement="right" title="Required field!">Action</h3>
 	<div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
 		<div class="form-check col-20">
 			<input class="form-check-input" type="radio" name="action" id="ts-1-rg-add" value="Add" required>
@@ -175,7 +175,7 @@
 		</div>
 	</div>
 	
-	<h3>Step</h3>
+	<h3 id="step-label" data-toggle="tooltip" data-placement="right" title="Required field!">Step</h3>
 	<div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
 		<div class="form-check col-20">
 			<input class="form-check-input" type="radio" name="step" id="ts-2-rg-account" value="Account" required>
@@ -395,23 +395,23 @@
 
 	<div class="row task-section col-md-12 col-sm-12 mb-4">
 		<div class="col-20" id="ts-3">
-			<h3>From / To / Account</h3>
+			<h3 id="ts-3-from-to-label" data-toggle="tooltip" data-placement="top" title="Required this or opportunity!">From / To / Account</h3>
 			<div class="row task-section col-md-12 col-sm-12">
 				<div class="input-group w-100">
-					<input type="text" class="form-control" aria-label="From / To / Account" id="ts-3-from-to" name="from-to-account" placeholder="From / To / Account..." required>
+					<input type="text" class="form-control" aria-label="From / To / Account" id="ts-3-from-to" name="from-to-account" placeholder="From / To / Account..." >
 				</div>
 			</div>
 		</div>
 		<div class="col-20" id="ts-6">
-			<h3>Opportunity</h3>
+			<h3 id="ts-3-from-to-label" data-toggle="tooltip" data-placement="top" title="Required this or from/to/account!">Opportunity</h3>
 			<div class="row task-section col-md-12 col-sm-12">
 				<div class="input-group w-100">
-					<input type="text" class="form-control" placeholder="Opportunity..." aria-label="Opportunity" aria-describedby="ts-6-opportunity" name="opportunity" required>
+					<input type="text" class="form-control" placeholder="Opportunity..." aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" name="opportunity" >
 				</div>
 			</div>
 		</div>
 		<div class="col-20" id="ts-4">
-			<h3>By</h3>
+			<h3 id="ts-4-by-date-label" data-toggle="tooltip" data-placement="left" title="Required field!">By</h3>
 			<div class="row task-section col-md-12 col-sm-12">
 				<div class="input-group w-100">
 					<input type="text" class="form-control date" aria-label="By Date" id="ts-4-by-date" name="by-date" placeholder="dd-mm-yyyy" required>
@@ -419,21 +419,21 @@
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-4 n-p-lr" id="ts-7">
-			<h3>Priority</h3>
+			<h3 id="priority-label" data-toggle="tooltip" data-placement="left" title="Required field!">Priority</h3>
 			<div class="row task-section col-md-12 col-sm-12">
-				<div class="form-check col-md-3 col-sm-3 mr-4">
+				<div class="form-check col-md-3 col-sm-3 mr-4 mw-unset">
 					<input class="form-check-input" type="radio" name="priority" id="ts-7-rg-high" value="1" required>
 					<label class="form-check-label" for="ts-7-rg-high">
 						High
 					</label>
 				</div>
-				<div class="form-check col-md-3 col-sm-3 mr-4">
+				<div class="form-check col-md-3 col-sm-3 mr-4 mw-unset">
 					<input class="form-check-input" type="radio" name="priority" id="ts-7-rg-medium" value="2">
 					<label class="form-check-label" for="ts-7-rg-medium">
 						Medium
 					</label>
 				</div>
-				<div class="form-check col-md-3 col-sm-3 mr-4">
+				<div class="form-check col-md-3 col-sm-3 mr-4 mw-unset">
 					<input class="form-check-input" type="radio" name="priority" id="ts-7-rg-normal" value="3">
 					<label class="form-check-label" for="ts-7-rg-normal">
 						Normal
@@ -444,7 +444,16 @@
 	</div>
 
 	<div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-		<button type="submit" class="btn btn-dark col-md-3 col-sm-3 n-b-r" id="btn-create-task">Create Task</button>
+		
+		<div class="col-20" id="ts-3">
+			<div class="row task-section col-md-12 col-sm-12">
+				<div class="input-group w-100">
+				<button type="button" class="btn btn-light n-b-r text-uppercase w-100" id="btn-create-task">
+					Create Task
+				</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- <div class="table-responsive table-wrapper mt-4 mb-4">
