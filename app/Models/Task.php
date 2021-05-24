@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tasks extends Model
+class Task extends Model
 {
     protected $table = 'tasks';
 
@@ -12,8 +12,9 @@ class Tasks extends Model
         'user',
         'action',
         'step',
-        'from_to_account',
+        'person_account',
         'opportunity',
+        'note',
         'priority',
         'by_date',
         'completed_at',
