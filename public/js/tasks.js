@@ -27,7 +27,7 @@ $(document).ready(function () {
   //     paging: false
   // } );
 
-  var table2 = $('#table-2').DataTable({
+  var taskTable = $('#task-table').DataTable({
     responsive: true,
     orderCellsTop: true,
     fixedHeader: true,
@@ -35,13 +35,13 @@ $(document).ready(function () {
     scrollY: 187,
     scrollCollapse: false,
     paging: false,
-    order: [[2, "asc"]],
+    order: [[3, "asc"]],
     columnDefs: [{
       orderable: false,
       targets: 'no-sort'
     }, {
       type: 'date-eu',
-      targets: 2
+      targets: 3
     }],
     language: {
       emptyTable: 'There is no tasks for you to complete.'
@@ -51,9 +51,11 @@ $(document).ready(function () {
     format: 'dd-mm-yyyy',
     todayBtn: "linked",
     todayHighlight: true,
-    clearBtn: true
-  });
-  $('#table-2 tbody').on('click', 'button.btn-task-c-s', function () {
+    clearBtn: true,
+    autoclose: true
+  }); //implement skip and done
+
+  $('#task-table tbody').on('click', 'button.btn-task-c-s', function () {
     var tr = $(this).parents('tr');
     var id = $(this).data('id');
     var status = 0;
@@ -77,21 +79,19 @@ $(document).ready(function () {
       },
       success: function success(data) {
         if (data.type == 'success') {
-          table2.row(tr).remove().draw();
+          taskTable.row(tr).remove().draw();
         } else {
           alert(data.message);
         }
       }
     });
   });
-  $('input#ts-1-other').change(function () {
-    $('#ts-1-rg-other').val($(this).val());
+  $('input#action-other-name').change(function () {
+    $('#action-other').val($(this).val());
   });
-  $('input#ts-2-other').change(function () {
-    $('#ts-2-rg-other').val($(this).val());
-  }); // $(function () {
-  //     $('[data-toggle="tooltip"]').tooltip();
-  // });
+  $('input#step-other-name').change(function () {
+    $('#step-other').val($(this).val());
+  }); //validate form and submit
 
   $('button#btn-create-task').click(function () {
     var isActionChecked = false;
@@ -122,18 +122,20 @@ $(document).ready(function () {
     } //check from/to/account && opportunity
 
 
-    if ($('input#ts-3-from-to').val() == '' && $('input#ts-6-opportunity').val() == '') {
-      $('h3#ts-3-from-to-label').tooltip('show');
+    if ($('input#ts-3-person-account').val() == '' && $('input#ts-6-opportunity').val() == '') {
+      $('h3#ts-3-person-account-label').tooltip('show');
       $('h3#ts-6-opportunity-label').tooltip('show');
+      $('input#ts-3-person-account').focus();
       return;
     } else {
-      $('h3#ts-3-from-to-label').tooltip('hide');
+      $('h3#ts-3-person-account-label').tooltip('hide');
       $('h3#ts-6-opportunity-label').tooltip('hide');
     } //check by_date
 
 
     if ($('input#ts-4-by-date').val() == '') {
       $('h3#ts-4-by-date-label').tooltip('show');
+      $('input#ts-4-by-date').focus();
       return;
     } else {
       $('h3#ts-4-by-date-label').tooltip('hide');
@@ -156,12 +158,77 @@ $(document).ready(function () {
 
     $("form#tasks-form").submit();
   });
-  $('input#ts-3-from-to').change(function () {
+  $('input#ts-3-person-account').change(function () {
     $('input#ts-6-opportunity').val('');
   });
   $('input#ts-6-opportunity').change(function () {
-    $('input#ts-3-from-to').val('');
-  });
+    $('input#ts-3-person-account').val('');
+  }); //suggest setting save
+
+  $('.btn-suggest-save').on('click', function () {
+    var id = $(this).data('id');
+    var suggestAction = $('#suggest-action-' + id).val();
+    var suggestStep = $('#suggest-step-' + id).val();
+    var suggestPersonAccount = $('#suggest-person-account-' + id).val();
+    var suggestOpportunity = $('#suggest-opportunity-' + id).val();
+    var suggestNote = $('#suggest-note-' + id).val();
+    var suggestDate = $('#suggest-by-' + id).val();
+    var suggestPriority = $('#suggest-priority-' + id).val();
+    $.ajax({
+      url: "tasks/add",
+      dataType: "json",
+      type: "post",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        suggest_action: suggestAction,
+        suggest_step: suggestStep,
+        suggest_person_account: suggestPersonAccount,
+        suggest_opportunity: suggestOpportunity,
+        suggest_note: suggestNote,
+        suggest_date: suggestDate,
+        suggest_priority: suggestPriority
+      },
+      success: function success(res) {
+        var className = '';
+        var priorityName = '';
+
+        if (suggestPriority == 1) {
+          className = 'bg-danger text-white';
+          priorityName = 'High';
+        } else if (suggestPriority == 2) {
+          className = 'bg-warning';
+          priorityName = 'Medium';
+        } else if (suggestPriority == 3) {
+          className = 'bg-light';
+          priorityName = 'Normal';
+        } else {
+          className = 'bg-light';
+          priorityName = '';
+        }
+
+        var innerHtml = '';
+        innerHtml += '<tr class="' + className + '">';
+        innerHtml += '<td>' + res.action_name + ' ' + res.step_name + '</td>';
+        innerHtml += '<td class="text-center">' + suggestPersonAccount + suggestOpportunity + '</td>';
+        innerHtml += '<td>' + suggestNote + '</td>';
+        innerHtml += '<td class="text-center">' + suggestDate + '</td>';
+        innerHtml += '<td class="text-center">' + priorityName + '</td>';
+        innerHtml += '<td class="text-center">';
+        innerHtml += '<button type="button" class="btn btn-sm btn-task-c-s btn-dark btn-skip" data-id="' + res.task_id + '">Skip</button> ';
+        innerHtml += '<button type="button" class="btn btn-sm btn-task-c-s btn-success btn-done" data-id="' + res.task_id + '">Done</button>';
+        innerHtml += '</td>';
+        innerHtml += '</tr>';
+        taskTable.row.add($(innerHtml)).draw();
+        $('.additional-task-item-' + id + ' *').prop('disabled', true);
+      }
+    });
+  }); //show modal
+
+  if (user_action == 'add-task') {
+    $('#task-add-modal').modal({
+      backdrop: 'static'
+    });
+  }
 });
 /******/ })()
 ;

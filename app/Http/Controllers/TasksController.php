@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tasks;
+use App\Models\Task;
 use Auth;
 use DateTime;
 
@@ -21,25 +21,44 @@ class TasksController extends Controller
 
     public function addTask(Request $request)
     {
+        if ($request->ajax()) {
+            $action             = $request->suggest_action;
+            $step               = $request->suggest_step;
+            $person_account     = $request->suggest_person_account;
+            $opportunity        = $request->suggest_opportunity;
+            $note               = $request->suggest_note;
+            $by_date            = $request->suggest_date;
+            $priority           = $request->suggest_priority;
+
+            $task = storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority);
+            $task = getTask($task->id);
+            return response()->json([
+                'task_id' => $task->id,
+                'action_name' => $task->action_name,
+                'step_name' => $task->step_name,
+                'status' => 'success'
+            ]);
+        }
+
         $action             = $request->input('action');
         $step               = $request->input('step');
-        $from_to_account    = $request->input('from-to-account');
+        $person_account     = $request->input('person-account');
         $opportunity        = $request->input('opportunity');
+        $note               = $request->input('note');
         $by_date            = $request->input('by-date');
         $priority           = $request->input('priority');
 
-        $task = new Tasks();
-        $task->user             = Auth::user()->id;
-        $task->action           = $action;
-        $task->step             = $step;
-        $task->from_to_account  = $from_to_account;
-        $task->opportunity      = $opportunity;
-        $task->by_date          = DateTime::createFromFormat('d-m-Y', $by_date);
-        $task->priority         = $priority;
-        $task->save();
-        
-        // $request->session()->flash('success', 'Task was added successfully ! (Task #: ' . $task->id . ')');
-        return redirect()->route('tasks');
+        $task = storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority);
+
+        return redirect()->route('tasks')->withInput([
+            'user_action' => 'add-task',
+            'saved_action' => $task->action,
+            'saved_step' => $task->step,
+            'saved_person_account' => $task->person_account,
+            'saved_opportunity' => $task->opportunity,
+        ]);
+    
+       
     }
 
     public function saveTask(Request $request)
@@ -52,17 +71,17 @@ class TasksController extends Controller
             $completed_at = DateTime::createFromFormat('d-m-Y', date('d-m-Y'));
         }
         
-        Tasks::where([
-                        'id' => $id
-                    ])
-                ->update([
-                        'status'        => $status,
-                        'completed_at'  => $completed_at
-                    ]);
+        Task::where([
+                'id' => $id
+            ])
+            ->update([
+                'status'        => $status,
+                'completed_at'  => $completed_at
+            ]);
                             
         return response()->json([
-                                    'type'      => 'success',
-                                    'message'   => 'Task #'. $id . ' was updated successfully !'
-                                ]);
+            'type'      => 'success',
+            'message'   => 'Task #'. $id . ' was updated successfully !'
+        ]);
     }
 }

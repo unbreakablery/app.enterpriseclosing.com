@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tasks;
+use App\Models\Task;
+use App\Models\User;
+use App\Models\Action;
+use App\Models\Step;
+use App\Models\Setting;
+use App\Models\SuggestSetting;
+
 use Auth;
 
 class HomeController extends Controller
@@ -18,25 +24,66 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        $tasks = Tasks::where([
+    public function tasks(Request $request)
+    {   
+        if (Auth::user()->role == '2') {
+            User::where('id', Auth::user()->id)
+                ->update(['role' => '1']);
+            return redirect()->route('settings');
+        }
+
+        $actions = Action::get();
+        $steps = Step::get();
+        $settings = Setting::where('user_id', Auth::user()->id)
+                            ->get();
+
+        $tasks = Task::where([
                                 ['status', '=', '0'],
                                 ['user', '=', Auth::user()->id]
                             ])
+                        ->join('actions', 'actions.id', '=', 'tasks.action')
+                        ->join('steps', 'steps.id', '=', 'tasks.step')
+                        ->select('tasks.*', 'actions.name AS action_name', 'steps.name AS step_name')
                         ->orderBy('by_date', 'ASC')
                         ->get()
                         ->all();
-
-        return view('pages.tasks', [
-            'nl_tasks_class'    => 'active',
-            'tasks'             => $tasks
-        ]);
+        
+        $nl_tasks_class = 'active';
+        $user_action = (isset($request->user_action)) ? $request->user_action : '';
+        $saved_step = old('saved_step');
+        $suggest_person_account = (isset($request->person_account)) ? $request->person_account : '';
+        $suggest_opportunity = (isset($request->opportunity)) ? $request->opportunity : '';
+        
+        //get suggested steps for additional tasks
+        $suggest_steps = SuggestSetting::where('user_id', Auth::user()->id)
+                                ->where('step_id', (!empty($saved_step)) ? $saved_step : 0)
+                                ->join('steps', 'suggest_settings.suggest_step_id', '=', 'steps.id')
+                                ->select('steps.id', 'steps.name')
+                                ->distinct('steps.id')
+                                ->orderBy('steps.name')
+                                ->get();
+        $suggest_actions = Setting::where('user_id', Auth::user()->id)
+                                ->where('section_type', 1)
+                                ->join('actions', 'settings.section_id', '=', 'actions.id')
+                                ->select('actions.id', 'actions.name')
+                                ->distinct('actions.id')
+                                ->orderBy('actions.name')
+                                ->get();
+        
+        return view('pages.tasks', 
+                    compact(
+                        'actions',
+                        'steps',
+                        'settings',
+                        'tasks',
+                        'nl_tasks_class',
+                        'user_action',
+                        'suggest_steps',
+                        'suggest_actions',
+                        'suggest_person_account',
+                        'suggest_opportunity'
+                    )
+        );
     }
 
     public function outbound()
@@ -95,10 +142,5 @@ class HomeController extends Controller
         ]);
     }
 
-    public function settings()
-    {
-        return view('pages.settings', [
-            
-        ]);
-    }
+    
 }

@@ -19,9 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'SettingsController@index')->name('home');
+Route::get('/', 'HomeController@tasks')->name('home');
 
-Route::get('/tasks', 'HomeController@index')->name('tasks');
+// Route::match(['get','post'], 
+//             '/tasks', 
+//             ['as' => 'tasks', 'uses' => 'HomeController@tasks']
+// );
+Route::get('/tasks', 'HomeController@tasks')->name('tasks');
 Route::post('/tasks/add', 'TasksController@addTask')->name('tasks.add');
 Route::post('/tasks/save', 'TasksController@saveTask')->name('tasks.save');
 
@@ -34,5 +39,5 @@ Route::get('/resources', 'HomeController@resources')->name('resources');
 Route::get('/skills', 'HomeController@skills')->name('skills');
 Route::get('/analytics', 'HomeController@analytics')->name('analytics');
 
-Route::get('/settings', 'HomeController@settings')->name('settings');
-Route::get('/settings/save', 'SettingsController@save')->name('settings.save');
+Route::get('/settings', 'SettingsController@index')->name('settings');
+Route::post('/settings/store', 'SettingsController@store')->name('settings.store');

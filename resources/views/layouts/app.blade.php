@@ -18,13 +18,16 @@
     <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.dataTables.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if (Route::currentRouteName() == 'settings')
+    <link href="{{ asset('css/setting.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body class="bg-black">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm top-layer border-bottom">
             <div class="container no-max-width">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand text-white logo-img" href="{{ url('/') }}">
+                    <img src="images/logo.png" alt="" class="login-logo" height='40'>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -92,7 +95,14 @@
     <script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/date-eu.js"></script>
 
     @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'tasks')
+        <script>
+            var user_action = '{{ (old("user_action")) ? old("user_action") : '' }}';
+        </script>
         <script src="js/tasks.js"></script>
+    @endif
+
+    @if (Route::currentRouteName() == 'settings')
+        <script src="js/setting.js"></script>
     @endif
 </body>
 </html>

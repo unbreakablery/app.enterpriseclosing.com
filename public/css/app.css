@@ -10031,12 +10031,12 @@ body {
 .main-container,
 .container-login {
   margin: -1.5rem 0;
-  min-height: calc(100vh - 82px);
+  min-height: calc(100vh - 74px);
 }
 
 .container-login .login-form,
 .container-register .login-form {
-  height: calc(100vh - 82px);
+  height: calc(100vh - 74px);
   padding: 0;
 }
 .container-login .card,
@@ -10071,7 +10071,7 @@ body {
  */
 #sidebarMenu {
   border-right: 1px solid #fff;
-  min-height: calc(100vh - 82px);
+  min-height: calc(100vh - 74px);
 }
 
 .sidebar {
@@ -10127,8 +10127,8 @@ body {
 }
 
 .navbar-brand {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
   font-size: 1rem;
   background-color: rgba(0, 0, 0, 0.25);
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
@@ -10165,7 +10165,7 @@ body {
   text-transform: uppercase;
 }
 .form-inline .task-section {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
 }
 .form-inline .task-section .mw-unset {
@@ -10201,6 +10201,13 @@ body {
 .form-inline .task-section .col-20 {
   max-width: 20%;
   flex: 0 0 20%;
+}
+.form-inline .task-section #btn-create-task {
+  background-color: #5c6370;
+  color: #fff;
+}
+.form-inline .task-section #btn-create-task:hover {
+  background-color: #262729;
 }
 
 /*
@@ -10298,9 +10305,9 @@ input[type=checkbox] {
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: #fff;
+  color: #000;
   text-align: center;
-  background-color: #e3342f;
+  background-color: #fff;
   border-radius: 0.25rem;
 }
 
@@ -10308,13 +10315,13 @@ input[type=checkbox] {
   margin-top: -3px;
   content: "";
   border-width: 5px 5px 5px 0;
-  border-right-color: #e3342f;
+  border-right-color: #fff;
 }
 
 .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^=top] .arrow::before {
   top: 0;
   border-width: 0.4rem 0.4rem 0;
-  border-top-color: #e3342f;
+  border-top-color: #fff;
 }
 
 .tooltip.show.bs-tooltip-right, .tooltip.show.bs-tooltip-auto[x-placement^=right] {
@@ -10324,7 +10331,29 @@ input[type=checkbox] {
 .bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^=left] .arrow::before {
   left: 0;
   border-width: 0.4rem 0 0.4rem 0.4rem;
-  border-left-color: #e3342f;
+  border-left-color: #fff;
+}
+
+/*
+* modal
+*/
+#task-add-modal .additional-tasks {
+  padding: 0 1rem;
+}
+#task-add-modal input.form-control {
+  border-radius: 0;
+  height: 1.5rem;
+}
+#task-add-modal .btn-suggest-save-wrapper {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+#task-add-modal select.form-control,
+#task-add-modal button.btn-suggest-save {
+  border-radius: 0;
+  height: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 @media (min-width: 576px) {

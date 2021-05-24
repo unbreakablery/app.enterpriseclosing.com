@@ -27,12 +27,12 @@ body {
 .main-container,
 .container-login {
     margin: -1.5rem 0;
-    min-height: calc(100vh - 82px);
+    min-height: calc(100vh - 74px);
 }
 .container-login,
 .container-register {
     .login-form {
-        height: calc(100vh - 82px);
+        height: calc(100vh - 74px);
         padding: 0;
     }
     .card {
@@ -67,7 +67,7 @@ body {
  */
 #sidebarMenu {
     border-right: 1px solid #fff;
-    min-height: calc(100vh - 82px);
+    min-height: calc(100vh - 74px);
 }
  .sidebar {
     // position: fixed;
@@ -91,13 +91,6 @@ body {
     padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  }
-  
-  @supports ((position: -webkit-sticky) or (position: sticky)) {
-    .sidebar-sticky {
-    //   position: -webkit-sticky;
-    //   position: sticky;
-    }
   }
   
   .sidebar .nav-link {
@@ -134,8 +127,8 @@ body {
       padding-bottom: 1rem;
   }
   .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, .25);
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
@@ -173,7 +166,7 @@ body {
         text-transform: uppercase;
     }
     .task-section {
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 400;
 
         .mw-unset {
@@ -225,6 +218,15 @@ body {
             max-width: 20%;
             flex: 0 0 20%;
         }
+
+        #btn-create-task {
+            background-color: #5c6370;
+            color: #fff;
+        }
+
+        #btn-create-task:hover {
+            background-color: #262729;
+        }
     }
 }
 
@@ -269,11 +271,6 @@ table.dataTable tfoot th, table.dataTable tfoot td {
 
 thead input {
     width: 100%;
-}
-
-.table-wrapper {
-    // max-height: 350px;
-    // overflow-y: auto;
 }
 
 table.dataTable thead th,
@@ -330,9 +327,10 @@ input[type='checkbox'] {
 .tooltip-inner {
     max-width: 200px;
     padding: 3px 8px;
-    color: #fff;
+    // color: #e3342f;
+    color: #000;
     text-align: center;
-    background-color: #e3342f;
+    background-color: #fff;
     border-radius: .25rem;
 }
 
@@ -340,13 +338,13 @@ input[type='checkbox'] {
     margin-top: -3px;
     content: "";
     border-width: 5px 5px 5px 0;
-    border-right-color: #e3342f;
+    border-right-color: #fff;
 }
 
 .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^=top] .arrow::before {
     top: 0;
     border-width: 0.4rem 0.4rem 0;
-    border-top-color: #e3342f;
+    border-top-color: #fff;
 }
 
 .tooltip.show.bs-tooltip-right {
@@ -356,7 +354,31 @@ input[type='checkbox'] {
 .bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^=left] .arrow::before {
     left: 0;
     border-width: 0.4rem 0 0.4rem 0.4rem;
-    border-left-color: #e3342f;
+    border-left-color: #fff;
+}
+
+/*
+* modal
+*/
+#task-add-modal {
+    .additional-tasks {
+        padding: 0 1rem;
+    }
+    input.form-control {
+        border-radius: 0;
+        height: 1.5rem;
+    }
+    .btn-suggest-save-wrapper {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    select.form-control,
+    button.btn-suggest-save {
+        border-radius: 0;
+        height: 1.5rem;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 
 @media (min-width: 576px) {
@@ -383,6 +405,3 @@ input[type='checkbox'] {
         min-width: 200px;
     }
 }
-
-
-

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5 login-form">
             <div class="card bg-black">
-                <div class="card-header"><img src="images/logo.jpg" alt="" class="img-fluid login-logo "></div>
+                <div class="card-header"><img src="images/logo.png" alt="" class="img-fluid login-logo "></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
