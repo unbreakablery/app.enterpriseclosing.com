@@ -16,10 +16,11 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->integer('user');
-            $table->string('action')->nullable();
-            $table->string('step')->nullable();
-            $table->string('from_to_account')->nullable();
+            $table->integer('action');
+            $table->integer('step');
+            $table->string('person_account')->nullable();
             $table->string('opportunity')->nullable();
+            $table->string('note')->nullable();
             $table->enum('priority', [1, 2, 3])->default(3);
             $table->date('by_date')->format('dd-mm-yyyy')->nullable();
             $table->date('completed_at')->nullable();
