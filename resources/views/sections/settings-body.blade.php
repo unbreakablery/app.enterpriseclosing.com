@@ -2,6 +2,13 @@
 <form id="form_setting" class="form-inline mt-4" action="{{ route('settings.store')}}" method='post' autocomplete="off">
 	@csrf
 	<h3>Action</h3>
+	<div class="form-check col-20">
+		<input class="form-check-input select-all" type="checkbox" 
+				name="select-all-actions" 
+				id="select-all-actions" 
+				title="Select/Deselect All" 
+		/>
+	</div>
 	<div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
 		@foreach ($actions as $action)
 		<div class="form-check col-20">
@@ -20,16 +27,23 @@
 	</div>
 	
 	<h3>Step</h3>
+	<div class="form-check col-20">
+		<input class="form-check-input select-all" type="checkbox" 
+				name="select-all-steps" 
+				id="select-all-steps" 
+				title="Select/Deselect All" 
+		/>
+	</div>
 	<div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
 		@foreach ($steps as $step)
 		<div class="form-check col-20">
 			<input class="form-check-input input-step" type="checkbox" name="steps[]" 
-			id="ts-{{$step->id}}-rg-account" 
-			value="{{$step->id}}"
-			@foreach($settings as $setting)
-				@if($step->id == $setting->section_id && $setting->section_type == 2 ) checked @endif
-			@endforeach
-			>
+				id="ts-{{$step->id}}-rg-account" 
+				value="{{$step->id}}"
+				@foreach($settings as $setting)
+					@if($step->id == $setting->section_id && $setting->section_type == 2 ) checked @endif
+				@endforeach
+				>
 			<label class="form-check-label" for="ts-{{$step->id}}-rg-account">
 				{{$step->name}}
 			</label>

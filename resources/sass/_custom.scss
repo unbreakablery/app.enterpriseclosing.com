@@ -381,6 +381,14 @@ input[type='checkbox'] {
     }
 }
 
+/*
+* select/deselect checkbox
+*/
+.form-inline .form-check-input.select-all {
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
 @media (min-width: 576px) {
     .ml-sm-auto, .mx-sm-auto {
         margin: 0 auto !important;

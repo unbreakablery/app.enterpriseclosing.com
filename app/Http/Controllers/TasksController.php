@@ -56,6 +56,7 @@ class TasksController extends Controller
             'saved_step' => $task->step,
             'saved_person_account' => $task->person_account,
             'saved_opportunity' => $task->opportunity,
+            'saved_by_date' => $request->input('by-date')
         ]);
     
        

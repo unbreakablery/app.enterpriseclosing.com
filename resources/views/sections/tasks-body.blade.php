@@ -304,7 +304,7 @@
 								<input type="text" class="form-control" id="suggest-note-{{ $idx }}" name="suggest-note-{{ $idx }}" placeholder="Note..." />
 							</div>
 							<div class="col">
-								<input type="text" class="form-control date" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
+								<input type="text" class="form-control date" value="{{ old('saved_by_date') }}" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
 							</div>
 							<div class="col">
 								<select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="form-control">
