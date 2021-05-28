@@ -16,6 +16,7 @@ class CreateActionsTable extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('is_other', ['0', '1'])->default('0');
             $table->timestamps();
         });
     }

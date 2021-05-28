@@ -24,14 +24,21 @@ class SettingsController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $actions = Action::get();
-        $steps = Step::get();
+        $actions = Action::where('is_other', '0')->orderBy('name', 'ASC')->get();
+        $steps = Step::where('is_other', '0')->orderBy('name', 'ASC')->get();
         $settings = Setting::where('user_id', $user_id)->get();
         $suggestSettings = SuggestSetting::where('user_id', $user_id)->get();
         $step_setting = Setting::where('user_id', $user_id)
                         ->where('section_type', 2)->get();
 
-        return view('pages.settings', compact('actions', 'steps', 'suggestSettings', 'settings', 'step_setting'));
+        return view('pages.settings', compact(
+                'actions', 
+                'steps', 
+                'suggestSettings', 
+                'settings', 
+                'step_setting'
+            )
+        );
     }
 
     public function store(Request $request)

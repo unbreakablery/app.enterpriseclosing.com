@@ -47,7 +47,16 @@ class TasksController extends Controller
         $note               = $request->input('note');
         $by_date            = $request->input('by-date');
         $priority           = $request->input('priority');
+        
+        // add it action/step table if other action and step
+        if ($action == 0) {
+            $action = storeAction($request->input('action-other-name'));
+        }
+        if ($step == 0) {
+            $step = storeStep($request->input('step-other-name'));
+        }
 
+        // save task
         $task = storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority);
 
         return redirect()->route('tasks')->withInput([
@@ -58,8 +67,6 @@ class TasksController extends Controller
             'saved_opportunity' => $task->opportunity,
             'saved_by_date' => $request->input('by-date')
         ]);
-    
-       
     }
 
     public function saveTask(Request $request)

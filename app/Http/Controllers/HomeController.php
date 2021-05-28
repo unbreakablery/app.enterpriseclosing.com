@@ -32,8 +32,8 @@ class HomeController extends Controller
             return redirect()->route('settings');
         }
 
-        $actions = Action::get();
-        $steps = Step::get();
+        $actions = Action::where('is_other', '0')->orderBy('name', 'ASC')->get();
+        $steps = Step::where('is_other', '0')->orderBy('name', 'ASC')->get();
         $settings = Setting::where('user_id', Auth::user()->id)
                             ->get();
 

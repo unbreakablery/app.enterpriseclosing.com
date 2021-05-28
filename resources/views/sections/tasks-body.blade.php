@@ -81,7 +81,7 @@
 			@endforeach
 		@endforeach
 		<div class="form-check col-20">
-			<input class="form-check-input" type="radio" name="action" id="action-other" value="">
+			<input class="form-check-input" type="radio" name="action" id="action-other" value="0">
 			<input type="text" class="form-control mr-20" aria-label="Text input with radio button" placeholder="Other" name="action-other-name" id="action-other-name">
 		</div>
 	</div>
@@ -104,7 +104,7 @@
 			@endforeach
 		@endforeach
 		<div class="form-check col-20">
-			<input class="form-check-input" type="radio" name="step" id="step-other" value="">
+			<input class="form-check-input" type="radio" name="step" id="step-other" value="0">
 			<input type="text" class="form-control mr-20" aria-label="Text input with radio button" placeholder="Other" name="step-other-name" id="step-other-name">
 		</div>
 	</div>

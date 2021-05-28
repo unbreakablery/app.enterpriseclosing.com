@@ -85,13 +85,13 @@ $(document).ready(function() {
         });
     } );
 
-    $('input#action-other-name').change(function() {
-        $('#action-other').val($(this).val());
-    });
+    // $('input#action-other-name').change(function() {
+    //     $('#action-other').val($(this).val());
+    // });
 
-    $('input#step-other-name').change(function() {
-        $('#step-other').val($(this).val());
-    });
+    // $('input#step-other-name').change(function() {
+    //     $('#step-other').val($(this).val());
+    // });
     
     //validate form and submit
     $('button#btn-create-task').click(function() {
