@@ -14,9 +14,9 @@ class StepSeeder extends Seeder
     public function run()
     {
         $steps = array('Account', 'Agreement', 'Business Case', 'Calendar Invite', 'Case Study', 'Closed Won Emails',
-        'Custom Video', 'Demo', 'Dollar Value (CRM)', 'EBR', 'Exec Intro', 'Fee Presentation', 'Forcast (CRM)',
+        'Custom Video', 'Demo', 'Dollar Value (CRM)', 'EBR', 'Exec Intro', 'Fee Presentation', 'Forecast (CRM)',
         'Invoice', 'ITS Docs', 'Message', 'MEDDPICC (CRM)', 'Meeting', 'MSA', 'NDA', 'Next Steps (CRM)', 'Person / Attendees',
-        'PoC', 'PoV', 'PR', 'Project', 'Red Flags (CRM)', 'Security Docs', 'Sliders', 'SoE', 'Stage (CRM)',
+        'PoC', 'PoV', 'PR', 'Project', 'Red Flags (CRM)', 'Security Docs', 'Slides', 'SoE', 'Stage (CRM)',
         'VE Report', 'Video', "What's Changed (CRM)", 'White Paper');
 
         foreach ($steps as $step) {
