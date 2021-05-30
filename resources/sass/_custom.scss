@@ -219,12 +219,12 @@ body {
             flex: 0 0 20%;
         }
 
-        #btn-create-task {
+        .btn-app-default {
             background-color: #5c6370;
             color: #fff;
         }
 
-        #btn-create-task:hover {
+        .btn-app-default:hover {
             background-color: #262729;
         }
     }
@@ -387,6 +387,22 @@ input[type='checkbox'] {
 .form-inline .form-check-input.select-all {
     margin-bottom: 0.5rem;
     margin-left: 1rem;
+}
+
+/*
+* outbound
+*/
+.persons-table-wrapper {
+    height: 315px;
+    overflow-y: auto;
+}
+table#persons-table input {
+    border-radius: 0;
+    height: 1.5rem;
+}
+table#persons-table tr th {
+    position: sticky;
+    top: -1px;
 }
 
 @media (min-width: 576px) {

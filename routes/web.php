@@ -30,7 +30,12 @@ Route::get('/tasks', 'HomeController@tasks')->name('tasks');
 Route::post('/tasks/add', 'TasksController@addTask')->name('tasks.add');
 Route::post('/tasks/save', 'TasksController@saveTask')->name('tasks.save');
 
-Route::get('/outbound', 'HomeController@outbound')->name('outbound');
+Route::get('/outbound', 'OutboundController@getOutbound')->name('outbound');
+Route::post('/outbound/save-main', 'OutboundController@saveOutboundMain')->name('outbound.save.main');
+Route::post('/outbound/save-person', 'OutboundController@saveOutboundPerson')->name('outbound.save.person');
+Route::post('/outbound/remove-main', 'OutboundController@removeOutboundMain')->name('outbound.remove.main');
+Route::post('/outbound/remove-person', 'OutboundController@removeOutboundPerson')->name('outbound.remove.person');
+
 Route::get('/opportunities', 'HomeController@opportunities')->name('opportunities');
 Route::get('/scripts', 'HomeController@scripts')->name('scripts');
 Route::get('/emails', 'HomeController@emails')->name('emails');
