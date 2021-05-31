@@ -26,6 +26,7 @@
     @endif
 </head>
 <body class="bg-black">
+    <div id="page-loader"></div>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm top-layer border-bottom">
             <div class="container no-max-width">
@@ -103,6 +104,33 @@
     <script src="https://cdn.datatables.net/plug-ins/1.10.24/sorting/date-eu.js"></script> -->
     <script src="{{ asset('js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('js/date-eu.js') }}"></script>
+    
+    <script>
+
+        // $.noConflict();
+        function loader($mode) {
+            var $lpageLoader = $('#page-loader');
+            var $lBody = $('body');
+
+            if ($mode === 'show') {
+                if ($lpageLoader.length) {
+                    $lpageLoader.fadeIn(250);
+                } else {
+                    $lBody.prepend('<div id="page-loader"></div>');
+                }
+            } else if ($mode === 'hide') {
+                if ($lpageLoader.length) {
+                    $lpageLoader.fadeOut(250);
+                }
+            }
+
+            return false;
+        };
+        $(document).ready(function() {
+            $.noConflict();
+            loader('hide');
+        });
+    </script>
 
     @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'tasks')
         <script>

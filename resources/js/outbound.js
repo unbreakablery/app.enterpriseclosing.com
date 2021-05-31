@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $.noConflict();
     $('#btn-show-modal').click(function() {
         // Initialize account name input
         $('#account-name').val('');
@@ -23,52 +22,8 @@ $(document).ready(function() {
         // Hide modal
         $('#add-account-modal').modal('hide');
 
-        // Add new tab
-        let tabNavElement = '';
-        tabNavElement += '<li class="nav-item" role="presentation">';
-        tabNavElement += '<a class="nav-link active" ';
-        tabNavElement += ' data-toggle="tab" role="tab" aria-selected="true" ';
-        tabNavElement += ' id="tab-' + tabIndex + '" ';
-        tabNavElement += ' href="#ob-tab-' + tabIndex + '" ';
-        tabNavElement += ' aria-controls="#ob-tab-' + tabIndex + '">';
-        tabNavElement += tabName;
-        tabNavElement += '</a></li>';
-
-        let tabContent = '';
-        tabContent += '<div class="tab-pane fade show active" role="tabpanel" ';
-        tabContent += ' id="ob-tab-' + tabIndex + '" ';
-        tabContent += ' data-idx="' + tabIndex + '" ';
-        tabContent += ' aria-labelledby="tab-' +  tabIndex + '">';
-        tabContent += '</div>';
-
-        $('#outboundTabs li.nav-item a.nav-link').removeClass('active');
-        $('#outboundTabs li.nav-item a.nav-link').attr('aria-selected', false);
-        $('#outboundTabsContent div.tab-pane').removeClass('show');
-        $('#outboundTabsContent div.tab-pane').removeClass('active');
-        
-        $('#outboundTabs').append(tabNavElement);
-        $('#outboundTabsContent').append(tabContent);
-
-        // Add new table to tab
-        $('#ob-tab-' + tabIndex).append($('#ob-component-empty').html());
-        // $('#ob-tab-' + tabIndex + ' input[name=first-name]').attr('name', 'first-name-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=last-name]').attr('name', 'last-name-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=title]').attr('name', 'title-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=phone]').attr('name', 'phone-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=mobile]').attr('name', 'mobile-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=email]').attr('name', 'email-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=calls]').attr('name', 'calls-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=result]').attr('name', 'result-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=linkedin-connected]').attr('name', 'linkedin-connected-' + tabIndex);
-        // $('#ob-tab-' + tabIndex + ' input[name=linkedin-address]').attr('name', 'linkedin-address-' + tabIndex);
-        
-        // Add account name
-        $('#ob-tab-' + tabIndex).find('input[name=account-name]').val(tabName);
-
-        // Increase tab index
-        tabIndex++;
-
         // Save blank outbound
+        loader('show');
         $.ajax({
             url:        "outbound/save-main",
             dataType:   "json",
@@ -79,8 +34,58 @@ $(document).ready(function() {
                             account_name: tabName
                         },
             success: function( res ) {
+                // Add new tab
+                let tabNavElement = '';
+                tabNavElement += '<li class="nav-item" role="presentation">';
+                tabNavElement += '<a class="nav-link active" ';
+                tabNavElement += ' data-toggle="tab" role="tab" aria-selected="true" ';
+                tabNavElement += ' id="tab-' + tabIndex + '" ';
+                tabNavElement += ' href="#ob-tab-' + tabIndex + '" ';
+                tabNavElement += ' aria-controls="#ob-tab-' + tabIndex + '">';
+                tabNavElement += tabName;
+                tabNavElement += '</a></li>';
+
+                let tabContent = '';
+                tabContent += '<div class="tab-pane fade show active" role="tabpanel" ';
+                tabContent += ' id="ob-tab-' + tabIndex + '" ';
+                tabContent += ' data-idx="' + tabIndex + '" ';
+                tabContent += ' aria-labelledby="tab-' +  tabIndex + '">';
+                tabContent += '</div>';
+
+                $('#outboundTabs li.nav-item a.nav-link').removeClass('active');
+                $('#outboundTabs li.nav-item a.nav-link').attr('aria-selected', false);
+                $('#outboundTabsContent div.tab-pane').removeClass('show');
+                $('#outboundTabsContent div.tab-pane').removeClass('active');
+                
+                $('#outboundTabs').append(tabNavElement);
+                $('#outboundTabsContent').append(tabContent);
+
+                // Add new table to tab
+                $('#ob-tab-' + tabIndex).append($('#ob-component-empty').html());
+                // $('#ob-tab-' + tabIndex + ' input[name=first-name]').attr('name', 'first-name-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=last-name]').attr('name', 'last-name-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=title]').attr('name', 'title-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=phone]').attr('name', 'phone-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=mobile]').attr('name', 'mobile-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=email]').attr('name', 'email-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=calls]').attr('name', 'calls-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=result]').attr('name', 'result-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=linkedin-connected]').attr('name', 'linkedin-connected-' + tabIndex);
+                // $('#ob-tab-' + tabIndex + ' input[name=linkedin-address]').attr('name', 'linkedin-address-' + tabIndex);
+                
+                // Add account name
+                $('#ob-tab-' + tabIndex).find('input[name=account-name]').val(tabName);
+
+                // Increase tab index
+                tabIndex++;
+
                 // Change outbound id
                 $('#ob-tab-' + (tabIndex - 1)).find('input[name=o-id]').val(res.id);
+                loader('hide');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
             }
         });
     });
@@ -101,6 +106,8 @@ $(document).ready(function() {
         let orgHooks = $.trim($(tabComponent).find('textarea[name=org-hooks]').val());
         let additionalNuggets = $.trim($(tabComponent).find('textarea[name=additional-nuggets]').val());
         
+        loader('show');
+
         $.ajax({
             url:        "outbound/save-main",
             dataType:   "json",
@@ -117,7 +124,12 @@ $(document).ready(function() {
             success: function( res ) {
                 // Change outbound id
                 $(tabComponent).find('input[name=o-id]').val(res.id);
-                // console.log("Outbound(" + res.id + ") Main Saved!");
+                
+                loader('hide');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
             }
         });
     });
@@ -143,6 +155,8 @@ $(document).ready(function() {
         let liConnected = $(rowObj).find('input[name=linkedin-connected]').val();
         let liAddress = $(rowObj).find('input[name=linkedin-address]').val();
 
+        loader('show');
+
         $.ajax({
             url:        "outbound/save-person",
             dataType:   "json",
@@ -165,6 +179,12 @@ $(document).ready(function() {
             success: function( res ) {
                 // Change outbound person id
                 $(rowObj).data('id', res.id);
+
+                loader('hide');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
             }
         });
     });
@@ -177,6 +197,8 @@ $(document).ready(function() {
             return;
         }
 
+        loader('show');
+
         $.ajax({
             url:        "outbound/remove-person",
             dataType:   "json",
@@ -188,6 +210,12 @@ $(document).ready(function() {
             success: function( res ) {
                 // Change outbound person id
                 $(rowObj).remove();
+
+                loader('hide');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
             }
         });
     });
@@ -199,6 +227,8 @@ $(document).ready(function() {
             alert("Not saved this account!");
             return;
         }
+
+        loader('show');
 
         $.ajax({
             url:        "outbound/remove-main",
@@ -216,6 +246,12 @@ $(document).ready(function() {
 
                 $('#outboundTabs li a.nav-link').first().addClass('active');
                 $('#outboundTabsContent .tab-pane').first().addClass('show active');
+
+                loader('hide');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
             }
         });
     });

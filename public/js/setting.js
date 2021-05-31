@@ -4,8 +4,6 @@ var __webpack_exports__ = {};
   !*** ./resources/js/setting.js ***!
   \*********************************/
 $(document).ready(function () {
-  $.noConflict();
-
   function onClickStepCheckbox(obj) {
     if (obj.checked) {
       $('#sub_step').removeClass('suggest-step-deactive');

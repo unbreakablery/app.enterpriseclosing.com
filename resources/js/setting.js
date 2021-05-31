@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    $.noConflict();
-
     function onClickStepCheckbox(obj) {
         if (obj.checked) {
             $('#sub_step').removeClass('suggest-step-deactive');

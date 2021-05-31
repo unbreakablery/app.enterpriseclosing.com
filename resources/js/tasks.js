@@ -1,31 +1,4 @@
 $(document).ready(function() {
-    $.noConflict();
-    
-    // $('#table-1 thead tr').clone(true).appendTo( '#table-1 thead' );
-    // $('#table-1 thead tr:eq(1) th').each( function (i) {
-    //     var title = $(this).text();
-    //     var class_name = (i == 1 || i == 2 || i == 3) ? 'date' : '';
-
-    //     $(this).html( '<input class="' + class_name + '" type="text" placeholder="Search '+title+'" />' );
-
-    //     $( 'input', this ).on( 'keyup change', function () {
-    //         if ( table1.column(i).search() !== this.value ) {
-    //             table1
-    //                 .column(i)
-    //                 .search( this.value )
-    //                 .draw();
-    //         }
-    //     } );
-    // } );
-
-    // var table1 = $('#table-1').DataTable( {
-    //     orderCellsTop: true,
-    //     fixedHeader: true,
-    //     info: false,
-    //     scrollY: 200,
-    //     scrollCollapse: true,
-    //     paging: false
-    // } );
     var taskTable = $('#task-table').DataTable( {
         responsive: true,
         orderCellsTop: true,
