@@ -27,18 +27,19 @@ body {
 .main-container,
 .container-login {
     margin: -1.5rem 0;
-    min-height: calc(100vh - 74px);
+    min-height: calc(100vh - 52px);
 }
 .container-login,
 .container-register {
     .login-form {
-        height: calc(100vh - 74px);
+        // height: calc(100vh - 52px);
+        height: 100vh;
         padding: 0;
     }
     .card {
         border: 0;
         border-radius: 0;
-        margin-top: 10rem;
+        margin-top: 15rem;
 
         .login-logo {
             width: 250px;
@@ -67,7 +68,7 @@ body {
  */
 #sidebarMenu {
     border-right: 1px solid #fff;
-    min-height: calc(100vh - 74px);
+    min-height: calc(100vh - 52px);
 }
  .sidebar {
     // position: fixed;
@@ -123,8 +124,8 @@ body {
    * Navbar
    */
   .navbar {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      padding-top: 5px;
+      padding-bottom: 5px;
   }
   .navbar-brand {
     padding-top: 0px;
@@ -392,17 +393,54 @@ input[type='checkbox'] {
 /*
 * outbound
 */
+#outboundTabs .nav-item .nav-link {
+    padding: 0.25rem 1rem;
+}
+#outboundTabsContent .action-group .btn-app-default {
+    padding: 0 0.5rem;
+    height: 29px;
+}
 .persons-table-wrapper {
     height: 315px;
     overflow-y: auto;
 }
-table#persons-table input {
+#upload-file-modal input[type=file].form-control {
+    padding: 0.2rem;
     border-radius: 0;
-    height: 1.5rem;
+    height: auto;
+}
+table#persons-table {
+    input[type=text],
+    input[type=number],
+    select {
+        border-radius: 0;
+        height: 1.5rem;
+        padding: 0 0.25rem;
+    }
 }
 table#persons-table tr th {
     position: sticky;
     top: -1px;
+    padding: 0.25rem 0.75rem;
+}
+table#persons-table tbody tr td {
+    padding: 0;
+}
+table#persons-table input,
+table#persons-table select {
+    font-size: 13px;
+}
+a.a-btn-remove-account {
+    cursor: pointer;
+}
+.btn-remove-row {
+    height: 1.5rem;
+    i.bi.bi-x:before {
+        vertical-align: 0;
+    }
+}
+.h-px-100 {
+    height: 100px;
 }
 
 /*
@@ -480,6 +518,10 @@ table#persons-table tr th {
 
     .col-md-3 {
         min-width: 200px;
+    }
+
+    #outboundTabsContent .col-md-3 {
+        min-width: unset;
     }
 }
 @media (min-width: 992px) {

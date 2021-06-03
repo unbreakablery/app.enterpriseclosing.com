@@ -35,6 +35,9 @@ Route::post('/outbound/save-main', 'OutboundController@saveOutboundMain')->name(
 Route::post('/outbound/save-person', 'OutboundController@saveOutboundPerson')->name('outbound.save.person');
 Route::post('/outbound/remove-main', 'OutboundController@removeOutboundMain')->name('outbound.remove.main');
 Route::post('/outbound/remove-person', 'OutboundController@removeOutboundPerson')->name('outbound.remove.person');
+Route::get('/outbound/download/{id}', 'OutboundController@downloadPersons')->name('outbound.download.persons');
+Route::post('/outbound/upload', 'OutboundController@uploadPersons')->name('outbound.upload.persons');
+Route::post('/outbound/save-task', 'OutboundController@saveTask')->name('outbound.save.task');
 
 Route::get('/opportunities', 'HomeController@opportunities')->name('opportunities');
 Route::get('/scripts', 'HomeController@scripts')->name('scripts');

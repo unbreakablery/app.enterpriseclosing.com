@@ -1,4 +1,20 @@
 $(document).ready(function() {
+    function clearAddTaskModal() {
+        $('#add-task-modal select[name=action]').val(0);
+        $('#add-task-modal select[name=step]').val(0);
+        $('#add-task-modal input[name=person-account]').val('');
+        $('#add-task-modal input[name=opportunity]').val('');
+        $('#add-task-modal input[name=note]').val('');
+        $('#add-task-modal select[name=priority]').val(0);
+        $('.date').datepicker("setDate", new Date());
+    }
+    $('.date').datepicker({
+        format: 'dd-mm-yyyy',
+        todayBtn: "linked",
+        todayHighlight: true,
+        clearBtn: true,
+        autoclose: true
+    }).datepicker("setDate", new Date());
     $('#btn-show-modal').click(function() {
         // Initialize account name input
         $('#account-name').val('');
@@ -14,7 +30,7 @@ $(document).ready(function() {
         $('#tab-name').val('');
         
         // Check if account name is empty
-        if (tabName == '') {
+        if (tabName === '') {
             alert("You must enter new account name to create new tab.");
             return;
         }
@@ -62,16 +78,6 @@ $(document).ready(function() {
 
                 // Add new table to tab
                 $('#ob-tab-' + tabIndex).append($('#ob-component-empty').html());
-                // $('#ob-tab-' + tabIndex + ' input[name=first-name]').attr('name', 'first-name-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=last-name]').attr('name', 'last-name-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=title]').attr('name', 'title-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=phone]').attr('name', 'phone-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=mobile]').attr('name', 'mobile-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=email]').attr('name', 'email-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=calls]').attr('name', 'calls-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=result]').attr('name', 'result-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=linkedin-connected]').attr('name', 'linkedin-connected-' + tabIndex);
-                // $('#ob-tab-' + tabIndex + ' input[name=linkedin-address]').attr('name', 'linkedin-address-' + tabIndex);
                 
                 // Add account name
                 $('#ob-tab-' + tabIndex).find('input[name=account-name]').val(tabName);
@@ -89,13 +95,53 @@ $(document).ready(function() {
             }
         });
     });
+    $('#btn-create-new-task').click(function() {
+        let action = $('#add-task-modal select[name=action]').val();
+        let step = $('#add-task-modal select[name=step]').val();
+        let personAccount = $('#add-task-modal input[name=person-account]').val();
+        let opportunity = $('#add-task-modal input[name=opportunity]').val();
+        let note = $('#add-task-modal input[name=note]').val();
+        let byDate = $('#add-task-modal input[name=by-date]').val();
+        let priority = $('#add-task-modal select[name=priority]').val();
+
+        loader('show');
+
+        $.ajax({
+            url:        "outbound/save-task",
+            dataType:   "json",
+            type:       "post",
+            data:       {
+                            _token: $('meta[name="csrf-token"]').attr('content'),
+                            action:             action,
+                            step:               step,
+                            person_account:     personAccount,
+                            opportunity:        opportunity,
+                            note:               note,
+                            by_date:            byDate,
+                            priority:           priority
+                        },
+            success: function( res ) {
+                loader('hide');
+                $('#add-task-modal').modal('hide');
+                
+                $('.toast .toast-body').text('New task (ID: ' + res.taskID + ') was added successfully!');
+                $('.toast').toast('show');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
+            }
+        });
+    });
     $(document).on('click', '.btn-add-row', function() {
-        let pTable = $(this).parent().parent().find('#persons-table');
+        let pTable = $(this).closest('.tab-component').find('#persons-table');
         // Remove no data row
         $(pTable).find('#no-data-row').remove();
         
         // Add new row
         $(pTable).find('tbody').append($('#tr-component-empty tbody').html());
+        let trObj = $(pTable).find('tbody tr').last();
+        trObj[0].scrollIntoView(true);
     });
     $(document).on('change', '.tab-component .main-info input[type=text], .tab-component .main-info textarea', function() {
         let tabComponent = $(this).closest('.tab-component');
@@ -133,10 +179,12 @@ $(document).ready(function() {
             }
         });
     });
-    $(document).on('change', '.tab-component table#persons-table input[type=text]', function() {
+    $(document).on('change', '.tab-component table#persons-table input, .tab-component table#persons-table select', function() {
+        let thisObj = $(this);
         let tabComponent = $(this).closest('.tab-component');
         let rowObj = $(this).closest('tr');
         let oId = $(tabComponent).find('input[name=o-id]').val();
+        let accountName = $(tabComponent).find('input[name=account-name]').val();
         let id = $(rowObj).data('id');
         
         if (oId == 0) {
@@ -151,8 +199,9 @@ $(document).ready(function() {
         let mobile = $(rowObj).find('input[name=mobile]').val();
         let email = $(rowObj).find('input[name=email]').val();
         let calls = $(rowObj).find('input[name=calls]').val();
-        let result = $(rowObj).find('input[name=result]').val();
-        let liConnected = $(rowObj).find('input[name=linkedin-connected]').val();
+        let result = $(rowObj).find('select[name=result]').val();
+        let liConnected = $(rowObj).find('select[name=linkedin-connected]').val();
+        let notes = $(rowObj).find('input[name=notes]').val();
         let liAddress = $(rowObj).find('input[name=linkedin-address]').val();
 
         loader('show');
@@ -174,6 +223,7 @@ $(document).ready(function() {
                             calls:          calls,
                             result:         result,
                             li_connected:   liConnected,
+                            notes:          notes,
                             li_address:     liAddress
                         },
             success: function( res ) {
@@ -181,6 +231,20 @@ $(document).ready(function() {
                 $(rowObj).data('id', res.id);
 
                 loader('hide');
+
+                // Clear add task modal
+                clearAddTaskModal();
+
+                // Check if element type is select element
+                let elementName = $(thisObj).attr('name');
+                
+                if (elementName === 'result' && $(thisObj).val() === 'Send Info') {
+                    //Show task modal
+                    $('#add-task-modal input[name=person-account]').val(accountName);
+                    $('#add-task-modal').modal({
+                        backdrop: 'static'
+                    });
+                }
             },
             error: function (request, status, error) {
                 loader('hide');
@@ -193,7 +257,8 @@ $(document).ready(function() {
         let id = $(rowObj).data('id');
 
         if (id == 0) {
-            alert("Not saved this person!");
+            // Remove row element
+            $(rowObj).remove();
             return;
         }
 
@@ -208,7 +273,7 @@ $(document).ready(function() {
                             id: id
                         },
             success: function( res ) {
-                // Change outbound person id
+                // Remove row element
                 $(rowObj).remove();
 
                 loader('hide');
@@ -219,9 +284,10 @@ $(document).ready(function() {
             }
         });
     });
-    $(document).on('click', '.btn-remove-account', function() {
+    $(document).on('click', '.a-btn-remove-account', function() {
         let tabComponent = $(this).closest('.tab-component');
         let id = $(tabComponent).find('input[name=o-id]').val();
+        let accountName = $(tabComponent).find('input[name=account-name]').val();
 
         if (id == 0) {
             alert("Not saved this account!");
@@ -244,15 +310,106 @@ $(document).ready(function() {
                 $('#outboundTabsContent #ob-tab-' + idx).remove();
                 $('#outboundTabs #tab-' + idx).parent().remove();
 
+                // Active first tab
                 $('#outboundTabs li a.nav-link').first().addClass('active');
                 $('#outboundTabsContent .tab-pane').first().addClass('show active');
 
                 loader('hide');
+
+                $('.toast .toast-body').text('Account (' + accountName + ') was removed successfully!');
+                $('.toast').toast('show');
             },
             error: function (request, status, error) {
                 loader('hide');
                 alert(request.responseText);
             }
+        });
+    });
+    $(document).on('click', '.btn-download-persons', function() {
+        let id = $(this).closest('.tab-component').find('input[name=o-id]').val();
+
+        if (id == 0 || id == '' || id == undefined) {
+            alert("You can't download these persons data now!");
+            return;
+        }
+        let url = '/outbound/download/' + id;
+        window.location.href = url;
+    });
+    $(document).on('click', '#btn-upload-persons', function() {
+        let idx = $('#upload-file-modal').attr('data-idx');
+        let pTable = $('#ob-tab-' + idx + ' .tab-component').find('#persons-table');
+        let id = $('#ob-tab-' + idx + ' .tab-component').find('input[name=o-id]').val();
+        let file_data = $('#upload-file-modal input[name=upload-file]').prop('files')[0];
+        
+        if (file_data == undefined) {
+            alert("Please choose a upload csv file!");
+            return;
+        }
+
+        let form_data = new FormData();
+        
+        form_data.append('upload-file', file_data);
+        form_data.append('id', id);
+        form_data.append('_token', $('meta[name="csrf-token"]').attr('content'));
+        
+        loader('show');
+
+        $.ajax({
+            url: '/outbound/upload',
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+            success: function(res) {
+                // Remove all rows on table
+                $(pTable).find('tbody tr').remove();
+
+                for (let i = 0; i < res.persons.length; i++) {
+                    let person = res.persons[i];
+                    let newRow = $('#tr-component-empty tbody tr').clone();
+
+                    // Set values to new row
+                    $(newRow).attr('data-id', person.id);
+                    $(newRow).find('input[name=first-name]').val(person.first_name);
+                    $(newRow).find('input[name=last-name]').val(person.last_name);
+                    $(newRow).find('input[name=title]').val(person.title);
+                    $(newRow).find('input[name=phone]').val(person.phone);
+                    $(newRow).find('input[name=mobile]').val(person.mobile);
+                    $(newRow).find('input[name=email]').val(person.email);
+                    $(newRow).find('input[name=calls]').val(person.calls);
+                    $(newRow).find('select[name=result]').val(person.result);
+                    $(newRow).find('select[name=linkedin-connected]').val(person.li_connected);
+                    $(newRow).find('input[name=notes]').val(person.notes);
+                    $(newRow).find('input[name=linkedin-address]').val(person.li_address);
+                    
+                    // Add new row
+                    $(pTable).find('tbody').append(newRow);
+                }
+                
+                $('#upload-file-modal').modal('hide');
+
+                loader('hide');
+
+                $('.toast .toast-body').text('File was uploaded successfully!');
+                $('.toast').toast('show');
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                alert(request.responseText);
+            }
+        });
+    });
+    $(document).on('click', '.btn-upload-persons-modal', function() {
+        let idx = $(this).closest('.tab-pane').attr('data-idx');
+        
+        $('#upload-file-modal').attr('data-idx', idx);
+        $('#upload-file-modal input[name=upload-file]').val('');
+
+        //Show modal
+        $('#upload-file-modal').modal({
+            backdrop: 'static'
         });
     });
 });

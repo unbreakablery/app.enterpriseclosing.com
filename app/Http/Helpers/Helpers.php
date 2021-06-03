@@ -8,6 +8,24 @@ use App\Models\OutboundPerson;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
 
+if (!function_exists('getActions')) {
+    function getActions()
+    {
+        $actions = Action::where('is_other', '0')
+                        ->get();
+        return $actions;
+    }
+}
+
+if (!function_exists('getSteps')) {
+    function getSteps()
+    {
+        $steps = Step::where('is_other', '0')
+                        ->get();
+        return $steps;
+    }
+}
+
 if (!function_exists('storeTask')) {
     function storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority) {
         $task = new Task();
@@ -122,6 +140,7 @@ if (!function_exists('storeOutboundPerson')) {
             $outboundPerson->calls          = $data->calls;
             $outboundPerson->result         = $data->result;
             $outboundPerson->li_connected   = $data->li_connected;
+            $outboundPerson->notes          = $data->notes;
             $outboundPerson->li_address     = $data->li_address;
             $outboundPerson->save();
             return $outboundPerson->id;
@@ -140,6 +159,7 @@ if (!function_exists('storeOutboundPerson')) {
                         'calls' => $data->calls,
                         'result' => $data->result,
                         'li_connected' => $data->li_connected,
+                        'notes' => $data->notes,
                         'li_address' => $data->li_address
                     ]);
         return $id;
@@ -161,5 +181,15 @@ if (!function_exists('deleteOutboundPerson')) {
         $result = OutboundPerson::where('id', $id)
                             ->delete();
         return $result;
+    }
+}
+
+if (!function_exists('getOutboundPersonsAsArray')) {
+    function getOutboundPersonsAsArray($oId)
+    {
+        $persons = OutboundPerson::where('o_id', $oId)
+                                ->get()
+                                ->all();
+        return $persons;
     }
 }
