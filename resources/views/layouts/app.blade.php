@@ -20,6 +20,7 @@
     <link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fixedHeader.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if (Route::currentRouteName() == 'settings')
     <link href="{{ asset('css/setting.css') }}" rel="stylesheet">
@@ -28,6 +29,7 @@
 <body class="bg-black">
     <div id="page-loader"></div>
     <div id="app">
+        @if (Route::currentRouteName() != 'login')
         <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm top-layer border-bottom">
             <div class="container no-max-width">
                 <a class="navbar-brand text-white logo-img" href="{{ url('/') }}">
@@ -79,6 +81,7 @@
                 </div>
             </div>
         </nav>
+        @endif
 
         <main class="py-4">
             @yield('content')
