@@ -1,42 +1,42 @@
 $(document).ready(function() {
     function onClickStepCheckbox(obj) {
         if (obj.checked) {
-            $('#sub_step').removeClass('suggest-step-deactive');
-            $('#sub_step').addClass('suggest-step-active');
-            $('.item-' + obj.value).removeClass('suggest-step-item-deactive');
-            $('.item-' + obj.value).addClass('suggest-step-item-active');
-            $('.nav-link').removeClass('active');
-            $('.tab-pane').removeClass('active');
-            $('#pane-' + obj.value).addClass('active');
-            $('#pane-' + obj.value).addClass('show');
-            $('#tab_' + obj.value).addClass('active');
+            $('#settings-tab-tasks #sub_step').removeClass('suggest-step-deactive');
+            $('#settings-tab-tasks #sub_step').addClass('suggest-step-active');
+            $('#settings-tab-tasks .item-' + obj.value).removeClass('suggest-step-item-deactive');
+            $('#settings-tab-tasks .item-' + obj.value).addClass('suggest-step-item-active');
+            $('#settings-tab-tasks .nav-link').removeClass('active');
+            $('#settings-tab-tasks .tab-pane').removeClass('active');
+            $('#settings-tab-tasks #pane-' + obj.value).addClass('active');
+            $('#settings-tab-tasks #pane-' + obj.value).addClass('show');
+            $('#settings-tab-tasks #tab_' + obj.value).addClass('active');
         } else {
-            $('#sub_step li.suggest-item.suggest-step-item-active a.nav-link.active').removeClass('active');
+            $('#settings-tab-tasks #sub_step li.suggest-item.suggest-step-item-active a.nav-link.active').removeClass('active');
             
-            $('.item-' + obj.value).removeClass('suggest-step-item-active');
-            $('.item-' + obj.value).addClass('suggest-step-item-deactive');
-            $('#pane-' + obj.value).removeClass('active');
+            $('#settings-tab-tasks .item-' + obj.value).removeClass('suggest-step-item-active');
+            $('#settings-tab-tasks .item-' + obj.value).addClass('suggest-step-item-deactive');
+            $('#settings-tab-tasks #pane-' + obj.value).removeClass('active');
 
-            $('#sub_step li.suggest-item.suggest-step-item-active').first().addClass('suggest-step-item-active');
-            $('#sub_step li.suggest-item.suggest-step-item-active').first().find('a.nav-link').addClass('active');
+            $('#settings-tab-tasks #sub_step li.suggest-item.suggest-step-item-active').first().addClass('suggest-step-item-active');
+            $('#settings-tab-tasks #sub_step li.suggest-item.suggest-step-item-active').first().find('a.nav-link').addClass('active');
             
-            if ($('#sub_step li.suggest-item.suggest-step-item-active').first().attr('id') != undefined) {
-                let id = $('#sub_step li.suggest-item.suggest-step-item-active').first().attr('id').substring(5);
-                $('#pane-' + id).addClass('show');
-                $('#pane-' + id).addClass('active');
+            if ($('#settings-tab-tasks #sub_step li.suggest-item.suggest-step-item-active').first().attr('id') != undefined) {
+                let id = $('#settings-tab-tasks #sub_step li.suggest-item.suggest-step-item-active').first().attr('id').substring(5);
+                $('#settings-tab-tasks #pane-' + id).addClass('show');
+                $('#settings-tab-tasks #pane-' + id).addClass('active');
             }
             
             // $('#tab_' + obj.value).removeClass('active');
         }
     }
     
-    $('.input-step').on('click', function() {
+    $('#settings-tab-tasks .input-step').on('click', function() {
         onClickStepCheckbox(this);
     });
     
-    $('#btn-save-settings').on('click', function(){
+    $('#settings-tab-tasks #btn-save-settings').on('click', function(){
         var token = $('meta[name="csrf-token"]').attr('content');
-        var data = $('#form_setting').serialize();
+        var data = $('#settings-tab-tasks #form_setting').serialize();
         $.ajax({
             url: "settings/store",
             type: "post",
@@ -55,24 +55,47 @@ $(document).ready(function() {
         })
     })
     
-    $('#select-all-actions').on('click', function() {
-        let obj = this;    
-        $('.input-action').each(function(e) {
-            $(this).prop('checked', obj.checked);
-        })
+    $('#settings-tab-tasks #select-all-actions').on('click', function() {
+        let obj = this;
+        
+        if ($(obj).attr('data-checked') == undefined || $(obj).attr('data-checked') == '0') {
+            $('#settings-tab-tasks .input-action').each(function(e) {
+                $(this).prop('checked', true);
+            });
+            $(obj).attr('data-checked', '1');
+            $(obj).text('Deselect All');
+        } else {
+            $('#settings-tab-tasks .input-action').each(function(e) {
+                $(this).prop('checked', false);
+            });
+            $(obj).attr('data-checked', '0');
+            $(obj).text('Select All');
+        }
     });
 
-    $('#select-all-steps').on('click', function() {
-        let obj = this;    
-        $('.input-step').each(function(e) {
-            $(this).prop('checked', obj.checked);
-            onClickStepCheckbox(this);
-        })
+    $('#settings-tab-tasks #select-all-steps').on('click', function() {
+        let obj = this;
+        
+        if ($(obj).attr('data-checked') == undefined || $(obj).attr('data-checked') == '0') {
+            $('#settings-tab-tasks .input-step').each(function(e) {
+                $(this).prop('checked', true);
+                onClickStepCheckbox(this);
+            });
+            $(obj).attr('data-checked', '1');
+            $(obj).text('Deselect All');
+        } else {
+            $('#settings-tab-tasks .input-step').each(function(e) {
+                $(this).prop('checked', false);
+                onClickStepCheckbox(this);
+            });
+            $(obj).attr('data-checked', '0');
+            $(obj).text('Select All');
+        }
     });
     
-    $('.input-action').on('click', function() {
+    $('#settings-tab-tasks .input-action').on('click', function() {
         if (!this.checked){
-            $('#select-all-actions').prop('checked', false);
+            $('#settings-tab-tasks #select-all-actions').prop('checked', false);
         }
     });
 } );

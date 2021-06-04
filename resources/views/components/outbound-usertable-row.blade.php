@@ -73,7 +73,7 @@
         <select name="linkedin-connected" class="form-control w-100">
             <option value="Not Sent" @if (isset($person) && $person->li_connected == 'Not Sent'){{ 'selected' }}@endif>Not Sent</option>
             <option value="Sent" @if (isset($person) && $person->li_connected == 'Sent'){{ 'selected' }}@endif>Sent</option>
-            <option value="Connect" @if (isset($person) && $person->li_connected == 'Connect'){{ 'selected' }}@endif>Connect</option>
+            <option value="Connected" @if (isset($person) && $person->li_connected == 'Connected'){{ 'selected' }}@endif>Connected</option>
         </select>
     </td>
     <td class="text-center">

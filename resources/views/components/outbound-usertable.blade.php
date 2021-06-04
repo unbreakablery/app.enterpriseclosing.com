@@ -23,18 +23,7 @@
     </div>
     
     <div class="table-responsive table-wrapper mt-4">
-        <!-- <div class="row task-section justify-content-end col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
-            <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-upload-persons-modal mr-1">
-                <i class="bi bi-upload"></i>
-            </button>
-            <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-download-persons mr-1">
-                <i class="bi bi-download"></i>
-            </button>
-            <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-add-row mr-1">
-                Add Row
-            </button>
-        </div> -->
-        <div class="row mb-4 ml-0 mr-0 pl-1 pr-1">
+        <div class="main-info row mb-4 ml-0 mr-0 pl-1 pr-1">
             <div class="col-lg-5 col-md-4 col-sm-12">
                 <div class="row ml-0 mr-0 pl-1 pr-1">
                     <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-start" for="">

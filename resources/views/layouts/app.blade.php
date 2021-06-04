@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Enterprise Closing | Close More Deals, Faster</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,6 +25,7 @@
     @if (Route::currentRouteName() == 'settings')
     <link href="{{ asset('css/setting.css') }}" rel="stylesheet">
     @endif
+    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 </head>
 <body class="bg-black">
     <div id="page-loader"></div>

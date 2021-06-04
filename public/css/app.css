@@ -10006,6 +10006,11 @@ body {
   font-family: "Titillium Web", sans-serif;
 }
 
+.main-content {
+  margin-left: 90px;
+  width: 100%;
+}
+
 .top-layer {
   z-index: 9999;
 }
@@ -10369,6 +10374,12 @@ input[type=checkbox] {
 */
 #outboundTabs .nav-item .nav-link {
   padding: 0.25rem 1rem;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+#outboundTabs .nav-item .nav-link.active {
+  color: #495057;
 }
 
 #outboundTabsContent .action-group .btn-app-default {

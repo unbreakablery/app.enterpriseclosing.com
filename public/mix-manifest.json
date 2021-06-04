@@ -3,6 +3,7 @@
     "/js/tasks.js": "/js/tasks.js",
     "/js/setting.js": "/js/setting.js",
     "/js/outbound.js": "/js/outbound.js",
+    "/css/sidebar.css": "/css/sidebar.css",
     "/css/app.css": "/css/app.css",
     "/css/setting.css": "/css/setting.css"
 }
