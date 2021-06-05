@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaskSetting extends Model
 {
-    //
+    protected $table = 'tasks_settings';
 }
