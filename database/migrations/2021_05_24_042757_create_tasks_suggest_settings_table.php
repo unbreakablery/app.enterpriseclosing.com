@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSettingsTable extends Migration
+class CreateTasksSuggestSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('tasks_suggest_settings', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('section_type');
-            $table->string('section_id');
+            $table->string('user_id')->nullable();
+            $table->string('step_id')->nullable();
+            $table->string('suggest_step_id')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('tasks_suggest_settings');
     }
 }

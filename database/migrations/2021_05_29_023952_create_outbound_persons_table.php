@@ -25,6 +25,7 @@ class CreateOutboundPersonsTable extends Migration
             $table->string('calls')->nullable();
             $table->string('result')->nullable();
             $table->string('li_connected')->nullable();
+            $table->string('notes')->nullable();
             $table->string('li_address')->nullable();
             $table->timestamps();
         });
