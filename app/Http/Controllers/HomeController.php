@@ -7,8 +7,8 @@ use App\Models\Task;
 use App\Models\User;
 use App\Models\Action;
 use App\Models\Step;
-use App\Models\Setting;
-use App\Models\SuggestSetting;
+use App\Models\TaskSetting;
+use App\Models\TaskSuggestSetting;
 
 use Auth;
 
@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $actions = Action::where('is_other', '0')->orderBy('name', 'ASC')->get();
         $steps = Step::where('is_other', '0')->orderBy('name', 'ASC')->get();
-        $settings = Setting::where('user_id', Auth::user()->id)
+        $settings = TaskSetting::where('user_id', Auth::user()->id)
                             ->get();
 
         $tasks = Task::where([
@@ -55,16 +55,16 @@ class HomeController extends Controller
         $suggest_opportunity = (isset($request->opportunity)) ? $request->opportunity : '';
         
         //get suggested steps for additional tasks
-        $suggest_steps = SuggestSetting::where('user_id', Auth::user()->id)
+        $suggest_steps = TaskSuggestSetting::where('user_id', Auth::user()->id)
                                 ->where('step_id', (!empty($saved_step)) ? $saved_step : 0)
-                                ->join('steps', 'suggest_settings.suggest_step_id', '=', 'steps.id')
+                                ->join('steps', 'tasks_suggest_settings.suggest_step_id', '=', 'steps.id')
                                 ->select('steps.id', 'steps.name')
                                 ->distinct('steps.id')
                                 ->orderBy('steps.name')
                                 ->get();
-        $suggest_actions = Setting::where('user_id', Auth::user()->id)
+        $suggest_actions = TaskSetting::where('user_id', Auth::user()->id)
                                 ->where('section_type', 1)
-                                ->join('actions', 'settings.section_id', '=', 'actions.id')
+                                ->join('actions', 'tasks_settings.section_id', '=', 'actions.id')
                                 ->select('actions.id', 'actions.name')
                                 ->distinct('actions.id')
                                 ->orderBy('actions.name')
