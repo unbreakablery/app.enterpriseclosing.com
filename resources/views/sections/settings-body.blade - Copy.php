@@ -119,7 +119,7 @@
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
                     @foreach ($actions as $action)
-                    <div class="form-check col-2">
+                    <div class="form-check col-20">
                         <input class="form-check-input input-action" type="checkbox" name="actions[]" 
                             id="ts-{{$action->id}}-rg-add" 
                             value="{{$action->id}}"
@@ -142,7 +142,7 @@
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
                     @foreach ($steps as $step)
-                    <div class="form-check col-2">
+                    <div class="form-check col-20">
                         <input class="form-check-input input-step" type="checkbox" name="steps[]" 
                             id="ts-{{$step->id}}-rg-account" 
                             value="{{$step->id}}"
@@ -188,9 +188,9 @@
                     <!-- </div> -->
                     <div id="content" class="tab-content" role="tablist">
                         @foreach ($steps as $step)
-                        <div id="pane-{{$step->id}}" class="tab-pane p-4 border fade show {{( count($step_setting) != 0) ? (( $step_setting[0]->section_id == $step->id ) ? 'active' : '') : ''}}" role="tabpanel" aria-labelledby="tab_{{$step->id}}">
+                        <div id="pane-{{$step->id}}" class="tab-pane fade show {{( count($step_setting) != 0) ? (( $step_setting[0]->section_id == $step->id ) ? 'active' : '') : ''}}" role="tabpanel" aria-labelledby="tab_{{$step->id}}">
                             @foreach ($steps as $substep)
-                            <div class="form-check col-2">
+                            <div class="form-check col-3">
                                 <input class="form-check-input" type="checkbox" name="suggest_steps[]" 
                                     id="suggest-{{$step->id}}-{{$substep->id}}-rg" 
                                     value="{{$step->id}}:{{$substep->id}}"

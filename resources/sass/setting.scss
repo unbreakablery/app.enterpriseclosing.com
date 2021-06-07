@@ -13,31 +13,23 @@
     }
 }
 #settings-tab-tasks {
+    padding: 0 0 0 2rem;
     .select-all-slash {
         color: #3490dc;
     }
-    padding: 0 0 0 2rem;
     #suggest_step #tabs {
         margin-left: 0 !important;
     }
-
-    #suggest_step #content {
-        width: 80%;
-    }
-
     .tab-pane {
         display: flex;
         flex-wrap: wrap;
     }
-
     .tab-content > .tab-pane {
         display: none;
     }
-
     .tab-content > .active {
         display: flex;
     }
-
     .nav-tabs {
         display: none;
     }
@@ -63,95 +55,22 @@
     @media (min-width: 768px) {
         .nav-tabs {
             display: flex;
-            flex-flow: column nowrap;
             border-bottom: none;
-            border-right: 1px solid #000;
-            display: flex;
             margin: 0 15px;
         }
-        .nav-tabs .nav-item + .nav-item {
-            margin-top: 0.25rem;
-        }
         .nav-tabs .nav-link {
-            transition: border-color 0.125s ease-in;
-            white-space: nowrap;
-        }
-        .nav-tabs .nav-link:hover {
-            background-color: #000;
-            border-color: transparent;
+            border: 1px solid #fff;
         }
         .nav-tabs .nav-link.active {
-            border-bottom-color: #ddd;
-            border-right-color: #000;
-            border-bottom-left-radius: 0.25rem;
-            border-top-right-radius: 0;
-            margin-right: -1px;
+            background-color: #f8fafc;
+            color: #495057;
         }
-        .nav-tabs .nav-link.active:hover {
-            background-color: #fff;
-            border-color: #0275d8 #fff #0275d8 #0275d8;
-        }
-
         .card {
             border: none;
         }
-
         .card .card-header {
             display: none;
         }
-
-        .card .collapse {
-            display: block;
-        }
-    }
-
-    @media (max-width: 767px) {
-        .tab-pane {
-            display: block !important;
-            opacity: 1;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .nav-tabs {
-            display: flex;
-            flex-flow: column nowrap;
-            border-bottom: none;
-            border-right: 1px solid #ddd;
-            display: flex;
-            margin: 0 15px;
-        }
-        .nav-tabs .nav-item + .nav-item {
-            margin-top: 0.25rem;
-        }
-        .nav-tabs .nav-link {
-            transition: border-color 0.125s ease-in;
-            white-space: nowrap;
-        }
-        .nav-tabs .nav-link:hover {
-            background-color: #000;
-            border-color: transparent;
-        }
-        .nav-tabs .nav-link.active {
-            border-bottom-color: #ddd;
-            border-right-color: #000;
-            border-bottom-left-radius: 0.25rem;
-            border-top-right-radius: 0;
-            margin-right: -1px;
-        }
-        .nav-tabs .nav-link.active:hover {
-            background-color: #000;
-            border-color: #fff #000 #fff #fff;
-        }
-
-        .card {
-            border: none;
-        }
-
-        .card .card-header {
-            display: none;
-        }
-
         .card .collapse {
             display: block;
         }
