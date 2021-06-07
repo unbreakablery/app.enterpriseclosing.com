@@ -56,45 +56,6 @@
     </div>
     
     <div class="table-responsive table-wrapper mt-4">
-        <!-- <div class="main-info row mb-4 ml-0 mr-0 pl-1 pr-1">
-            <div class="col-lg-5 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        Annual Report:
-                    </label>
-                    <input class="col-lg-9 col-md-8 col-sm-6"
-                            type="text"
-                            name="annual-report"
-                            value="@if (isset($main)){{ $main->annual_report }}@endif"
-                    />
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        PR / Articles:
-                    </label>
-                    <input class="col-lg-9 col-md-8 col-sm-6"
-                            type="text"
-                            name="pr-articles"
-                            value="@if (isset($main)){{ $main->pr_articles }}@endif"
-                    />
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 task-section action-group justify-content-end">
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-upload-persons-modal mr-1">
-                        <i class="bi bi-upload"></i>
-                    </button>
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-download-persons mr-1">
-                        <i class="bi bi-download"></i>
-                    </button>
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-add-row mr-1">
-                        Add Row
-                    </button>
-                </div>
-            </div>
-        </div> -->
         <div class="persons-table-wrapper">
             <table class="table table-hover w-100 mb-0" id="persons-table">
                 <thead class="thead-dark">
