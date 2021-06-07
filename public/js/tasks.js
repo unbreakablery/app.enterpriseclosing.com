@@ -12,13 +12,13 @@ $(document).ready(function () {
     scrollY: 187,
     scrollCollapse: false,
     paging: false,
-    order: [[3, "asc"]],
+    order: [[4, "asc"]],
     columnDefs: [{
       orderable: false,
       targets: 'no-sort'
     }, {
       type: 'date-eu',
-      targets: 3
+      targets: 4
     }],
     language: {
       emptyTable: 'There is no tasks for you to complete.'
@@ -186,7 +186,8 @@ $(document).ready(function () {
         var innerHtml = '';
         innerHtml += '<tr class="' + className + '">';
         innerHtml += '<td>' + res.action_name + ' ' + res.step_name + '</td>';
-        innerHtml += '<td class="text-center">' + suggestPersonAccount + suggestOpportunity + '</td>';
+        innerHtml += '<td class="text-center">' + suggestPersonAccount + '</td>';
+        innerHtml += '<td class="text-center">' + suggestOpportunity + '</td>';
         innerHtml += '<td>' + suggestNote + '</td>';
         innerHtml += '<td class="text-center">' + suggestDate + '</td>';
         innerHtml += '<td class="text-center">' + priorityName + '</td>';

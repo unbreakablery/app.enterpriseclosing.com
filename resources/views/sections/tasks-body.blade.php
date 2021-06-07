@@ -1,12 +1,13 @@
 <form class="form-inline mt-4" action="{{ route('tasks.add') }}" method="POST" autocomplete="off" id="tasks-form">
     @csrf
     <h3 class="mb-0">Tasks To Complete</h3>
-    <div class="table-responsive table-wrapper mt-4 mb-4">
+    <div class="table-responsive table-wrapper mt-4 mb-4 mr-4">
         <table class="table table-hover datatable w-100" id="task-table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col" class="text-center">Action + Step</th>
-                    <th scope="col" class="text-center">Person / Account / Opportunity</th>
+                    <th scope="col" class="text-center">Person / Account</th>
+                    <th scope="col" class="text-center">Opportunity</th>
                     <th scope="col" class="text-center">Note</th>
                     <th scope="col" class="text-center">By</th>
                     <th scope="col" class="text-center">Priority</th>
@@ -35,13 +36,8 @@
                 @endphp
                 <tr class="{{ $class_name }}">
                     <td>{{ $task['action_name'] }} {{ $task['step_name'] }}</td>
-                    <td class="text-center">
-                        @if (empty($task['opportunity']))
-                            {{ $task['person_account'] }}
-                        @else
-                            {{ $task['opportunity'] }}
-                        @endif
-                    </td>
+                    <td class="text-center">{{ $task['person_account'] }}</td>
+                    <td class="text-center">{{ $task['opportunity'] }}</td>
                     <td>
                         {{ $task['note'] }}
                     </td>
@@ -68,7 +64,7 @@
         @foreach ($settings as $setting)
             @foreach ($actions as $action)
                 @if ($setting->section_type == 1 && $action->id == $setting->section_id)
-                <div class="form-check col-20">
+                <div class="form-check col-2">
                     <input class="form-check-input" type="radio" name="action" 
                         id="action-{{ $action->id }}" 
                         value="{{ $action->id }}" 
@@ -80,7 +76,7 @@
                 @endif
             @endforeach
         @endforeach
-        <div class="form-check col-20">
+        <div class="form-check col-2">
             <input class="form-check-input" type="radio" name="action" id="action-other" value="0">
             <input type="text" class="form-control mr-20" aria-label="Text input with radio button" placeholder="Other" name="action-other-name" id="action-other-name">
         </div>
@@ -91,7 +87,7 @@
         @foreach ($settings as $setting)
             @foreach ($steps as $step)
                 @if ($setting->section_type == 2 && $step->id == $setting->section_id)
-                <div class="form-check col-20">
+                <div class="form-check col-2">
                     <input class="form-check-input" type="radio" name="step" 
                         id="step-{{ $step->id }}" 
                         value="{{ $step->id }}" 
@@ -103,14 +99,14 @@
                 @endif
             @endforeach
         @endforeach
-        <div class="form-check col-20">
+        <div class="form-check col-2">
             <input class="form-check-input" type="radio" name="step" id="step-other" value="0">
             <input type="text" class="form-control mr-20" aria-label="Text input with radio button" placeholder="Other" name="step-other-name" id="step-other-name">
         </div>
     </div>
 
     <div class="row task-section col-md-12 col-sm-12 mb-4">
-        <div class="col-20" id="ts-3">
+        <div class="col-2 pl-0" id="ts-3">
             <h3 id="ts-3-person-account-label" data-toggle="tooltip" data-placement="top" title="Required this or opportunity!">Person / Account</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
@@ -118,7 +114,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-20" id="ts-6">
+        <div class="col-2 pr-0 pl-1" id="ts-6">
             <h3 id="ts-3-person-account-label" data-toggle="tooltip" data-placement="top" title="Required this or person/account!">Opportunity</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
@@ -126,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-20" id="ts-6">
+        <div class="col-2 pr-0 pl-1" id="ts-6">
             <h3 id="ts-11-not-label" data-toggle="tooltip" data-placement="top" title="Required field!">Note</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
@@ -134,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-20" id="ts-4">
+        <div class="col-2 pr-0 pl-1" id="ts-4">
             <h3 id="ts-4-by-date-label" data-toggle="tooltip" data-placement="left" title="Required field!">By</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
@@ -142,7 +138,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-20" id="ts-7">
+        <div class="col-2 pr-0 pl-1" id="ts-7">
             <h3 id="priority-label" data-toggle="tooltip" data-placement="left" title="Required field!">Priority</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="form-check">
@@ -150,14 +146,10 @@
                     <label class="form-check-label mr-4" for="ts-7-rg-high">
                         High
                     </label>
-                <!-- </div>
-                <div class="form-check col-md-4 col-sm-4 mr-1 mw-unset"> -->
                     <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-medium" value="2">
                     <label class="form-check-label mr-4" for="ts-7-rg-medium">
                         Medium
                     </label>
-                <!-- </div>
-                <div class="form-check col-md-4 col-sm-4 mr-1 mw-unset"> -->
                     <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-normal" value="3">
                     <label class="form-check-label" for="ts-7-rg-normal">
                         Normal
@@ -168,7 +160,7 @@
     </div>
 
     <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-        <div class="col-20" id="ts-3">
+        <div class="col-2 pl-0 pr-3" id="ts-3">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
                 <button type="button" class="btn btn-app-default n-b-r text-uppercase w-100" id="btn-create-task">
