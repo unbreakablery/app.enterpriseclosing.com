@@ -3,6 +3,7 @@
 */
 #settingsTabs .nav-item .nav-link {
   color: #fff;
+  border-color: #fff;
 }
 #settingsTabs .nav-item .nav-link.active {
   color: #495057;
@@ -10,6 +11,9 @@
 
 #settings-tab-tasks {
   padding: 0 0 0 2rem;
+}
+#settings-tab-tasks .select-all-slash {
+  color: #3490dc;
 }
 #settings-tab-tasks #suggest_step #tabs {
   margin-left: 0 !important;

@@ -48,13 +48,28 @@
         />
     </td>
     <td class="text-center">
-        <input type="number"
+        <!-- <input type="number"
                 class="form-control w-100 text-right"
                 name="calls"
                 min="0"
                 placeholder=""
                 value="@if (isset($person)){{ $person->calls }}@else{{ 0 }}@endif"
-        />
+        /> -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-counter btn-counter-decrease" type="button">-</button>
+            </div>
+            <input type="number"
+                class="form-control text-right"
+                name="calls"
+                min="0"
+                placeholder=""
+                value="@if (isset($person)){{ $person->calls }}@else{{ 0 }}@endif"
+            />
+            <div class="input-group-append">
+                <button class="btn btn-counter btn-counter-increase" type="button">+</button>
+            </div>
+        </div>
     </td>
     <td class="text-center">
         <select name="result" class="form-control w-100">
@@ -93,7 +108,7 @@
         />
     </td>
     <td class="text-center">
-        <button type="button" class="btn btn-sm btn-danger btn-remove-row n-b-r">
+        <button type="button" class="btn btn-sm btn-danger btn-remove-row n-b-r" title="Remove this person">
             <i class="bi bi-x"></i>
         </button>
     </td>

@@ -1,17 +1,17 @@
 <form class="form-inline mt-4" action="{{ route('tasks.add') }}" method="POST" autocomplete="off" id="tasks-form">
     @csrf
     <h3 class="mb-0">Tasks To Complete</h3>
-    <div class="table-responsive table-wrapper mt-4 mb-4 mr-4">
+    <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper">
         <table class="table table-hover datatable w-100" id="task-table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col" class="text-center">Action + Step</th>
-                    <th scope="col" class="text-center">Person / Account</th>
-                    <th scope="col" class="text-center">Opportunity</th>
-                    <th scope="col" class="text-center">Note</th>
-                    <th scope="col" class="text-center">By</th>
-                    <th scope="col" class="text-center">Priority</th>
-                    <th scope="col" class="text-center no-sort">Result</th>
+                    <th scope="col">Action + Step</th>
+                    <th scope="col">Person / Account</th>
+                    <th scope="col">Opportunity</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">By</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col" class="no-sort">Result</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,20 +36,20 @@
                 @endphp
                 <tr class="{{ $class_name }}">
                     <td>{{ $task['action_name'] }} {{ $task['step_name'] }}</td>
-                    <td class="text-center">{{ $task['person_account'] }}</td>
-                    <td class="text-center">{{ $task['opportunity'] }}</td>
+                    <td>{{ $task['person_account'] }}</td>
+                    <td>{{ $task['opportunity'] }}</td>
                     <td>
                         {{ $task['note'] }}
                     </td>
-                    <td class="text-center">
+                    <td>
                         @if (!empty($task['by_date']))
                             {{ date("d-m-Y", strtotime($task['by_date'])) }}
                         @endif
                     </td>
-                    <td class="text-center">
+                    <td>
                         {{ $priority_name }}
                     </td>
-                    <td class="text-center">
+                    <td>
                         <button type="button" class="btn btn-sm btn-task-c-s btn-dark btn-skip" data-id="{{ $task['id'] }}">Skip</button>
                         <button type="button" class="btn btn-sm btn-task-c-s btn-success btn-done" data-id="{{ $task['id'] }}">Done</button>
                     </td>

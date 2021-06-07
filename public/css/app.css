@@ -10169,6 +10169,9 @@ body {
   font-weight: 600;
   text-transform: uppercase;
 }
+.form-inline #task-table-wrapper {
+  margin-right: 30px;
+}
 .form-inline .task-section {
   font-size: 0.9rem;
   font-weight: 400;
@@ -10377,7 +10380,6 @@ input[type=checkbox] {
   border: 1px solid #fff;
   color: #fff;
 }
-
 #outboundTabs .nav-item .nav-link.active {
   color: #495057;
 }
@@ -10404,32 +10406,37 @@ table#persons-table select {
   border-radius: 0;
   height: 1.5rem;
   padding: 0 0.25rem;
+  font-size: 12px;
 }
-
+table#persons-table input[type=number]::-webkit-inner-spin-button,
+table#persons-table input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+table#persons-table .btn.btn-counter {
+  height: 1.5rem;
+  padding: 0 0.25rem;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 0;
+  border: 0;
+}
 table#persons-table tr th {
   position: sticky;
   top: -1px;
   padding: 0.25rem 0.75rem;
 }
-
 table#persons-table tbody tr td {
   padding: 0;
 }
-
-table#persons-table input,
-table#persons-table select {
-  font-size: 13px;
+table#persons-table .btn-remove-row {
+  height: 1.5rem;
+}
+table#persons-table .btn-remove-row i.bi.bi-x:before {
+  vertical-align: 0;
 }
 
 a.a-btn-remove-account {
   cursor: pointer;
-}
-
-.btn-remove-row {
-  height: 1.5rem;
-}
-.btn-remove-row i.bi.bi-x:before {
-  vertical-align: 0;
 }
 
 .h-px-100 {

@@ -5,6 +5,7 @@
     .nav-item {
         .nav-link {
             color: #fff;
+            border-color: #fff;
         }
         .nav-link.active {
             color: #495057;
@@ -12,6 +13,9 @@
     }
 }
 #settings-tab-tasks {
+    .select-all-slash {
+        color: #3490dc;
+    }
     padding: 0 0 0 2rem;
     #suggest_step #tabs {
         margin-left: 0 !important;

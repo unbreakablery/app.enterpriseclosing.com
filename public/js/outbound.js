@@ -381,6 +381,18 @@ $(document).ready(function () {
       backdrop: 'static'
     });
   });
+  $(document).on('click', '.tab-component table#persons-table .btn.btn-counter-decrease', function () {
+    var rowObj = $(this).closest('tr');
+    var calls = parseInt($(rowObj).find('input[name=calls]').val());
+    $(rowObj).find('input[name=calls]').val(calls - 1);
+    $(rowObj).find('input[name=calls]').trigger('change');
+  });
+  $(document).on('click', '.tab-component table#persons-table .btn.btn-counter-increase', function () {
+    var rowObj = $(this).closest('tr');
+    var calls = parseInt($(rowObj).find('input[name=calls]').val());
+    $(rowObj).find('input[name=calls]').val(calls + 1);
+    $(rowObj).find('input[name=calls]').trigger('change');
+  });
 });
 /******/ })()
 ;

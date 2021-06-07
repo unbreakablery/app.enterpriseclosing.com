@@ -54,47 +54,32 @@ $(document).ready(function () {
       }
     });
   });
-  $('#settings-tab-tasks #select-all-actions').on('click', function () {
-    var obj = this;
-
-    if ($(obj).attr('data-checked') == undefined || $(obj).attr('data-checked') == '0') {
-      $('#settings-tab-tasks .input-action').each(function (e) {
-        $(this).prop('checked', true);
-      });
-      $(obj).attr('data-checked', '1');
-      $(obj).text('Deselect All');
-    } else {
-      $('#settings-tab-tasks .input-action').each(function (e) {
-        $(this).prop('checked', false);
-      });
-      $(obj).attr('data-checked', '0');
-      $(obj).text('Select All');
-    }
+  $('#settings-tab-tasks #check-all-actions').on('click', function () {
+    $('#settings-tab-tasks .input-action').each(function (e) {
+      $(this).prop('checked', true);
+    });
   });
-  $('#settings-tab-tasks #select-all-steps').on('click', function () {
-    var obj = this;
-
-    if ($(obj).attr('data-checked') == undefined || $(obj).attr('data-checked') == '0') {
-      $('#settings-tab-tasks .input-step').each(function (e) {
-        $(this).prop('checked', true);
-        onClickStepCheckbox(this);
-      });
-      $(obj).attr('data-checked', '1');
-      $(obj).text('Deselect All');
-    } else {
-      $('#settings-tab-tasks .input-step').each(function (e) {
-        $(this).prop('checked', false);
-        onClickStepCheckbox(this);
-      });
-      $(obj).attr('data-checked', '0');
-      $(obj).text('Select All');
-    }
+  $('#settings-tab-tasks #uncheck-all-actions').on('click', function () {
+    $('#settings-tab-tasks .input-action').each(function (e) {
+      $(this).prop('checked', false);
+    });
   });
-  $('#settings-tab-tasks .input-action').on('click', function () {
-    if (!this.checked) {
-      $('#settings-tab-tasks #select-all-actions').prop('checked', false);
-    }
+  $('#settings-tab-tasks #check-all-steps').on('click', function () {
+    $('#settings-tab-tasks .input-step').each(function (e) {
+      $(this).prop('checked', true);
+      onClickStepCheckbox(this);
+    });
   });
+  $('#settings-tab-tasks #uncheck-all-steps').on('click', function () {
+    $('#settings-tab-tasks .input-step').each(function (e) {
+      $(this).prop('checked', false);
+      onClickStepCheckbox(this);
+    });
+  }); // $('#settings-tab-tasks .input-action').on('click', function() {
+  //     if (!this.checked){
+  //         $('#settings-tab-tasks #select-all-actions').prop('checked', false);
+  //     }
+  // });
 });
 /******/ })()
 ;

@@ -113,7 +113,9 @@
                 @csrf
                 <h3>Action</h3>
                 <div class="form-check col-20">
-                    <a href="javascript:void(0)" id="select-all-actions" class="select-all ml-2">Select All</a>
+                    <a href="javascript:void(0)" id="check-all-actions" class="select-all ml-2 mr-2">Check All</a>
+                    <span class="select-all-slash">/</span>
+                    <a href="javascript:void(0)" id="uncheck-all-actions" class="select-all ml-2">Uncheck All</a>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
                     @foreach ($actions as $action)
@@ -134,7 +136,9 @@
                 
                 <h3>Step</h3>
                 <div class="form-check col-20">
-                    <a href="javascript:void(0)" id="select-all-steps" class="select-all ml-2">Select All</a>
+                    <a href="javascript:void(0)" id="check-all-steps" class="select-all ml-2 mr-2">Check All</a>
+                    <span class="select-all-slash">/</span>
+                    <a href="javascript:void(0)" id="uncheck-all-steps" class="select-all ml-2">Uncheck All</a>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
                     @foreach ($steps as $step)

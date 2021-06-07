@@ -19,6 +19,18 @@ $(document).ready(function () {
     }, {
       type: 'date-eu',
       targets: 4
+    }, {
+      width: "30%",
+      targets: 3
+    }, {
+      width: "80px",
+      targets: 4
+    }, {
+      width: "80px",
+      targets: 5
+    }, {
+      width: "90px",
+      targets: 6
     }],
     language: {
       emptyTable: 'There is no tasks for you to complete.'

@@ -171,6 +171,9 @@ body {
         font-weight: 600;
         text-transform: uppercase;
     }
+    #task-table-wrapper {
+        margin-right: 30px;
+    }
     .task-section {
         font-size: 0.9rem;
         font-weight: 400;
@@ -398,14 +401,26 @@ input[type='checkbox'] {
 /*
 * outbound
 */
-#outboundTabs .nav-item .nav-link {
-    padding: 0.25rem 1rem;
-    border: 1px solid #fff;
-    color: #fff;
+#outboundTabs {
+    .nav-item {
+        .nav-link {
+            padding: 0.25rem 1rem;
+            border: 1px solid #fff;
+            color: #fff;        
+        }
+        .nav-link.active {
+            color: #495057;
+        }
+    }
 }
-#outboundTabs .nav-item .nav-link.active {
-    color: #495057;
-}
+// #outboundTabs .nav-item .nav-link {
+//     padding: 0.25rem 1rem;
+//     border: 1px solid #fff;
+//     color: #fff;
+// }
+// #outboundTabs .nav-item .nav-link.active {
+//     color: #495057;
+// }
 #outboundTabsContent .action-group .btn-app-default {
     padding: 0 0.5rem;
     height: 29px;
@@ -426,28 +441,37 @@ table#persons-table {
         border-radius: 0;
         height: 1.5rem;
         padding: 0 0.25rem;
+        font-size: 12px;
     }
-}
-table#persons-table tr th {
-    position: sticky;
-    top: -1px;
-    padding: 0.25rem 0.75rem;
-}
-table#persons-table tbody tr td {
-    padding: 0;
-}
-table#persons-table input,
-table#persons-table select {
-    font-size: 13px;
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {  
+        -webkit-appearance: none;
+    }
+    .btn.btn-counter {
+        height: 1.5rem;
+        padding: 0 0.25rem;
+        margin: 0;
+        background-color: #fff;
+        border-radius: 0;
+        border: 0;
+    }
+    tr th {
+        position: sticky;
+        top: -1px;
+        padding: 0.25rem 0.75rem;
+    }
+    tbody tr td {
+        padding: 0;
+    }
+    .btn-remove-row {
+        height: 1.5rem;
+        i.bi.bi-x:before {
+            vertical-align: 0;
+        }
+    }
 }
 a.a-btn-remove-account {
     cursor: pointer;
-}
-.btn-remove-row {
-    height: 1.5rem;
-    i.bi.bi-x:before {
-        vertical-align: 0;
-    }
 }
 .h-px-100 {
     height: 100px;
