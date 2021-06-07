@@ -159,33 +159,31 @@
 
                 <h3>Sub Step</h3>
                 <div id="suggest_step" class="row task-section col-md-12 col-sm-12 mb-4 {{(!isset($suggestSettings)) ? 'suggest-step-deactive' : ''}}">
-                    <!-- <div class="col-20"> -->
-                        <ul id="tabs" class="nav nav-tabs" role="tablist" >
-                            @foreach ($steps as $step)
-                            <li id="item-{{$step->id}}" 
-                                class="nav-item suggest-item item-{{$step->id}} 
-                                @php
-                                    $flag = false;
-                                    foreach($settings as $setting) {
-                                        if ($step->id == $setting->section_id && $setting->section_type == 2) {
-                                            $flag = true;
-                                            echo 'suggest-step-item-active';
-                                        }
+                    <ul id="tabs" class="nav nav-tabs" role="tablist" >
+                        @foreach ($steps as $step)
+                        <li id="item-{{$step->id}}" 
+                            class="nav-item suggest-item item-{{$step->id}} 
+                            @php
+                                $flag = false;
+                                foreach($settings as $setting) {
+                                    if ($step->id == $setting->section_id && $setting->section_type == 2) {
+                                        $flag = true;
+                                        echo 'suggest-step-item-active';
                                     }
-                                    if ($flag === false) {
-                                        echo 'suggest-step-item-deactive';
-                                    }
-                                @endphp
-                                ">
-                                <a id="tab_{{$step->id}}" href="#pane-{{$step->id}}" 
-                                    data-toggle="tab"
-                                    role="tab"
-                                    class="nav-link {{( count($suggestSettings) != 0) ? (( $suggestSettings[0]->step_id == $step->id ) ? 'active' : '') : ''}}"
-                                >{{$step->name}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    <!-- </div> -->
+                                }
+                                if ($flag === false) {
+                                    echo 'suggest-step-item-deactive';
+                                }
+                            @endphp
+                            ">
+                            <a id="tab_{{$step->id}}" href="#pane-{{$step->id}}" 
+                                data-toggle="tab"
+                                role="tab"
+                                class="nav-link {{( count($suggestSettings) != 0) ? (( $suggestSettings[0]->step_id == $step->id ) ? 'active' : '') : ''}}"
+                            >{{$step->name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                     <div id="content" class="tab-content" role="tablist">
                         @foreach ($steps as $step)
                         <div id="pane-{{$step->id}}" class="tab-pane p-4 border fade show {{( count($step_setting) != 0) ? (( $step_setting[0]->section_id == $step->id ) ? 'active' : '') : ''}}" role="tabpanel" aria-labelledby="tab_{{$step->id}}">
