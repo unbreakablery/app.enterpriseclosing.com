@@ -10265,6 +10265,7 @@ table.dataTable thead th,
 table.dataTable thead td {
   padding-top: 3px;
   padding-bottom: 4px;
+  padding-left: 10px;
 }
 
 table.dataTable tbody td {
@@ -10423,7 +10424,7 @@ table#persons-table .btn.btn-counter {
 table#persons-table tr th {
   position: sticky;
   top: -1px;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 5px;
 }
 table#persons-table tbody tr td {
   padding: 0;
