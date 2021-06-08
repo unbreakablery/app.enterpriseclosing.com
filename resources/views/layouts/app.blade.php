@@ -59,7 +59,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="images/avatar.png" alt="Settings" style="height: 25px; width: 25px;">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

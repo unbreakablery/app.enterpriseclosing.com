@@ -5,6 +5,7 @@ use App\Models\Action;
 use App\Models\Step;
 use App\Models\OutboundMain;
 use App\Models\OutboundPerson;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
 
@@ -55,6 +56,49 @@ if (!function_exists('getTask')) {
                         ->get()
                         ->first();
         return $task;
+    }
+}
+
+if (!function_exists('storeUser')) {
+    function storeUser($data) {
+        $userId = $data->user_id;
+        $firstName = $data->first_name;
+        $lastName = $data->last_name;
+        $password = $data->password;
+        $email = $data->email;
+        $phone = $data->phone;
+        $organisation = $data->organisation;
+        $region = $data->region;
+        $industry = $data->industry;
+
+        if (!empty($password)) {
+            $password = Hash::make($password);
+
+            User::where('id', $userId)
+                ->update([
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'password' => $password,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'organisation' => $organisation,
+                    'region' => $region,
+                    'industry' => $industry
+                ]);
+        } else {
+            User::where('id', $userId)
+                ->update([
+                    'first_name' => $firstName,
+                    'last_name' => $lastName,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'organisation' => $organisation,
+                    'region' => $region,
+                    'industry' => $industry
+                ]);
+        }
+        
+        return $userId;
     }
 }
 

@@ -48,4 +48,5 @@ Route::get('/skills', 'HomeController@skills')->name('skills');
 Route::get('/analytics', 'HomeController@analytics')->name('analytics');
 
 Route::get('/settings', 'SettingsController@index')->name('settings');
-Route::post('/settings/store', 'SettingsController@store')->name('settings.store');
+Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');
+Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->name('settings.store.tasks');

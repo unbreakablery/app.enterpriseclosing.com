@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Step;
 use App\Models\Action;
 use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
+use App\Models\User;
 use Auth;
 
 class SettingsController extends Controller
@@ -31,17 +33,20 @@ class SettingsController extends Controller
         $step_setting = TaskSetting::where('user_id', $user_id)
                         ->where('section_type', 2)->get();
 
+        $user = User::where('id', Auth::user()->id)->get()->first();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
                 'suggestSettings', 
                 'settings', 
-                'step_setting'
+                'step_setting',
+                'user'
             )
         );
     }
 
-    public function store(Request $request)
+    public function storeTasksSettings(Request $request)
     {
         $user_id = Auth::user()->id;
         
@@ -78,5 +83,23 @@ class SettingsController extends Controller
             }
         }
         return redirect()->back()->with('success', 'Saved');
+    }
+
+    public function storeGeneralSettings(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|min:3',
+            'last_name' => 'required|min:3',
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'same:password',
+        ]);
+        
+        if ($validator->fails()){
+            return redirect(url()->previous())->withErrors($validator)->withInput();
+        }
+        
+        storeUser($request);
+        return redirect()->route('settings');
     }
 }

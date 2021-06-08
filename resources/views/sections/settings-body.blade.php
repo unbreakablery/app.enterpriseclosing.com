@@ -1,4 +1,158 @@
-<h3 class="text-uppercase font-weight-bold mt-4">Settings</h3>
+<h3 class="text-uppercase font-weight-bold mt-4 mb-4">Settings</h3>
+<form class="form-inline" action="{{ route('settings.store.general')}}" method='post' autocomplete="off">
+    @csrf
+    <input type="hidden" name="user_id" value="{{ $user->id }}" />
+    <h3>General Settings</h3>
+    <div class="row col-lg-12 col-md-12 col-sm-12 mt-2">
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="first_name">
+                    First Name:
+                </label>
+                <input class="col-lg-9 col-md-8 col-sm-6 @error('first_name') is-invalid @enderror"
+                        type="text"
+                        name="first_name"
+                        value="{{ old('first_name', $user->first_name) }}"
+                        required
+                />
+                @error('first_name')
+                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="last_name">
+                    Last Name:
+                </label>
+                <input class="col-lg-9 col-md-8 col-sm-6 @error('last_name') is-invalid @enderror"
+                        type="text"
+                        name="last_name"
+                        value="{{ old('last_name', $user->last_name) }}"
+                        required
+                />
+                @error('last_name')
+                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center @error('password') is-invalid @enderror" for="password">
+                    New Password:
+                </label>
+                <input class="col-lg-7 col-md-6 col-sm-12"
+                        type="password"
+                        name="password"
+                        value="{{ old('password') }}"
+                />
+                @error('password')
+                    <span class="invalid-feedback offset-lg-5 offset-md-6 offset-sm-12" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center @error('password_confirmation') is-invalid @enderror" for="password_confirmation">
+                    Confirm Password:
+                </label>
+                <input class="col-lg-7 col-md-6 col-sm-12"
+                        type="password"
+                        name="password_confirmation"
+                        value="{{ old('password_confirmation') }}"
+                />
+                @error('confirmation')
+                    <span class="invalid-feedback offset-lg-5 offset-md-6 offset-sm-12" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center @error('email') is-invalid @enderror" for="email">
+                    Email:
+                </label>
+                <input class="col-lg-9 col-md-8 col-sm-6"
+                        type="text"
+                        name="email"
+                        value="{{ old('email', $user->email) }}"
+                />
+                @error('email')
+                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="phone">
+                    Phone:
+                </label>
+                <input class="col-lg-9 col-md-8 col-sm-6"
+                        type="text"
+                        name="phone"
+                        value="{{ Auth::user()->phone }}"
+                />
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center" for="organisation">
+                    Organisation:
+                </label>
+                <input class="col-lg-7 col-md-6 col-sm-12"
+                        type="text"
+                        name="organisation"
+                        value="{{ Auth::user()->organisation }}"
+                />
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center" for="region">
+                    Region:
+                </label>
+                <select name="region" class="col-lg-7 col-md-6 col-sm-12">
+                    <option value="APAC" @if (Auth::user()->region == 'APAC'){{ 'selected' }}@endif>APAC</option>
+                    <option value="EMEA" @if (Auth::user()->region == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
+                    <option value="North America" @if (Auth::user()->region == 'North America'){{ 'selected' }}@endif>North America</option>
+                    <option value="South America" @if (Auth::user()->region == 'South America'){{ 'selected' }}@endif>South America</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="industry">
+                    Industry:
+                </label>
+                <input class="col-lg-9 col-md-8 col-sm-6"
+                        type="text"
+                        name="industry"
+                        value="{{ Auth::user()->industry }}"
+                />
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
+            <div class="row ml-0 mr-0 pl-1 pr-1">
+                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="industry">
+                </label>
+                <button type="submit" class="btn btn-dark col-lg-9 col-md-8 col-sm-6 n-b-r" id="btn-save-general-settings">
+                        Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<h3 class="mt-4 text-uppercase" style="font-size: 1.3rem; font-weight: 600;">Settings Per Page</h3>
 <div class="row col-md-12 col-sm-12 mt-4">
     <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -109,7 +263,7 @@
             data-idx="tasks"
             role="tabpanel"
             aria-labelledby="tab-tasks">
-            <form id="form_setting" class="form-inline mt-4" action="{{ route('settings.store')}}" method='post' autocomplete="off">
+            <form id="form_setting" class="form-inline mt-4" action="{{ route('settings.store.tasks')}}" method='post' autocomplete="off">
                 @csrf
                 <h3>Action</h3>
                 <div class="form-check col-20">
