@@ -1,5 +1,5 @@
 <nav class="main-menu">
-    <ul>
+    <ul class="mt-4">
         <li>
             <a class="nav-link @if (isset($nl_tasks_class)) {{ $nl_tasks_class }} @endif" href="{{ route('tasks') }}">
                 <i class="bi bi-list-task bi-2x"></i>
