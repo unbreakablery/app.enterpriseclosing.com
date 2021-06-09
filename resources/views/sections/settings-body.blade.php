@@ -1,151 +1,148 @@
 <h3 class="text-uppercase font-weight-bold mt-4 mb-4">Settings</h3>
-<form class="form-inline" action="{{ route('settings.store.general')}}" method='post' autocomplete="off">
+<form class="main-info" action="{{ route('settings.store.general')}}" method='post' autocomplete="off">
     @csrf
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
     <h3>General Settings</h3>
     <div class="row col-lg-12 col-md-12 col-sm-12 mt-2">
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="first_name">
-                    First Name:
-                </label>
-                <input class="col-lg-9 col-md-8 col-sm-6 @error('first_name') is-invalid @enderror"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input class="form-control n-b-r @error('first_name') is-invalid @enderror"
                         type="text"
+                        id="first_name"
                         name="first_name"
                         value="{{ old('first_name', $user->first_name) }}"
+                        placeholder="At least 3 characters..."
                         required
                 />
                 @error('first_name')
-                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="last_name">
-                    Last Name:
-                </label>
-                <input class="col-lg-9 col-md-8 col-sm-6 @error('last_name') is-invalid @enderror"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input class="form-control n-b-r @error('last_name') is-invalid @enderror"
                         type="text"
+                        id="last_name"
                         name="last_name"
                         value="{{ old('last_name', $user->last_name) }}"
+                        placeholder="At least 3 characters..."
                         required
                 />
                 @error('last_name')
-                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center @error('password') is-invalid @enderror" for="password">
-                    New Password:
-                </label>
-                <input class="col-lg-7 col-md-6 col-sm-12"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="password">New Password:</label>
+                <input class="form-control n-b-r @error('password') is-invalid @enderror"
                         type="password"
+                        id="password"
                         name="password"
                         value="{{ old('password') }}"
+                        placeholder="You can enter new password..."
                 />
                 @error('password')
-                    <span class="invalid-feedback offset-lg-5 offset-md-6 offset-sm-12" role="alert">
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center @error('password_confirmation') is-invalid @enderror" for="password_confirmation">
-                    Confirm Password:
-                </label>
-                <input class="col-lg-7 col-md-6 col-sm-12"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="password_confirmation">Confirm Password:</label>
+                <input class="form-control n-b-r @error('password') is-invalid @enderror"
                         type="password"
+                        id="password_confirmation"
                         name="password_confirmation"
                         value="{{ old('password_confirmation') }}"
+                        placeholder="Please enter confirmation password..."
                 />
                 @error('confirmation')
-                    <span class="invalid-feedback offset-lg-5 offset-md-6 offset-sm-12" role="alert">
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center @error('email') is-invalid @enderror" for="email">
-                    Email:
-                </label>
-                <input class="col-lg-9 col-md-8 col-sm-6"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input class="form-control n-b-r @error('email') is-invalid @enderror"
                         type="text"
+                        id="email"
                         name="email"
                         value="{{ old('email', $user->email) }}"
+                        placeholder="example: test@test.com"
+                        required
                 />
                 @error('email')
-                    <span class="invalid-feedback offset-lg-3 offset-md-4 offset-sm-6" role="alert">
+                    <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="phone">
-                    Phone:
-                </label>
-                <input class="col-lg-9 col-md-8 col-sm-6"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input class="form-control n-b-r"
                         type="text"
+                        id="phone"
                         name="phone"
-                        value="{{ Auth::user()->phone }}"
+                        value="{{ old('phone', $user->phone) }}"
+                        placeholder="You can enter your phone number..."
                 />
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center" for="organisation">
-                    Organisation:
-                </label>
-                <input class="col-lg-7 col-md-6 col-sm-12"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="organisation">Organisation:</label>
+                <input class="form-control n-b-r"
                         type="text"
+                        id="organisation"
                         name="organisation"
-                        value="{{ Auth::user()->organisation }}"
+                        value="{{ old('organisation', $user->organisation) }}"
+                        placeholder="You can enter your organisation..."
                 />
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-5 col-md-6 col-sm-12 justify-content-start align-items-center" for="region">
-                    Region:
-                </label>
-                <select name="region" class="col-lg-7 col-md-6 col-sm-12">
-                    <option value="APAC" @if (Auth::user()->region == 'APAC'){{ 'selected' }}@endif>APAC</option>
-                    <option value="EMEA" @if (Auth::user()->region == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
-                    <option value="North America" @if (Auth::user()->region == 'North America'){{ 'selected' }}@endif>North America</option>
-                    <option value="South America" @if (Auth::user()->region == 'South America'){{ 'selected' }}@endif>South America</option>
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <select id="region" name="region" class="form-control n-b-r">
+                    <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
+                    <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
+                    <option value="North America" @if (old('region', $user->region) == 'North America'){{ 'selected' }}@endif>North America</option>
+                    <option value="South America" @if (old('region', $user->region) == 'South America'){{ 'selected' }}@endif>South America</option>
                 </select>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="industry">
-                    Industry:
-                </label>
-                <input class="col-lg-9 col-md-8 col-sm-6"
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="form-group">
+                <label for="industry">Industry:</label>
+                <input class="form-control n-b-r"
                         type="text"
+                        id="industry"
                         name="industry"
-                        value="{{ Auth::user()->industry }}"
+                        value="{{ old('industry', $user->industry) }}"
+                        placeholder="You can enter industry..."
                 />
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 mt-2">
-            <div class="row ml-0 mr-0 pl-1 pr-1">
-                <label class="col-lg-3 col-md-4 col-sm-6 justify-content-start align-items-center" for="industry">
-                </label>
-                <button type="submit" class="btn btn-dark col-lg-9 col-md-8 col-sm-6 n-b-r" id="btn-save-general-settings">
-                        Save Settings
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+                <button type="submit" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
+                    Save Settings
                 </button>
             </div>
         </div>

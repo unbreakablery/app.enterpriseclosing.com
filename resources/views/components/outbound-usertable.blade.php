@@ -4,38 +4,32 @@
         <input type="hidden" name="account-name" value="@if (isset($main)){{ $main->account_name }}@endif">
         <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-4 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        Organisational Hooks:
-                    </label>
-                    <textarea class="col-lg-8 col-md-8 col-sm-6 h-px-100" name="org-hooks" rows="5">@if (isset($main)){{ $main->org_hooks }}@endif</textarea>
+                <div class="form-group">
+                    <label for="org-hooks">Organisational Hooks:</label>
+                    <textarea class="form-control h-px-155 n-b-r" id="org-hooks" name="org-hooks" rows="5">@if (isset($main)){{ $main->org_hooks }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-4 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        Additional Nuggets:
-                    </label>
-                    <textarea class="col-lg-8 col-md-8 col-sm-6 h-px-100" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
+                <div class="form-group">
+                    <label for="additional-nuggets">Additional Nuggets:</label>
+                    <textarea class="form-control h-px-155 n-b-r" id="additional-nuggets" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-4 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        Annual Report:
-                    </label>
-                    <input class="col-lg-8 col-md-8 col-sm-6"
+                <div class="form-group">
+                    <label for="annual-report">Annual Report:</label>
+                    <input class="form-control n-b-r"
                             type="text"
+                            id="annual-report"
                             name="annual-report"
                             value="@if (isset($main)){{ $main->annual_report }}@endif"
                     />
                 </div>
-                <div class="row ml-0 mr-0 pl-1 pr-1">
-                    <label class="col-lg-4 col-md-4 col-sm-6 justify-content-start align-items-start" for="">
-                        PR / Articles:
-                    </label>
-                    <input class="col-lg-8 col-md-8 col-sm-6"
+                <div class="form-group">
+                    <label for="pr-articles">PR / Articles:</label>
+                    <input class="form-control n-b-r"
                             type="text"
+                            id="pr-articles"
                             name="pr-articles"
                             value="@if (isset($main)){{ $main->pr_articles }}@endif"
                     />
@@ -65,12 +59,12 @@
                         <th scope="col" class="text-left no-sort">Title</th>
                         <th scope="col" class="text-left no-sort" width="100">Phone</th>
                         <th scope="col" class="text-left no-sort" width="100">Mobile</th>
-                        <th scope="col" class="text-left no-sort" width="200">Email</th>
+                        <th scope="col" class="text-left no-sort" width="60">Email</th>
                         <th scope="col" class="text-left no-sort" width="60">Calls</th>
-                        <th scope="col" class="text-left no-sort" width="125">Result</th>
+                        <th scope="col" class="text-left no-sort" width="65">Result</th>
                         <th scope="col" class="text-left no-sort" width="102">LI Connected</th>
                         <th scope="col" class="text-left no-sort">Notes</th>
-                        <th scope="col" class="text-left no-sort">LI Address</th>
+                        <th scope="col" class="text-left no-sort" width="80">LI Address</th>
                         <th scope="col" class="text-left no-sort" width="35"></th>
                     </tr>
                 </thead>

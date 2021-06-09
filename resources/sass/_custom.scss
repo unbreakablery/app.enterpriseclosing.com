@@ -29,6 +29,16 @@ body {
     padding-right: 0;
 }
 
+.btn-app-default {
+    background-color: #5c6370;
+    color: #fff;
+}
+
+.btn-app-default:hover {
+    background-color: #262729;
+    color: #fff;
+}
+
 .main-container,
 .container-login {
     margin: -1.5rem 0;
@@ -270,16 +280,73 @@ thead input {
     width: 100%;
 }
 
-table.dataTable thead th,
-table.dataTable thead td {
-    padding-top: 3px;
-    padding-bottom: 4px;
-    padding-left: 10px;
-}
-
 table.dataTable tbody td {
     padding-top: 1px;
     padding-bottom: 1px;
+}
+
+table.dataTable thead {
+    th {
+        background: transparent !important;
+        white-space: nowrap;
+
+        .task-table-header {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+        }
+    }
+
+    th, td {
+        padding-top: 3px;
+        padding-bottom: 4px;
+        padding-left: 10px;
+    }
+
+    .sorting_asc,
+    .sorting_desc {
+        background: none !important;
+    }
+    
+}
+ 
+table.dataTable thead span.sort-icon {
+    display: inline-block;
+    padding-left: 5px;
+    width: 16px;
+    height: 16px;
+}
+table.dataTable thead .sorting span {
+    background: url('/images/sort_both.png') no-repeat center right;
+}
+table.dataTable thead .sorting_asc span {
+    background: url('/images/sort_asc.png') no-repeat center right;
+}
+table.dataTable thead .sorting_desc span {
+    background: url('/images/sort_desc.png') no-repeat center right;
+}
+ 
+table.dataTable thead .sorting_asc_disabled span {
+    background: url('/images/sort_asc_disabled.png') no-repeat center right;
+}
+table.dataTable thead .sorting_desc_disabled span {
+    background: url('/images/sort_desc_disabled.png') no-repeat center right;
+}
+ 
+table.dataTable thead .sorting::before,
+table.dataTable thead .sorting_asc::before,
+table.dataTable thead .sorting_desc::before,
+table.dataTable thead .sorting_asc_disabled::before,
+table.dataTable thead .sorting_desc_disabled::before {
+    content: "";
+}
+ 
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_desc::after,
+table.dataTable thead .sorting_asc_disabled::after,
+table.dataTable thead .sorting_desc_disabled::after {
+    content: "";
 }
 
 /*
@@ -387,6 +454,12 @@ input[type='checkbox'] {
 /*
 * outbound
 */
+.main-info {
+    .form-control {
+        height: 2rem;
+        padding: 1px 0.75rem;
+    }
+}
 #outboundTabs {
     .nav-item {
         .nav-link {
@@ -437,6 +510,7 @@ table#persons-table {
         position: sticky;
         top: -1px;
         padding: 0.25rem 5px;
+        z-index: 100;
     }
     tbody tr td {
         padding: 0;
@@ -452,7 +526,10 @@ a.a-btn-remove-account {
     cursor: pointer;
 }
 .h-px-100 {
-    height: 100px;
+    height: 100px !important;
+}
+.h-px-155 {
+    height: 155px !important;
 }
 
 /*

@@ -3,12 +3,12 @@
     <tbody><x-outbound-usertable-row :person="null" /></tbody>
 </table>
 
-<form class="form-inline mt-4" autocomplete="off">
+<form class=" mt-4" autocomplete="off">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
-        <h3 class="text-uppercase font-weight-bold mt-2 mr-4">Outbound</h3>
-        <div class="col-20">
+        <h3 class="text-uppercase font-weight-bold mt-1 mr-4">Outbound</h3>
+        <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
-                <div class="input-group w-100">
+                <div class="w-100">
                     <button type="button" class="btn btn-app-default n-b-r text-uppercase w-100" id="btn-show-modal">
                         Create Account
                     </button>
