@@ -37,7 +37,7 @@
                 <tr class="{{ $class_name }}">
                     <td>{{ $task['action_name'] }} {{ $task['step_name'] }}</td>
                     <td>{{ $task['person_account'] }}</td>
-                    <td>{{ $task['opportunity'] }}</td>
+                    <td>{{ $task['opportunity_name'] }}</td>
                     <td>
                         {{ $task['note'] }}
                     </td>
@@ -118,7 +118,12 @@
             <h3 id="ts-3-person-account-label" data-toggle="tooltip" data-placement="top" title="Required this or person/account!">Opportunity</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <input type="text" class="form-control" placeholder="Opportunity..." aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" name="opportunity" >
+                    <select name="opportunity" aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" class="form-control">
+                        <option value="0"></option>
+                        @foreach ($opportunities as $opp)
+                            <option value="{{ $opp->id }}">{{ $opp->opportunity }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
@@ -289,7 +294,11 @@
                                 <input type="text" class="form-control" value="{{ old('saved_person_account') }}" id="suggest-person-account-{{ $idx }}" name="suggest-person-account-{{ $idx }}" readonly placeholder="Person/Account..."/>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" value="{{ old('saved_opportunity') }}" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly placeholder="Opportunity..."/>
+                                <select class="form-control" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
+                                    @foreach ($opportunities as $opp)
+                                        <option value="{{ $opp->id }}" @if (old('saved_opportunity') == $opp->id){{ 'selected' }}@else{{ 'disabled' }}@endif>{{ $opp->opportunity }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control" id="suggest-note-{{ $idx }}" name="suggest-note-{{ $idx }}" placeholder="Note..." />

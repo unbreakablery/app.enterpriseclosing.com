@@ -10206,9 +10206,14 @@ body {
   border-color: #000;
   color: #fff;
 }
-.form-inline .task-section input.form-control {
+.form-inline .task-section input.form-control,
+.form-inline .task-section select.form-control {
   border-radius: 0;
   height: 1.5rem;
+}
+.form-inline .task-section select.form-control {
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .form-inline .task-section input[type=text].form-control {
   width: 100%;
@@ -10276,6 +10281,10 @@ table.dataTable tbody td {
   padding-bottom: 1px;
 }
 
+table.dataTable td.dataTables_empty {
+  color: #dc3545 !important;
+}
+
 table.dataTable thead th {
   background: transparent !important;
   white-space: nowrap;
@@ -10294,34 +10303,28 @@ table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc {
   background: none !important;
 }
-
 table.dataTable thead span.sort-icon {
   display: inline-block;
   padding-left: 5px;
   width: 16px;
   height: 16px;
+  margin-left: 10px;
 }
-
 table.dataTable thead .sorting span {
   background: url("/images/sort_both.png") no-repeat center right;
 }
-
 table.dataTable thead .sorting_asc span {
   background: url("/images/sort_asc.png") no-repeat center right;
 }
-
 table.dataTable thead .sorting_desc span {
   background: url("/images/sort_desc.png") no-repeat center right;
 }
-
 table.dataTable thead .sorting_asc_disabled span {
   background: url("/images/sort_asc_disabled.png") no-repeat center right;
 }
-
 table.dataTable thead .sorting_desc_disabled span {
   background: url("/images/sort_desc_disabled.png") no-repeat center right;
 }
-
 table.dataTable thead .sorting::before,
 table.dataTable thead .sorting_asc::before,
 table.dataTable thead .sorting_desc::before,
@@ -10329,7 +10332,6 @@ table.dataTable thead .sorting_asc_disabled::before,
 table.dataTable thead .sorting_desc_disabled::before {
   content: "";
 }
-
 table.dataTable thead .sorting::after,
 table.dataTable thead .sorting_asc::after,
 table.dataTable thead .sorting_desc::after,
@@ -10446,12 +10448,14 @@ input[type=checkbox] {
   padding: 1px 0.75rem;
 }
 
-#outboundTabs .nav-item .nav-link {
+#outboundTabs .nav-item .nav-link,
+#oppTabs .nav-item .nav-link {
   padding: 0.25rem 1rem;
   border: 1px solid #fff;
   color: #fff;
 }
-#outboundTabs .nav-item .nav-link.active {
+#outboundTabs .nav-item .nav-link.active,
+#oppTabs .nav-item .nav-link.active {
   color: #495057;
 }
 

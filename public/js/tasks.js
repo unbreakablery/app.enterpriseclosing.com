@@ -108,7 +108,7 @@ $(document).ready(function () {
     } //check from/to/account && opportunity
 
 
-    if ($('input#ts-3-person-account').val() == '' && $('input#ts-6-opportunity').val() == '') {
+    if ($('input#ts-3-person-account').val() == '' && $('select#ts-6-opportunity').val() == '0') {
       $('h3#ts-3-person-account-label').tooltip('show');
       $('h3#ts-6-opportunity-label').tooltip('show');
       $('input#ts-3-person-account').focus();
@@ -147,7 +147,7 @@ $(document).ready(function () {
   $('input#ts-3-person-account').change(function () {
     $('input#ts-6-opportunity').val('');
   });
-  $('input#ts-6-opportunity').change(function () {
+  $('select#ts-6-opportunity').change(function () {
     $('input#ts-3-person-account').val('');
   }); //suggest setting save
 
@@ -157,6 +157,7 @@ $(document).ready(function () {
     var suggestStep = $('#suggest-step-' + id).val();
     var suggestPersonAccount = $('#suggest-person-account-' + id).val();
     var suggestOpportunity = $('#suggest-opportunity-' + id).val();
+    var suggestOpportunityText = $('#suggest-opportunity-' + id + ' option:selected').text();
     var suggestNote = $('#suggest-note-' + id).val();
     var suggestDate = $('#suggest-by-' + id).val();
     var suggestPriority = $('#suggest-priority-' + id).val();
@@ -196,7 +197,7 @@ $(document).ready(function () {
         innerHtml += '<tr class="' + className + '">';
         innerHtml += '<td>' + res.action_name + ' ' + res.step_name + '</td>';
         innerHtml += '<td>' + suggestPersonAccount + '</td>';
-        innerHtml += '<td>' + suggestOpportunity + '</td>';
+        innerHtml += '<td>' + suggestOpportunityText + '</td>';
         innerHtml += '<td>' + suggestNote + '</td>';
         innerHtml += '<td>' + suggestDate + '</td>';
         innerHtml += '<td>' + priorityName + '</td>';

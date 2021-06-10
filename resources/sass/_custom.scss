@@ -208,9 +208,15 @@ body {
             }
         }
         
-        input.form-control {
+        input.form-control,
+        select.form-control {
             border-radius: 0;
             height: 1.5rem;
+        }
+
+        select.form-control {
+            padding-top: 2px;
+            padding-bottom: 2px;
         }
 
         input[type=text].form-control {
@@ -285,6 +291,10 @@ table.dataTable tbody td {
     padding-bottom: 1px;
 }
 
+table.dataTable td.dataTables_empty {
+    color: #dc3545!important;
+}
+
 table.dataTable thead {
     th {
         background: transparent !important;
@@ -307,46 +317,45 @@ table.dataTable thead {
     .sorting_desc {
         background: none !important;
     }
-    
-}
- 
-table.dataTable thead span.sort-icon {
-    display: inline-block;
-    padding-left: 5px;
-    width: 16px;
-    height: 16px;
-}
-table.dataTable thead .sorting span {
-    background: url('/images/sort_both.png') no-repeat center right;
-}
-table.dataTable thead .sorting_asc span {
-    background: url('/images/sort_asc.png') no-repeat center right;
-}
-table.dataTable thead .sorting_desc span {
-    background: url('/images/sort_desc.png') no-repeat center right;
-}
- 
-table.dataTable thead .sorting_asc_disabled span {
-    background: url('/images/sort_asc_disabled.png') no-repeat center right;
-}
-table.dataTable thead .sorting_desc_disabled span {
-    background: url('/images/sort_desc_disabled.png') no-repeat center right;
-}
- 
-table.dataTable thead .sorting::before,
-table.dataTable thead .sorting_asc::before,
-table.dataTable thead .sorting_desc::before,
-table.dataTable thead .sorting_asc_disabled::before,
-table.dataTable thead .sorting_desc_disabled::before {
-    content: "";
-}
- 
-table.dataTable thead .sorting::after,
-table.dataTable thead .sorting_asc::after,
-table.dataTable thead .sorting_desc::after,
-table.dataTable thead .sorting_asc_disabled::after,
-table.dataTable thead .sorting_desc_disabled::after {
-    content: "";
+    span.sort-icon {
+        display: inline-block;
+        padding-left: 5px;
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+    }
+    .sorting span {
+        background: url('/images/sort_both.png') no-repeat center right;
+    }
+    .sorting_asc span {
+        background: url('/images/sort_asc.png') no-repeat center right;
+    }
+    .sorting_desc span {
+        background: url('/images/sort_desc.png') no-repeat center right;
+    }
+     
+    .sorting_asc_disabled span {
+        background: url('/images/sort_asc_disabled.png') no-repeat center right;
+    }
+    .sorting_desc_disabled span {
+        background: url('/images/sort_desc_disabled.png') no-repeat center right;
+    }
+     
+    .sorting::before,
+    .sorting_asc::before,
+    .sorting_desc::before,
+    .sorting_asc_disabled::before,
+    .sorting_desc_disabled::before {
+        content: "";
+    }
+     
+    .sorting::after,
+    .sorting_asc::after,
+    .sorting_desc::after,
+    .sorting_asc_disabled::after,
+    .sorting_desc_disabled::after {
+        content: "";
+    }    
 }
 
 /*
@@ -460,7 +469,8 @@ input[type='checkbox'] {
         padding: 1px 0.75rem;
     }
 }
-#outboundTabs {
+#outboundTabs,
+#oppTabs {
     .nav-item {
         .nav-link {
             padding: 0.25rem 1rem;

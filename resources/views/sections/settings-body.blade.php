@@ -6,7 +6,7 @@
     <div class="row col-lg-12 col-md-12 col-sm-12 mt-2">
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="first_name">First Name:</label>
+                <label for="first_name">First Name</label>
                 <input class="form-control n-b-r @error('first_name') is-invalid @enderror"
                         type="text"
                         id="first_name"
@@ -24,7 +24,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="last_name">Last Name:</label>
+                <label for="last_name">Last Name</label>
                 <input class="form-control n-b-r @error('last_name') is-invalid @enderror"
                         type="text"
                         id="last_name"
@@ -42,7 +42,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="password">New Password:</label>
+                <label for="password">New Password</label>
                 <input class="form-control n-b-r @error('password') is-invalid @enderror"
                         type="password"
                         id="password"
@@ -59,7 +59,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="password_confirmation">Confirm Password:</label>
+                <label for="password_confirmation">Confirm Password</label>
                 <input class="form-control n-b-r @error('password') is-invalid @enderror"
                         type="password"
                         id="password_confirmation"
@@ -76,7 +76,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input class="form-control n-b-r @error('email') is-invalid @enderror"
                         type="text"
                         id="email"
@@ -94,7 +94,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="phone">Phone:</label>
+                <label for="phone">Phone</label>
                 <input class="form-control n-b-r"
                         type="text"
                         id="phone"
@@ -106,7 +106,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="organisation">Organisation:</label>
+                <label for="organisation">Organisation</label>
                 <input class="form-control n-b-r"
                         type="text"
                         id="organisation"
@@ -118,7 +118,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="region">Region:</label>
+                <label for="region">Region</label>
                 <select id="region" name="region" class="form-control n-b-r">
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
@@ -129,7 +129,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="industry">Industry:</label>
+                <label for="industry">Industry</label>
                 <input class="form-control n-b-r"
                         type="text"
                         id="industry"
@@ -139,7 +139,7 @@
                 />
             </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="form-group">
                 <button type="submit" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
                     Save Settings

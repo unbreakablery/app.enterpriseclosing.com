@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!**********************************!*\
-  !*** ./resources/js/outbound.js ***!
-  \**********************************/
+/*!***************************************!*\
+  !*** ./resources/js/opportunities.js ***!
+  \***************************************/
 $(document).ready(function () {
   function clearAddTaskModal() {
     $('#add-task-modal select[name=action]').val(0);
@@ -23,63 +23,64 @@ $(document).ready(function () {
   }).datepicker("setDate", new Date());
   $('#btn-show-modal').click(function () {
     //Show modal
-    $('#add-account-modal').modal({
+    $('#add-opportunity-modal').modal({
       backdrop: 'static'
     });
   });
   $('#btn-create-new-tab').click(function () {
     var tabName = $('#tab-name').val();
-    $('#tab-name').val(''); // Check if account name is empty
+    $('#tab-name').val(''); // Check if opportunity name is empty
 
     if (tabName === '') {
-      alert("You must enter new account name to create new tab.");
+      alert("You must enter new opportunity name to create new tab.");
       return;
     } // Hide modal
 
 
-    $('#add-account-modal').modal('hide'); // Save blank outbound
+    $('#add-opportunity-modal').modal('hide'); // Save blank outbound
 
     loader('show');
     $.ajax({
-      url: "outbound/save-main",
+      url: "opportunities/save-main",
       dataType: "json",
       type: "post",
       data: {
         _token: $('meta[name="csrf-token"]').attr('content'),
         id: 0,
-        account_name: tabName
+        opportunity: tabName
       },
       success: function success(res) {
-        // Add new tab
+        console.log(res); // Add new tab
+
         var tabNavElement = '';
         tabNavElement += '<li class="nav-item" role="presentation">';
         tabNavElement += '<a class="nav-link active" ';
         tabNavElement += ' data-toggle="tab" role="tab" aria-selected="true" ';
         tabNavElement += ' id="tab-' + tabIndex + '" ';
-        tabNavElement += ' href="#ob-tab-' + tabIndex + '" ';
-        tabNavElement += ' aria-controls="#ob-tab-' + tabIndex + '">';
+        tabNavElement += ' href="#opp-tab-' + tabIndex + '" ';
+        tabNavElement += ' aria-controls="#opp-tab-' + tabIndex + '">';
         tabNavElement += tabName;
         tabNavElement += '</a></li>';
         var tabContent = '';
         tabContent += '<div class="tab-pane fade show active" role="tabpanel" ';
-        tabContent += ' id="ob-tab-' + tabIndex + '" ';
+        tabContent += ' id="opp-tab-' + tabIndex + '" ';
         tabContent += ' data-idx="' + tabIndex + '" ';
         tabContent += ' aria-labelledby="tab-' + tabIndex + '">';
         tabContent += '</div>';
-        $('#outboundTabs li.nav-item a.nav-link').removeClass('active');
-        $('#outboundTabs li.nav-item a.nav-link').attr('aria-selected', false);
-        $('#outboundTabsContent div.tab-pane').removeClass('show');
-        $('#outboundTabsContent div.tab-pane').removeClass('active');
-        $('#outboundTabs').append(tabNavElement);
-        $('#outboundTabsContent').append(tabContent); // Add new table to tab
+        $('#oppTabs li.nav-item a.nav-link').removeClass('active');
+        $('#oppTabs li.nav-item a.nav-link').attr('aria-selected', false);
+        $('#oppTabsContent div.tab-pane').removeClass('show');
+        $('#oppTabsContent div.tab-pane').removeClass('active');
+        $('#oppTabs').append(tabNavElement);
+        $('#oppTabsContent').append(tabContent); // Add new table to tab
 
-        $('#ob-tab-' + tabIndex).append($('#ob-component-empty').html()); // Add account name
+        $('#opp-tab-' + tabIndex).append($('#opp-component-empty').html()); // Add opportunity name
 
-        $('#ob-tab-' + tabIndex).find('input[name=account-name]').val(tabName); // Increase tab index
+        $('#opp-tab-' + tabIndex).find('input[name=opportunity-name]').val(tabName); // Increase tab index
 
-        tabIndex++; // Change outbound id
+        tabIndex++; // Change opportunity id
 
-        $('#ob-tab-' + (tabIndex - 1)).find('input[name=o-id]').val(res.id);
+        $('#opp-tab-' + (tabIndex - 1)).find('input[name=opp-id]').val(res.id);
         loader('hide');
       },
       error: function error(request, status, _error) {
@@ -285,7 +286,7 @@ $(document).ready(function () {
       success: function success(res) {
         // Remove tab
         var idx = $(tabComponent).parent().data('idx');
-        $('#outboundTabsContent #ob-tab-' + idx).remove();
+        $('#outboundTabsContent #opp-tab-' + idx).remove();
         $('#outboundTabs #tab-' + idx).parent().remove(); // Active first tab
 
         $('#outboundTabs li a.nav-link').first().addClass('active');

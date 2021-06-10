@@ -9,6 +9,7 @@ use App\Models\Action;
 use App\Models\Step;
 use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
+use App\Models\OpportunityMain;
 
 use Auth;
 
@@ -38,12 +39,13 @@ class HomeController extends Controller
                             ->get();
 
         $tasks = Task::where([
-                                ['status', '=', '0'],
-                                ['user', '=', Auth::user()->id]
+                                ['tasks.status', '=', '0'],
+                                ['tasks.user', '=', Auth::user()->id]
                             ])
                         ->join('actions', 'actions.id', '=', 'tasks.action')
                         ->join('steps', 'steps.id', '=', 'tasks.step')
-                        ->select('tasks.*', 'actions.name AS action_name', 'steps.name AS step_name')
+                        ->leftJoin('opportunities_main', 'opportunities_main.id', '=', 'tasks.opportunity')
+                        ->select('tasks.*', 'actions.name AS action_name', 'steps.name AS step_name', 'opportunities_main.opportunity AS opportunity_name')
                         ->orderBy('by_date', 'ASC')
                         ->get()
                         ->all();
@@ -69,6 +71,10 @@ class HomeController extends Controller
                                 ->distinct('actions.id')
                                 ->orderBy('actions.name')
                                 ->get();
+        $opportunities = OpportunityMain::where('user', Auth::user()->id)
+                                ->select('id', 'opportunity')
+                                ->orderBy('id')
+                                ->get();
         
         return view('pages.tasks', 
                     compact(
@@ -81,7 +87,8 @@ class HomeController extends Controller
                         'suggest_steps',
                         'suggest_actions',
                         'suggest_person_account',
-                        'suggest_opportunity'
+                        'suggest_opportunity',
+                        'opportunities'
                     )
         );
     }

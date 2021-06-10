@@ -5,19 +5,19 @@
         <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="org-hooks">Organisational Hooks:</label>
+                    <label for="org-hooks">Organisational Hooks</label>
                     <textarea class="form-control h-px-155 n-b-r" id="org-hooks" name="org-hooks" rows="5">@if (isset($main)){{ $main->org_hooks }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="additional-nuggets">Additional Nuggets:</label>
+                    <label for="additional-nuggets">Additional Nuggets</label>
                     <textarea class="form-control h-px-155 n-b-r" id="additional-nuggets" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
-                    <label for="annual-report">Annual Report:</label>
+                    <label for="annual-report">Annual Report</label>
                     <input class="form-control n-b-r"
                             type="text"
                             id="annual-report"
@@ -26,7 +26,7 @@
                     />
                 </div>
                 <div class="form-group">
-                    <label for="pr-articles">PR / Articles:</label>
+                    <label for="pr-articles">PR / Articles</label>
                     <input class="form-control n-b-r"
                             type="text"
                             id="pr-articles"
@@ -41,7 +41,7 @@
                     <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-download-persons mr-1">
                         <i class="bi bi-download"></i>
                     </button>
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-add-row mr-1">
+                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-add-row">
                         Add Row
                     </button>
                 </div>

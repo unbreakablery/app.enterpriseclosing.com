@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\OpportunityMain;
 use Auth;
 use DateTime;
 
@@ -59,13 +60,20 @@ class TasksController extends Controller
         // save task
         $task = storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority);
 
+        // Get opportunities
+        $opportunities = OpportunityMain::where('user', Auth::user()->id)
+                        ->select('id', 'opportunity')
+                        ->orderBy('id')
+                        ->get();
+
         return redirect()->route('tasks')->withInput([
             'user_action' => 'add-task',
             'saved_action' => $task->action,
             'saved_step' => $task->step,
             'saved_person_account' => $task->person_account,
             'saved_opportunity' => $task->opportunity,
-            'saved_by_date' => $request->input('by-date')
+            'saved_by_date' => $request->input('by-date'),
+            'opportunities' => $opportunities
         ]);
     }
 
