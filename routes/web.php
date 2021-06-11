@@ -39,7 +39,11 @@ Route::get('/outbound/download/{id}', 'OutboundController@downloadPersons')->nam
 Route::post('/outbound/upload', 'OutboundController@uploadPersons')->name('outbound.upload.persons');
 Route::post('/outbound/save-task', 'OutboundController@saveTask')->name('outbound.save.task');
 
-Route::get('/opportunities', 'HomeController@opportunities')->name('opportunities');
+Route::get('/opportunities', 'OpportunityController@getOpportunities')->name('opportunities');
+Route::post('/opportunities/save-main', 'OpportunityController@saveOpportunityMain')->name('opportunity.save.main');
+Route::post('/opportunities/update-main', 'OpportunityController@updateOpportunityMain')->name('opportunity.update.main');
+Route::post('/opportunities/save-meddpicc', 'OpportunityController@saveOpportunityMeddpicc')->name('opportunity.save.meddpicc');
+
 Route::get('/scripts', 'HomeController@scripts')->name('scripts');
 Route::get('/emails', 'HomeController@emails')->name('emails');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');

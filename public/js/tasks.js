@@ -145,7 +145,7 @@ $(document).ready(function () {
     $("form#tasks-form").submit();
   });
   $('input#ts-3-person-account').change(function () {
-    $('input#ts-6-opportunity').val('');
+    $('select#ts-6-opportunity').val('');
   });
   $('select#ts-6-opportunity').change(function () {
     $('input#ts-3-person-account').val('');

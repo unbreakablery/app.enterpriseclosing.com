@@ -10025,7 +10025,7 @@ body {
 }
 
 .n-b-r {
-  border-radius: 0;
+  border-radius: 0 !important;
 }
 
 .n-p-lr {
@@ -10179,7 +10179,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
 }
-.form-inline #task-table-wrapper {
+.form-inline .task-table-wrapper {
   margin-right: 30px;
 }
 .form-inline .task-section {
@@ -10444,7 +10444,7 @@ input[type=checkbox] {
 * outbound
 */
 .main-info .form-control {
-  height: 2rem;
+  height: 1.5rem;
   padding: 1px 0.75rem;
 }
 
@@ -10519,8 +10519,20 @@ a.a-btn-remove-account {
   height: 100px !important;
 }
 
-.h-px-155 {
-  height: 155px !important;
+.h-px-140 {
+  height: 140px !important;
+}
+
+.h-3rem-2px {
+  height: calc(3rem + 2px) !important;
+}
+
+/*
+* Opportunities
+*/
+.collapse-section .form-control {
+  height: 1.5rem;
+  padding: 1px 0.75rem;
 }
 
 /*

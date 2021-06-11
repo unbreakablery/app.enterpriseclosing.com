@@ -5,6 +5,8 @@ use App\Models\Action;
 use App\Models\Step;
 use App\Models\OutboundMain;
 use App\Models\OutboundPerson;
+use App\Models\OpportunityMain;
+use App\Models\OpportunityMeddpicc;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
@@ -235,5 +237,116 @@ if (!function_exists('getOutboundPersonsAsArray')) {
                                 ->get()
                                 ->all();
         return $persons;
+    }
+}
+
+if (!function_exists('storeOpportunityMain')) {
+    function storeOpportunityMain($data) {
+        $id = $data->get('opp-id');
+        
+        // Create new opportunity
+        if ($id == 0) {
+            $opportunityMain = new OpportunityMain();
+            $opportunityMain->user              = Auth::user()->id;
+            $opportunityMain->opportunity       = $data->get('opportunity-name');
+            $opportunityMain->usecase           = $data->usecase;
+            $opportunityMain->emp_num           = $data->emp_num;
+            $opportunityMain->close_date        = (empty($data->close_date)) ? null : \DateTime::createFromFormat('d-m-Y', $data->close_date);
+            $opportunityMain->stage             = $data->stage;
+            $opportunityMain->next_step         = $data->next_step;
+            $opportunityMain->amount            = $data->amount;
+            $opportunityMain->currency          = $data->currency;
+            $opportunityMain->lead_source       = $data->lead_source;
+            $opportunityMain->compelling_event  = $data->compelling_event;
+            $opportunityMain->competition       = $data->competition;
+            $opportunityMain->sponsor           = $data->sponsor;
+            $opportunityMain->what_new_changed  = $data->what_new_changed;
+            $opportunityMain->red_flags         = $data->red_flags;
+            $opportunityMain->folder_link       = $data->folder_link;
+            
+            $opportunityMain->save();
+            return $opportunityMain->id;
+        }
+
+        // Update opportunity
+        OpportunityMain::where('id', $id)
+                    ->update([
+                        'usecase'           => $data->usecase,
+                        'emp_num'           => $data->emp_num,
+                        'close_date'        => (empty($data->close_date)) ? null : \DateTime::createFromFormat('d-m-Y', $data->close_date),
+                        'stage'             => $data->stage,
+                        'next_step'         => $data->next_step,
+                        'amount'            => $data->amount,
+                        'currency'          => $data->currency,
+                        'lead_source'       => $data->lead_source,
+                        'compelling_event'  => $data->compelling_event,
+                        'competition'       => $data->competition,
+                        'sponsor'           => $data->sponsor,
+                        'what_new_changed'  => $data->what_new_changed,
+                        'red_flags'         => $data->red_flags,
+                        'folder_link'       => $data->folder_link
+                    ]);
+        return $id;
+    }
+}
+
+if (!function_exists('storeOpportunityMeddpicc')) {
+    function storeOpportunityMeddpicc($data) {
+        $oppId = $data->get('opp-id');
+        $meddpicc = OpportunityMeddpicc::where('opp_id', $oppId)
+                                    ->get()
+                                    ->first();
+
+        // Create new opportunity meddpicc
+        if (empty($meddpicc)) {
+            $opportunityMeddpicc = new OpportunityMeddpicc();
+            $opportunityMeddpicc->opp_id                    = $oppId;
+            $opportunityMeddpicc->metrics                   = $data->metrics;
+            $opportunityMeddpicc->metrics_score             = $data->metrics_score;
+            $opportunityMeddpicc->economic_buyer            = $data->economic_buyer;
+            $opportunityMeddpicc->economic_buyer_score      = $data->economic_buyer_score;
+            $opportunityMeddpicc->decision_criteria         = $data->decision_criteria;
+            $opportunityMeddpicc->decision_criteria_score   = $data->decision_criteria_score;
+            $opportunityMeddpicc->decision_process          = $data->decision_process;
+            $opportunityMeddpicc->decision_process_score    = $data->decision_process_score;
+            $opportunityMeddpicc->paper_process             = $data->paper_process;
+            $opportunityMeddpicc->paper_process_score       = $data->paper_process_score;
+            $opportunityMeddpicc->identified_pain           = $data->identified_pain;
+            $opportunityMeddpicc->identified_pain_score     = $data->identified_pain_score;
+            $opportunityMeddpicc->champion_coach            = $data->champion_coach;
+            $opportunityMeddpicc->champion_coach_score      = $data->champion_coach_score;
+            $opportunityMeddpicc->competition               = $data->competition;
+            $opportunityMeddpicc->competition_score         = $data->competition_score;
+            $opportunityMeddpicc->meddpicc_score            = $data->meddpicc_score;
+            
+            $opportunityMeddpicc->save();
+
+            // $opportunityMeddpicc->create($data->all());
+            return $opportunityMeddpicc->id;
+        }
+
+        // Update opportunity meddpicc
+        OpportunityMeddpicc::where('opp_id', $oppId)
+                    ->update([
+                        'metrics'                   => $data->metrics,
+                        'metrics_score'             => $data->metrics_score,
+                        'economic_buyer'            => $data->economic_buyer,
+                        'economic_buyer_score'      => $data->economic_buyer_score,
+                        'decision_criteria'         => $data->decision_criteria,
+                        'decision_criteria_score'   => $data->decision_criteria_score,
+                        'decision_process'          => $data->decision_process,
+                        'decision_process_score'    => $data->decision_process_score,
+                        'paper_process'             => $data->paper_process,
+                        'paper_process_score'       => $data->paper_process_score,
+                        'identified_pain'           => $data->identified_pain,
+                        'identified_pain_score'     => $data->identified_pain_score,
+                        'champion_coach'            => $data->champion_coach,
+                        'champion_coach_score'      => $data->champion_coach_score,
+                        'competition'               => $data->competition,
+                        'competition_score'         => $data->competition_score,
+                        'meddpicc_score'            => $data->meddpicc_score
+                    ]);
+        // $meddpicc->update($data->all());
+        return $meddpicc->id;
     }
 }

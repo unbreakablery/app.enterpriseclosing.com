@@ -153,5 +153,12 @@
         </script>
         <script src="js/outbound.js"></script>
     @endif
+
+    @if (Route::currentRouteName() == 'opportunities')
+        <script>
+            var tabIndex = {{ count($data) }};
+        </script>
+        <script src="js/opportunities.js"></script>
+    @endif
 </body>
 </html>
