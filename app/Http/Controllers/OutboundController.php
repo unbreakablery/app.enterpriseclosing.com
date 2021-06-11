@@ -183,7 +183,7 @@ class OutboundController extends Controller
         $action             = $request->action;
         $step               = $request->step;
         $person_account     = $request->person_account;
-        $opportunity        = $request->opportunity;
+        $opportunity        = empty($request->opportunity) ? 0 : $request->opportunity;
         $note               = $request->note;
         $by_date            = $request->by_date;
         $priority           = $request->priority;

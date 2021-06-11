@@ -6,13 +6,13 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
                     <label for="org-hooks">Organisational Hooks</label>
-                    <textarea class="form-control h-px-155 n-b-r" id="org-hooks" name="org-hooks" rows="5">@if (isset($main)){{ $main->org_hooks }}@endif</textarea>
+                    <textarea class="form-control h-px-140 n-b-r" id="org-hooks" name="org-hooks" rows="5">@if (isset($main)){{ $main->org_hooks }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
                     <label for="additional-nuggets">Additional Nuggets</label>
-                    <textarea class="form-control h-px-155 n-b-r" id="additional-nuggets" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
+                    <textarea class="form-control h-px-140 n-b-r" id="additional-nuggets" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
