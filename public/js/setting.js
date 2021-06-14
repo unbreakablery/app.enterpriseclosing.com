@@ -94,7 +94,9 @@ $(document).ready(function () {
         content: scriptContent
       },
       success: function success(response) {
-        loader('hide'); // Add new row on table
+        loader('hide'); // Remove no data row
+
+        $('table#scripts-table tbody tr#no-data-row').remove(); // Add new row on table
 
         var innerHtml = '';
         innerHtml += '<tr data-id="' + response.script.id + '">';
@@ -163,7 +165,15 @@ $(document).ready(function () {
       success: function success(response) {
         loader('hide'); // Remove row on table
 
-        $(rowObj).remove(); // Show message
+        $(rowObj).remove(); // Add no data row
+
+        if ($('table#scripts-table tbody > tr').length == 0) {
+          var innerHtml = '<tr id="no-data-row">';
+          innerHtml += '<td class="text-center text-white pt-3" colspan="3">No Scripts</td>';
+          innerHtml += '</tr>';
+          $('table#scripts-table tbody').append(innerHtml);
+        } // Show message
+
 
         $('.toast .toast-header').removeClass('bg-danger');
         $('.toast .toast-header').addClass('bg-success');

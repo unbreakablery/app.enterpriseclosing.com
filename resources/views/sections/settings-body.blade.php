@@ -438,7 +438,7 @@
                         <table class="table table-hover w-100 mb-0" id="scripts-table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="no-sort pl-2 pr-2">Name</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
                                     <th scope="col" class="no-sort pl-2 pr-2">Content</th>
                                     <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
                                 </tr>
