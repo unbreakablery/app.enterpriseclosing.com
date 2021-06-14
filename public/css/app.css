@@ -10449,13 +10449,15 @@ input[type=checkbox] {
 }
 
 #outboundTabs .nav-item .nav-link,
-#oppTabs .nav-item .nav-link {
+#oppTabs .nav-item .nav-link,
+#scriptTabs .nav-item .nav-link {
   padding: 0.25rem 1rem;
   border: 1px solid #fff;
   color: #fff;
 }
 #outboundTabs .nav-item .nav-link.active,
-#oppTabs .nav-item .nav-link.active {
+#oppTabs .nav-item .nav-link.active,
+#scriptTabs .nav-item .nav-link.active {
   color: #495057;
 }
 

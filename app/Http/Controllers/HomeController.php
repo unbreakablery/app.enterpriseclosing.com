@@ -93,26 +93,26 @@ class HomeController extends Controller
         );
     }
 
-    public function outbound()
-    {
-        return view('pages.outbound', [
-            'nl_outbound_class' => 'active'
-        ]);
-    }
+    // public function outbound()
+    // {
+    //     return view('pages.outbound', [
+    //         'nl_outbound_class' => 'active'
+    //     ]);
+    // }
 
-    public function opportunities()
-    {
-        return view('pages.opportunities', [
-            'nl_opportunities_class' => 'active'
-        ]);
-    }
+    // public function opportunities()
+    // {
+    //     return view('pages.opportunities', [
+    //         'nl_opportunities_class' => 'active'
+    //     ]);
+    // }
 
-    public function scripts()
-    {
-        return view('pages.scripts', [
-            'nl_scripts_class' => 'active'
-        ]);
-    }
+    // public function scripts()
+    // {
+    //     return view('pages.scripts', [
+    //         'nl_scripts_class' => 'active'
+    //     ]);
+    // }
 
     public function emails()
     {
