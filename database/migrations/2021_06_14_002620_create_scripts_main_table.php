@@ -15,6 +15,7 @@ class CreateScriptsMainTable extends Migration
     {
         Schema::create('scripts_main', function (Blueprint $table) {
             $table->id();
+            $table->integer('user');
             $table->string('name');
             $table->text('content')->nullable();
             $table->timestamps();
