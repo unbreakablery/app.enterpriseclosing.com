@@ -44,7 +44,9 @@ Route::post('/opportunities/save-main', 'OpportunityController@saveOpportunityMa
 Route::post('/opportunities/update-main', 'OpportunityController@updateOpportunityMain')->name('opportunity.update.main');
 Route::post('/opportunities/save-meddpicc', 'OpportunityController@saveOpportunityMeddpicc')->name('opportunity.save.meddpicc');
 
-Route::get('/scripts', 'HomeController@scripts')->name('scripts');
+Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
+Route::delete('/scripts/remove/script-main/{id}', 'ScriptController@removeScriptMain')->name('scripts.remove.main');
+
 Route::get('/emails', 'HomeController@emails')->name('emails');
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('/resources', 'HomeController@resources')->name('resources');
@@ -54,3 +56,4 @@ Route::get('/analytics', 'HomeController@analytics')->name('analytics');
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');
 Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->name('settings.store.tasks');
+Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');

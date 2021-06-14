@@ -8,6 +8,7 @@ use App\Models\Step;
 use App\Models\Action;
 use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
+use App\Models\ScriptMain;
 use App\Models\User;
 use Auth;
 
@@ -28,10 +29,11 @@ class SettingsController extends Controller
         $user_id = Auth::user()->id;
         $actions = Action::where('is_other', '0')->orderBy('name', 'ASC')->get();
         $steps = Step::where('is_other', '0')->orderBy('name', 'ASC')->get();
-        $settings = TaskSetting::where('user_id', $user_id)->get();
+        $taskSettings = TaskSetting::where('user_id', $user_id)->get();
         $suggestSettings = TaskSuggestSetting::where('user_id', $user_id)->get();
-        $step_setting = TaskSetting::where('user_id', $user_id)
-                        ->where('section_type', 2)->get();
+        $stepSetting = TaskSetting::where('user_id', $user_id)
+                                ->where('section_type', 2)->get();
+        $scriptSetting = ScriptMain::where('user', $user_id)->get();
 
         $user = User::where('id', Auth::user()->id)->get()->first();
 
@@ -39,9 +41,10 @@ class SettingsController extends Controller
                 'actions', 
                 'steps', 
                 'suggestSettings', 
-                'settings', 
-                'step_setting',
-                'user'
+                'taskSettings', 
+                'stepSetting',
+                'user',
+                'scriptSetting'
             )
         );
     }
@@ -101,5 +104,14 @@ class SettingsController extends Controller
         
         storeUser($request);
         return redirect()->route('settings');
+    }
+
+    public function storeScriptSettings(Request $request)
+    {
+        $script = storeScriptMain($request);
+
+        return response()->json([
+            'script' => $script
+        ]);
     }
 }

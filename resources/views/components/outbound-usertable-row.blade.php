@@ -48,13 +48,6 @@
         />
     </td>
     <td class="text-center">
-        <!-- <input type="number"
-                class="form-control w-100 text-right"
-                name="calls"
-                min="0"
-                placeholder=""
-                value="@if (isset($person)){{ $person->calls }}@else{{ 0 }}@endif"
-        /> -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <button class="btn btn-counter btn-counter-decrease" type="button">-</button>

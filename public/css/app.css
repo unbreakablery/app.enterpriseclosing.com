@@ -10464,6 +10464,7 @@ input[type=checkbox] {
   height: 29px;
 }
 
+.scripts-table-wrapper,
 .persons-table-wrapper {
   height: 315px;
   overflow-y: auto;
@@ -10477,17 +10478,23 @@ input[type=checkbox] {
 
 table#persons-table input[type=text],
 table#persons-table input[type=number],
-table#persons-table select {
+table#persons-table select,
+table#scripts-table input[type=text],
+table#scripts-table input[type=number],
+table#scripts-table select {
   border-radius: 0;
   height: 1.5rem;
   padding: 0 0.25rem;
   font-size: 12px;
 }
 table#persons-table input[type=number]::-webkit-inner-spin-button,
-table#persons-table input[type=number]::-webkit-outer-spin-button {
+table#persons-table input[type=number]::-webkit-outer-spin-button,
+table#scripts-table input[type=number]::-webkit-inner-spin-button,
+table#scripts-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
-table#persons-table .btn.btn-counter {
+table#persons-table .btn.btn-counter,
+table#scripts-table .btn.btn-counter {
   height: 1.5rem;
   padding: 0 0.25rem;
   margin: 0;
@@ -10495,19 +10502,23 @@ table#persons-table .btn.btn-counter {
   border-radius: 0;
   border: 0;
 }
-table#persons-table tr th {
+table#persons-table tr th,
+table#scripts-table tr th {
   position: sticky;
   top: -1px;
   padding: 0.25rem 5px;
   z-index: 100;
 }
-table#persons-table tbody tr td {
+table#persons-table tbody tr td,
+table#scripts-table tbody tr td {
   padding: 0;
 }
-table#persons-table .btn-remove-row {
+table#persons-table .btn-remove-row,
+table#scripts-table .btn-remove-row {
   height: 1.5rem;
 }
-table#persons-table .btn-remove-row i.bi.bi-x:before {
+table#persons-table .btn-remove-row i.bi.bi-x:before,
+table#scripts-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
 

@@ -1,5 +1,5 @@
 <h3 class="text-uppercase font-weight-bold mt-4 mb-4">Settings</h3>
-<form class="main-info" action="{{ route('settings.store.general')}}" method='post' autocomplete="off">
+<form class="main-info" action="{{ route('settings.store.general') }}" method='post' autocomplete="off">
     @csrf
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
     <h3>General Settings</h3>
@@ -274,7 +274,7 @@
                         <input class="form-check-input input-action" type="checkbox" name="actions[]" 
                             id="ts-{{$action->id}}-rg-add" 
                             value="{{$action->id}}"
-                            @foreach($settings as $setting)
+                            @foreach($taskSettings as $setting)
                                 @if($action->id == $setting->section_id && $setting->section_type == 1 ) checked @endif
                             @endforeach
                             >
@@ -297,7 +297,7 @@
                         <input class="form-check-input input-step" type="checkbox" name="steps[]" 
                             id="ts-{{$step->id}}-rg-account" 
                             value="{{$step->id}}"
-                            @foreach($settings as $setting)
+                            @foreach($taskSettings as $setting)
                                 @if($step->id == $setting->section_id && $setting->section_type == 2 ) checked @endif
                             @endforeach
                             >
@@ -316,7 +316,7 @@
                             class="nav-item suggest-item item-{{$step->id}} 
                             @php
                                 $flag = false;
-                                foreach($settings as $setting) {
+                                foreach($taskSettings as $setting) {
                                     if ($step->id == $setting->section_id && $setting->section_type == 2) {
                                         $flag = true;
                                         echo 'suggest-step-item-active';
@@ -337,7 +337,7 @@
                     </ul>
                     <div id="content" class="tab-content" role="tablist">
                         @foreach ($steps as $step)
-                        <div id="pane-{{$step->id}}" class="tab-pane p-4 border fade show {{( count($step_setting) != 0) ? (( $step_setting[0]->section_id == $step->id ) ? 'active' : '') : ''}}" role="tabpanel" aria-labelledby="tab_{{$step->id}}">
+                        <div id="pane-{{$step->id}}" class="tab-pane p-4 border fade show {{( count($stepSetting) != 0) ? (( $stepSetting[0]->section_id == $step->id ) ? 'active' : '') : ''}}" role="tabpanel" aria-labelledby="tab_{{$step->id}}">
                             @foreach ($steps as $substep)
                             <div class="form-check col-2">
                                 <input class="form-check-input" type="checkbox" name="suggest_steps[]" 
@@ -396,12 +396,77 @@
             data-idx="scripts"
             role="tabpanel"
             aria-labelledby="tab-scripts">
-            <form id="form_scripts_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
+            <form id="form_scripts_setting" class="mt-4" action="" method='post' autocomplete="off">
                 @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-scripts-settings">
-                            Save Settings
-                    </button>
+                <h3>New Script</h3>
+                <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="script_name">Script Name</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="script_name"
+                                    name="script_name"
+                                    value=""
+                                    placeholder="Enter script name..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="script_content">Script Content</label>
+                            <textarea name="script_content"
+                                id="script_content"
+                                class="form-control h-px-100 n-b-r"
+                                placeholder="Enter script content..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
+                                Save Script
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Script List</h3>
+                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                    <div class="scripts-table-wrapper">
+                        <table class="table table-hover w-100 mb-0" id="scripts-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="no-sort pl-2 pr-2">Name</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2">Content</th>
+                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($scriptSetting) && count($scriptSetting) > 0)
+                                    @foreach ($scriptSetting as $script)
+                                    <tr data-id="{{ $script->id }}">
+                                        <td class="text-white pl-2 pr-2">{{ $script->name }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $script->content }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr id="no-data-row">
+                                        <td class="text-center text-white pt-3" colspan="3">No Scripts</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>
@@ -474,6 +539,66 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Message box -->
+<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+        <div class="toast-header bg-success text-white">
+            <strong class="mr-auto">Message</strong>
+            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body bg-white text-secondary">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+</div>
+
+<!-- Edit Script Modal -->
+<div class="modal fade" id="edit-script-modal" tabindex="-1" role="dialog" aria-labelledby="edit-script-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-script-modal-header-title">Edit Script</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit_script_id" id="edit_script_id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="script_name">Script Name</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit_script_name"
+                                    name="edit_script_name"
+                                    value=""
+                                    placeholder="Enter script name..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_script_content">Script Content</label>
+                            <textarea name="edit_script_content"
+                                id="edit_script_content"
+                                class="form-control h-px-100 n-b-r"
+                                placeholder="Enter script content..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn-update-script">Update</button>
+            </div>
         </div>
     </div>
 </div>

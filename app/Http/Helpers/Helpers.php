@@ -7,6 +7,7 @@ use App\Models\OutboundMain;
 use App\Models\OutboundPerson;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
+use App\Models\ScriptMain;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
@@ -348,5 +349,42 @@ if (!function_exists('storeOpportunityMeddpicc')) {
                     ]);
         // $meddpicc->update($data->all());
         return $meddpicc->id;
+    }
+}
+
+if (!function_exists('storeScriptMain')) {
+    function storeScriptMain($data) {
+        $id = $data->get('id');
+        
+        // Create new script main
+        if ($id == 0 || $id == null) {
+            $scriptMain             = new ScriptMain();
+            $scriptMain->user       = Auth::user()->id;
+            $scriptMain->name       = $data->name;
+            $scriptMain->content    = $data->content;
+            
+            $scriptMain->save();
+            return $scriptMain;
+        }
+
+        // Update script main
+        $scriptMain = ScriptMain::where('id', $id)->get()->first();
+        $scriptMain->name = $data->name;
+        $scriptMain->content = $data->content;
+        $scriptMain->update();
+        
+        return $scriptMain;
+    }
+}
+
+if (!function_exists('deleteScriptMain')) {
+    function deleteScriptMain($id) {
+        if (empty($id)) {
+            return false;
+        }
+        
+        $result = ScriptMain::where('id', $id)->delete();
+
+        return $result;
     }
 }

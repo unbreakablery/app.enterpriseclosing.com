@@ -80,3 +80,11 @@
     opacity: 1;
   }
 }
+
+#settings-tab-scripts {
+  padding: 0 0 0 2rem;
+}
+#settings-tab-scripts .form-control {
+  height: 1.5rem;
+  padding: 1px 0.75rem;
+}

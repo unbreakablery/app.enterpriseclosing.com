@@ -486,6 +486,7 @@ input[type='checkbox'] {
     padding: 0 0.5rem;
     height: 29px;
 }
+.scripts-table-wrapper,
 .persons-table-wrapper {
     height: 315px;
     overflow-y: auto;
@@ -495,7 +496,8 @@ input[type='checkbox'] {
     border-radius: 0;
     height: auto;
 }
-table#persons-table {
+table#persons-table,
+table#scripts-table {
     input[type=text],
     input[type=number],
     select {
