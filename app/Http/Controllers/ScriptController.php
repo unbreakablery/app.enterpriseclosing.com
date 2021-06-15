@@ -46,4 +46,13 @@ class ScriptController extends Controller
             'success' => $result
         ]);
     }
+
+    public function saveScriptMain(Request $request)
+    {
+        $script = storeScriptMain($request);
+
+        return response()->json([
+            'script' => $script
+        ]);
+    }
 }
