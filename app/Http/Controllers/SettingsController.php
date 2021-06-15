@@ -9,6 +9,7 @@ use App\Models\Action;
 use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
 use App\Models\ScriptMain;
+use App\Models\EmailMain;
 use App\Models\User;
 use Auth;
 
@@ -34,6 +35,7 @@ class SettingsController extends Controller
         $stepSetting = TaskSetting::where('user_id', $user_id)
                                 ->where('section_type', 2)->get();
         $scriptSetting = ScriptMain::where('user', $user_id)->get();
+        $emailSetting = EmailMain::where('user', $user_id)->get();
 
         $user = User::where('id', Auth::user()->id)->get()->first();
 
@@ -44,7 +46,8 @@ class SettingsController extends Controller
                 'taskSettings', 
                 'stepSetting',
                 'user',
-                'scriptSetting'
+                'scriptSetting',
+                'emailSetting'
             )
         );
     }
@@ -112,6 +115,15 @@ class SettingsController extends Controller
 
         return response()->json([
             'script' => $script
+        ]);
+    }
+
+    public function storeEmailSettings(Request $request)
+    {
+        $email = storeEmailMain($request);
+
+        return response()->json([
+            'email' => $email
         ]);
     }
 }

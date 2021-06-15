@@ -386,7 +386,6 @@
             role="tabpanel"
             aria-labelledby="tab-scripts">
             <form id="form_scripts_setting" class="mt-4" action="" method='post' autocomplete="off">
-                @csrf
                 <h3>New Script</h3>
                 <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -464,12 +463,91 @@
             data-idx="emails"
             role="tabpanel"
             aria-labelledby="tab-emails">
-            <form id="form_emails_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
-                @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-emails-settings">
-                            Save Settings
-                    </button>
+            <form id="form_emails_setting" class="mt-4" action="" method='post' autocomplete="off">
+                <h3>New Email</h3>
+                <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    value=""
+                                    placeholder="Enter title..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="subject"
+                                    name="subject"
+                                    value=""
+                                    placeholder="Enter subject..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="body">Body</label>
+                            <textarea name="body"
+                                id="body"
+                                class="form-control h-px-100 n-b-r"
+                                placeholder="Enter body..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
+                                Save Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Email List</h3>
+                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                    <div class="emails-table-wrapper">
+                        <table class="table table-hover w-100 mb-0" id="emails-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Subject</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2">Body</th>
+                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($emailSetting) && count($emailSetting) > 0)
+                                    @foreach ($emailSetting as $email)
+                                    <tr data-id="{{ $email->id }}">
+                                        <td class="text-white pl-2 pr-2">{{ $email->title }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $email->subject }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $email->body }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr id="no-data-row">
+                                        <td class="text-center text-white pt-3" colspan="4">No Emails</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>
@@ -548,7 +626,7 @@
                     <input type="hidden" name="edit_script_id" id="edit_script_id" />
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="script_name">Script Name</label>
+                            <label for="edit_script_name">Script Name</label>
                             <input class="form-control n-b-r"
                                     type="text"
                                     id="edit_script_name"
@@ -573,6 +651,63 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-success" id="btn-update-script">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Email Modal -->
+<div class="modal fade" id="edit-email-modal" tabindex="-1" role="dialog" aria-labelledby="edit-email-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-email-modal-header-title">Edit Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit_email_id" id="edit_email_id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_email_title">Title</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit_email_title"
+                                    name="edit_email_title"
+                                    value=""
+                                    placeholder="Enter email title..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_email_subject">Subject</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit_email_subject"
+                                    name="edit_email_subject"
+                                    value=""
+                                    placeholder="Enter email subject..."
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_email_body">Body</label>
+                            <textarea name="edit_email_body"
+                                id="edit_email_body"
+                                class="form-control h-px-100 n-b-r"
+                                placeholder="Enter email body..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn-update-email">Update</button>
             </div>
         </div>
     </div>

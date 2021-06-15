@@ -13,8 +13,14 @@
         }
     }
 }
-#settings-tab-tasks {
+.tab-pane {
     padding: 0 0 0 2rem;
+    .form-control {
+        height: 1.5rem;
+        padding: 1px 0.75rem;
+    }
+}
+#settings-tab-tasks {
     .select-all-slash {
         color: #3490dc;
     }
@@ -83,13 +89,5 @@
             display: block !important;
             opacity: 1;
         }
-    }
-}
-
-#settings-tab-scripts {
-    padding: 0 0 0 2rem;
-    .form-control {
-        height: 1.5rem;
-        padding: 1px 0.75rem;
     }
 }
