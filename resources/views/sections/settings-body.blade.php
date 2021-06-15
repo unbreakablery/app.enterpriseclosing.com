@@ -240,17 +240,6 @@
                 Skills
             </a>
         </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link"
-                id="tab-analytics"
-                data-toggle="tab"
-                href="#settings-tab-analytics"
-                role="tab"
-                aria-controls="settings-tab-analytics"
-                aria-selected="true">
-                Analytics
-            </a>
-        </li>
     </ul>
 </div>
 <div class="row col-md-12 col-sm-12 mb-4">
@@ -521,20 +510,6 @@
                 @csrf
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
                     <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-skills-settings">
-                            Save Settings
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="tab-pane fade"
-            id="settings-tab-analytics"
-            data-idx="analytics"
-            role="tabpanel"
-            aria-labelledby="tab-analytics">
-            <form id="form_analytics_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
-                @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-analytics-settings">
                             Save Settings
                     </button>
                 </div>

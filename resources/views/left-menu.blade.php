@@ -64,13 +64,5 @@
                 </span>
             </a>
         </li>
-        <li>
-           <a class="nav-link @if (isset($nl_analytics_class)) {{ $nl_analytics_class }} @endif" href="{{ route('analytics') }}">
-                <i class="bi bi-graph-up bi-2x"></i>
-                <span class="nav-text">
-                    Analytics
-                </span>
-            </a>
-        </li>
     </ul>
 </nav>
