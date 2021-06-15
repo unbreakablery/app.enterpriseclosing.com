@@ -17,7 +17,7 @@ class CreateEmailsMainTable extends Migration
             $table->id();
             $table->integer('user');
             $table->string('title');
-            $table->string('subject');
+            $table->string('subject')->nullable();
             $table->text('body')->nullable();
             $table->timestamps();
         });
