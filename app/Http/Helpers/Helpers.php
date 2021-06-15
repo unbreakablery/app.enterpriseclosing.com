@@ -8,6 +8,7 @@ use App\Models\OutboundPerson;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\ScriptMain;
+use App\Models\EmailMain;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
@@ -384,6 +385,45 @@ if (!function_exists('deleteScriptMain')) {
         }
         
         $result = ScriptMain::where('id', $id)->delete();
+
+        return $result;
+    }
+}
+
+if (!function_exists('storeEmailMain')) {
+    function storeEmailMain($data) {
+        $id = $data->get('id');
+        
+        // Create new email main
+        if ($id == 0 || $id == null) {
+            $emailMain          = new EmailMain();
+            $emailMain->user    = Auth::user()->id;
+            $emailMain->title   = $data->title;
+            $emailMain->subject = $data->subject;
+            $emailMain->body    = $data->body;
+            
+            $emailMain->save();
+            return $emailMain;
+        }
+
+        // Update email main
+        $emailMain = EmailMain::where('id', $id)->get()->first();
+        $emailMain->title   = $data->title;
+        $emailMain->subject = $data->subject;
+        $emailMain->body    = $data->body;
+        $emailMain->update();
+        
+        return $emailMain;
+    }
+}
+
+if (!function_exists('deleteEmailMain')) {
+    function deleteEmailMain($id) {
+        if (empty($id)) {
+            return false;
+        }
+        
+        $result = EmailMain::where('id', $id)->delete();
 
         return $result;
     }

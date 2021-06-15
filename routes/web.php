@@ -46,8 +46,12 @@ Route::post('/opportunities/save-meddpicc', 'OpportunityController@saveOpportuni
 
 Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
 Route::delete('/scripts/remove/script-main/{id}', 'ScriptController@removeScriptMain')->name('scripts.remove.main');
+Route::post('/scripts/save-script', 'ScriptController@saveScriptMain')->name('scripts.store.main');
 
-Route::get('/emails', 'HomeController@emails')->name('emails');
+Route::get('/emails', 'EmailController@getEmails')->name('emails');
+Route::delete('/emails/remove/email-main/{id}', 'EmailController@removeEmailMain')->name('emails.remove.main');
+Route::post('/emails/save-email', 'EmailController@saveEmailMain')->name('emails.store.main');
+
 Route::get('/contacts', 'HomeController@contacts')->name('contacts');
 Route::get('/resources', 'HomeController@resources')->name('resources');
 Route::get('/skills', 'HomeController@skills')->name('skills');
@@ -57,3 +61,4 @@ Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');
 Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->name('settings.store.tasks');
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
+Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');

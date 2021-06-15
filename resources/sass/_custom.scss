@@ -471,7 +471,8 @@ input[type='checkbox'] {
 }
 #outboundTabs,
 #oppTabs,
-#scriptTabs {
+#scriptTabs,
+#emailTabs {
     .nav-item {
         .nav-link {
             padding: 0.25rem 1rem;
@@ -487,8 +488,9 @@ input[type='checkbox'] {
     padding: 0 0.5rem;
     height: 29px;
 }
+.persons-table-wrapper,
 .scripts-table-wrapper,
-.persons-table-wrapper {
+.emails-table-wrapper {
     height: 315px;
     overflow-y: auto;
 }
@@ -498,7 +500,8 @@ input[type='checkbox'] {
     height: auto;
 }
 table#persons-table,
-table#scripts-table {
+table#scripts-table,
+table#emails-table {
     input[type=text],
     input[type=number],
     select {

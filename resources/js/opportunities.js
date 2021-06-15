@@ -1,5 +1,3 @@
-const { parse } = require("postcss");
-
 $(document).ready(function() {
     $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
         var table = $.fn.dataTable.tables( {visible: true, api: true} );
@@ -150,6 +148,8 @@ $(document).ready(function() {
             status = 0;
         }
 
+        loader('show');
+
         $.ajax({
             url:        "tasks/save",
             dataType:   "json",
@@ -160,6 +160,8 @@ $(document).ready(function() {
                             status: status
                         },
             success: function( data ) {
+                loader('hide');
+
                 if (data.type == 'success') {
                     var taskTable = $('table#task-table-' + tableId).DataTable();
                     taskTable

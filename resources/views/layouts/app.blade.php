@@ -160,5 +160,13 @@
         </script>
         <script src="js/opportunities.js"></script>
     @endif
+
+    @if (Route::currentRouteName() == 'scripts')
+        <script src="js/scripts.js"></script>
+    @endif
+
+    @if (Route::currentRouteName() == 'emails')
+        <script src="js/emails.js"></script>
+    @endif
 </body>
 </html>
