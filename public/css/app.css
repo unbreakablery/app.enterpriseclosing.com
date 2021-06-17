@@ -10470,7 +10470,8 @@ input[type=checkbox] {
 
 .persons-table-wrapper,
 .scripts-table-wrapper,
-.emails-table-wrapper {
+.emails-table-wrapper,
+.skills-table-wrapper {
   height: 315px;
   overflow-y: auto;
 }
@@ -10489,7 +10490,10 @@ table#scripts-table input[type=number],
 table#scripts-table select,
 table#emails-table input[type=text],
 table#emails-table input[type=number],
-table#emails-table select {
+table#emails-table select,
+table#skills-table input[type=text],
+table#skills-table input[type=number],
+table#skills-table select {
   border-radius: 0;
   height: 1.5rem;
   padding: 0 0.25rem;
@@ -10500,12 +10504,15 @@ table#persons-table input[type=number]::-webkit-outer-spin-button,
 table#scripts-table input[type=number]::-webkit-inner-spin-button,
 table#scripts-table input[type=number]::-webkit-outer-spin-button,
 table#emails-table input[type=number]::-webkit-inner-spin-button,
-table#emails-table input[type=number]::-webkit-outer-spin-button {
+table#emails-table input[type=number]::-webkit-outer-spin-button,
+table#skills-table input[type=number]::-webkit-inner-spin-button,
+table#skills-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 table#persons-table .btn.btn-counter,
 table#scripts-table .btn.btn-counter,
-table#emails-table .btn.btn-counter {
+table#emails-table .btn.btn-counter,
+table#skills-table .btn.btn-counter {
   height: 1.5rem;
   padding: 0 0.25rem;
   margin: 0;
@@ -10515,7 +10522,8 @@ table#emails-table .btn.btn-counter {
 }
 table#persons-table tr th,
 table#scripts-table tr th,
-table#emails-table tr th {
+table#emails-table tr th,
+table#skills-table tr th {
   position: sticky;
   top: -1px;
   padding: 0.25rem 5px;
@@ -10523,17 +10531,20 @@ table#emails-table tr th {
 }
 table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
-table#emails-table tbody tr td {
+table#emails-table tbody tr td,
+table#skills-table tbody tr td {
   padding: 0;
 }
 table#persons-table .btn-remove-row,
 table#scripts-table .btn-remove-row,
-table#emails-table .btn-remove-row {
+table#emails-table .btn-remove-row,
+table#skills-table .btn-remove-row {
   height: 1.5rem;
 }
 table#persons-table .btn-remove-row i.bi.bi-x:before,
 table#scripts-table .btn-remove-row i.bi.bi-x:before,
-table#emails-table .btn-remove-row i.bi.bi-x:before {
+table#emails-table .btn-remove-row i.bi.bi-x:before,
+table#skills-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
 

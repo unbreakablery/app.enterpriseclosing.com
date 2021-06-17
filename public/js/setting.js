@@ -66,6 +66,42 @@ $(document).ready(function () {
     });
   }
 
+  function drawSkillsTable(skills) {
+    var tbody = $('#settings-tab-skills table#skills-table tbody'); // Remove all rows
+
+    $(tbody).find('tr').remove();
+
+    if (skills.length == 0) {
+      var newRow = '<tr><td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td></tr>';
+      $(tbody).append(newRow);
+      return true;
+    } // Add rows
+
+
+    skills.forEach(function (skill) {
+      skill.sub_skills.ids.forEach(function (sub_skill_id, idx) {
+        var newRow = '<tr data-main-id="' + skill.id + '" data-main-name="' + skill.name + '" data-sub-id="' + sub_skill_id + '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
+
+        if (idx == 0) {
+          newRow += '<td class="text-center text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + skill.name + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this skill">' + '<i class="bi bi-x"></i>' + '</button>';
+          newRow += '</td>';
+        }
+
+        newRow += '<td class="text-white pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
+        newRow += '<td class="text-center">';
+        newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
+        newRow += '<i class="bi bi-pencil-fill"></i>';
+        newRow += '</button>';
+        newRow += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">';
+        newRow += '<i class="bi bi-x"></i>';
+        newRow += '</button>';
+        newRow += '</td>';
+        newRow += '</tr>';
+        $(tbody).append(newRow);
+      });
+    });
+  }
+
   $('#settings-tab-tasks .input-step').on('click', function () {
     onClickStepCheckbox(this);
   });
@@ -421,6 +457,185 @@ $(document).ready(function () {
         clearEditEmailModal(); // Hide Edit Email Modal
 
         $('#edit-email-modal').modal('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $('#settings-tab-skills #btn-save-main-skill-settings').on('click', function () {
+    if ($('#settings-tab-skills input#main_skill_name').val() == undefined || $('#settings-tab-skills input#main_skill_name').val() == '') {
+      alert('Please enter main skill name!');
+      $('#settings-tab-skills input#main_skill_name').focus();
+      return;
+    }
+
+    var mainSkillName = $('#settings-tab-skills input#main_skill_name').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-main",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        name: mainSkillName,
+        p_id: 0
+      },
+      success: function success(response) {
+        loader('hide'); // Add new option in select
+
+        var newOption = '<option value="' + response.skill.id + '">' + response.skill.name + '</option>';
+        $('#settings-tab-skills select#main_skill').append(newOption); // Set focus to main skill name input
+
+        $('#settings-tab-skills input#main_skill_name').val('');
+        $('#settings-tab-skills input#main_skill_name').focus(); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('New main skill (' + response.skill.name + ') was saved successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Set focus to main skill name input
+
+        $('#settings-tab-skills input#main_skill_name').focus(); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $('#settings-tab-skills #btn-save-sub-skill-settings').on('click', function () {
+    if ($('#settings-tab-skills select#main_skill').val() == undefined || $('#settings-tab-skills select#main_skill').val() == '') {
+      alert('Please choose main skill!');
+      $('#settings-tab-skills select#main_skill').focus();
+      return;
+    }
+
+    if ($('#settings-tab-skills input#sub_skill_name').val() == undefined || $('#settings-tab-skills input#sub_skill_name').val() == '') {
+      alert('Please enter sub skill name!');
+      $('#settings-tab-skills input#sub_skill_name').focus();
+      return;
+    }
+
+    var mainSkill = $('#settings-tab-skills select#main_skill').val();
+    var subSkillName = $('#settings-tab-skills input#sub_skill_name').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-main",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        name: subSkillName,
+        p_id: mainSkill
+      },
+      success: function success(response) {
+        loader('hide');
+        console.log(response.skills); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Set focus to sub skill name input
+
+        $('#settings-tab-skills input#sub_skill_name').val('');
+        $('#settings-tab-skills input#sub_skill_name').focus(); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('New sub skill (' + response.skill.name + ') was saved successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Set focus to sub skill name input
+
+        $('#settings-tab-skills input#sub_skill_name').focus(); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $(document).on('click', '#settings-tab-skills table#skills-table tbody tr button.btn-remove-main-skill', function () {
+    var rowObj = $(this).closest('tr');
+    var skillId = $(rowObj).attr('data-main-id');
+    var skillName = $(rowObj).attr('data-main-name');
+
+    if (skillId == 0 || skillId == null || skillId == '' || skillId == undefined) {
+      alert("No main skill to remove!");
+      return;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/skills/remove/skill-main/" + skillId,
+      type: "delete",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function success(response) {
+        loader('hide'); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Remove row from main skills select
+
+        $('#settings-tab-skills select#main_skill option').each(function () {
+          if ($(this).val() == skillId) {
+            $(this).remove();
+          }
+        }); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Skill (' + skillName + ') was removed successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $(document).on('click', '#settings-tab-skills table#skills-table tbody tr button.btn-remove-sub-skill', function () {
+    var rowObj = $(this).closest('tr');
+    var skillId = $(rowObj).attr('data-sub-id');
+    var skillName = $(rowObj).attr('data-sub-name');
+
+    if (skillId == 0 || skillId == null || skillId == '' || skillId == undefined) {
+      alert("No sub skill to remove!");
+      return;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/skills/remove/skill-main/" + skillId,
+      type: "delete",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function success(response) {
+        loader('hide'); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Skill (' + skillName + ') was removed successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
 
         $('.toast .toast-header').removeClass('bg-success');
         $('.toast .toast-header').addClass('bg-danger');

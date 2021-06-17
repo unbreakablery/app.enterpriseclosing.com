@@ -207,7 +207,7 @@
                 Emails
             </a>
         </li>
-        <li class="nav-item" role="presentation">
+        <!-- <li class="nav-item" role="presentation">
             <a class="nav-link"
                 id="tab-contacts"
                 data-toggle="tab"
@@ -228,7 +228,7 @@
                 aria-selected="true">
                 Resources
             </a>
-        </li>
+        </li> -->
         <li class="nav-item" role="presentation">
             <a class="nav-link"
                 id="tab-skills"
@@ -552,44 +552,142 @@
             </form>
         </div>
         <div class="tab-pane fade"
-            id="settings-tab-contacts"
-            data-idx="contacts"
-            role="tabpanel"
-            aria-labelledby="tab-contacts">
-            <form id="form_contacts_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
-                @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-contacts-settings">
-                            Save Settings
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="tab-pane fade"
-            id="settings-tab-resources"
-            data-idx="resources"
-            role="tabpanel"
-            aria-labelledby="tab-resources">
-            <form id="form_resources_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
-                @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-resources-settings">
-                            Save Settings
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="tab-pane fade"
             id="settings-tab-skills"
             data-idx="skills"
             role="tabpanel"
             aria-labelledby="tab-skills">
-            <form id="form_skills_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
-                @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-skills-settings">
-                            Save Settings
-                    </button>
+            <form id="form_skills_setting" class="mt-4" action="" method='post' autocomplete="off">
+                <div class="row mt-2 pr-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h3>New Main Skill</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="main_skill_name">Main Skill Name</label>
+                                            <input class="form-control n-b-r"
+                                                    type="text"
+                                                    id="main_skill_name"
+                                                    name="main_skill_name"
+                                                    value=""
+                                                    placeholder="Enter main skill name..."
+                                                    required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                                Save Skill
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-6">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h3>New Sub Skill</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="main_skill">Main Skill</label>
+                                            <select name="main_skill"
+                                                id="main_skill"
+                                                class="form-control n-b-r">
+                                            @foreach ($skillSetting as $skill)
+                                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
+                                            @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="sub_skill_name">Sub Skill Name</label>
+                                            <input class="form-control n-b-r"
+                                                    type="text"
+                                                    id="sub_skill_name"
+                                                    name="sub_skill_name"
+                                                    value=""
+                                                    placeholder="Enter sub skill name..."
+                                                    required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                                Save Skill
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Skills</h3>
+                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                    <div class="skills-table-wrapper">
+                        <table class="table table-hover table-bordered w-100 mb-0" id="skills-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="no-sort pl-2 pr-2" width="30%">Main Skill</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2">Sub Skills</th>
+                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="70">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (isset($skillSetting) && count($skillSetting) > 0)
+                                    @foreach ($skillSetting as $skill)
+                                        @foreach ($skill->sub_skills->ids as $idx => $sub_skill_id)
+                                        <tr data-main-id="{{ $skill->id }}" 
+                                            data-main-name="{{ $skill->name }}" 
+                                            data-sub-id="{{ $sub_skill_id }}" 
+                                            data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
+                                            @if ($idx == 0)
+                                            <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                {{ $skill->name }}
+                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this skill">
+                                                    <i class="bi bi-x"></i>
+                                                </button>
+                                            </td>
+                                            @endif
+                                            <td class="text-white pl-2 pr-2">{{ $skill->sub_skills->names[$idx] }}</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
+                                                    <i class="bi bi-x"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @endforeach
+                                @else
+                                    <tr id="no-data-row">
+                                        <td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </form>
         </div>

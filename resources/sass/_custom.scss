@@ -490,7 +490,8 @@ input[type='checkbox'] {
 }
 .persons-table-wrapper,
 .scripts-table-wrapper,
-.emails-table-wrapper {
+.emails-table-wrapper,
+.skills-table-wrapper {
     height: 315px;
     overflow-y: auto;
 }
@@ -501,7 +502,8 @@ input[type='checkbox'] {
 }
 table#persons-table,
 table#scripts-table,
-table#emails-table {
+table#emails-table,
+table#skills-table {
     input[type=text],
     input[type=number],
     select {

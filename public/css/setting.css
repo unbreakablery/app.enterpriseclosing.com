@@ -15,7 +15,7 @@
 }
 .tab-pane .form-control {
   height: 1.5rem;
-  padding: 1px 0.75rem;
+  padding: 0 0.75rem;
 }
 
 #settings-tab-tasks .select-all-slash {

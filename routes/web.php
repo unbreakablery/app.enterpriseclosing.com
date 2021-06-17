@@ -52,13 +52,13 @@ Route::get('/emails', 'EmailController@getEmails')->name('emails');
 Route::delete('/emails/remove/email-main/{id}', 'EmailController@removeEmailMain')->name('emails.remove.main');
 Route::post('/emails/save-email', 'EmailController@saveEmailMain')->name('emails.store.main');
 
-Route::get('/contacts', 'HomeController@contacts')->name('contacts');
-Route::get('/resources', 'HomeController@resources')->name('resources');
-Route::get('/skills', 'HomeController@skills')->name('skills');
-Route::get('/analytics', 'HomeController@analytics')->name('analytics');
+Route::get('/skills', 'SkillController@getSkills')->name('skills');
+Route::post('/skills/save-skill-main', 'SkillController@saveSkillMain')->name('skills.store.main');
+Route::delete('/skills/remove/skill-main/{id}', 'SkillController@removeSkillMain')->name('skills.remove.main');
 
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');
 Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->name('settings.store.tasks');
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
 Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');
+Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSettings')->name('settings.store.skill.main');

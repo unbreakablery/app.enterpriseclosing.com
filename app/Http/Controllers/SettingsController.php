@@ -10,6 +10,7 @@ use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
+use App\Models\SkillMain;
 use App\Models\User;
 use Auth;
 
@@ -36,6 +37,7 @@ class SettingsController extends Controller
                                 ->where('section_type', 2)->get();
         $scriptSetting = ScriptMain::where('user', $user_id)->get();
         $emailSetting = EmailMain::where('user', $user_id)->get();
+        $skillSetting = getAllSkills();
 
         $user = User::where('id', Auth::user()->id)->get()->first();
 
@@ -47,7 +49,8 @@ class SettingsController extends Controller
                 'stepSetting',
                 'user',
                 'scriptSetting',
-                'emailSetting'
+                'emailSetting',
+                'skillSetting'
             )
         );
     }
@@ -124,6 +127,18 @@ class SettingsController extends Controller
 
         return response()->json([
             'email' => $email
+        ]);
+    }
+
+    public function storeSkillMainSettings(Request $request)
+    {
+        $skill = storeSkillMain($request);
+        
+        $skills = getAllSkills();
+
+        return response()->json([
+            'skill' => $skill,
+            'skills' => $skills
         ]);
     }
 }

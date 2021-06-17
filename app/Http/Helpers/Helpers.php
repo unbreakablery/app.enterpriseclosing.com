@@ -9,6 +9,7 @@ use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
+use App\Models\SkillMain;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 // use DateTime;
@@ -424,6 +425,79 @@ if (!function_exists('deleteEmailMain')) {
         }
         
         $result = EmailMain::where('id', $id)->delete();
+
+        return $result;
+    }
+}
+
+if (!function_exists('storeSkillMain')) {
+    function storeSkillMain($data) {
+        $id = $data->get('id');
+        
+        // Create new skill main
+        if ($id == 0 || $id == null) {
+            $skillMain          = new SkillMain();
+            $skillMain->user    = Auth::user()->id;
+            $skillMain->name    = $data->name;
+            $skillMain->p_id    = $data->p_id;
+                        
+            $skillMain->save();
+            return $skillMain;
+        }
+
+        // Update skill main
+        $skillMain = SkillMain::where('id', $id)->get()->first();
+        $skillMain->name = $data->name;
+        $skillMain->p_id = $data->p_id;
+
+        $skillMain->update();
+        
+        return $skillMain;
+    }
+}
+
+if (!function_exists('getAllSkills')) {
+    function getAllSkills() {
+        $skillMains = SkillMain::where('skills_main.user', 1)
+                        ->where('skills_main.p_id', 0)
+                        ->leftJoin('skills_main AS sm', 'sm.p_id', '=', 'skills_main.id')
+                        ->groupBy('skills_main.id', 'skills_main.name')
+                        ->selectRaw('skills_main.id')
+                        ->selectRaw('skills_main.name')
+                        ->selectRaw('GROUP_CONCAT(sm.name SEPARATOR ",") AS sub_skill_names')
+                        ->selectRaw('GROUP_CONCAT(sm.id SEPARATOR ",") AS sub_skill_ids')
+                        ->get();
+
+        $skills = [];
+        
+        foreach ($skillMains as $s) {
+            // $s->sub_skill_ids = explode(',', $s->sub_skill_ids);
+            // $s->sub_skill_names = explode(',', $s->sub_skill_names);
+            $obj = new \stdClass();
+
+            $obj->id = $s->id;
+            $obj->name = $s->name;
+
+            $obj->sub_skills = new \stdClass();
+            $obj->sub_skills->ids = explode(',', $s->sub_skill_ids);
+            $obj->sub_skills->names = explode(',', $s->sub_skill_names);
+            
+            $skills[] = $obj;
+        }
+                
+        return $skills;
+    }
+}
+
+if (!function_exists('deleteSkillMain')) {
+    function deleteSkillMain($id) {
+        if (empty($id)) {
+            return false;
+        }
+        
+        $result = SkillMain::where('id', $id)
+                        ->orWhere('p_id', $id)
+                        ->delete();
 
         return $result;
     }
