@@ -41,22 +41,6 @@
             </a>
         </li>
         <li>
-            <a class="nav-link @if (isset($nl_contacts_class)) {{ $nl_contacts_class }} @endif" href="{{ route('contacts') }}">
-                <i class="bi bi-person-lines-fill bi-2x"></i>
-                <span class="nav-text">
-                    Contacts
-                </span>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link @if (isset($nl_resources_class)) {{ $nl_resources_class }} @endif" href="{{ route('resources') }}">
-                <i class="bi bi-server bi-2x"></i>
-                <span class="nav-text">
-                    Resources
-                </span>
-            </a>
-        </li>
-        <li>
            <a class="nav-link @if (isset($nl_skills_class)) {{ $nl_skills_class }} @endif" href="{{ route('skills') }}">
                 <i class="bi bi-table bi-2x"></i>
                 <span class="nav-text">
