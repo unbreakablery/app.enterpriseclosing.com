@@ -20,13 +20,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // Route::get('/', 'SettingsController@index')->name('home');
-Route::get('/', 'HomeController@tasks')->name('home');
+Route::get('/', 'TasksController@getTasks')->name('home');
 
 // Route::match(['get','post'], 
 //             '/tasks', 
 //             ['as' => 'tasks', 'uses' => 'HomeController@tasks']
 // );
-Route::get('/tasks', 'HomeController@tasks')->name('tasks');
+Route::get('/tasks', 'TasksController@getTasks')->name('tasks');
 Route::post('/tasks/add', 'TasksController@addTask')->name('tasks.add');
 Route::post('/tasks/save', 'TasksController@saveTask')->name('tasks.save');
 
