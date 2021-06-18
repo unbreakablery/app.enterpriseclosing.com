@@ -659,7 +659,7 @@
                                             data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
                                             @if ($idx == 0)
                                             <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
-                                                {{ $skill->name }}
+                                                <span class="skill-name">{{ $skill->name }}</span>
                                                 <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">
                                                     <i class="bi bi-pencil-fill"></i>
                                                 </button>
@@ -670,12 +670,14 @@
                                             @endif
                                             <td class="text-white pl-2 pr-2">{{ $skill->sub_skills->names[$idx] }}</td>
                                             <td class="text-center">
+                                                @if (!empty($sub_skill_id))
                                                 <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
                                                     <i class="bi bi-pencil-fill"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
                                                     <i class="bi bi-x"></i>
                                                 </button>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
@@ -806,6 +808,87 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-success" id="btn-update-email">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Main Skill Modal -->
+<div class="modal fade" id="edit-main-skill-modal" tabindex="-1" role="dialog" aria-labelledby="edit-main-skill-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-main-skill-modal-header-title">Edit Main Skill</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit_main_skill_id" id="edit_main_skill_id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_main_skill_name">Skill Name</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit_main_skill_name"
+                                    name="edit_main_skill_name"
+                                    value=""
+                                    placeholder="Enter main skill name..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn-update-main-skill">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Sub Skill Modal -->
+<div class="modal fade" id="edit-sub-skill-modal" tabindex="-1" role="dialog" aria-labelledby="edit-sub-skill-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="edit-sub-skill-modal-header-title">Edit Sub Skill</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit_sub_skill_id" id="edit_sub_skill_id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_sub_skill_name">Skill Name</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit_sub_skill_name"
+                                    name="edit_sub_skill_name"
+                                    value=""
+                                    placeholder="Enter sub skill name..."
+                                    required
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit_sub_skill_p_id">Parent Skill</label>
+                            <select name="edit_sub_skill_p_id"
+                                id="edit_sub_skill_p_id"
+                                class="form-control n-b-r">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="btn-update-sub-skill">Update</button>
             </div>
         </div>
     </div>

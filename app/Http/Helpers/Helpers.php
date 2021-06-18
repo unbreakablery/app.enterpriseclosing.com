@@ -448,8 +448,10 @@ if (!function_exists('storeSkillMain')) {
         // Update skill main
         $skillMain = SkillMain::where('id', $id)->get()->first();
         $skillMain->name = $data->name;
-        $skillMain->p_id = $data->p_id;
-
+        if (!empty($data->p_id)) {
+            $skillMain->p_id = $data->p_id;
+        }
+        
         $skillMain->update();
         
         return $skillMain;
@@ -459,20 +461,19 @@ if (!function_exists('storeSkillMain')) {
 if (!function_exists('getAllSkills')) {
     function getAllSkills() {
         $skillMains = SkillMain::where('skills_main.user', 1)
-                        ->where('skills_main.p_id', 0)
-                        ->leftJoin('skills_main AS sm', 'sm.p_id', '=', 'skills_main.id')
-                        ->groupBy('skills_main.id', 'skills_main.name')
-                        ->selectRaw('skills_main.id')
-                        ->selectRaw('skills_main.name')
-                        ->selectRaw('GROUP_CONCAT(sm.name SEPARATOR ",") AS sub_skill_names')
-                        ->selectRaw('GROUP_CONCAT(sm.id SEPARATOR ",") AS sub_skill_ids')
-                        ->get();
+                            ->where('skills_main.p_id', 0)
+                            ->leftJoin('skills_main AS sm', 'sm.p_id', '=', 'skills_main.id')
+                            ->groupBy('skills_main.id', 'skills_main.name')
+                            ->orderBy('skills_main.id', 'ASC')
+                            ->selectRaw('skills_main.id')
+                            ->selectRaw('skills_main.name')
+                            ->selectRaw('GROUP_CONCAT(sm.name ORDER BY sm.id ASC SEPARATOR ",") AS sub_skill_names')
+                            ->selectRaw('GROUP_CONCAT(sm.id ORDER BY sm.id ASC SEPARATOR ",") AS sub_skill_ids')
+                            ->get();
 
         $skills = [];
         
         foreach ($skillMains as $s) {
-            // $s->sub_skill_ids = explode(',', $s->sub_skill_ids);
-            // $s->sub_skill_names = explode(',', $s->sub_skill_names);
             $obj = new \stdClass();
 
             $obj->id = $s->id;

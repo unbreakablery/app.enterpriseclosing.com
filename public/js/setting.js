@@ -66,6 +66,17 @@ $(document).ready(function () {
     });
   }
 
+  function clearEditMainSkillModal() {
+    $('#edit-main-skill-modal input#edit_main_skill_id').val('');
+    $('#edit-main-skill-modal input#edit_main_skill_name').val('');
+  }
+
+  function clearEditSubSkillModal() {
+    $('#edit-sub-skill-modal input#edit_sub_skill_id').val('');
+    $('#edit-sub-skill-modal input#edit_sub_skill_name').val('');
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').html('');
+  }
+
   function drawSkillsTable(skills) {
     var tbody = $('#settings-tab-skills table#skills-table tbody'); // Remove all rows
 
@@ -83,18 +94,22 @@ $(document).ready(function () {
         var newRow = '<tr data-main-id="' + skill.id + '" data-main-name="' + skill.name + '" data-sub-id="' + sub_skill_id + '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
 
         if (idx == 0) {
-          newRow += '<td class="text-center text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + skill.name + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this skill">' + '<i class="bi bi-x"></i>' + '</button>';
+          newRow += '<td class="text-center text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<span class="skill-name">' + skill.name + '</span>' + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this skill">' + '<i class="bi bi-x"></i>' + '</button>';
           newRow += '</td>';
         }
 
         newRow += '<td class="text-white pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
         newRow += '<td class="text-center">';
-        newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
-        newRow += '<i class="bi bi-pencil-fill"></i>';
-        newRow += '</button>';
-        newRow += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">';
-        newRow += '<i class="bi bi-x"></i>';
-        newRow += '</button>';
+
+        if (sub_skill_id != undefined && sub_skill_id != null && sub_skill_id != '' && sub_skill_id != 0) {
+          newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
+          newRow += '<i class="bi bi-pencil-fill"></i>';
+          newRow += '</button>';
+          newRow += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">';
+          newRow += '<i class="bi bi-x"></i>';
+          newRow += '</button>';
+        }
+
         newRow += '</td>';
         newRow += '</tr>';
         $(tbody).append(newRow);
@@ -636,6 +651,145 @@ $(document).ready(function () {
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $(document).on('click', '#settings-tab-skills table#skills-table tbody tr button.btn-edit-main-skill', function () {
+    var skillId = $(this).closest('tr').attr('data-main-id');
+    var skillName = $(this).closest('tr').attr('data-main-name'); // Clear modal inputs
+
+    clearEditMainSkillModal(); // Set modal inputs
+
+    $('#edit-main-skill-modal input#edit_main_skill_id').val(skillId);
+    $('#edit-main-skill-modal input#edit_main_skill_name').val(skillName); // Show Edit Main Skill Modal
+
+    $('#edit-main-skill-modal').modal({
+      backdrop: 'static'
+    });
+  });
+  $('#edit-main-skill-modal #btn-update-main-skill').on('click', function () {
+    if ($('#edit-main-skill-modal input#edit_main_skill_name').val() == undefined || $('#edit-main-skill-modal input#edit_main_skill_name').val() == '') {
+      alert('Please enter main skill name!');
+      $('#edit-main-skill-modal input#edit_main_skill_name').focus();
+      return;
+    }
+
+    var mainSkillId = $('#edit-main-skill-modal input#edit_main_skill_id').val();
+    var mainSkillName = $('#edit-main-skill-modal input#edit_main_skill_name').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-main",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: mainSkillId,
+        name: mainSkillName
+      },
+      success: function success(response) {
+        loader('hide'); // Clear modal inputs
+
+        clearEditMainSkillModal(); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Update main skill select
+
+        $('#settings-tab-skills select#main_skill option').each(function () {
+          if ($(this).val() == response.skill.id) {
+            $(this).text(response.skill.name);
+            return;
+          }
+        }); // Hide Edit Main Skill Modal
+
+        $('#edit-main-skill-modal').modal('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Main Skill (' + response.skill.name + ') was updated successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Clear modal inputs
+
+        clearEditMainSkillModal(); // Hide Edit Main Skill Modal
+
+        $('#edit-main-skill-modal').modal('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $(document).on('click', '#settings-tab-skills table#skills-table tbody tr button.btn-edit-sub-skill', function () {
+    var skillId = $(this).closest('tr').attr('data-sub-id');
+    var skillName = $(this).closest('tr').attr('data-sub-name');
+    var skillPId = $(this).closest('tr').attr('data-main-id');
+
+    if (skillId == undefined || skillId == null || skillId == '' || skillId == 0) {
+      alert("This is not sub skill!");
+      return;
+    } // Clear modal inputs
+
+
+    clearEditSubSkillModal(); // Copy main skills
+
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').html($('#settings-tab-skills select#main_skill').html());
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').val(skillPId); // Set modal inputs
+
+    $('#edit-sub-skill-modal input#edit_sub_skill_id').val(skillId);
+    $('#edit-sub-skill-modal input#edit_sub_skill_name').val(skillName); // Show Edit Sub Skill Modal
+
+    $('#edit-sub-skill-modal').modal({
+      backdrop: 'static'
+    });
+  });
+  $('#edit-sub-skill-modal #btn-update-sub-skill').on('click', function () {
+    if ($('#edit-sub-skill-modal input#edit_sub_skill_name').val() == undefined || $('#edit-sub-skill-modal input#edit_sub_skill_name').val() == '') {
+      alert('Please enter sub skill name!');
+      $('#edit-sub-skill-modal input#edit_sub_skill_name').focus();
+      return;
+    }
+
+    var subSkillId = $('#edit-sub-skill-modal input#edit_sub_skill_id').val();
+    var subSkillName = $('#edit-sub-skill-modal input#edit_sub_skill_name').val();
+    var subSkillPId = $('#edit-sub-skill-modal select#edit_sub_skill_p_id').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-main",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: subSkillId,
+        name: subSkillName,
+        p_id: subSkillPId
+      },
+      success: function success(response) {
+        loader('hide'); // Clear modal inputs
+
+        clearEditSubSkillModal(); // Redraw skills table
+
+        drawSkillsTable(response.skills); // Hide Edit Sub Skill Modal
+
+        $('#edit-sub-skill-modal').modal('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Sub Skill (' + response.skill.name + ') was updated successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Clear modal inputs
+
+        clearEditSubSkillModal(); // Hide Edit Sub Skill Modal
+
+        $('#edit-sub-skill-modal').modal('hide'); // Show message
 
         $('.toast .toast-header').removeClass('bg-success');
         $('.toast .toast-header').addClass('bg-danger');
