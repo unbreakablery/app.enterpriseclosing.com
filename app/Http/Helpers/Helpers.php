@@ -10,9 +10,9 @@ use App\Models\OpportunityMeddpicc;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
+use App\Models\SkillAssessment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-// use DateTime;
 
 if (!function_exists('getActions')) {
     function getActions()
@@ -33,7 +33,9 @@ if (!function_exists('getSteps')) {
 }
 
 if (!function_exists('storeTask')) {
-    function storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority) {
+    function storeTask($action, $step, $person_account, 
+                    $opportunity, $note, $by_date, $priority)
+    {
         $task = new Task();
         $task->user             = Auth::user()->id;
         $task->action           = $action;
@@ -50,7 +52,8 @@ if (!function_exists('storeTask')) {
 }
 
 if (!function_exists('getTask')) {
-    function getTask($id) {
+    function getTask($id)
+    {
         $task = Task::where([
                                 ['tasks.id', '=', $id],
                                 ['tasks.user', '=', Auth::user()->id]
@@ -65,7 +68,8 @@ if (!function_exists('getTask')) {
 }
 
 if (!function_exists('storeUser')) {
-    function storeUser($data) {
+    function storeUser($data)
+    {
         $userId = $data->user_id;
         $firstName = $data->first_name;
         $lastName = $data->last_name;
@@ -108,7 +112,8 @@ if (!function_exists('storeUser')) {
 }
 
 if (!function_exists('storeAction')) {
-    function storeAction($action_name) {
+    function storeAction($action_name)
+    {
         $action_name = trim($action_name);
         $action = Action::where('name', $action_name)
                     ->get()
@@ -126,7 +131,8 @@ if (!function_exists('storeAction')) {
 }
 
 if (!function_exists('storeStep')) {
-    function storeStep($step_name) {
+    function storeStep($step_name)
+    {
         $step_name = trim($step_name);
         $step = Step::where('name', $step_name)
                     ->get()
@@ -144,7 +150,8 @@ if (!function_exists('storeStep')) {
 }
 
 if (!function_exists('storeOutboundMain')) {
-    function storeOutboundMain($data) {
+    function storeOutboundMain($data)
+    {
         $id = $data->id;
         
         // Create new outbound
@@ -173,7 +180,8 @@ if (!function_exists('storeOutboundMain')) {
 }
 
 if (!function_exists('storeOutboundPerson')) {
-    function storeOutboundPerson($data) {
+    function storeOutboundPerson($data)
+    {
         $id = $data->id;
         
         // Create new outbound person
@@ -216,7 +224,8 @@ if (!function_exists('storeOutboundPerson')) {
 }
 
 if (!function_exists('deleteOutboundMain')) {
-    function deleteOutboundMain($id) {
+    function deleteOutboundMain($id)
+    {
         $result1 = OutboundMain::where('id', $id)
                             ->delete();
         $result2 = OutboundPerson::where('o_id', $id)
@@ -226,7 +235,8 @@ if (!function_exists('deleteOutboundMain')) {
 }
 
 if (!function_exists('deleteOutboundPerson')) {
-    function deleteOutboundPerson($id) {
+    function deleteOutboundPerson($id)
+    {
         $result = OutboundPerson::where('id', $id)
                             ->delete();
         return $result;
@@ -244,7 +254,8 @@ if (!function_exists('getOutboundPersonsAsArray')) {
 }
 
 if (!function_exists('storeOpportunityMain')) {
-    function storeOpportunityMain($data) {
+    function storeOpportunityMain($data)
+    {
         $id = $data->get('opp-id');
         
         // Create new opportunity
@@ -294,7 +305,8 @@ if (!function_exists('storeOpportunityMain')) {
 }
 
 if (!function_exists('storeOpportunityMeddpicc')) {
-    function storeOpportunityMeddpicc($data) {
+    function storeOpportunityMeddpicc($data)
+    {
         $oppId = $data->get('opp-id');
         $meddpicc = OpportunityMeddpicc::where('opp_id', $oppId)
                                     ->get()
@@ -355,7 +367,8 @@ if (!function_exists('storeOpportunityMeddpicc')) {
 }
 
 if (!function_exists('storeScriptMain')) {
-    function storeScriptMain($data) {
+    function storeScriptMain($data)
+    {
         $id = $data->get('id');
         
         // Create new script main
@@ -392,7 +405,8 @@ if (!function_exists('deleteScriptMain')) {
 }
 
 if (!function_exists('storeEmailMain')) {
-    function storeEmailMain($data) {
+    function storeEmailMain($data)
+    {
         $id = $data->get('id');
         
         // Create new email main
@@ -419,7 +433,8 @@ if (!function_exists('storeEmailMain')) {
 }
 
 if (!function_exists('deleteEmailMain')) {
-    function deleteEmailMain($id) {
+    function deleteEmailMain($id)
+    {
         if (empty($id)) {
             return false;
         }
@@ -431,7 +446,8 @@ if (!function_exists('deleteEmailMain')) {
 }
 
 if (!function_exists('storeSkillMain')) {
-    function storeSkillMain($data) {
+    function storeSkillMain($data)
+    {
         $id = $data->get('id');
         
         // Create new skill main
@@ -459,8 +475,11 @@ if (!function_exists('storeSkillMain')) {
 }
 
 if (!function_exists('getAllSkills')) {
-    function getAllSkills() {
-        $skillMains = SkillMain::where('skills_main.user', 1)
+    function getAllSkills()
+    {
+        $user_id = Auth::user()->id;
+        
+        $skillMains = SkillMain::where('skills_main.user', $user_id)
                             ->where('skills_main.p_id', 0)
                             ->leftJoin('skills_main AS sm', 'sm.p_id', '=', 'skills_main.id')
                             ->groupBy('skills_main.id', 'skills_main.name')
@@ -491,15 +510,98 @@ if (!function_exists('getAllSkills')) {
 }
 
 if (!function_exists('deleteSkillMain')) {
-    function deleteSkillMain($id) {
+    function deleteSkillMain($id)
+    {
         if (empty($id)) {
             return false;
         }
         
+        $sIds = SkillMain::where('user', Auth::user()->id)
+                        ->where('id', $id)
+                        ->orWhere('p_id', $id)
+                        ->selectRaw('GROUP_CONCAT(CONCAT_WS(",", id)) AS ids')
+                        ->get()
+                        ->first();
+                        
+        $sIds = explode(',', $sIds->ids);
+
+        $result = SkillAssessment::whereIn('s_id', $sIds)
+                        ->delete();
+
         $result = SkillMain::where('id', $id)
                         ->orWhere('p_id', $id)
                         ->delete();
-
         return $result;
+    }
+}
+
+if (!function_exists('getSkillAssessment')) {
+    function getSkillAssessment()
+    {
+        $user_id = Auth::user()->id;
+        $skills = SkillMain::from('skills_main as sm')
+                                ->where('sm.user', $user_id)
+                                ->leftJoin('skills_main AS sm2', 'sm.p_id', '=', 'sm2.id')
+                                ->leftJoin('skills_assessment AS sa', 'sm.id', '=', 'sa.s_id')
+                                ->groupBy('sm.id', 'sm.name', 'sm2.id', 'sm2.name')
+                                ->orderBy('sm.id', 'ASC')
+                                ->selectRaw('sm2.id AS parent_skill_id')
+                                ->selectRaw('sm2.name AS parent_skill_name')
+                                ->selectRaw('sm.id AS skill_id')
+                                ->selectRaw('sm.name AS skill_name')
+                                ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR ",") AS a_dates')
+                                ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR ",") AS a_values')
+                                ->get();
+        
+        $assessments = [];
+        
+        foreach ($skills as $s) {
+            $obj = new \stdClass();
+
+            $obj->parent_skill_id = $s->parent_skill_id;
+            $obj->parent_skill_name = $s->parent_skill_name;
+            $obj->skill_id = $s->skill_id;
+            $obj->skill_name = $s->skill_name;
+
+            $dates = explode(',', $s->a_dates);
+            $values = explode(',', $s->a_values);
+            $obj->assessments = [];
+            for ($i = 0; $i < count($dates); $i++) {
+                if (empty($dates[$i])) {
+                    continue;
+                }
+                $obj->assessments[$dates[$i]] = $values[$i];
+            }
+            
+            $assessments[] = $obj;
+        }
+                
+        return $assessments;
+    }
+}
+
+if (!function_exists('storeAssessment')) {
+    function storeAssessment($data)
+    {
+        $assessment = SkillAssessment::where('s_id', $data->s_id)
+                                    ->where('a_date', $data->a_date)
+                                    ->get()
+                                    ->first();
+
+        if (empty($assessment)) {
+            $assessment = new SkillAssessment();
+            $assessment->s_id = $data->s_id;
+            $assessment->a_date = $data->a_date;
+            $assessment->a_value = $data->a_value;
+
+            $assessment->save();
+
+            return $assessment;
+        }
+        
+        $assessment->a_value = $data->a_value;
+        $assessment->update();
+
+        return $assessment;
     }
 }

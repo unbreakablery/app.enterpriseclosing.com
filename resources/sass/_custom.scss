@@ -503,7 +503,8 @@ input[type='checkbox'] {
 table#persons-table,
 table#scripts-table,
 table#emails-table,
-table#skills-table {
+table#skills-table,
+table#assessments-table {
     input[type=text],
     input[type=number],
     select {
@@ -538,6 +539,9 @@ table#skills-table {
         i.bi.bi-x:before {
             vertical-align: 0;
         }
+    }
+    span.input-group-text {
+        height: 1.5rem;
     }
 }
 a.a-btn-remove-account {

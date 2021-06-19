@@ -55,6 +55,7 @@ Route::post('/emails/save-email', 'EmailController@saveEmailMain')->name('emails
 Route::get('/skills', 'SkillController@getSkills')->name('skills');
 Route::post('/skills/save-skill-main', 'SkillController@saveSkillMain')->name('skills.store.main');
 Route::delete('/skills/remove/skill-main/{id}', 'SkillController@removeSkillMain')->name('skills.remove.main');
+Route::post('/skills/save-assessment', 'SkillController@saveAssessment')->name('skills.store.assessment');
 
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');

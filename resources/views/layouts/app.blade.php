@@ -168,5 +168,9 @@
     @if (Route::currentRouteName() == 'emails')
         <script src="js/emails.js"></script>
     @endif
+
+    @if (Route::currentRouteName() == 'skills')
+        <script src="js/skills.js"></script>
+    @endif
 </body>
 </html>
