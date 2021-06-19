@@ -28,18 +28,18 @@ class SettingsController extends Controller
     
     public function index()
     {
-        $user_id = Auth::user()->id;
+        $userId = Auth::user()->id;
         $actions = Action::where('is_other', '0')->orderBy('name', 'ASC')->get();
         $steps = Step::where('is_other', '0')->orderBy('name', 'ASC')->get();
-        $taskSettings = TaskSetting::where('user_id', $user_id)->get();
-        $suggestSettings = TaskSuggestSetting::where('user_id', $user_id)->get();
-        $stepSetting = TaskSetting::where('user_id', $user_id)
+        $taskSettings = TaskSetting::where('user_id', $userId)->get();
+        $suggestSettings = TaskSuggestSetting::where('user_id', $userId)->get();
+        $stepSetting = TaskSetting::where('user_id', $userId)
                                 ->where('section_type', 2)->get();
-        $scriptSetting = ScriptMain::where('user', $user_id)->get();
-        $emailSetting = EmailMain::where('user', $user_id)->get();
+        $scriptSetting = ScriptMain::where('user', $userId)->get();
+        $emailSetting = EmailMain::where('user', $userId)->get();
         $skillSetting = getAllSkills();
 
-        $user = User::where('id', Auth::user()->id)->get()->first();
+        $user = User::where('id', $userId)->get()->first();
 
         return view('pages.settings', compact(
                 'actions', 
