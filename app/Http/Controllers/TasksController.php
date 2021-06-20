@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\TaskSetting;
 use App\Models\TaskSuggestSetting;
 use App\Models\OpportunityMain;
+use App\Models\User;
 use Auth;
 use DateTime;
 
