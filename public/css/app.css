@@ -10020,6 +10020,14 @@ body {
   color: #fff;
 }
 
+.bg-yellow-dark {
+  background-color: darkorange !important;
+}
+
+.bg-yellow {
+  background-color: #ffff00 !important;
+}
+
 .no-max-width {
   max-width: inherit !important;
 }

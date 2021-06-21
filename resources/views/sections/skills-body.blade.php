@@ -29,23 +29,54 @@
                                 $skillBgColor = 'bg-black';
                             @endphp
                         @endif
-                        <tr data-skill-id="{{ $a->skill_id }}">
+                        <tr>
                             <td class="{{ $skillTextColor }} pl-2 pr-2">
                                 {{ $a->skill_name }}
                             </td>
                             @foreach ($dates as $d)
-                            <td class="text-right text-dark bg-light align-middle">
+                            <td class="text-right text-dark bg-light align-middle"
+                                data-parent-skill-id="{{ $a->parent_skill_id }}"
+                                data-skill-id="{{ $a->skill_id }}"
+                                data-date="{{ $d }}">
+                                @php
+                                    $aClass = '';
+                                    if ($a->assessments[$d] >=0 && $a->assessments[$d] < 10) {
+                                        $aClass = 'bg-info text-white';
+                                    } elseif ($a->assessments[$d] >=10 && $a->assessments[$d] < 50) {
+                                        $aClass = 'bg-danger text-white';
+                                    } elseif ($a->assessments[$d] >=50 && $a->assessments[$d] < 70) {
+                                        $aClass = 'bg-yellow-dark';
+                                    } elseif ($a->assessments[$d] >=70 && $a->assessments[$d] < 90) {
+                                        $aClass = 'bg-yellow';
+                                    } else {
+                                        $aClass = 'bg-success text-white';
+                                    }
+                                @endphp
                                 @if (!empty($a->parent_skill_id))
                                     <div class="input-group">
                                         <input type="number"
-                                            class="form-control text-right"
+                                            class="form-control text-right data-cell {{ $aClass }}"
                                             name="assessment_{{ $a->skill_id }}_{{ $d }}"
                                             placeholder="Assessment value..."
                                             aria-label="Assessment value..."
                                             aria-describedby="assessment_{{ $a->skill_id }}_{{ $d }}"
-                                            value="{{ $a->assessments[$d] }}"
+                                            value="{{ round($a->assessments[$d]) }}"
                                             min="0"
                                             max="100"/>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="input-group">
+                                        <input type="number"
+                                            class="form-control text-right data-cell-average font-weight-bolder {{ $aClass }}"
+                                            name="assessment_{{ $a->skill_id }}_{{ $d }}"
+                                            placeholder="Assessment value..."
+                                            aria-label="Assessment value..."
+                                            aria-describedby="assessment_{{ $a->skill_id }}_{{ $d }}"
+                                            value="{{ round($a->assessments[$d]) }}"
+                                            readonly/>
                                         <div class="input-group-append">
                                             <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
                                         </div>

@@ -40,10 +40,10 @@ class SkillController extends Controller
         foreach ($dates as $d) {
             // dd($d);
             foreach ($assessments as $a) {
-                if (empty($a->parent_skill_id)) {
-                    unset($a->assessments);
-                    continue;
-                }
+                // if (empty($a->parent_skill_id)) {
+                //     unset($a->assessments);
+                //     continue;
+                // }
                 if (empty($a->assessments[$d])) {
                     $a->assessments[$d] = 0.00;
                 }

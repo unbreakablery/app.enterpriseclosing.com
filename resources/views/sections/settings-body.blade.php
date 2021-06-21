@@ -563,19 +563,19 @@
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <h3>New Main Skill</h3>
+                                        <h3>Groups</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="main_skill_name">Main Skill Name</label>
+                                            <label for="main_skill_name">Group Name</label>
                                             <input class="form-control n-b-r"
                                                     type="text"
                                                     id="main_skill_name"
                                                     name="main_skill_name"
                                                     value=""
-                                                    placeholder="Enter main skill name..."
+                                                    placeholder="Enter group name..."
                                                     required
                                             />
                                         </div>
@@ -594,13 +594,13 @@
                             <div class="col-lg-9 col-md-8 col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <h3>New Sub Skill</h3>
+                                        <h3>New Skill</h3>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="main_skill">Main Skill</label>
+                                            <label for="main_skill">Group</label>
                                             <select name="main_skill"
                                                 id="main_skill"
                                                 class="form-control n-b-r">
@@ -612,7 +612,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="sub_skill_name">Sub Skill Name</label>
+                                            <label for="sub_skill_name">Skill Name</label>
                                             <input class="form-control n-b-r"
                                                     type="text"
                                                     id="sub_skill_name"
