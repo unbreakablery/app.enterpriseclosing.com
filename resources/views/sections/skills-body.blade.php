@@ -3,7 +3,7 @@
         <h3 class="text-uppercase font-weight-bold mt-2 mr-4">Skills</h3>
     </div>
 
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-left">
         <div class="col-{{ 6 + count($dates) }} table-wrapper mt-2 mb-4 pr-4">
             <div class="assessments-table-wrapper" style="height: calc(100vh - 200px); overflow-y: auto;">
                 <table class="table table-hover table-bordered w-100 mb-0" id="assessments-table">
@@ -17,44 +17,6 @@
                     </thead>
                     <tbody>
                         @if (isset($assessments) && count($assessments) > 0)
-                            <tr>
-                                <td class="text-primary font-weight-bolder pl-2 pr-2">Total Performance</td>
-                                @foreach ($dates as $d)
-                                    @php
-                                        $sum = 0;
-                                        $cnt = 0;
-                                    @endphp
-                                    @foreach ($assessments as $a)
-                                        @if (empty($a->parent_skill_id))
-                                            @php
-                                                $sum += $a->assessments[$d];
-                                                $cnt++;
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                    @php
-                                        $avg = ($cnt == 0) ? 0 : round($sum / $cnt);
-                                    @endphp
-                                    <td class="text-right text-dark bg-light align-middle"
-                                        data-date="{{ $d }}">
-                                        <div class="input-group">
-                                            <input type="number"
-                                                class="form-control text-right font-weight-bolder {{ getAssessmentClass($avg) }}"
-                                                name="assessment_total_avgerage_{{ $d }}"
-                                                placeholder="Assessment value..."
-                                                aria-label="Assessment value..."
-                                                aria-describedby="assessment_total_avgerage_{{ $d }}"
-                                                value="{{ $avg }}"
-                                                readonly/>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text n-b-r" id="assessment_total_avgerage__{{ $d }}">%</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                @endforeach
-                                </td>
-                            </tr>
-
                             @foreach ($assessments as $a)
                             @if (empty($a->parent_skill_id))
                             <tr>
@@ -113,6 +75,46 @@
                                 @endforeach
                             </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="{{ count($dates) + 1 }}">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="text-primary font-weight-bolder pl-2 pr-2">Total Performance</td>
+                                @foreach ($dates as $d)
+                                    @php
+                                        $sum = 0;
+                                        $cnt = 0;
+                                    @endphp
+                                    @foreach ($assessments as $a)
+                                        @if (empty($a->parent_skill_id))
+                                            @php
+                                                $sum += $a->assessments[$d];
+                                                $cnt++;
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                    @php
+                                        $avg = ($cnt == 0) ? 0 : round($sum / $cnt);
+                                    @endphp
+                                    <td class="text-right text-dark bg-light align-middle"
+                                        data-date="{{ $d }}">
+                                        <div class="input-group">
+                                            <input type="number"
+                                                class="form-control text-right font-weight-bolder {{ getAssessmentClass($avg) }}"
+                                                name="assessment_total_avgerage_{{ $d }}"
+                                                placeholder="Assessment value..."
+                                                aria-label="Assessment value..."
+                                                aria-describedby="assessment_total_avgerage_{{ $d }}"
+                                                value="{{ $avg }}"
+                                                readonly/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text n-b-r" id="assessment_total_avgerage__{{ $d }}">%</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                @endforeach
+                                </td>
+                            </tr>
                         @else
                             <tr id="no-data-row">
                                 <td class="text-center text-white pt-3 pb-3" colspan="{{ count($dates) + 1 }}">No Skills For Assessment</td>

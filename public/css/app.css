@@ -10478,9 +10478,13 @@ input[type=checkbox] {
 
 .persons-table-wrapper,
 .scripts-table-wrapper,
-.emails-table-wrapper,
+.emails-table-wrapper {
+  max-height: 315px;
+  overflow-y: auto;
+}
+
 .skills-table-wrapper {
-  height: 315px;
+  max-height: 500px;
   overflow-y: auto;
 }
 
