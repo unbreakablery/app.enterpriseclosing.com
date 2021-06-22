@@ -29,8 +29,6 @@ class OpportunityController extends Controller
                                     ->get();
 
         foreach ($oppMains as $oppMain) {
-            // $outboundPersons = OutboundPerson::where('o_id', $outboundMain->id)
-            //                                 ->get();
             $oppMeddpicc = OpportunityMeddpicc::where('opp_id', $oppMain->id)
                                             ->get()
                                             ->first();
@@ -51,16 +49,12 @@ class OpportunityController extends Controller
             $temp->main = $oppMain;
             $temp->tasks = $tasks;
             $temp->meddpicc = $oppMeddpicc;
-            // $temp->persons = $outboundPersons;
+            
             $data[] = $temp;
         }
 
         $nl_opportunities_class = 'active';
         
-        // $actions = getActions();
-        // $steps = getSteps();
-        // dd($data);
-
         return view('pages.opportunities', compact('data', 'nl_opportunities_class'));
     }
 

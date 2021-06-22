@@ -453,7 +453,7 @@
                                             <input class="form-control n-b-r bg-dark text-white"
                                                 type="text"
                                                 name="meddpicc_score"
-                                                value="@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@endif"
+                                                value="@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif"
                                                 readonly
                                             />
                                             <em>This field is calculated upon save</em>
