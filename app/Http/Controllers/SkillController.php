@@ -30,27 +30,20 @@ class SkillController extends Controller
         $now = Carbon::create($now->year, $now->month, 1, 0);
         
         $diffMonths = $now->diffInMonths($createdAt);
-        // dd($createdAt->addMonths(6)->format('Y-m-d'));
+        
         $dates = [$user->created_at->format('Y-m-d')];
         for ($i = 1; $i <= $diffMonths; $i++) {
             $dates[] = $user->created_at->addMonths($i)->format('Y-m-d');
         }
-        // dd($dates);
-
+        
         foreach ($dates as $d) {
-            // dd($d);
             foreach ($assessments as $a) {
-                // if (empty($a->parent_skill_id)) {
-                //     unset($a->assessments);
-                //     continue;
-                // }
                 if (empty($a->assessments[$d])) {
                     $a->assessments[$d] = 0.00;
                 }
             }
         }
-        // dd($assessments);
-
+        
         $nl_skills_class = 'active';
         
         return view('pages.skills', 

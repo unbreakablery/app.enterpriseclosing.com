@@ -40,11 +40,15 @@ $(document).ready(function () {
     } // Change background color of current input
 
 
-    checkAssessment(this); // Get input object for average
+    checkAssessment(this); // Get input object for average and total average
 
     var curPSI = $(this).closest('td').attr('data-parent-skill-id');
     var curDate = $(this).closest('td').attr('data-date');
     var avgObj = null;
+    var totalAvgObj = $('table#assessments-table input[name=assessment_total_avgerage_' + curDate + ']');
+    var sum = 0;
+    var cnt = 0;
+    var average = 0;
     $('table#assessments-table input[type=number].data-cell-average').each(function () {
       if ($(this).closest('td').attr('data-skill-id') == curPSI && $(this).closest('td').attr('data-date') == curDate) {
         avgObj = $(this);
@@ -53,9 +57,6 @@ $(document).ready(function () {
     }); // Calculate average
 
     var avgSI = $(avgObj).closest('td').attr('data-skill-id');
-    var sum = 0;
-    var cnt = 0;
-    var average = 0;
     $('table#assessments-table input[type=number].data-cell').each(function () {
       if ($(this).closest('td').attr('data-parent-skill-id') == $(avgObj).closest('td').attr('data-skill-id') && $(this).closest('td').attr('data-date') == $(avgObj).closest('td').attr('data-date')) {
         sum += parseInt($(this).val());
@@ -65,7 +66,20 @@ $(document).ready(function () {
     average = cnt == 0 ? 0 : sum / cnt;
     $(avgObj).val(average.toFixed()); // Change background color of average input
 
-    checkAssessment(avgObj);
+    checkAssessment(avgObj); // Caculate total average
+
+    sum = 0;
+    cnt = 0;
+    $('table#assessments-table input[type=number].data-cell-average').each(function () {
+      if ($(this).closest('td').attr('data-date') == curDate) {
+        sum += parseInt($(this).val());
+        cnt++;
+      }
+    });
+    var totalAverage = cnt == 0 ? 0 : sum / cnt;
+    $(totalAvgObj).val(totalAverage.toFixed()); // Change background color of total average input
+
+    checkAssessment(totalAvgObj);
     loader('show');
     $.ajax({
       url: "/skills/save-assessment",

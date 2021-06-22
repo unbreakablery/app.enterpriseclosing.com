@@ -486,8 +486,8 @@ if (!function_exists('getAllSkills')) {
                             ->orderBy('skills_main.id', 'ASC')
                             ->selectRaw('skills_main.id')
                             ->selectRaw('skills_main.name')
-                            ->selectRaw('GROUP_CONCAT(sm.name ORDER BY sm.id ASC SEPARATOR ",") AS sub_skill_names')
-                            ->selectRaw('GROUP_CONCAT(sm.id ORDER BY sm.id ASC SEPARATOR ",") AS sub_skill_ids')
+                            ->selectRaw('GROUP_CONCAT(sm.name ORDER BY sm.id ASC SEPARATOR "~!@") AS sub_skill_names')
+                            ->selectRaw('GROUP_CONCAT(sm.id ORDER BY sm.id ASC SEPARATOR "~!@") AS sub_skill_ids')
                             ->get();
 
         $skills = [];
@@ -499,8 +499,8 @@ if (!function_exists('getAllSkills')) {
             $obj->name = $s->name;
 
             $obj->sub_skills = new \stdClass();
-            $obj->sub_skills->ids = explode(',', $s->sub_skill_ids);
-            $obj->sub_skills->names = explode(',', $s->sub_skill_names);
+            $obj->sub_skills->ids = explode('~!@', $s->sub_skill_ids);
+            $obj->sub_skills->names = explode('~!@', $s->sub_skill_names);
             
             $skills[] = $obj;
         }
@@ -519,11 +519,11 @@ if (!function_exists('deleteSkillMain')) {
         $sIds = SkillMain::where('user', Auth::user()->id)
                         ->where('id', $id)
                         ->orWhere('p_id', $id)
-                        ->selectRaw('GROUP_CONCAT(CONCAT_WS(",", id)) AS ids')
+                        ->selectRaw('GROUP_CONCAT(CONCAT_WS("~!@", id)) AS ids')
                         ->get()
                         ->first();
                         
-        $sIds = explode(',', $sIds->ids);
+        $sIds = explode('~!@', $sIds->ids);
 
         $result = SkillAssessment::whereIn('s_id', $sIds)
                         ->delete();
@@ -549,8 +549,8 @@ if (!function_exists('getSkillAssessment')) {
                                 ->selectRaw('sm2.name AS parent_skill_name')
                                 ->selectRaw('sm.id AS skill_id')
                                 ->selectRaw('sm.name AS skill_name')
-                                ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR ",") AS a_dates')
-                                ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR ",") AS a_values')
+                                ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_dates')
+                                ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_values')
                                 ->get();
         
         $assessments = [];
@@ -563,8 +563,8 @@ if (!function_exists('getSkillAssessment')) {
             $obj->skill_id = $s->skill_id;
             $obj->skill_name = $s->skill_name;
 
-            $dates = explode(',', $s->a_dates);
-            $values = explode(',', $s->a_values);
+            $dates = explode('~!@', $s->a_dates);
+            $values = explode('~!@', $s->a_values);
             $obj->assessments = [];
             for ($i = 0; $i < count($dates); $i++) {
                 if (empty($dates[$i])) {
@@ -603,5 +603,24 @@ if (!function_exists('storeAssessment')) {
         $assessment->update();
 
         return $assessment;
+    }
+}
+
+if (!function_exists('getAssessmentClass')) {
+    function getAssessmentClass($assessment) {
+        $aClass = '';
+        if ($assessment >=0 && $assessment < 10) {
+            $aClass = 'bg-info text-white';
+        } elseif ($assessment >=10 && $assessment < 50) {
+            $aClass = 'bg-danger text-white';
+        } elseif ($assessment >=50 && $assessment < 70) {
+            $aClass = 'bg-yellow-dark';
+        } elseif ($assessment >=70 && $assessment < 90) {
+            $aClass = 'bg-yellow';
+        } else {
+            $aClass = 'bg-success text-white';
+        }
+        
+        return $aClass;
     }
 }
