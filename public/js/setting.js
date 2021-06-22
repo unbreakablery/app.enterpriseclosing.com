@@ -501,7 +501,7 @@ $(document).ready(function () {
       success: function success(response) {
         loader('hide'); // Add new radio in groups
 
-        var newGroup = '<div class="form-check col-2">';
+        var newGroup = '<div class="form-check col-12">';
         newGroup += '<input class="form-check-input" type="radio" name="main_skill" ';
         newGroup += 'id="main_skill_' + response.skill.id + '" ';
         newGroup += 'value="' + response.skill.id + '" />';
@@ -537,6 +537,13 @@ $(document).ready(function () {
     var isGroupChecked = false;
     var mainSkill = null;
     var subSkillName = $('#settings-tab-skills input#sub_skill_name').val();
+
+    if (subSkillName == undefined || subSkillName == '') {
+      alert('Please enter skill name!');
+      $('#settings-tab-skills input#sub_skill_name').focus();
+      return;
+    }
+
     $('#settings-tab-skills .radio-group input[type=radio][name=main_skill]').each(function (idx, element) {
       if ($(element).is(':checked')) {
         isGroupChecked = true;
@@ -546,12 +553,6 @@ $(document).ready(function () {
 
     if (!isGroupChecked) {
       alert('Please choose group!');
-      return;
-    }
-
-    if (subSkillName == undefined || subSkillName == '') {
-      alert('Please enter skill name!');
-      $('#settings-tab-skills input#sub_skill_name').focus();
       return;
     }
 

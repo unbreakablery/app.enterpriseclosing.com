@@ -558,143 +558,146 @@
             aria-labelledby="tab-skills">
             <form id="form_skills_setting" class="mt-4" action="" method='post' autocomplete="off">
                 <div class="row mt-2 pr-4">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <h3>New Group</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="main_skill_name">Group Name</label>
-                                    <input class="form-control n-b-r"
-                                            type="text"
-                                            id="main_skill_name"
-                                            name="main_skill_name"
-                                            value=""
-                                            placeholder="Enter group name..."
-                                            required
-                                    />
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h3>Create Group</h3>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
-                                        Save Group
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <h3>New Skill</h3>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-inline">
-                                <div class="row task-section pl-0 mt-1">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <h6>Groups</h6>
-                                    </div>
-                                </div>
-                                <div class="row task-section col-md-12 col-sm-12 mb-4 radio-group">
-                                    @foreach ($skillSetting as $skill)
-                                    <div class="form-check col-2">
-                                        <input class="form-check-input"
-                                            type="radio"
-                                            name="main_skill"
-                                            id="main_skill_{{ $skill->id }}"
-                                            value="{{ $skill->id }}"
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="main_skill_name">Group Name</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="main_skill_name"
+                                                name="main_skill_name"
+                                                value=""
+                                                placeholder="Enter group name..."
+                                                required
                                         />
-                                        <label class="form-check-label" for="main_skill_{{ $skill->id }}">
-                                            {{$skill->name}}
-                                        </label>
                                     </div>
-                                    @endforeach
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label for="sub_skill_name">Skill Name</label>
-                                    <input class="form-control n-b-r"
-                                            type="text"
-                                            id="sub_skill_name"
-                                            name="sub_skill_name"
-                                            value=""
-                                            placeholder="Enter skill name..."
-                                            required
-                                    />
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                            Save Group
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
-                                        Save Skill
-                                    </button>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h3>Create Skill</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="sub_skill_name">Skill Name</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="sub_skill_name"
+                                                name="sub_skill_name"
+                                                value=""
+                                                placeholder="Enter skill name..."
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-inline">
+                                    <div class="row task-section pl-0 mt-1">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <h6>Groups</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row task-section col-md-12 col-sm-12 mb-4 radio-group">
+                                        @foreach ($skillSetting as $skill)
+                                        <div class="form-check col-12">
+                                            <input class="form-check-input"
+                                                type="radio"
+                                                name="main_skill"
+                                                id="main_skill_{{ $skill->id }}"
+                                                value="{{ $skill->id }}"
+                                            />
+                                            <label class="form-check-label" for="main_skill_{{ $skill->id }}">
+                                                {{$skill->name}}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                            Save Skill
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <h3>Skills</h3>
-                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
-                    <div class="skills-table-wrapper">
-                        <table class="table table-hover table-bordered w-100 mb-0" id="skills-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
-                                    <th scope="col" class="no-sort pl-2 pr-2">Skills</th>
-                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="70">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($skillSetting) && count($skillSetting) > 0)
-                                    @foreach ($skillSetting as $skill)
-                                        @foreach ($skill->sub_skills->ids as $idx => $sub_skill_id)
-                                        <tr data-main-id="{{ $skill->id }}" 
-                                            data-main-name="{{ $skill->name }}" 
-                                            data-sub-id="{{ $sub_skill_id }}" 
-                                            data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
-                                            @if ($idx == 0)
-                                            <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
-                                                <span class="skill-name">{{ $skill->name }}</span>
-                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
-                                                    <i class="bi bi-x"></i>
-                                                </button>
-                                            </td>
-                                            @endif
-                                            <td class="text-white pl-2 pr-2">{{ $skill->sub_skills->names[$idx] }}</td>
-                                            <td class="text-center">
-                                                @if (!empty($sub_skill_id))
-                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
-                                                    <i class="bi bi-x"></i>
-                                                </button>
-                                                @endif
-                                            </td>
+                    <div class="col-lg-9 col-md-8 col-sm-12">
+                        <h3>Skills</h3>
+                        <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                            <div class="skills-table-wrapper">
+                                <table class="table table-hover table-bordered w-100 mb-0" id="skills-table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
+                                            <th scope="col" class="no-sort pl-2 pr-2">Skills</th>
+                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="70">Actions</th>
                                         </tr>
-                                        @endforeach
-                                    @endforeach
-                                @else
-                                    <tr id="no-data-row">
-                                        <td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        @if (isset($skillSetting) && count($skillSetting) > 0)
+                                            @foreach ($skillSetting as $skill)
+                                                @foreach ($skill->sub_skills->ids as $idx => $sub_skill_id)
+                                                <tr data-main-id="{{ $skill->id }}" 
+                                                    data-main-name="{{ $skill->name }}" 
+                                                    data-sub-id="{{ $sub_skill_id }}" 
+                                                    data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
+                                                    @if ($idx == 0)
+                                                    <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                        <span class="skill-name">{{ $skill->name }}</span>
+                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
+                                                            <i class="bi bi-pencil-fill"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                    </td>
+                                                    @endif
+                                                    <td class="text-white pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
+                                                    <td class="text-center align-middle">
+                                                        @if (!empty($sub_skill_id))
+                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
+                                                            <i class="bi bi-pencil-fill"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @endforeach
+                                        @else
+                                            <tr id="no-data-row">
+                                                <td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td>
+                                            </tr>
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
