@@ -2,7 +2,7 @@
 <form class="main-info" action="{{ route('settings.store.general') }}" method='post' autocomplete="off">
     @csrf
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
-    <h3>General Settings</h3>
+    <h3 class="setting-sub-title">General Settings</h3>
     <div class="row col-lg-12 col-md-12 col-sm-12 mt-2">
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
@@ -149,7 +149,7 @@
     </div>
 </form>
 
-<h3 class="mt-4 text-uppercase" style="font-size: 1.3rem; font-weight: 600;">Settings Per Page</h3>
+<h3 class="mt-4 setting-sub-title">Settings Per Page</h3>
 <div class="row col-md-12 col-sm-12 mt-4">
     <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
         <li class="nav-item" role="presentation">
@@ -560,78 +560,84 @@
                 <div class="row mt-2 pr-4">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="row">
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <h3>Groups</h3>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="main_skill_name">Group Name</label>
-                                            <input class="form-control n-b-r"
-                                                    type="text"
-                                                    id="main_skill_name"
-                                                    name="main_skill_name"
-                                                    value=""
-                                                    placeholder="Enter group name..."
-                                                    required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
-                                                Save Skill
-                                            </button>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h3>New Group</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label for="main_skill_name">Group Name</label>
+                                    <input class="form-control n-b-r"
+                                            type="text"
+                                            id="main_skill_name"
+                                            name="main_skill_name"
+                                            value=""
+                                            placeholder="Enter group name..."
+                                            required
+                                    />
                                 </div>
                             </div>
-                            <div class="col-lg-9 col-md-8 col-sm-6">
-                                <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                        Save Group
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <h3>New Skill</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 form-inline">
+                                <div class="row task-section pl-0 mt-1">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <h3>New Skill</h3>
+                                        <h6>Groups</h6>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="main_skill">Group</label>
-                                            <select name="main_skill"
-                                                id="main_skill"
-                                                class="form-control n-b-r">
-                                            @foreach ($skillSetting as $skill)
-                                                <option value="{{ $skill->id }}">{{ $skill->name }}</option>
-                                            @endforeach
-                                            </select>
-                                        </div>
+                                <div class="row task-section col-md-12 col-sm-12 mb-4 radio-group">
+                                    @foreach ($skillSetting as $skill)
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input"
+                                            type="radio"
+                                            name="main_skill"
+                                            id="main_skill_{{ $skill->id }}"
+                                            value="{{ $skill->id }}"
+                                        />
+                                        <label class="form-check-label" for="main_skill_{{ $skill->id }}">
+                                            {{$skill->name}}
+                                        </label>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="sub_skill_name">Skill Name</label>
-                                            <input class="form-control n-b-r"
-                                                    type="text"
-                                                    id="sub_skill_name"
-                                                    name="sub_skill_name"
-                                                    value=""
-                                                    placeholder="Enter sub skill name..."
-                                                    required
-                                            />
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
-                                                Save Skill
-                                            </button>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <label for="sub_skill_name">Skill Name</label>
+                                    <input class="form-control n-b-r"
+                                            type="text"
+                                            id="sub_skill_name"
+                                            name="sub_skill_name"
+                                            value=""
+                                            placeholder="Enter skill name..."
+                                            required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                        Save Skill
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -644,8 +650,8 @@
                         <table class="table table-hover table-bordered w-100 mb-0" id="skills-table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="no-sort pl-2 pr-2" width="30%">Main Skill</th>
-                                    <th scope="col" class="no-sort pl-2 pr-2">Sub Skills</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
+                                    <th scope="col" class="no-sort pl-2 pr-2">Skills</th>
                                     <th scope="col" class="text-center no-sort pl-2 pr-2" width="70">Actions</th>
                                 </tr>
                             </thead>
@@ -660,10 +666,10 @@
                                             @if ($idx == 0)
                                             <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                 <span class="skill-name">{{ $skill->name }}</span>
-                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this skill">
+                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
                                                     <i class="bi bi-pencil-fill"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this skill">
+                                                <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
                                                     <i class="bi bi-x"></i>
                                                 </button>
                                             </td>
@@ -818,7 +824,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
             <div class="modal-header">
-                <h5 class="modal-title" id="edit-main-skill-modal-header-title">Edit Main Skill</h5>
+                <h5 class="modal-title" id="edit-main-skill-modal-header-title">Edit Group</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -828,7 +834,7 @@
                     <input type="hidden" name="edit_main_skill_id" id="edit_main_skill_id" />
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="edit_main_skill_name">Skill Name</label>
+                            <label for="edit_main_skill_name">Group Name</label>
                             <input class="form-control n-b-r"
                                     type="text"
                                     id="edit_main_skill_name"
