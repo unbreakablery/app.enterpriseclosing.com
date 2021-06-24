@@ -29,6 +29,7 @@ $(document).ready(function() {
         if (!$.isNumeric(aValue) || aValue > 100 || aValue < 0) {
             alert("Error: Input Error! (NOTE: it should be greater than 0 and less than 100.)");
             $(this).val(0);
+            checkAssessment($(this));
             $(this).focus();
             return;
         }

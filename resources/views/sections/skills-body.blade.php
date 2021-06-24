@@ -4,122 +4,127 @@
     </div>
 
     <div class="d-flex justify-content-left">
-        <div class="col-{{ 6 + count($dates) }} table-wrapper mt-2 mb-4 pr-4">
-            <div class="assessments-table-wrapper" style="height: calc(100vh - 200px); overflow-y: auto;">
+        <div class="col-{{ 3 + count($dates) }} table-wrapper mt-2 mb-4 pr-4">
+            <div class="assessments-table-wrapper table-responsive" style="height: calc(100vh - 200px); overflow-y: auto;">
                 <table class="table table-hover table-bordered w-100 mb-0" id="assessments-table">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col" class="no-sort pl-2 pr-2" width="450"></th>
                             @foreach ($dates as $d)
-                            <th scope="col" class="text-center no-sort pl-2 pr-2">{{ date('M \'d', strtotime($d)) }}</th>
+                            <th scope="col" class="text-center no-sort pl-2 pr-2">{{ date('M Y', strtotime($d)) }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @if (isset($assessments) && count($assessments) > 0)
-                            @foreach ($assessments as $a)
-                            @if (empty($a->parent_skill_id))
+                    @if (isset($groups) && count($groups) > 0)
+                        @foreach ($groups as $g)
                             <tr>
-                                <td colspan="{{ count($dates) + 1 }}">&nbsp;</td>
+                                <td class="bg-light text-primary font-weight-bolder pl-2 pr-2">
+                                    {{ $g->name }}
+                                </td>
+                                <td class="bg-light" colspan="{{ count($dates) }}">&nbsp;</td>
                             </tr>
-                                @php
-                                    $skillTextColor = 'text-primary font-weight-bolder';
-                                    $skillBgColor = '';
-                                @endphp
-                            @else
-                                @php
-                                    $skillTextColor = 'text-white';
-                                    $skillBgColor = 'bg-black';
-                                @endphp
-                            @endif
+                            @foreach ($assessments as $a)
+                                @if ($a->parent_skill_id == $g->id)
+                                    @php
+
+                                    @endphp
+                                    <tr>
+                                        <td class="bg-light pl-2 pr-2">
+                                            {{ $a->skill_name }}
+                                        </td>
+                                        @foreach ($dates as $d)
+                                        <td class="text-right text-dark bg-light align-middle"
+                                            data-parent-skill-id="{{ $a->parent_skill_id }}"
+                                            data-skill-id="{{ $a->skill_id }}"
+                                            data-date="{{ $d }}">
+                                            <div class="input-group">
+                                                <input type="number"
+                                                    class="form-control text-right data-cell {{ getAssessmentClass($a->assessments[$d]) }}"
+                                                    name="assessment_{{ $a->skill_id }}_{{ $d }}"
+                                                    placeholder="Assessment value..."
+                                                    aria-label="Assessment value..."
+                                                    aria-describedby="assessment_{{ $a->skill_id }}_{{ $d }}"
+                                                    value="{{ round($a->assessments[$d]) }}"
+                                                    min="0"
+                                                    max="100"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        @endforeach
+                                    </tr>
+                                @endif
+                            @endforeach
                             <tr>
-                                <td class="{{ $skillTextColor }} pl-2 pr-2">
-                                    {{ $a->skill_name }}
+                                <td class="bg-light font-weight-bolder pl-2 pr-2">
+                                    {{ $g->name . ' Performance' }}
                                 </td>
                                 @foreach ($dates as $d)
                                 <td class="text-right text-dark bg-light align-middle"
-                                    data-parent-skill-id="{{ $a->parent_skill_id }}"
-                                    data-skill-id="{{ $a->skill_id }}"
+                                    data-parent-skill-id=""
+                                    data-skill-id="{{ $g->id }}"
                                     data-date="{{ $d }}">
-                                    @if (!empty($a->parent_skill_id))
-                                        <div class="input-group">
-                                            <input type="number"
-                                                class="form-control text-right data-cell {{ getAssessmentClass($a->assessments[$d]) }}"
-                                                name="assessment_{{ $a->skill_id }}_{{ $d }}"
-                                                placeholder="Assessment value..."
-                                                aria-label="Assessment value..."
-                                                aria-describedby="assessment_{{ $a->skill_id }}_{{ $d }}"
-                                                value="{{ round($a->assessments[$d]) }}"
-                                                min="0"
-                                                max="100"/>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
-                                            </div>
+                                    <div class="input-group">
+                                        <input type="number"
+                                            class="form-control text-right data-cell-average font-weight-bolder {{ getAssessmentClass($g->assessments[$d]) }}"
+                                            name="assessment_{{ $g->id }}_{{ $d }}"
+                                            placeholder="Assessment value..."
+                                            aria-label="Assessment value..."
+                                            aria-describedby="assessment_{{ $g->id }}_{{ $d }}"
+                                            value="{{ round($g->assessments[$d]) }}"
+                                            readonly/>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text n-b-r" id="assessment_{{ $g->id }}_{{ $d }}">%</span>
                                         </div>
-                                    @else
-                                        <div class="input-group">
-                                            <input type="number"
-                                                class="form-control text-right data-cell-average font-weight-bolder {{ getAssessmentClass($a->assessments[$d]) }}"
-                                                name="assessment_{{ $a->skill_id }}_{{ $d }}"
-                                                placeholder="Assessment value..."
-                                                aria-label="Assessment value..."
-                                                aria-describedby="assessment_{{ $a->skill_id }}_{{ $d }}"
-                                                value="{{ round($a->assessments[$d]) }}"
-                                                readonly/>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </td>    
-                                @endforeach
-                            </tr>
-                            @endforeach
-                            <tr>
-                                <td colspan="{{ count($dates) + 1 }}">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td class="text-primary font-weight-bolder pl-2 pr-2">Total Performance</td>
-                                @foreach ($dates as $d)
-                                    @php
-                                        $sum = 0;
-                                        $cnt = 0;
-                                    @endphp
-                                    @foreach ($assessments as $a)
-                                        @if (empty($a->parent_skill_id))
-                                            @php
-                                                $sum += $a->assessments[$d];
-                                                $cnt++;
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                    @php
-                                        $avg = ($cnt == 0) ? 0 : round($sum / $cnt);
-                                    @endphp
-                                    <td class="text-right text-dark bg-light align-middle"
-                                        data-date="{{ $d }}">
-                                        <div class="input-group">
-                                            <input type="number"
-                                                class="form-control text-right font-weight-bolder {{ getAssessmentClass($avg) }}"
-                                                name="assessment_total_avgerage_{{ $d }}"
-                                                placeholder="Assessment value..."
-                                                aria-label="Assessment value..."
-                                                aria-describedby="assessment_total_avgerage_{{ $d }}"
-                                                value="{{ $avg }}"
-                                                readonly/>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text n-b-r" id="assessment_total_avgerage__{{ $d }}">%</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                @endforeach
+                                    </div>
                                 </td>
+                                @endforeach
                             </tr>
-                        @else
-                            <tr id="no-data-row">
-                                <td class="text-center text-white pt-3 pb-3" colspan="{{ count($dates) + 1 }}">No Skills For Assessment</td>
+                            <tr>
+                                <td class="bg-light" colspan="{{ count($dates) + 1 }}">&nbsp;</td>
                             </tr>
-                        @endif
+                        @endforeach
+                        <tr>
+                            <td class="bg-light text-primary font-weight-bolder pl-2 pr-2">Total Performance</td>
+                            @foreach ($dates as $d)
+                                @php
+                                    $sum = 0;
+                                    $cnt = 0;
+                                @endphp
+                                @foreach ($groups as $g)
+                                    @php
+                                        $sum += $g->assessments[$d];
+                                        $cnt++;
+                                    @endphp
+                                @endforeach
+                                @php
+                                    $avg = ($cnt == 0) ? 0 : round($sum / $cnt);
+                                @endphp
+                                <td class="text-right text-dark bg-light align-middle"
+                                    data-date="{{ $d }}">
+                                    <div class="input-group">
+                                        <input type="number"
+                                            class="form-control text-right font-weight-bolder {{ getAssessmentClass($avg) }}"
+                                            name="assessment_total_avgerage_{{ $d }}"
+                                            placeholder="Assessment value..."
+                                            aria-label="Assessment value..."
+                                            aria-describedby="assessment_total_avgerage_{{ $d }}"
+                                            value="{{ $avg }}"
+                                            readonly/>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text n-b-r" id="assessment_total_avgerage__{{ $d }}">%</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            @endforeach
+                        </tr>
+                    @else
+                        <tr id="no-data-row">
+                            <td class="text-center text-white pt-3 pb-3" colspan="{{ count($dates) + 1 }}">No Skills For Assessment</td>
+                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>

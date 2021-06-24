@@ -21,20 +21,28 @@ class SkillController extends Controller
 
     public function getSkills()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         $assessments = getSkillAssessment();
-        // dd($assessments);
-        $createdAt = Carbon::create($user->created_at->year, $user->created_at->month, 1, 0);
+        $groups = getGroupAssessment();
+        $startAt = getSkillStartMonthSetting();
+        // dd($start);
+
+        $startAt = Carbon::parse($startAt);
+        // dd($startMonth->day);
+        
+        $startAt = Carbon::create($startAt->year, $startAt->month, 1, 0);
 
         $now = new Carbon();
         $now = Carbon::create($now->year, $now->month, 1, 0);
         
-        $diffMonths = $now->diffInMonths($createdAt);
+        $diffMonths = $now->diffInMonths($startAt);
+        // dd($diffMonths);
         
-        $dates = [$user->created_at->format('Y-m-d')];
+        $dates = [$startAt->format('Y-m-d')];
         for ($i = 1; $i <= $diffMonths; $i++) {
-            $dates[] = $user->created_at->addMonths($i)->format('Y-m-d');
+            $dates[] = $startAt->addMonths(1)->format('Y-m-d');
         }
+        // dd($dates);
         
         foreach ($dates as $d) {
             foreach ($assessments as $a) {
@@ -42,14 +50,20 @@ class SkillController extends Controller
                     $a->assessments[$d] = 0.00;
                 }
             }
+            foreach ($groups as $g) {
+                if (empty($g->assessments[$d])) {
+                    $g->assessments[$d] = 0.00;
+                }
+            }
         }
-        
+
         $nl_skills_class = 'active';
         
         return view('pages.skills', 
                     compact(
                         'nl_skills_class',
                         'dates',
+                        'groups',
                         'assessments'
                     )
         );
