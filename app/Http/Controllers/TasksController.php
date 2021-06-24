@@ -24,7 +24,65 @@ class TasksController extends Controller
     }
 
     public function getTasks(Request $request)
-    {   
+    {
+        /* 
+        * Create new task 
+        * if set Auto Create Monthly Skill Assessment Task and not created yet
+        */
+
+        // Get acmt setting
+        $acmtSetting = getSkillACMTSetting();
+
+        if ($acmtSetting == '1') {
+            // Get action id for Complete
+            $actionForACMT = getAction('Complete', '1');
+            
+            // Get step id for Skills Assessment
+            $stepForACMT = getStep('Skills Assessment', '1');
+
+            // By date
+            $by_date = '07-' . date('m') . '-' . date('Y');
+            
+            if (!empty($actionForACMT) && !empty($stepForACMT)) {
+                // dd(DateTime::createFromFormat('d-m-Y', $by_date));
+                $acmt = Task::where('user', Auth::user()->id)
+                            ->where('action', $actionForACMT->id)
+                            ->where('step', $stepForACMT->id)
+                            ->whereDate('by_date', DateTime::createFromFormat('d-m-Y', $by_date))
+                            ->get()
+                            ->first();
+                
+                if (empty($acmt)) {
+                    // Save task
+                    $acmt = storeTask($actionForACMT->id,
+                                    $stepForACMT->id,
+                                    Auth::user()->first_name . ' ' . Auth::user()->last_name,
+                                    0,
+                                    '',
+                                    $by_date,
+                                    3
+                            );
+                }
+            } else {
+                // Save action - Complete
+                $actionIdForACMT = storeAction('Complete');
+                
+                // Save step - Skills Assessment
+                $stepIdForACMT = storeStep('Skills Assessment');
+
+                // Save task
+                $acmt = storeTask($actionIdForACMT,
+                                $stepIdForACMT,
+                                Auth::user()->first_name . ' ' . Auth::user()->last_name,
+                                0,
+                                '',
+                                $by_date,
+                                3
+                        );
+            }
+        }
+        
+        // Change User Role
         if (Auth::user()->role == '2') {
             User::where('id', Auth::user()->id)
                 ->update(['role' => '1']);
