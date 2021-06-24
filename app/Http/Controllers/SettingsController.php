@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 use App\Models\Step;
 use App\Models\Action;
 use App\Models\TaskSetting;
@@ -39,6 +40,11 @@ class SettingsController extends Controller
         $emailSetting = EmailMain::where('user', $userId)->get();
         $skillSetting = getAllSkills();
 
+        $skillStartAt = getSkillStartMonthSetting();
+        $skillStartAt = Carbon::parse($skillStartAt);
+
+        $skillACMT = getSkillACMTSetting();
+
         $user = User::where('id', $userId)->get()->first();
 
         return view('pages.settings', compact(
@@ -50,7 +56,9 @@ class SettingsController extends Controller
                 'user',
                 'scriptSetting',
                 'emailSetting',
-                'skillSetting'
+                'skillSetting',
+                'skillStartAt',
+                'skillACMT'
             )
         );
     }
@@ -139,6 +147,26 @@ class SettingsController extends Controller
         return response()->json([
             'skill' => $skill,
             'skills' => $skills
+        ]);
+    }
+
+    public function storeSkillStartAtSettings(Request $request)
+    {
+        $startAt = storeSkillStartAt($request);
+        $startAt = Carbon::parse($startAt);
+
+        return response()->json([
+            'year' => $startAt->year,
+            'month' => $startAt->format('F')
+        ]);
+    }
+
+    public function storeSkillACMTSettings(Request $request)
+    {
+        $acmt = storeSkillACMT($request);
+                
+        return response()->json([
+            'success' => $acmt
         ]);
     }
 }

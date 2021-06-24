@@ -643,8 +643,66 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-1g-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group pl-4 mt-4 mb-4">
+                                        <input type="checkbox" class="form-check-input" id="acmt" @if ($skillACMT == '1'){{ 'checked' }}@endif>
+                                        <label class="form-check-label pl-2" for="acmt">Auto Create Monthly Skill Assessment Task</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1g-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h3>Select Start Month</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="start_year">Year</label>
+                                        <select class="form-control n-b-r"
+                                                name="start_year"
+                                                id="start_year">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <option value="{{ date('Y') - $i }}" @if ($skillStartAt->year == date('Y') - $i){{ 'selected' }}@endif>{{ date('Y') - $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="start_month">Month</label>
+                                        <select class="form-control n-b-r"
+                                                name="start_month"
+                                                id="start_month">
+                                            @for ($i = 1; $i <= 12; $i++)
+                                                @php
+                                                    $dateObj   = DateTime::createFromFormat('!m', $i);
+                                                    $monthName = $dateObj->format('F');
+                                                @endphp
+                                                <option value="{{ formatWithZero($i) }}" @if ($i == $skillStartAt->month){{ 'selected' }}@endif>{{ $monthName }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
+                                            Save Month
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="col-lg-6 col-md-8 col-sm-12">
                         <h3>Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                             <div class="skills-table-wrapper">
@@ -665,7 +723,7 @@
                                                     data-sub-id="{{ $sub_skill_id }}" 
                                                     data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
                                                     @if ($idx == 0)
-                                                    <td class="text-center text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                    <td class="text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <span class="skill-name">{{ $skill->name }}</span>
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
                                                             <i class="bi bi-pencil-fill"></i>

@@ -11,8 +11,39 @@ use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
 use App\Models\SkillAssessment;
+use App\Models\SkillSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
+if (!function_exists('formatWithZero')) {
+    function formatWithZero($number) {
+        return ($number < 10) ? '0' . $number : $number;
+    }
+}
+
+if (!function_exists('getAction')) {
+    function getAction($actionName, $is_other = '0')
+    {
+        $action = Action::where('name', $actionName)
+                        ->where('is_other', $is_other)
+                        ->get()
+                        ->first();
+        
+        return $action;
+    }
+}
+
+if (!function_exists('getStep')) {
+    function getStep($stepName, $is_other = '0')
+    {
+        $step = Step::where('name', $stepName)
+                        ->where('is_other', $is_other)
+                        ->get()
+                        ->first();
+
+        return $step;
+    }
+}
 
 if (!function_exists('getActions')) {
     function getActions()
@@ -539,19 +570,20 @@ if (!function_exists('getSkillAssessment')) {
     function getSkillAssessment()
     {
         $user_id = Auth::user()->id;
-        $skills = SkillMain::from('skills_main as sm')
-                                ->where('sm.user', $user_id)
-                                ->leftJoin('skills_main AS sm2', 'sm.p_id', '=', 'sm2.id')
-                                ->leftJoin('skills_assessment AS sa', 'sm.id', '=', 'sa.s_id')
-                                ->groupBy('sm.id', 'sm.name', 'sm2.id', 'sm2.name')
-                                ->orderBy('sm.id', 'ASC')
-                                ->selectRaw('sm2.id AS parent_skill_id')
-                                ->selectRaw('sm2.name AS parent_skill_name')
-                                ->selectRaw('sm.id AS skill_id')
-                                ->selectRaw('sm.name AS skill_name')
-                                ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_dates')
-                                ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_values')
-                                ->get();
+        $skills = SkillMain::from('skills_main AS sm')
+                            ->where('sm.user', $user_id)
+                            ->where('sm.p_id', '!=', 0)
+                            ->leftJoin('skills_main AS sm2', 'sm.p_id', '=', 'sm2.id')
+                            ->leftJoin('skills_assessment AS sa', 'sm.id', '=', 'sa.s_id')
+                            ->groupBy('sm.id', 'sm.name', 'sm2.id', 'sm2.name')
+                            ->orderBy('sm.id', 'ASC')
+                            ->selectRaw('sm2.id AS parent_skill_id')
+                            ->selectRaw('sm2.name AS parent_skill_name')
+                            ->selectRaw('sm.id AS skill_id')
+                            ->selectRaw('sm.name AS skill_name')
+                            ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_dates')
+                            ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_values')
+                            ->get();
         
         $assessments = [];
         
@@ -622,5 +654,154 @@ if (!function_exists('getAssessmentClass')) {
         }
         
         return $aClass;
+    }
+}
+
+if (!function_exists('getGroupAssessment')) {
+    function getGroupAssessment()
+    {
+        $user_id = Auth::user()->id;
+        $groups = SkillMain::from('skills_main AS sm')
+                        ->where('sm.user', $user_id)
+                        ->where('sm.p_id', 0)
+                        ->leftJoin('skills_assessment AS sa', 'sm.id', '=', 'sa.s_id')
+                        ->groupBy('sm.id', 'sm.name')
+                        ->orderBy('sm.id', 'ASC')
+                        ->selectRaw('sm.id, sm.name')
+                        ->selectRaw('GROUP_CONCAT(sa.a_date ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_dates')
+                        ->selectRaw('GROUP_CONCAT(sa.a_value ORDER BY sa.a_date ASC SEPARATOR "~!@") AS a_values')
+                        ->get();
+
+        $assessments = [];
+        
+        foreach ($groups as $g) {
+            $obj = new \stdClass();
+
+            $obj->id = $g->id;
+            $obj->name = $g->name;
+
+            $dates = explode('~!@', $g->a_dates);
+            $values = explode('~!@', $g->a_values);
+            $obj->assessments = [];
+            for ($i = 0; $i < count($dates); $i++) {
+                if (empty($dates[$i])) {
+                    continue;
+                }
+                $obj->assessments[$dates[$i]] = $values[$i];
+            }
+            
+            $assessments[] = $obj;
+        }
+                
+        return $assessments;
+    }
+}
+
+if (!function_exists('getSkillStartMonthSetting')) {
+    function getSkillStartMonthSetting()
+    {
+        $startYear = SkillSetting::where('user', Auth::user()->id)
+                                ->where('s_key', 'start_year')
+                                ->get()
+                                ->first();
+        $startMonth = SkillSetting::where('user', Auth::user()->id)
+                                ->where('s_key', 'start_month')
+                                ->get()
+                                ->first();
+
+        if (empty($startYear->s_value)) {
+            $startYear = date('Y');
+        } else {
+            $startYear = $startYear->s_value;
+        }
+
+        if (empty($startMonth->s_value)) {
+            $startMonth = date('m');
+        } else {
+            $startMonth = $startMonth->s_value;
+        }
+
+        return $startYear . '-' . $startMonth . '-01';
+    }
+}
+
+if (!function_exists('storeSkillStartAt')) {
+    function storeSkillStartAt($data)
+    {
+        $user_id = Auth::user()->id;
+        $startYear = SkillSetting::where('user', $user_id)
+                                ->where('s_key', 'start_year')
+                                ->get()
+                                ->first();
+        $startMonth = SkillSetting::where('user', $user_id)
+                                ->where('s_key', 'start_month')
+                                ->get()
+                                ->first();
+
+        if (empty($startYear) || empty($startMonth)) {
+            $startAt = new SkillSetting();
+            $startAt->user = $user_id;
+            $startAt->s_key = 'start_year';
+            $startAt->s_value = $data->start_year;
+            $startAt->save();
+
+            $startAt = new SkillSetting();
+            $startAt->user = $user_id;
+            $startAt->s_key = 'start_month';
+            $startAt->s_value = $data->start_month;
+            $startAt->save();
+        } else {
+            $startYear->s_value = $data->start_year;
+            $startYear->update();
+
+            $startMonth->s_value = $data->start_month;
+            $startMonth->update();
+        }
+
+        return $data->start_year . '-' . $data->start_month . '-01';
+    }
+}
+
+if (!function_exists('storeSkillACMT')) {
+    function storeSkillACMT($data)
+    {
+        $user_id = Auth::user()->id;
+        $setting = SkillSetting::where('user', $user_id)
+                                            ->where('s_key', 'acmt')
+                                            ->get()
+                                            ->first();
+        
+        if (empty($setting)) {
+            $setting = new SkillSetting();
+            $setting->user = $user_id;
+            $setting->s_key = 'acmt';
+            $setting->s_value = $data->acmt;
+
+            $setting->save();
+        } else {
+            $setting->s_value = $data->acmt;
+
+            $setting->update();
+        }
+
+        return true;
+    }
+}
+
+if (!function_exists('getSkillACMTSetting')) {
+    function getSkillACMTSetting()
+    {
+        $user_id = Auth::user()->id;
+
+        $acmt = SkillSetting::where('user', $user_id)
+                            ->where('s_key', 'acmt')
+                            ->get()
+                            ->first();
+
+        if (empty($acmt)) {
+            return '0';
+        }
+
+        return $acmt->s_value;
     }
 }

@@ -63,3 +63,5 @@ Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->n
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
 Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');
 Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSettings')->name('settings.store.skill.main');
+Route::post('/settings/store/skill-startat', 'SettingsController@storeSkillStartAtSettings')->name('settings.store.skill.startat');
+Route::post('/settings/store/skill-acmt', 'SettingsController@storeSkillACMTSettings')->name('settings.store.skill.acmt');

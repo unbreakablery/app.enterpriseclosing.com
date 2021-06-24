@@ -567,8 +567,7 @@ $(document).ready(function () {
         p_id: mainSkill
       },
       success: function success(response) {
-        loader('hide');
-        console.log(response.skills); // Redraw skills table
+        loader('hide'); // Redraw skills table
 
         drawSkillsTable(response.skills); // Set focus to sub skill name input
 
@@ -804,6 +803,73 @@ $(document).ready(function () {
         clearEditSubSkillModal(); // Hide Edit Sub Skill Modal
 
         $('#edit-sub-skill-modal').modal('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $('#settings-tab-skills button#btn-save-start-month-settings').click(function () {
+    var startYear = $('select#start_year').val();
+    var startMonth = $('select#start_month').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-startat",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        start_year: startYear,
+        start_month: startMonth
+      },
+      success: function success(response) {
+        loader('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Start At (' + response.month + ' ' + response.year + ') was saved successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-success');
+        $('.toast .toast-header').addClass('bg-danger');
+        $('.toast .toast-body').text('Error, Please retry!');
+        $('.toast').toast('show');
+      }
+    });
+  });
+  $('#settings-tab-skills input#acmt').click(function () {
+    var acmt = null;
+
+    if ($(this).is(":checked")) {
+      acmt = 1;
+    } else {
+      acmt = 0;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/settings/store/skill-acmt",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        acmt: acmt
+      },
+      success: function success(response) {
+        loader('hide'); // Show message
+
+        $('.toast .toast-header').removeClass('bg-danger');
+        $('.toast .toast-header').addClass('bg-success');
+        $('.toast .toast-body').text('Auto Create Monthly Skill Assessment Task Setting was saved successfully!');
+        $('.toast').toast('show');
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
 
         $('.toast .toast-header').removeClass('bg-success');
         $('.toast .toast-header').addClass('bg-danger');
