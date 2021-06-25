@@ -52,7 +52,7 @@
     <div class="table-responsive table-wrapper mt-4">
         <div class="persons-table-wrapper">
             <table class="table table-hover w-100 mb-0" id="persons-table">
-                <thead class="thead-dark">
+                <thead class="thead-dark table-bordered">
                     <tr>
                         <th scope="col" class="text-left no-sort" width="95">First Name</th>
                         <th scope="col" class="text-left no-sort" width="95">Last Name</th>
