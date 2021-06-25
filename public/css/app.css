@@ -10028,6 +10028,10 @@ body {
   background-color: #ffff00 !important;
 }
 
+.text-black {
+  color: #000 !important;
+}
+
 .no-max-width {
   max-width: inherit !important;
 }
@@ -10481,11 +10485,17 @@ input[type=checkbox] {
 .emails-table-wrapper {
   max-height: 315px;
   overflow-y: auto;
+  border: solid 1px #fff;
 }
 
 .skills-table-wrapper {
   max-height: 800px;
   overflow-y: auto;
+  border: solid 1px #fff;
+}
+
+.assessments-table-wrapper {
+  border: solid 1px #fff;
 }
 
 #upload-file-modal input[type=file].form-control {
@@ -10547,6 +10557,7 @@ table#assessments-table tr th {
   top: -1px;
   padding: 0.25rem 5px;
   z-index: 100;
+  border-color: #fff;
 }
 table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
