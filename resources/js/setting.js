@@ -82,7 +82,7 @@ $(document).ready(function() {
         $(tbody).find('tr').remove();
 
         if (skills.length == 0) {
-            var newRow = '<tr><td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td></tr>';
+            var newRow = '<tr><td class="text-center bg-light pt-3 pb-3" colspan="3">No Skills</td></tr>';
             $(tbody).append(newRow);
             return true;
         }
@@ -95,7 +95,7 @@ $(document).ready(function() {
                             '" data-sub-id="' + sub_skill_id + 
                             '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
                 if (idx == 0) {
-                    newRow += '<td class="text-center text-white pl-2 pr-2 align-middle" rowspan="' + 
+                    newRow += '<td class="text-center bg-light pl-2 pr-2 align-middle" rowspan="' + 
                                 skill.sub_skills.ids.length + '">' + 
                                 '<span class="skill-name">' + skill.name + '</span>' +
                                 '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">' + 
@@ -106,8 +106,8 @@ $(document).ready(function() {
                                 '</button>';
                     newRow += '</td>';
                 }
-                newRow += '<td class="text-white pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
-                newRow += '<td class="text-center">';
+                newRow += '<td class="bg-light pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
+                newRow += '<td class="bg-light text-center align-middle">';
                 if (sub_skill_id != undefined && sub_skill_id != null && sub_skill_id != '' && sub_skill_id != 0) {
                     newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
                     newRow += '<i class="bi bi-pencil-fill"></i>';
@@ -184,12 +184,12 @@ $(document).ready(function() {
                 // Add new row on table
                 var innerHtml = '';
                 innerHtml += '<tr data-id="' + response.script.id + '">';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.name + '</td>';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.content + '</td>';
-                innerHtml += '<td class="text-center">';
+                innerHtml += '<td class="bg-light pl-2 pr-2">' + response.script.name + '</td>';
+                innerHtml += '<td class="bg-light pl-2 pr-2">' + response.script.content + '</td>';
+                innerHtml += '<td class="bg-light text-center">';
                 innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">';
                 innerHtml += '<i class="bi bi-pencil-fill"></i>';
-                innerHtml += '</button> ';
+                innerHtml += '</button>';
                 innerHtml += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">';
                 innerHtml += '<i class="bi bi-x"></i>';
                 innerHtml += '</button>'
@@ -267,7 +267,7 @@ $(document).ready(function() {
                 // Add no data row
                 if ($('table#scripts-table tbody > tr').length == 0) {
                     var innerHtml = '<tr id="no-data-row">';
-                    innerHtml += '<td class="text-center text-white pt-3" colspan="3">No Scripts</td>';
+                    innerHtml += '<td class="text-center bg-light pt-3" colspan="3">No Scripts</td>';
                     innerHtml += '</tr>';
                     $('table#scripts-table tbody').append(innerHtml);
                 }
@@ -382,13 +382,13 @@ $(document).ready(function() {
                 // Add new row on table
                 var innerHtml = '';
                 innerHtml += '<tr data-id="' + response.email.id + '">';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.title + '</td>';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.subject + '</td>';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.body + '</td>';
-                innerHtml += '<td class="text-center">';
+                innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.title + '</td>';
+                innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.subject + '</td>';
+                innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.body + '</td>';
+                innerHtml += '<td class="bg-light text-center">';
                 innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">';
                 innerHtml += '<i class="bi bi-pencil-fill"></i>';
-                innerHtml += '</button> ';
+                innerHtml += '</button>';
                 innerHtml += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">';
                 innerHtml += '<i class="bi bi-x"></i>';
                 innerHtml += '</button>'
@@ -469,7 +469,7 @@ $(document).ready(function() {
                 // Add no data row
                 if ($('table#emails-table tbody > tr').length == 0) {
                     var innerHtml = '<tr id="no-data-row">';
-                    innerHtml += '<td class="text-center text-white pt-3" colspan="4">No Emails</td>';
+                    innerHtml += '<td class="text-center bg-light pt-3" colspan="4">No Emails</td>';
                     innerHtml += '</tr>';
                     $('table#emails-table tbody').append(innerHtml);
                 }

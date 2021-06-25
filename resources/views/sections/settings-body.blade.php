@@ -423,7 +423,7 @@
                 <h3>Script List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                     <div class="scripts-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="scripts-table">
+                        <table class="table table-bordered table-hover w-100 mb-0" id="scripts-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
@@ -435,13 +435,12 @@
                                 @if (isset($scriptSetting) && count($scriptSetting) > 0)
                                     @foreach ($scriptSetting as $script)
                                     <tr data-id="{{ $script->id }}">
-                                        <td class="text-white pl-2 pr-2">{{ $script->name }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $script->content }}</td>
-                                        <td class="text-center">
+                                        <td class="bg-light pl-2 pr-2">{{ $script->name }}</td>
+                                        <td class="bg-light pl-2 pr-2">{{ $script->content }}</td>
+                                        <td class="bg-light text-center">
                                             <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">
                                                 <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
+                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
                                                 <i class="bi bi-x"></i>
                                             </button>
                                         </td>
@@ -449,7 +448,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center text-white pt-3" colspan="3">No Scripts</td>
+                                        <td class="text-center bg-light pt-3" colspan="3">No Scripts</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -514,7 +513,7 @@
                 <h3>Email List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                     <div class="emails-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="emails-table">
+                        <table class="table table-bordered table-hover w-100 mb-0" id="emails-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
@@ -527,14 +526,13 @@
                                 @if (isset($emailSetting) && count($emailSetting) > 0)
                                     @foreach ($emailSetting as $email)
                                     <tr data-id="{{ $email->id }}">
-                                        <td class="text-white pl-2 pr-2">{{ $email->title }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $email->subject }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $email->body }}</td>
-                                        <td class="text-center">
+                                        <td class="bg-light pl-2 pr-2">{{ $email->title }}</td>
+                                        <td class="bg-light pl-2 pr-2">{{ $email->subject }}</td>
+                                        <td class="bg-light pl-2 pr-2">{{ $email->body }}</td>
+                                        <td class="text-center bg-light">
                                             <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">
                                                 <i class="bi bi-pencil-fill"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
+                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
                                                 <i class="bi bi-x"></i>
                                             </button>
                                         </td>
@@ -542,7 +540,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center text-white pt-3" colspan="4">No Emails</td>
+                                        <td class="text-center bg-light pt-3" colspan="4">No Emails</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -662,20 +660,6 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="start_year">Year</label>
-                                        <select class="form-control n-b-r"
-                                                name="start_year"
-                                                id="start_year">
-                                            @for ($i = 0; $i < 5; $i++)
-                                                <option value="{{ date('Y') - $i }}" @if ($skillStartAt->year == date('Y') - $i){{ 'selected' }}@endif>{{ date('Y') - $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
                                         <label for="start_month">Month</label>
                                         <select class="form-control n-b-r"
                                                 name="start_month"
@@ -686,6 +670,20 @@
                                                     $monthName = $dateObj->format('F');
                                                 @endphp
                                                 <option value="{{ formatWithZero($i) }}" @if ($i == $skillStartAt->month){{ 'selected' }}@endif>{{ $monthName }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="start_year">Year</label>
+                                        <select class="form-control n-b-r"
+                                                name="start_year"
+                                                id="start_year">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <option value="{{ date('Y') - $i }}" @if ($skillStartAt->year == date('Y') - $i){{ 'selected' }}@endif>{{ date('Y') - $i }}</option>
                                             @endfor
                                         </select>
                                     </div>
@@ -711,7 +709,7 @@
                                         <tr>
                                             <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
                                             <th scope="col" class="no-sort pl-2 pr-2">Skills</th>
-                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="70">Actions</th>
+                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -723,23 +721,21 @@
                                                     data-sub-id="{{ $sub_skill_id }}" 
                                                     data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
                                                     @if ($idx == 0)
-                                                    <td class="text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                    <td class="bg-light pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <span class="skill-name">{{ $skill->name }}</span>
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
                                                             <i class="bi bi-pencil-fill"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
+                                                        </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
                                                             <i class="bi bi-x"></i>
                                                         </button>
                                                     </td>
                                                     @endif
-                                                    <td class="text-white pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
-                                                    <td class="text-center align-middle">
+                                                    <td class="bg-light pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
+                                                    <td class="bg-light text-center align-middle">
                                                         @if (!empty($sub_skill_id))
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
                                                             <i class="bi bi-pencil-fill"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
+                                                        </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sub-skill" title="Remove this skill">
                                                             <i class="bi bi-x"></i>
                                                         </button>
                                                         @endif
@@ -749,7 +745,7 @@
                                             @endforeach
                                         @else
                                             <tr id="no-data-row">
-                                                <td class="text-center text-white pt-3 pb-3" colspan="3">No Skills</td>
+                                                <td class="text-center bg-light pt-3 pb-3" colspan="3">No Skills</td>
                                             </tr>
                                         @endif
                                     </tbody>
