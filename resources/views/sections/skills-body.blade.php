@@ -9,7 +9,7 @@
                 <table class="table table-hover table-bordered w-100 mb-0" id="assessments-table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col" class="no-sort pl-2 pr-2" width="450"></th>
+                            <th scope="col" class="no-sort pl-2 pr-2" width="300">Skills</th>
                             @foreach ($dates as $d)
                             <th scope="col" class="text-center no-sort pl-2 pr-2">{{ date('M Y', strtotime($d)) }}</th>
                             @endforeach
@@ -19,16 +19,13 @@
                     @if (isset($groups) && count($groups) > 0)
                         @foreach ($groups as $g)
                             <tr>
-                                <td class="bg-light text-primary font-weight-bolder pl-2 pr-2">
+                                <td class="bg-light text-black font-weight-bolder pl-2 pr-2">
                                     {{ $g->name }}
                                 </td>
                                 <td class="bg-light" colspan="{{ count($dates) }}">&nbsp;</td>
                             </tr>
                             @foreach ($assessments as $a)
                                 @if ($a->parent_skill_id == $g->id)
-                                    @php
-
-                                    @endphp
                                     <tr>
                                         <td class="bg-light pl-2 pr-2">
                                             {{ $a->skill_name }}
@@ -49,7 +46,7 @@
                                                     min="0"
                                                     max="100"/>
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text n-b-r" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
+                                                    <span class="input-group-text n-b-r bg-light" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -58,7 +55,7 @@
                                 @endif
                             @endforeach
                             <tr>
-                                <td class="bg-light font-weight-bolder pl-2 pr-2">
+                                <td class="bg-light text-black font-weight-bolder pl-2 pr-2">
                                     {{ $g->name . ' Performance' }}
                                 </td>
                                 @foreach ($dates as $d)
@@ -76,7 +73,7 @@
                                             value="{{ round($g->assessments[$d]) }}"
                                             readonly/>
                                         <div class="input-group-append">
-                                            <span class="input-group-text n-b-r" id="assessment_{{ $g->id }}_{{ $d }}">%</span>
+                                            <span class="input-group-text n-b-r bg-light" id="assessment_{{ $g->id }}_{{ $d }}">%</span>
                                         </div>
                                     </div>
                                 </td>
@@ -87,7 +84,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td class="bg-light text-primary font-weight-bolder pl-2 pr-2">Total Performance</td>
+                            <td class="bg-light text-black font-weight-bolder pl-2 pr-2">Total Performance</td>
                             @foreach ($dates as $d)
                                 @php
                                     $sum = 0;
@@ -114,7 +111,7 @@
                                             value="{{ $avg }}"
                                             readonly/>
                                         <div class="input-group-append">
-                                            <span class="input-group-text n-b-r" id="assessment_total_avgerage__{{ $d }}">%</span>
+                                            <span class="input-group-text n-b-r bg-light" id="assessment_total_avgerage__{{ $d }}">%</span>
                                         </div>
                                     </div>
                                 </td>

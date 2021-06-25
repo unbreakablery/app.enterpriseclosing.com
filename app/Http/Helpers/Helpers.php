@@ -641,7 +641,9 @@ if (!function_exists('storeAssessment')) {
 if (!function_exists('getAssessmentClass')) {
     function getAssessmentClass($assessment) {
         $aClass = '';
-        if ($assessment >=0 && $assessment < 10) {
+        if ($assessment == 0) {
+            $aClass = 'bg-light';
+        } elseif ($assessment > 0 && $assessment < 10) {
             $aClass = 'bg-info text-white';
         } elseif ($assessment >=10 && $assessment < 50) {
             $aClass = 'bg-danger text-white';

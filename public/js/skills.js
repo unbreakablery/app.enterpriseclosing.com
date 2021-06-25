@@ -6,10 +6,12 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   function checkAssessment(obj) {
     var value = $(obj).val();
-    $(obj).removeClass('bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
+    $(obj).removeClass('bg-light bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
     $(obj).removeClass('text-white');
 
-    if (value >= 0 && value < 10) {
+    if (value == 0) {
+      $(obj).addClass('bg-light');
+    } else if (value > 0 && value < 10) {
       $(obj).addClass('bg-info text-white');
     } else if (value >= 10 && value < 50) {
       $(obj).addClass('bg-danger text-white');
