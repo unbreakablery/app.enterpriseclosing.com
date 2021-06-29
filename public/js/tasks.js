@@ -73,7 +73,7 @@ $(document).ready(function () {
         if (data.type == 'success') {
           taskTable.row(tr).remove().draw();
         } else {
-          alert(data.message);
+          showMessage('danger', data.message);
         }
       }
     });

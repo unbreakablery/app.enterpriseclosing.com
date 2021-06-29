@@ -83,7 +83,7 @@ $(document).ready(function () {
     $(tbody).find('tr').remove();
 
     if (skills.length == 0) {
-      var newRow = '<tr><td class="text-center bg-light pt-3 pb-3" colspan="3">No Skills</td></tr>';
+      var newRow = '<tr><td class="text-center bg-light" colspan="3">No Skills</td></tr>';
       $(tbody).append(newRow);
       return true;
     } // Add rows
@@ -144,7 +144,7 @@ $(document).ready(function () {
   });
   $('#settings-tab-scripts #btn-save-scripts-settings').on('click', function () {
     if ($('#settings-tab-scripts input#script_name').val() == undefined || $('#settings-tab-scripts input#script_name').val() == '') {
-      alert('Please enter script name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter script name!');
       $('#settings-tab-scripts input#script_name').focus();
       return;
     }
@@ -186,20 +186,14 @@ $(document).ready(function () {
 
         $('#settings-tab-scripts input#script_name').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('New script (' + response.script.name + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'New script (' + response.script.name + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Set focus to script name input
 
         $('#settings-tab-scripts input#script_name').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -237,7 +231,7 @@ $(document).ready(function () {
 
         if ($('table#scripts-table tbody > tr').length == 0) {
           var innerHtml = '<tr id="no-data-row">';
-          innerHtml += '<td class="text-center bg-light pt-3" colspan="3">No Scripts</td>';
+          innerHtml += '<td class="text-center bg-light" colspan="3">No Scripts</td>';
           innerHtml += '</tr>';
           $('table#scripts-table tbody').append(innerHtml);
         } // Show message
@@ -260,7 +254,7 @@ $(document).ready(function () {
   });
   $('#edit-script-modal #btn-update-script').on('click', function () {
     if ($('#edit-script-modal input#edit_script_name').val() == undefined || $('#edit-script-modal input#edit_script_name').val() == '') {
-      alert('Please enter script name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter script name!');
       $('#edit-script-modal input#edit_script_name').focus();
       return;
     }
@@ -309,7 +303,7 @@ $(document).ready(function () {
   });
   $('#settings-tab-emails #btn-save-emails-settings').on('click', function () {
     if ($('#settings-tab-emails input#title').val() == undefined || $('#settings-tab-emails input#title').val() == '') {
-      alert('Please enter title!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter title!');
       $('#settings-tab-emails input#title').focus();
       return;
     }
@@ -355,20 +349,14 @@ $(document).ready(function () {
 
         $('#settings-tab-emails input#title').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('New email (' + response.email.title + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'New email (' + response.email.title + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Set focus to email title input
 
         $('#settings-tab-emails input#title').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -408,7 +396,7 @@ $(document).ready(function () {
 
         if ($('table#emails-table tbody > tr').length == 0) {
           var innerHtml = '<tr id="no-data-row">';
-          innerHtml += '<td class="text-center bg-light pt-3" colspan="4">No Emails</td>';
+          innerHtml += '<td class="text-center bg-light" colspan="4">No Emails</td>';
           innerHtml += '</tr>';
           $('table#emails-table tbody').append(innerHtml);
         } // Show message
@@ -431,7 +419,7 @@ $(document).ready(function () {
   });
   $('#edit-email-modal #btn-update-email').on('click', function () {
     if ($('#edit-email-modal input#edit_email_title').val() == undefined || $('#edit-email-modal input#edit_email_title').val() == '') {
-      alert('Please enter email title!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter email title!');
       $('#edit-email-modal input#edit_email_title').focus();
       return;
     }
@@ -461,10 +449,7 @@ $(document).ready(function () {
 
         $('#edit-email-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Email (' + response.email.title + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Email (' + response.email.title + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Clear modal inputs
@@ -473,16 +458,13 @@ $(document).ready(function () {
 
         $('#edit-email-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
   $('#settings-tab-skills #btn-save-main-skill-settings').on('click', function () {
     if ($('#settings-tab-skills input#main_skill_name').val() == undefined || $('#settings-tab-skills input#main_skill_name').val() == '') {
-      alert('Please enter group name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter group name!');
       $('#settings-tab-skills input#main_skill_name').focus();
       return;
     }
@@ -516,20 +498,14 @@ $(document).ready(function () {
 
         drawSkillsTable(response.skills); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('New group (' + response.skill.name + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'New group (' + response.skill.name + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Set focus to group name input
 
         $('#settings-tab-skills input#main_skill_name').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -539,7 +515,7 @@ $(document).ready(function () {
     var subSkillName = $('#settings-tab-skills input#sub_skill_name').val();
 
     if (subSkillName == undefined || subSkillName == '') {
-      alert('Please enter skill name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter skill name!');
       $('#settings-tab-skills input#sub_skill_name').focus();
       return;
     }
@@ -552,7 +528,7 @@ $(document).ready(function () {
     });
 
     if (!isGroupChecked) {
-      alert('Please choose group!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please choose group!');
       return;
     }
 
@@ -574,20 +550,14 @@ $(document).ready(function () {
         $('#settings-tab-skills input#sub_skill_name').val('');
         $('#settings-tab-skills input#sub_skill_name').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('New skill (' + response.skill.name + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'New skill (' + response.skill.name + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Set focus to sub skill name input
 
         $('#settings-tab-skills input#sub_skill_name').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -597,7 +567,7 @@ $(document).ready(function () {
     var skillName = $(rowObj).attr('data-main-name');
 
     if (skillId == 0 || skillId == null || skillId == '' || skillId == undefined) {
-      alert("No group to remove!");
+      showMessage('danger', 'Type: Input Error<br/>NOTE: No group to remove!');
       return;
     }
 
@@ -616,18 +586,12 @@ $(document).ready(function () {
 
         $('#settings-tab-skills .radio-group input#main_skill_' + skillId).closest('div').remove(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Group (' + skillName + ') was removed successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Group (' + skillName + ') was removed successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -637,7 +601,7 @@ $(document).ready(function () {
     var skillName = $(rowObj).attr('data-sub-name');
 
     if (skillId == 0 || skillId == null || skillId == '' || skillId == undefined) {
-      alert("No skill to remove!");
+      showMessage('danger', 'Type: Input Error<br/>NOTE: No skill to remove!');
       return;
     }
 
@@ -654,18 +618,12 @@ $(document).ready(function () {
 
         drawSkillsTable(response.skills); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Skill (' + skillName + ') was removed successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Skill (' + skillName + ') was removed successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -687,7 +645,7 @@ $(document).ready(function () {
     var mainSkillName = $('#edit-main-skill-modal input#edit_main_skill_name').val();
 
     if (mainSkillName == undefined || mainSkillName == '') {
-      alert('Please enter group name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter group name!');
       $('#edit-main-skill-modal input#edit_main_skill_name').focus();
       return;
     }
@@ -713,10 +671,7 @@ $(document).ready(function () {
 
         $('#edit-main-skill-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Group (' + response.skill.name + ') was updated successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Group (' + response.skill.name + ') was updated successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Clear modal inputs
@@ -725,10 +680,7 @@ $(document).ready(function () {
 
         $('#edit-main-skill-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -738,7 +690,7 @@ $(document).ready(function () {
     var skillPId = $(this).closest('tr').attr('data-main-id');
 
     if (skillId == undefined || skillId == null || skillId == '' || skillId == 0) {
-      alert("This is not skill!");
+      showMessage('danger', 'Type: Input Error<br/>NOTE: This is not skill!');
       return;
     } // Clear modal inputs
 
@@ -764,7 +716,7 @@ $(document).ready(function () {
   });
   $('#edit-sub-skill-modal #btn-update-sub-skill').on('click', function () {
     if ($('#edit-sub-skill-modal input#edit_sub_skill_name').val() == undefined || $('#edit-sub-skill-modal input#edit_sub_skill_name').val() == '') {
-      alert('Please enter sub skill name!');
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Please enter sub skill name!');
       $('#edit-sub-skill-modal input#edit_sub_skill_name').focus();
       return;
     }
@@ -792,10 +744,7 @@ $(document).ready(function () {
 
         $('#edit-sub-skill-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Sub Skill (' + response.skill.name + ') was updated successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Sub Skill (' + response.skill.name + ') was updated successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Clear modal inputs
@@ -804,10 +753,7 @@ $(document).ready(function () {
 
         $('#edit-sub-skill-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });

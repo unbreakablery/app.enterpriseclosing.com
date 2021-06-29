@@ -62,7 +62,7 @@ $(document).ready(function() {
                         .remove()
                         .draw();
                 } else {
-                    alert(data.message);
+                    showMessage('danger', data.message);
                 }
             }
         });

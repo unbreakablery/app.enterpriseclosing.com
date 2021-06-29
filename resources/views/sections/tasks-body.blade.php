@@ -1,64 +1,66 @@
 <form class="form-inline mt-4" action="{{ route('tasks.add') }}" method="POST" autocomplete="off" id="tasks-form">
     @csrf
     <h3 class="mb-0">Tasks To Complete</h3>
-    <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper">
-        <table class="table table-dark table-hover datatable w-100" id="task-table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col"><div class="task-table-header">Action + Step</div></th>
-                    <th scope="col"><div class="task-table-header">Person / Account</div></th>
-                    <th scope="col"><div class="task-table-header">Opportunity</div></th>
-                    <th scope="col"><div class="task-table-header">Note</div></th>
-                    <th scope="col"><div class="task-table-header">By</div></th>
-                    <th scope="col"><div class="task-table-header">Priority</div></th>
-                    <th scope="col" class="no-sort"><div class="task-table-header">Result</div></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($tasks as $task)
-                @php
-                    $class_name = '';
-                    $priority_name = '';
-                    
-                    if ($task['priority'] == '1') {
-                        $class_name = 'bg-danger text-white';
-                        $priority_name = 'High';
-                    } elseif ($task['priority'] == '2') {
-                        $class_name = 'bg-warning text-dark';
-                        $priority_name = 'Medium';
-                    } elseif ($task['priority'] == '3') {
-                        $class_name = 'bg-light text-dark';
-                        $priority_name = 'Normal';
-                    } else {
-                        $class_name = 'bg-light text-dark';
+    <div class="row col-lg-12 col-md-12 col-sm-12">
+        <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper">
+            <table class="table table-dark table-hover datatable w-100" id="task-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"><div class="task-table-header">Action + Step</div></th>
+                        <th scope="col"><div class="task-table-header">Person / Account</div></th>
+                        <th scope="col"><div class="task-table-header">Opportunity</div></th>
+                        <th scope="col"><div class="task-table-header">Note</div></th>
+                        <th scope="col"><div class="task-table-header">By</div></th>
+                        <th scope="col"><div class="task-table-header">Priority</div></th>
+                        <th scope="col" class="no-sort"><div class="task-table-header">Result</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tasks as $task)
+                    @php
+                        $class_name = '';
                         $priority_name = '';
-                    }
-                @endphp
-                <tr class="{{ $class_name }}">
-                    <td>{{ $task['action_name'] }} {{ $task['step_name'] }}</td>
-                    <td>{{ $task['person_account'] }}</td>
-                    <td>{{ $task['opportunity_name'] }}</td>
-                    <td>
-                        {{ $task['note'] }}
-                    </td>
-                    <td>
-                        @if (!empty($task['by_date']))
-                            {{ date("d-m-Y", strtotime($task['by_date'])) }}
-                        @endif
-                    </td>
-                    <td>
-                        {{ $priority_name }}
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-task-c-s btn-dark btn-skip" data-id="{{ $task['id'] }}">Skip</button>
-                        <button type="button" class="btn btn-sm btn-task-c-s btn-success btn-done" data-id="{{ $task['id'] }}">Done</button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        
+                        if ($task['priority'] == '1') {
+                            $class_name = 'bg-danger text-white';
+                            $priority_name = 'High';
+                        } elseif ($task['priority'] == '2') {
+                            $class_name = 'bg-warning text-dark';
+                            $priority_name = 'Medium';
+                        } elseif ($task['priority'] == '3') {
+                            $class_name = 'bg-light text-dark';
+                            $priority_name = 'Normal';
+                        } else {
+                            $class_name = 'bg-light text-dark';
+                            $priority_name = '';
+                        }
+                    @endphp
+                    <tr class="{{ $class_name }}">
+                        <td>{{ $task['action_name'] }} {{ $task['step_name'] }}</td>
+                        <td>{{ $task['person_account'] }}</td>
+                        <td>{{ $task['opportunity_name'] }}</td>
+                        <td>
+                            {{ $task['note'] }}
+                        </td>
+                        <td>
+                            @if (!empty($task['by_date']))
+                                {{ date("d-m-Y", strtotime($task['by_date'])) }}
+                            @endif
+                        </td>
+                        <td>
+                            {{ $priority_name }}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-task-c-s btn-dark btn-skip" data-id="{{ $task['id'] }}">Skip</button>
+                            <button type="button" class="btn btn-sm btn-task-c-s btn-success btn-done" data-id="{{ $task['id'] }}">Done</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    
     <h3 id="action-label" data-toggle="tooltip" data-placement="right" title="Required field!">Action</h3>
     <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
         @foreach ($settings as $setting)
@@ -168,7 +170,7 @@
         <div class="col-2 pl-0 pr-3" id="ts-3">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                <button type="button" class="btn btn-app-default n-b-r text-uppercase w-100" id="btn-create-task">
+                <button type="button" class="btn btn-grad n-b-r text-uppercase w-100" id="btn-create-task">
                     Create Task
                 </button>
                 </div>
@@ -280,7 +282,7 @@
                         @foreach ($suggest_steps as $idx => $suggest_step)
                         <div class="form-row pt-1 pb-1 additional-task-item-{{ $idx }}">
                             <div class="col">
-                                <select name="suggest-action-{{ $idx }}" id="suggest-action-{{ $idx }}" class="form-control">
+                                <select name="suggest-action-{{ $idx }}" id="suggest-action-{{ $idx }}" class="form-control n-b-r">
                                     @foreach ($suggest_actions as $suggest_action)
                                         <option value="{{ $suggest_action->id }}" @if(old('saved_action') == $suggest_action->id) selected @endif>{{ $suggest_action->name }}</option>
                                     @endforeach
@@ -288,33 +290,33 @@
                             </div>
                             <div class="col">
                                 <input type="hidden" value="{{ $suggest_step->id }}" id="suggest-step-{{ $idx }}" name="suggest-step-{{ $idx }}"/>
-                                <input type="text" class="form-control" value="{{ $suggest_step->name }}" id="suggest-step-name-{{ $idx }}" name="suggest-step-name-{{ $idx }}" readonly />
+                                <input type="text" class="form-control n-b-r" value="{{ $suggest_step->name }}" id="suggest-step-name-{{ $idx }}" name="suggest-step-name-{{ $idx }}" readonly />
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" value="{{ old('saved_person_account') }}" id="suggest-person-account-{{ $idx }}" name="suggest-person-account-{{ $idx }}" readonly placeholder="Person/Account..."/>
+                                <input type="text" class="form-control n-b-r" value="{{ old('saved_person_account') }}" id="suggest-person-account-{{ $idx }}" name="suggest-person-account-{{ $idx }}" readonly placeholder="Person/Account..."/>
                             </div>
                             <div class="col">
-                                <select class="form-control" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
+                                <select class="form-control n-b-r" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
                                     @foreach ($opportunities as $opp)
                                         <option value="{{ $opp->id }}" @if (old('saved_opportunity') == $opp->id){{ 'selected' }}@else{{ 'disabled' }}@endif>{{ $opp->opportunity }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" id="suggest-note-{{ $idx }}" name="suggest-note-{{ $idx }}" placeholder="Note..." />
+                                <input type="text" class="form-control n-b-r" id="suggest-note-{{ $idx }}" name="suggest-note-{{ $idx }}" placeholder="Note..." />
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control date" value="{{ old('saved_by_date') }}" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
+                                <input type="text" class="form-control date n-b-r" value="{{ old('saved_by_date') }}" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
                             </div>
                             <div class="col">
-                                <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="form-control">
+                                <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="form-control n-b-r">
                                     <option value="1">High</option>
                                     <option value="2">Medium</option>
                                     <option value="3">Normal</option>
                                 </select>
                             </div>
                             <div class="btn-suggest-save-wrapper">
-                                <button type="button" class="btn btn-success btn-suggest-save" data-id="{{ $idx }}">Save</button>			
+                                <button type="button" class="btn btn-success btn-suggest-save n-b-r" data-id="{{ $idx }}">Save</button>			
                             </div>
                         </div>
                         @endforeach
@@ -326,7 +328,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">That's All For Now</button>
+                <button type="button" class="btn btn-success n-b-r" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>
     </div>

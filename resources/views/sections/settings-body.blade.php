@@ -141,7 +141,7 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="form-group">
-                <button type="submit" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
+                <button type="submit" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
                     Save Settings
                 </button>
             </div>
@@ -346,7 +346,7 @@
                     </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-settings">
+                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-settings">
                             Save Settings
                     </button>
                 </div>
@@ -360,7 +360,7 @@
             <form id="form_outbound_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
                 @csrf    
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-outbound-settings">
+                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-outbound-settings">
                             Save Settings
                     </button>
                 </div>
@@ -374,7 +374,7 @@
             <form id="form_opportunities_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
                 @csrf
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-dark col-20 col-sm-3 n-b-r" id="btn-save-opportunities-settings">
+                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-opportunities-settings">
                             Save Settings
                     </button>
                 </div>
@@ -413,7 +413,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
+                            <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
                                 Save Script
                             </button>
                         </div>
@@ -448,7 +448,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center bg-light pt-3" colspan="3">No Scripts</td>
+                                        <td class="text-center bg-light" colspan="3">No Scripts</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -503,7 +503,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
+                            <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
                                 Save Email
                             </button>
                         </div>
@@ -540,7 +540,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center bg-light pt-3" colspan="4">No Emails</td>
+                                        <td class="text-center bg-light" colspan="4">No Emails</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -581,7 +581,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
                                             Save Group
                                         </button>
                                     </div>
@@ -634,7 +634,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
                                             Save Skill
                                         </button>
                                     </div>
@@ -692,7 +692,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-dark n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
+                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
                                             Save Month
                                         </button>
                                     </div>
@@ -745,7 +745,7 @@
                                             @endforeach
                                         @else
                                             <tr id="no-data-row">
-                                                <td class="text-center bg-light pt-3 pb-3" colspan="3">No Skills</td>
+                                                <td class="text-center bg-light" colspan="3">No Skills</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -755,21 +755,6 @@
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-<!-- Message box -->
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-        <div class="toast-header bg-success text-white">
-            <strong class="mr-auto">Message</strong>
-            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body bg-white text-secondary">
-            Hello, world! This is a toast message.
         </div>
     </div>
 </div>

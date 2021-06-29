@@ -51,6 +51,85 @@ body {
     color: #fff;
 }
 
+.btn-grad {
+    background-image: linear-gradient(to right, #3500D3 0%, #240090  51%, #190061  100%);
+    // margin: 10px;
+    // padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 15px #eee;
+    border-radius: 2px;
+    display: block;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-login {
+    background-image: linear-gradient(to right, #3500D3 0%, #240090  51%, #190061  100%);
+    // margin: 10px;
+    padding: 10px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 15px #eee;
+    border-radius: 2px;
+    // display: block;
+}
+
+.btn-login:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-modal-close {
+    background-color: #181818;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.btn-modal-close:hover {
+    background-color: #5c6370;
+    color: #fff;
+}
+
+.p-special-1 {
+    padding-left: calc(15px + 0.25rem);
+    padding-right: calc(15px + 0.25rem);
+}
+
+/*
+* Modal
+*/
+.modal-backdrop.show {
+    opacity: 0.75;
+}
+.modal-content {
+    background-color: #000;
+    border: solid 1px #fff;
+    color: #fff;
+    border-radius: 0;
+}
+.modal-header {
+    color: #fff;
+    .close {
+        color: #fff;
+    }
+}
+.modal-body {
+    color: #fff;
+}
+
 .main-container,
 .container-login {
     margin: -1.5rem 0;
@@ -177,6 +256,10 @@ body {
     border-color: transparent;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #6c757d;
+}
 
 /*
 * task sections
@@ -371,6 +454,41 @@ table.dataTable thead {
 }
 
 /*
+* default input, select, textarea
+*/
+input[type=text],
+input[type=number],
+input[type=password],
+input[type=file],
+input[type=email],
+select,
+select.form-control,
+textarea,
+textarea.form-control,
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #000;
+    border: solid 1px #fff;
+    color: #fff;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=file]:focus,
+input[type=email]:focus,
+select:focus,
+select.form-control:focus,
+textarea:focus,
+textarea.form-control:focus,
+.form-control[readonly]:focus {
+    background-color: #000;
+    color: #fff;
+}
+
+/*
 * radio button
 */
 input[type='radio'] {
@@ -496,7 +614,8 @@ input[type='checkbox'] {
         }
     }
 }
-#outboundTabsContent .action-group .btn-app-default {
+#outboundTabsContent .action-group .btn-app-default,
+#outboundTabsContent .action-group .btn-grad {
     padding: 0 0.5rem;
     height: 29px;
 }
@@ -514,6 +633,8 @@ input[type='checkbox'] {
 }
 .assessments-table-wrapper {
     border: solid 1px #fff;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
 }
 #upload-file-modal input[type=file].form-control {
     padding: 0.2rem;
@@ -563,6 +684,15 @@ table#assessments-table {
     }
     span.input-group-text {
         height: 1.5rem;
+    }
+}
+
+.assessments-table-wrapper table#assessments-table {
+    input {
+        border: 0;
+    }
+    .input-group-text {
+        border: 0;
     }
 }
 a.a-btn-remove-account {

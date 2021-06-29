@@ -10,8 +10,13 @@
     <title>Enterprise Closing | Close More Deals, Faster</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@900&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,900;1,700&display=swap" rel="stylesheet"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
@@ -62,11 +67,11 @@
                                     {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('settings') }}">
+                                <div class="dropdown-menu dropdown-menu-right bg-black border-white n-b-r" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-white" href="{{ route('settings') }}">
                                         {{ __('Settings') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -87,6 +92,21 @@
         <main class="py-4">
             @yield('content')
         </main>
+        
+        <!-- Message box -->
+        <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
+            <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+                <div class="toast-header bg-success text-white">
+                    <strong class="mr-auto">Message</strong>
+                    <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-white text-secondary">
+                    Hello, world! This is a toast message.
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Scripts -->
@@ -110,8 +130,6 @@
     <script src="{{ asset('js/date-eu.js') }}"></script>
     
     <script>
-
-        // $.noConflict();
         function loader($mode) {
             var $lpageLoader = $('#page-loader');
             var $lBody = $('body');
@@ -129,7 +147,26 @@
             }
 
             return false;
-        };
+        }
+        function showMessage(type, message) {
+            var rClass = '';
+            var aClass = '';
+            if (type == 'success') {
+                rClass = 'bg-warning bg-danger';
+                aClass = 'bg-success';
+            } else if (type == 'warning') {
+                rClass = 'bg-success bg-danger';
+                aClass = 'bg-warning';
+            } else if (type == 'danger') {
+                rClass = 'bg-success bg-warning';
+                aClass = 'bg-danger';
+            }
+
+            $('.toast .toast-header').removeClass(rClass);
+            $('.toast .toast-header').addClass(aClass);
+            $('.toast .toast-body').html(message);
+            $('.toast').toast('show');
+        }
         $(document).ready(function() {
             $.noConflict();
             loader('hide');
