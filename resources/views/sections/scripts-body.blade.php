@@ -36,18 +36,3 @@
         </div>
     </div>
 </div>
-
-<!-- Message box -->
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-        <div class="toast-header bg-success text-white">
-            <strong class="mr-auto">Message</strong>
-            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body bg-white text-secondary">
-            Hello, world! This is a toast message.
-        </div>
-    </div>
-</div>

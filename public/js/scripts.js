@@ -23,20 +23,14 @@ $(document).ready(function () {
       success: function success(response) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Script (' + response.script.name + ') was updated successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Script (' + response.script.name + ') was updated successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Set focus to content textarea
 
         $(tabObj).find('textarea[name=script_content]').focus(); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
