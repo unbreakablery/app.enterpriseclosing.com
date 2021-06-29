@@ -10471,6 +10471,37 @@ textarea.form-control:focus,
   color: #fff;
 }
 
+::-moz-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff !important;
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff !important;
+  opacity: 1;
+  /* Firefox */
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff !important;
+  opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #fff !important;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #fff !important;
+}
+
 /*
 * radio button
 */
@@ -10619,6 +10650,16 @@ input[type=checkbox] {
   max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
+.assessments-table-wrapper table#assessments-table input {
+  border: 0;
+}
+.assessments-table-wrapper table#assessments-table .input-group-text {
+  border: 0;
+}
+
+.persons-table-wrapper table#persons-table input, .persons-table-wrapper table#persons-table select {
+  border: 0;
+}
 
 #upload-file-modal input[type=file].form-control {
   padding: 0.2rem;
@@ -10666,7 +10707,8 @@ table#assessments-table .btn.btn-counter {
   height: 1.5rem;
   padding: 0 0.25rem;
   margin: 0;
-  background-color: #fff;
+  background-color: #000;
+  color: #fff;
   border-radius: 0;
   border: 0;
 }
@@ -10708,13 +10750,6 @@ table#emails-table span.input-group-text,
 table#skills-table span.input-group-text,
 table#assessments-table span.input-group-text {
   height: 1.5rem;
-}
-
-.assessments-table-wrapper table#assessments-table input {
-  border: 0;
-}
-.assessments-table-wrapper table#assessments-table .input-group-text {
-  border: 0;
 }
 
 a.a-btn-remove-account {
@@ -10826,4 +10861,54 @@ a.a-btn-remove-account {
     max-width: 13%;
     min-width: 200px;
   }
+}
+/*
+* bootstrap-select
+*/
+.dropdown.bootstrap-select button.dropdown-toggle {
+  height: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+  border: solid 1px #fff;
+}
+
+.dropdown.bootstrap-select button.dropdown-toggle:focus {
+  height: 1.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+  border: solid 1px #fff;
+  outline: none !important;
+}
+
+table .dropdown.bootstrap-select button.dropdown-toggle,
+table .dropdown.bootstrap-select button.dropdown-toggle:focus {
+  border: none !important;
+}
+
+.dropdown.bootstrap-select .dropdown-menu {
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+.dropdown.bootstrap-select > .dropdown-menu {
+  border: solid 1px #fff;
+}
+
+.bootstrap-select .dropdown-menu li a {
+  color: #fff;
+}
+
+.w-65-px {
+  width: 65px !important;
+}
+
+.w-102-px {
+  width: 102px !important;
 }

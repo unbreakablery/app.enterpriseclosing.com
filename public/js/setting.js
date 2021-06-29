@@ -83,7 +83,7 @@ $(document).ready(function () {
     $(tbody).find('tr').remove();
 
     if (skills.length == 0) {
-      var newRow = '<tr><td class="text-center bg-light" colspan="3">No Skills</td></tr>';
+      var newRow = '<tr><td class="text-center text-white" colspan="3">No Skills</td></tr>';
       $(tbody).append(newRow);
       return true;
     } // Add rows
@@ -94,12 +94,12 @@ $(document).ready(function () {
         var newRow = '<tr data-main-id="' + skill.id + '" data-main-name="' + skill.name + '" data-sub-id="' + sub_skill_id + '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
 
         if (idx == 0) {
-          newRow += '<td class="text-center bg-light pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<span class="skill-name">' + skill.name + '</span>' + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">' + '<i class="bi bi-x"></i>' + '</button>';
+          newRow += '<td class="text-left text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<span class="skill-name">' + skill.name + '</span>' + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">' + '<i class="bi bi-x"></i>' + '</button>';
           newRow += '</td>';
         }
 
-        newRow += '<td class="bg-light pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
-        newRow += '<td class="bg-light text-center align-middle">';
+        newRow += '<td class="text-white pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
+        newRow += '<td class="text-white text-center align-middle">';
 
         if (sub_skill_id != undefined && sub_skill_id != null && sub_skill_id != '' && sub_skill_id != 0) {
           newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
@@ -168,9 +168,9 @@ $(document).ready(function () {
 
         var innerHtml = '';
         innerHtml += '<tr data-id="' + response.script.id + '">';
-        innerHtml += '<td class="bg-light pl-2 pr-2">' + response.script.name + '</td>';
-        innerHtml += '<td class="bg-light pl-2 pr-2">' + response.script.content + '</td>';
-        innerHtml += '<td class="bg-light text-center">';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.name + '</td>';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.content + '</td>';
+        innerHtml += '<td class="text-white text-center">';
         innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">';
         innerHtml += '<i class="bi bi-pencil-fill"></i>';
         innerHtml += '</button>';
@@ -231,24 +231,18 @@ $(document).ready(function () {
 
         if ($('table#scripts-table tbody > tr').length == 0) {
           var innerHtml = '<tr id="no-data-row">';
-          innerHtml += '<td class="text-center bg-light" colspan="3">No Scripts</td>';
+          innerHtml += '<td class="text-center text-white" colspan="3">No Scripts</td>';
           innerHtml += '</tr>';
           $('table#scripts-table tbody').append(innerHtml);
         } // Show message
 
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Script (' + scriptName + ') was removed successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Script (' + scriptName + ') was removed successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -282,10 +276,7 @@ $(document).ready(function () {
 
         $('#edit-script-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Script (' + response.script.name + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Script (' + response.script.name + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Clear modal inputs
@@ -294,10 +285,7 @@ $(document).ready(function () {
 
         $('#edit-script-modal').modal('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -329,10 +317,10 @@ $(document).ready(function () {
 
         var innerHtml = '';
         innerHtml += '<tr data-id="' + response.email.id + '">';
-        innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.title + '</td>';
-        innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.subject + '</td>';
-        innerHtml += '<td class="bg-light pl-2 pr-2">' + response.email.body + '</td>';
-        innerHtml += '<td class="bg-light text-center">';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.title + '</td>';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.subject + '</td>';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.body + '</td>';
+        innerHtml += '<td class="text-white text-center">';
         innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">';
         innerHtml += '<i class="bi bi-pencil-fill"></i>';
         innerHtml += '</button>';
@@ -396,24 +384,18 @@ $(document).ready(function () {
 
         if ($('table#emails-table tbody > tr').length == 0) {
           var innerHtml = '<tr id="no-data-row">';
-          innerHtml += '<td class="text-center bg-light" colspan="4">No Emails</td>';
+          innerHtml += '<td class="text-center text-white" colspan="4">No Emails</td>';
           innerHtml += '</tr>';
           $('table#emails-table tbody').append(innerHtml);
         } // Show message
 
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Email (' + emailTitle + ') was removed successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Email (' + emailTitle + ') was removed successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -773,18 +755,12 @@ $(document).ready(function () {
       success: function success(response) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Start At (' + response.month + ' ' + response.year + ') was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Start At (' + response.month + ' ' + response.year + ') was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });
@@ -809,18 +785,12 @@ $(document).ready(function () {
       success: function success(response) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-danger');
-        $('.toast .toast-header').addClass('bg-success');
-        $('.toast .toast-body').text('Auto Create Monthly Skill Assessment Task Setting was saved successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Auto Create Monthly Skill Assessment Task Setting was saved successfully!');
       },
       error: function error(XMLHttpRequest, textStatus, errorThrown) {
         loader('hide'); // Show message
 
-        $('.toast .toast-header').removeClass('bg-success');
-        $('.toast .toast-header').addClass('bg-danger');
-        $('.toast .toast-body').text('Error, Please retry!');
-        $('.toast').toast('show');
+        showMessage('danger', 'Error, Please retry!');
       }
     });
   });

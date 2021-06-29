@@ -139,6 +139,7 @@ $(document).ready(function() {
         $(pTable).find('tbody').append($('#tr-component-empty tbody').html());
         let trObj = $(pTable).find('tbody tr').last();
         trObj[0].scrollIntoView(true);
+        $(trObj[0]).find('select').selectpicker({noneSelectedText: '', container: 'body'});
     });
     $(document).on('change', '.tab-component .main-info input[type=text], .tab-component .main-info textarea', function() {
         let tabComponent = $(this).closest('.tab-component');

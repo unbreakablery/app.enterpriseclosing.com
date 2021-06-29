@@ -49,10 +49,10 @@
         </div>
     </div>
     
-    <div class="table-responsive table-wrapper mt-4">
+    <div class="table-responsive table-wrapper mt-4 p-special-1">
         <div class="persons-table-wrapper">
-            <table class="table table-hover w-100 mb-0" id="persons-table">
-                <thead class="thead-dark table-bordered">
+            <table class="table table-bordered table-hover w-100 mb-0" id="persons-table">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="text-left no-sort" width="95">First Name</th>
                         <th scope="col" class="text-left no-sort" width="95">Last Name</th>
@@ -75,7 +75,7 @@
                         @endforeach
                     @else
                         <tr id="no-data-row">
-                            <td class="text-center bg-light" colspan="12">No Contact Info</td>
+                            <td class="text-center text-white" colspan="12">No Contact Info</td>
                         </tr>
                     @endif
                 </tbody>

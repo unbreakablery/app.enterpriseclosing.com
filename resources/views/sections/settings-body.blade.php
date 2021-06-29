@@ -119,7 +119,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
                 <label for="region">Region</label>
-                <select id="region" name="region" class="form-control n-b-r">
+                <select id="region" name="region" class="form-control selectpicker bg-black p-0 n-b-r">
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
                     <option value="North America" @if (old('region', $user->region) == 'North America'){{ 'selected' }}@endif>North America</option>
@@ -252,11 +252,6 @@
             <form id="form_setting" class="form-inline mt-4" action="{{ route('settings.store.tasks')}}" method='post' autocomplete="off">
                 @csrf
                 <h3>Action</h3>
-                <div class="form-check col-20">
-                    <a href="javascript:void(0)" id="check-all-actions" class="select-all ml-2 mr-2">Check All</a>
-                    <span class="select-all-slash">/</span>
-                    <a href="javascript:void(0)" id="uncheck-all-actions" class="select-all ml-2">Uncheck All</a>
-                </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
                     @foreach ($actions as $action)
                     <div class="form-check col-2">
@@ -272,14 +267,16 @@
                         </label>
                     </div>
                     @endforeach
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                        <div class="form-check col-2 pl-1">
+                            <a href="javascript:void(0)" id="check-all-actions" class="select-all mr-2">Check All</a>
+                            <span class="select-all-slash">/</span>
+                            <a href="javascript:void(0)" id="uncheck-all-actions" class="select-all ml-2">Uncheck All</a>
+                        </div>
+                    </div>
                 </div>
-                
+                                
                 <h3>Step</h3>
-                <div class="form-check col-20">
-                    <a href="javascript:void(0)" id="check-all-steps" class="select-all ml-2 mr-2">Check All</a>
-                    <span class="select-all-slash">/</span>
-                    <a href="javascript:void(0)" id="uncheck-all-steps" class="select-all ml-2">Uncheck All</a>
-                </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
                     @foreach ($steps as $step)
                     <div class="form-check col-2">
@@ -295,6 +292,13 @@
                         </label>
                     </div>
                     @endforeach
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                        <div class="form-check col-20 pl-1">
+                            <a href="javascript:void(0)" id="check-all-steps" class="select-all mr-2">Check All</a>
+                            <span class="select-all-slash">/</span>
+                            <a href="javascript:void(0)" id="uncheck-all-steps" class="select-all ml-2">Uncheck All</a>
+                        </div>
+                    </div>
                 </div>
 
                 <h3>Sub Step</h3>
@@ -435,9 +439,9 @@
                                 @if (isset($scriptSetting) && count($scriptSetting) > 0)
                                     @foreach ($scriptSetting as $script)
                                     <tr data-id="{{ $script->id }}">
-                                        <td class="bg-light pl-2 pr-2">{{ $script->name }}</td>
-                                        <td class="bg-light pl-2 pr-2">{{ $script->content }}</td>
-                                        <td class="bg-light text-center">
+                                        <td class="text-white pl-2 pr-2">{{ $script->name }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $script->content }}</td>
+                                        <td class="text-white text-center">
                                             <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
@@ -448,7 +452,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center bg-light" colspan="3">No Scripts</td>
+                                        <td class="text-center text-white" colspan="3">No Scripts</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -526,10 +530,10 @@
                                 @if (isset($emailSetting) && count($emailSetting) > 0)
                                     @foreach ($emailSetting as $email)
                                     <tr data-id="{{ $email->id }}">
-                                        <td class="bg-light pl-2 pr-2">{{ $email->title }}</td>
-                                        <td class="bg-light pl-2 pr-2">{{ $email->subject }}</td>
-                                        <td class="bg-light pl-2 pr-2">{{ $email->body }}</td>
-                                        <td class="text-center bg-light">
+                                        <td class="text-white pl-2 pr-2">{{ $email->title }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $email->subject }}</td>
+                                        <td class="text-white pl-2 pr-2">{{ $email->body }}</td>
+                                        <td class="text-center text-white">
                                             <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
@@ -540,7 +544,7 @@
                                     @endforeach
                                 @else
                                     <tr id="no-data-row">
-                                        <td class="text-center bg-light" colspan="4">No Emails</td>
+                                        <td class="text-center text-white" colspan="4">No Emails</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -721,7 +725,7 @@
                                                     data-sub-id="{{ $sub_skill_id }}" 
                                                     data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
                                                     @if ($idx == 0)
-                                                    <td class="bg-light pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                    <td class="text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <span class="skill-name">{{ $skill->name }}</span>
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
                                                             <i class="bi bi-pencil-fill"></i>
@@ -730,8 +734,8 @@
                                                         </button>
                                                     </td>
                                                     @endif
-                                                    <td class="bg-light pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
-                                                    <td class="bg-light text-center align-middle">
+                                                    <td class="text-white pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
+                                                    <td class="text-white text-center align-middle">
                                                         @if (!empty($sub_skill_id))
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
                                                             <i class="bi bi-pencil-fill"></i>
@@ -745,7 +749,7 @@
                                             @endforeach
                                         @else
                                             <tr id="no-data-row">
-                                                <td class="text-center bg-light" colspan="3">No Skills</td>
+                                                <td class="text-center text-white" colspan="3">No Skills</td>
                                             </tr>
                                         @endif
                                     </tbody>
@@ -797,8 +801,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-update-script">Update</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-update-script">Update</button>
             </div>
         </div>
     </div>
@@ -854,8 +858,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-update-email">Update</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-update-email">Update</button>
             </div>
         </div>
     </div>
@@ -890,8 +894,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-update-main-skill">Update</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-update-main-skill">Update</button>
             </div>
         </div>
     </div>
@@ -935,8 +939,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-update-sub-skill">Update</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-update-sub-skill">Update</button>
             </div>
         </div>
     </div>
