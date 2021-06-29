@@ -642,15 +642,15 @@ if (!function_exists('getAssessmentClass')) {
     function getAssessmentClass($assessment) {
         $aClass = '';
         if ($assessment == 0) {
-            $aClass = 'bg-light';
+            $aClass = 'bg-black text-white';
         } elseif ($assessment > 0 && $assessment < 10) {
             $aClass = 'bg-info text-white';
         } elseif ($assessment >=10 && $assessment < 50) {
             $aClass = 'bg-danger text-white';
         } elseif ($assessment >=50 && $assessment < 70) {
-            $aClass = 'bg-yellow-dark';
+            $aClass = 'bg-yellow-dark text-white';
         } elseif ($assessment >=70 && $assessment < 90) {
-            $aClass = 'bg-yellow';
+            $aClass = 'bg-yellow text-black';
         } else {
             $aClass = 'bg-success text-white';
         }

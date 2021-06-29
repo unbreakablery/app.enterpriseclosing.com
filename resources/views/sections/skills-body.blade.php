@@ -4,8 +4,8 @@
     </div>
 
     <div class="d-flex justify-content-left">
-        <div class="col-{{ 3 + count($dates) }} table-wrapper mt-2 mb-4 pr-4">
-            <div class="assessments-table-wrapper table-responsive" style="height: calc(100vh - 200px); overflow-y: auto;">
+        <div class="col-{{ 3 + count($dates) }} table-wrapper mt-2 mb-4 pl-0 pr-4">
+            <div class="assessments-table-wrapper table-responsive">
                 <table class="table table-hover table-bordered w-100 mb-0" id="assessments-table">
                     <thead class="thead-dark">
                         <tr>
@@ -19,19 +19,19 @@
                     @if (isset($groups) && count($groups) > 0)
                         @foreach ($groups as $g)
                             <tr>
-                                <td class="bg-light text-black font-weight-bolder pl-2 pr-2">
+                                <td class="text-white font-weight-bolder pl-2 pr-2">
                                     {{ $g->name }}
                                 </td>
-                                <td class="bg-light" colspan="{{ count($dates) }}">&nbsp;</td>
+                                <td colspan="{{ count($dates) }}">&nbsp;</td>
                             </tr>
                             @foreach ($assessments as $a)
                                 @if ($a->parent_skill_id == $g->id)
                                     <tr>
-                                        <td class="bg-light pl-2 pr-2">
+                                        <td class="text-white pl-2 pr-2">
                                             {{ $a->skill_name }}
                                         </td>
                                         @foreach ($dates as $d)
-                                        <td class="text-right text-dark bg-light align-middle"
+                                        <td class="text-right text-white align-middle"
                                             data-parent-skill-id="{{ $a->parent_skill_id }}"
                                             data-skill-id="{{ $a->skill_id }}"
                                             data-date="{{ $d }}">
@@ -46,7 +46,7 @@
                                                     min="0"
                                                     max="100"/>
                                                 <div class="input-group-append">
-                                                    <span class="input-group-text n-b-r bg-light" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
+                                                    <span class="input-group-text n-b-r {{ getAssessmentClass($a->assessments[$d]) }}" id="assessment_{{ $a->skill_id }}_{{ $d }}">%</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -55,11 +55,11 @@
                                 @endif
                             @endforeach
                             <tr>
-                                <td class="bg-light text-black font-weight-bolder pl-2 pr-2">
+                                <td class="text-white font-weight-bolder pl-2 pr-2">
                                     {{ $g->name . ' Performance' }}
                                 </td>
                                 @foreach ($dates as $d)
-                                <td class="text-right text-dark bg-light align-middle"
+                                <td class="text-right text-white align-middle"
                                     data-parent-skill-id=""
                                     data-skill-id="{{ $g->id }}"
                                     data-date="{{ $d }}">
@@ -73,18 +73,18 @@
                                             value="{{ round($g->assessments[$d]) }}"
                                             readonly/>
                                         <div class="input-group-append">
-                                            <span class="input-group-text n-b-r bg-light" id="assessment_{{ $g->id }}_{{ $d }}">%</span>
+                                            <span class="input-group-text n-b-r {{ getAssessmentClass($g->assessments[$d]) }}" id="assessment_{{ $g->id }}_{{ $d }}">%</span>
                                         </div>
                                     </div>
                                 </td>
                                 @endforeach
                             </tr>
                             <tr>
-                                <td class="bg-light" colspan="{{ count($dates) + 1 }}">&nbsp;</td>
+                                <td colspan="{{ count($dates) + 1 }}">&nbsp;</td>
                             </tr>
                         @endforeach
                         <tr>
-                            <td class="bg-light text-black font-weight-bolder pl-2 pr-2">Total Performance</td>
+                            <td class="text-white font-weight-bolder pl-2 pr-2">Total Performance</td>
                             @foreach ($dates as $d)
                                 @php
                                     $sum = 0;
@@ -99,7 +99,7 @@
                                 @php
                                     $avg = ($cnt == 0) ? 0 : round($sum / $cnt);
                                 @endphp
-                                <td class="text-right text-dark bg-light align-middle"
+                                <td class="text-right text-white align-middle"
                                     data-date="{{ $d }}">
                                     <div class="input-group">
                                         <input type="number"
@@ -111,7 +111,7 @@
                                             value="{{ $avg }}"
                                             readonly/>
                                         <div class="input-group-append">
-                                            <span class="input-group-text n-b-r bg-light" id="assessment_total_avgerage__{{ $d }}">%</span>
+                                            <span class="input-group-text n-b-r {{ getAssessmentClass($avg) }}" id="assessment_total_avgerage__{{ $d }}">%</span>
                                         </div>
                                     </div>
                                 </td>
@@ -119,27 +119,12 @@
                         </tr>
                     @else
                         <tr id="no-data-row">
-                            <td class="text-center text-white pt-3 pb-3" colspan="{{ count($dates) + 1 }}">No Skills For Assessment</td>
+                            <td class="text-center text-white" colspan="{{ count($dates) + 1 }}">No Skills For Assessment</td>
                         </tr>
                     @endif
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Message box -->
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-        <div class="toast-header bg-success text-white">
-            <strong class="mr-auto">Message</strong>
-            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body bg-white text-secondary">
-            Hello, world! This is a toast message.
         </div>
     </div>
 </div>
