@@ -28,7 +28,7 @@ $(document).ready(function() {
         
         // Check if account name is empty
         if (tabName === '') {
-            alert("You must enter new account name to create new tab.");
+            showMessage('danger', "Type: Input Error<br/>NOTE: You must enter new account name.");
             return;
         }
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -121,12 +121,12 @@ $(document).ready(function() {
                 loader('hide');
                 $('#add-task-modal').modal('hide');
                 
-                $('.toast .toast-body').text('New task (ID: ' + res.taskID + ') was added successfully!');
-                $('.toast').toast('show');
+                // Show meassge
+                showMessage('success', 'New task (ID: ' + res.taskID + ') was added successfully!');
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -172,7 +172,7 @@ $(document).ready(function() {
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -185,7 +185,7 @@ $(document).ready(function() {
         let id = $(rowObj).data('id');
         
         if (oId == 0) {
-            alert("Outbound didn't create yet!");
+            showMessage('danger', "Type: Input Error<br/>NOTE: Outbound didn't create yet!");
             return;
         }
         
@@ -245,7 +245,7 @@ $(document).ready(function() {
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -277,7 +277,7 @@ $(document).ready(function() {
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -287,7 +287,7 @@ $(document).ready(function() {
         let accountName = $(tabComponent).find('input[name=account-name]').val();
 
         if (id == 0) {
-            alert("Not saved this account!");
+            showMessage('danger', 'Type: Input Error<br/>NOTE: Not saved this account!');
             return;
         }
 
@@ -313,12 +313,11 @@ $(document).ready(function() {
 
                 loader('hide');
 
-                $('.toast .toast-body').text('Account (' + accountName + ') was removed successfully!');
-                $('.toast').toast('show');
+                showMessage('success', 'Account (' + accountName + ') was removed successfully!');
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });
@@ -326,7 +325,7 @@ $(document).ready(function() {
         let id = $(this).closest('.tab-component').find('input[name=o-id]').val();
 
         if (id == 0 || id == '' || id == undefined) {
-            alert("You can't download these persons data now!");
+            showMessage('danger', "Type: Output Error<br/>NOTE: You can't download these persons data now!");
             return;
         }
         let url = '/outbound/download/' + id;
@@ -339,7 +338,7 @@ $(document).ready(function() {
         let file_data = $('#upload-file-modal input[name=upload-file]').prop('files')[0];
         
         if (file_data == undefined) {
-            alert("Please choose a upload csv file!");
+            showMessage('danger', 'Type: Input Error<br />NOTE: Please choose a upload csv file!');
             return;
         }
 
@@ -389,12 +388,11 @@ $(document).ready(function() {
 
                 loader('hide');
 
-                $('.toast .toast-body').text('File was uploaded successfully!');
-                $('.toast').toast('show');
+                showMessage('success', 'File was uploaded successfully!');
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', status);
             }
         });
     });

@@ -1,5 +1,5 @@
 <tr data-id="@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif">
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="first-name"
@@ -7,7 +7,7 @@
                 value="@if (isset($person)){{ $person->first_name }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="last-name"
@@ -15,7 +15,7 @@
                 value="@if (isset($person)){{ $person->last_name }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="title"
@@ -23,7 +23,7 @@
                 value="@if (isset($person)){{ $person->title }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="phone"
@@ -31,7 +31,7 @@
                 value="@if (isset($person)){{ $person->phone }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="mobile"
@@ -39,7 +39,7 @@
                 value="@if (isset($person)){{ $person->mobile }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="email"
@@ -47,7 +47,7 @@
                 value="@if (isset($person)){{ $person->email }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <div class="input-group">
             <div class="input-group-prepend">
                 <button class="btn btn-counter btn-counter-decrease" type="button">-</button>
@@ -64,7 +64,7 @@
             </div>
         </div>
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <select name="result" class="form-control w-100">
             <option value=""></option>
             <option value="Do Not Call" @if (isset($person) && $person->result == 'Do Not Call'){{ 'selected' }}@endif>Do Not Call</option>
@@ -77,14 +77,14 @@
             <option value="Demo Booked" @if (isset($person) && $person->result == 'Demo Booked'){{ 'selected' }}@endif>Demo Booked</option>
         </select>
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <select name="linkedin-connected" class="form-control w-100">
             <option value="Not Sent" @if (isset($person) && $person->li_connected == 'Not Sent'){{ 'selected' }}@endif>Not Sent</option>
             <option value="Sent" @if (isset($person) && $person->li_connected == 'Sent'){{ 'selected' }}@endif>Sent</option>
             <option value="Connected" @if (isset($person) && $person->li_connected == 'Connected'){{ 'selected' }}@endif>Connected</option>
         </select>
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="notes"
@@ -92,7 +92,7 @@
                 value="@if (isset($person)){{ $person->notes }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <input type="text"
                 class="form-control w-100"
                 name="linkedin-address"
@@ -100,7 +100,7 @@
                 value="@if (isset($person)){{ $person->li_address }}@endif"
         />
     </td>
-    <td class="text-center">
+    <td class="text-center bg-light">
         <button type="button" class="btn btn-sm btn-danger btn-remove-row n-b-r" title="Remove this person">
             <i class="bi bi-x"></i>
         </button>

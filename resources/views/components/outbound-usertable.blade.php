@@ -35,13 +35,13 @@
                     />
                 </div>
                 <div class="row ml-0 mr-0 mt-3 pl-1 task-section action-group justify-content-end">
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-upload-persons-modal mr-1">
+                    <button type="button" class="btn btn-grad n-b-r text-uppercase btn-upload-persons-modal mr-1">
                         <i class="bi bi-upload"></i>
                     </button>
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-download-persons mr-1">
+                    <button type="button" class="btn btn-grad n-b-r text-uppercase btn-download-persons mr-1">
                         <i class="bi bi-download"></i>
                     </button>
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase btn-add-row">
+                    <button type="button" class="btn btn-grad n-b-r text-uppercase btn-add-row">
                         Add Row
                     </button>
                 </div>
@@ -75,7 +75,7 @@
                         @endforeach
                     @else
                         <tr id="no-data-row">
-                            <td class="text-center text-white pt-3" colspan="11">No Contact Info</td>
+                            <td class="text-center bg-light" colspan="12">No Contact Info</td>
                         </tr>
                     @endif
                 </tbody>

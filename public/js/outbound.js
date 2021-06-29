@@ -32,7 +32,7 @@ $(document).ready(function () {
     $('#tab-name').val(''); // Check if account name is empty
 
     if (tabName === '') {
-      alert("You must enter new account name to create new tab.");
+      showMessage('danger', "Type: Input Error<br/>NOTE: You must enter new account name.");
       return;
     } // Hide modal
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
       },
       error: function error(request, status, _error) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -113,13 +113,13 @@ $(document).ready(function () {
       },
       success: function success(res) {
         loader('hide');
-        $('#add-task-modal').modal('hide');
-        $('.toast .toast-body').text('New task (ID: ' + res.taskID + ') was added successfully!');
-        $('.toast').toast('show');
+        $('#add-task-modal').modal('hide'); // Show meassge
+
+        showMessage('success', 'New task (ID: ' + res.taskID + ') was added successfully!');
       },
       error: function error(request, status, _error2) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -161,7 +161,7 @@ $(document).ready(function () {
       },
       error: function error(request, status, _error3) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -174,7 +174,7 @@ $(document).ready(function () {
     var id = $(rowObj).data('id');
 
     if (oId == 0) {
-      alert("Outbound didn't create yet!");
+      showMessage('danger', "Type: Input Error<br/>NOTE: Outbound didn't create yet!");
       return;
     }
 
@@ -229,7 +229,7 @@ $(document).ready(function () {
       },
       error: function error(request, status, _error4) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -259,7 +259,7 @@ $(document).ready(function () {
       },
       error: function error(request, status, _error5) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -269,7 +269,7 @@ $(document).ready(function () {
     var accountName = $(tabComponent).find('input[name=account-name]').val();
 
     if (id == 0) {
-      alert("Not saved this account!");
+      showMessage('danger', 'Type: Input Error<br/>NOTE: Not saved this account!');
       return;
     }
 
@@ -291,12 +291,11 @@ $(document).ready(function () {
         $('#outboundTabs li a.nav-link').first().addClass('active');
         $('#outboundTabsContent .tab-pane').first().addClass('show active');
         loader('hide');
-        $('.toast .toast-body').text('Account (' + accountName + ') was removed successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'Account (' + accountName + ') was removed successfully!');
       },
       error: function error(request, status, _error6) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });
@@ -304,7 +303,7 @@ $(document).ready(function () {
     var id = $(this).closest('.tab-component').find('input[name=o-id]').val();
 
     if (id == 0 || id == '' || id == undefined) {
-      alert("You can't download these persons data now!");
+      showMessage('danger', "Type: Output Error<br/>NOTE: You can't download these persons data now!");
       return;
     }
 
@@ -318,7 +317,7 @@ $(document).ready(function () {
     var file_data = $('#upload-file-modal input[name=upload-file]').prop('files')[0];
 
     if (file_data == undefined) {
-      alert("Please choose a upload csv file!");
+      showMessage('danger', 'Type: Input Error<br />NOTE: Please choose a upload csv file!');
       return;
     }
 
@@ -361,12 +360,11 @@ $(document).ready(function () {
 
         $('#upload-file-modal').modal('hide');
         loader('hide');
-        $('.toast .toast-body').text('File was uploaded successfully!');
-        $('.toast').toast('show');
+        showMessage('success', 'File was uploaded successfully!');
       },
       error: function error(request, status, _error7) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', status);
       }
     });
   });

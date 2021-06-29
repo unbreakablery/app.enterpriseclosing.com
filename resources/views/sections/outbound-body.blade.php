@@ -9,7 +9,7 @@
         <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="w-100">
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase w-100" id="btn-show-modal">
+                    <button type="button" class="btn btn-grad n-b-r text-uppercase w-100" id="btn-show-modal">
                         Create Account
                     </button>
                 </div>
@@ -60,11 +60,11 @@
             </div>
             <div class="modal-body">
                 <h3>New Account Name</h3>
-                <input type="text" class="form-control" name="tab-name" id="tab-name" value="" />
+                <input type="text" class="form-control n-b-r" name="tab-name" id="tab-name" value="" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-create-new-tab">Create</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-create-new-tab">Create</button>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Action:
                         </label>
-                        <select name="action" class="form-control col-lg-8 col-md-8 col-sm-6">
+                        <select name="action" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             @foreach ($actions as $action)
                             <option value="{{ $action->id }}">{{ $action->name }}</option>
                             @endforeach
@@ -97,7 +97,7 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Step:
                         </label>
-                        <select name="step" class="form-control col-lg-8 col-md-8 col-sm-6">
+                        <select name="step" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             @foreach ($steps as $step)
                             <option value="{{ $step->id }}">{{ $step->name }}</option>
                             @endforeach
@@ -107,31 +107,31 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Person / Account:
                         </label>
-                        <input type="text" class="form-control col-lg-8 col-md-8 col-sm-6" name="person-account" readonly/>
+                        <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="person-account" readonly/>
                     </div>
                     <div class="row col-md-12 col-sm-12">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Opportunity:
                         </label>
-                        <input type="text" class="form-control col-lg-8 col-md-8 col-sm-6" name="opportunity" readonly/>
+                        <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="opportunity" readonly/>
                     </div>
                     <div class="row col-md-12 col-sm-12">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Note:
                         </label>
-                        <input type="text" class="form-control col-lg-8 col-md-8 col-sm-6" name="note" />
+                        <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="note" />
                     </div>
                     <div class="row col-md-12 col-sm-12">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             By:
                         </label>
-                        <input type="text" class="form-control date col-lg-8 col-md-8 col-sm-6" name="by-date" />
+                        <input type="text" class="form-control n-b-r date col-lg-8 col-md-8 col-sm-6" name="by-date" />
                     </div>
                     <div class="row col-md-12 col-sm-12">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Priority:
                         </label>
-                        <select name="priority" class="form-control col-lg-8 col-md-8 col-sm-6">
+                        <select name="priority" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             <option value="1">High</option>
                             <option value="2">Medium</option>
                             <option value="3">Normal</option>
@@ -140,8 +140,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-create-new-task">Create</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-create-new-task">Create</button>
             </div>
         </div>
     </div>
@@ -162,24 +162,9 @@
                 <input type="file" class="form-control" name="upload-file" accept=".csv" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-upload-persons">Upload</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-upload-persons">Upload</button>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Message box -->
-<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 99999; left: 50%; top: 0; transform: translateX(-50%);">
-    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
-        <div class="toast-header bg-success text-white">
-            <strong class="mr-auto">Message</strong>
-            <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="toast-body bg-white text-secondary">
-            Hello, world! This is a toast message.
         </div>
     </div>
 </div>
