@@ -9,6 +9,7 @@
                     <div class="form-group">
                         <label for="email_subject">Subject</label>
                         <input class="form-control n-b-r"
+                            type="text"
                             name="email_subject"
                             value="@if (isset($main)){{ $main->subject }}@endif"
                         />
@@ -27,7 +28,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
-                                <button type="button" class="btn btn-app-default btn-save-email w-100 n-b-r">Save Email</button>
+                                <button type="button" class="btn btn-grad btn-save-email w-100 n-b-r">Save Email</button>
                             </div>
                         </div>
                     </div>

@@ -23,10 +23,7 @@ $(document).ready(function() {
                 loader('hide');
 
                 // Show message
-                $('.toast .toast-header').removeClass('bg-danger');
-                $('.toast .toast-header').addClass('bg-success');
-                $('.toast .toast-body').text('Email (' + response.email.title + ') was updated successfully!');
-                $('.toast').toast('show');
+                showMessage('success', 'Email (' + response.email.title + ') was updated successfully!');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 loader('hide');
@@ -35,10 +32,7 @@ $(document).ready(function() {
                 $(tabObj).find('input[name=email_subject]').focus();
 
                 // Show message
-                $('.toast .toast-header').removeClass('bg-success');
-                $('.toast .toast-header').addClass('bg-danger');
-                $('.toast .toast-body').text('Error, Please retry!');
-                $('.toast').toast('show');
+                showMessage('danger', 'Error, Please retry!');
             }
         });
     });
