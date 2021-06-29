@@ -55,7 +55,7 @@ $(document).ready(function() {
         
         // Check if opportunity name is empty
         if (tabName === '') {
-            alert("You must enter new opportunity name to create new tab.");
+            showMessage('danger', "Type: Input Error <br/>NOTE: You must enter new opportunity name.");
             return;
         }
 
@@ -128,7 +128,7 @@ $(document).ready(function() {
             },
             error: function (request, status, error) {
                 loader('hide');
-                alert(request.responseText);
+                showMessage('danger', 'Type: AJAX Error<br/>NOTE: ' + status);
             }
         });
     });
@@ -169,7 +169,7 @@ $(document).ready(function() {
                         .remove()
                         .draw();
                 } else {
-                    alert(data.message);
+                    showMessage('danger', data.message);
                 }
             }
         });

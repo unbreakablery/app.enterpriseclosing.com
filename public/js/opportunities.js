@@ -75,7 +75,7 @@ $(document).ready(function () {
     $('#tab-name').val(''); // Check if opportunity name is empty
 
     if (tabName === '') {
-      alert("You must enter new opportunity name to create new tab.");
+      showMessage('danger', "Type: Input Error <br/>NOTE: You must enter new opportunity name.");
       return;
     } // Hide modal
 
@@ -139,7 +139,7 @@ $(document).ready(function () {
       },
       error: function error(request, status, _error) {
         loader('hide');
-        alert(request.responseText);
+        showMessage('danger', 'Type: AJAX Error<br/>NOTE: ' + status);
       }
     });
   }); //implement skip and done
@@ -175,7 +175,7 @@ $(document).ready(function () {
           var taskTable = $('table#task-table-' + tableId).DataTable();
           taskTable.row(tr).remove().draw();
         } else {
-          alert(data.message);
+          showMessage('danger', data.message);
         }
       }
     });

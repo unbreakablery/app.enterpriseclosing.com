@@ -1,6 +1,6 @@
 <div class="tab-component">
-    <h4 class="mt-4 ml-2 opportunity-tasks-title">Tasks To Complete</h4>
-    <div class="table-responsive table-wrapper task-table-wrapper mt-4 mb-4">
+    <h4 class="mt-4 p-special-1 opportunity-tasks-title">Tasks To Complete</h4>
+    <div class="table-responsive table-wrapper task-table-wrapper mt-4 mb-4 p-special-1">
         <table class="table table-dark table-hover datatable task-table w-100" 
                 id="task-table-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
             <thead class="thead-dark">
@@ -213,7 +213,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-app-default w-100 n-b-r">Save Info</button>
+                                <button type="submit" class="btn btn-grad w-100 n-b-r">Save Info</button>
                             </div>
                         </div>
                     </div>
@@ -442,7 +442,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for=""></label>
-                                                    <button type="submit" class="btn btn-app-default w-100 n-b-r">Save MEDDPICC</button>
+                                                    <button type="submit" class="btn btn-grad w-100 n-b-r">Save MEDDPICC</button>
                                                 </div>
                                             </div>
                                         </div>

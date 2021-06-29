@@ -12,7 +12,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <button type="button" class="btn btn-app-default n-b-r text-uppercase w-100" id="btn-show-modal">
+                    <button type="button" class="btn btn-grad n-b-r text-uppercase w-100" id="btn-show-modal">
                         Create Opportunity
                     </button>
                 </div>
@@ -67,11 +67,11 @@
             </div>
             <div class="modal-body">
                 <h3>New Opportunity Name</h3>
-                <input type="text" class="form-control" name="tab-name" id="tab-name" value="" />
+                <input type="text" class="form-control n-b-r" name="tab-name" id="tab-name" value="" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" id="btn-create-new-tab">Create</button>
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad" id="btn-create-new-tab">Create</button>
             </div>
         </div>
     </div>
