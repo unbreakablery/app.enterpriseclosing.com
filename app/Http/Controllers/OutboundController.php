@@ -157,7 +157,7 @@ class OutboundController extends Controller
                         $person->phone = $csvLine[3];
                         $person->mobile = $csvLine[4];
                         $person->email = $csvLine[5];
-                        $person->calls = $csvLine[6];
+                        $person->calls = is_numeric($csvLine[6]) ? $csvLine[6] : '0';
                         $person->result = $csvLine[7];
                         $person->li_connected = $csvLine[8];
                         $person->notes = $csvLine[9];

@@ -357,7 +357,15 @@ $(document).ready(function () {
           $(newRow).find('select[name=result]').val(person.result);
           $(newRow).find('select[name=linkedin-connected]').val(person.li_connected);
           $(newRow).find('input[name=notes]').val(person.notes);
-          $(newRow).find('input[name=linkedin-address]').val(person.li_address); // Add new row
+          $(newRow).find('input[name=linkedin-address]').val(person.li_address);
+          $(newRow).find('select[name=result]').selectpicker({
+            noneSelectedText: '',
+            container: 'body'
+          });
+          $(newRow).find('select[name=linkedin-connected]').selectpicker({
+            noneSelectedText: '',
+            container: 'body'
+          }); // Add new row
 
           $(pTable).find('tbody').append(newRow);
         }
@@ -384,7 +392,7 @@ $(document).ready(function () {
   $(document).on('click', '.tab-component table#persons-table .btn.btn-counter-decrease', function () {
     var rowObj = $(this).closest('tr');
     var calls = parseInt($(rowObj).find('input[name=calls]').val());
-    $(rowObj).find('input[name=calls]').val(calls - 1);
+    $(rowObj).find('input[name=calls]').val(calls > 0 ? calls - 1 : 0);
     $(rowObj).find('input[name=calls]').trigger('change');
   });
   $(document).on('click', '.tab-component table#persons-table .btn.btn-counter-increase', function () {
