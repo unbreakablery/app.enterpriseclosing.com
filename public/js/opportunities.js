@@ -189,16 +189,16 @@ $(document).ready(function () {
     $(this).closest('.card').find('.card-header i.collapse-icon').addClass('bi-chevron-right');
   }); //calculate meddpicc value
 
-  $(document).on('change', '.collapse-section select.form-control', function () {
+  $(document).on('click', '.collapse-section input[type=radio].form-check-input', function () {
     var meddpiccTab = $(this).closest('.collapse-section');
-    var metricsScore = $(meddpiccTab).find('select[name=metrics_score]').val();
-    var economicBuyerScore = $(meddpiccTab).find('select[name=economic_buyer_score]').val();
-    var decisionCriteriaScore = $(meddpiccTab).find('select[name=decision_criteria_score]').val();
-    var decisionProcessScore = $(meddpiccTab).find('select[name=decision_process_score]').val();
-    var paperProcessScore = $(meddpiccTab).find('select[name=paper_process_score]').val();
-    var identifiedPainScore = $(meddpiccTab).find('select[name=identified_pain_score]').val();
-    var championCoachScore = $(meddpiccTab).find('select[name=champion_coach_score]').val();
-    var competitionScore = $(meddpiccTab).find('select[name=competition_score]').val();
+    var metricsScore = $(meddpiccTab).find('input[type=radio][name=metrics_score]:checked').val();
+    var economicBuyerScore = $(meddpiccTab).find('input[type=radio][name=economic_buyer_score]:checked').val();
+    var decisionCriteriaScore = $(meddpiccTab).find('input[type=radio][name=decision_criteria_score]:checked').val();
+    var decisionProcessScore = $(meddpiccTab).find('input[type=radio][name=decision_process_score]:checked').val();
+    var paperProcessScore = $(meddpiccTab).find('input[type=radio][name=paper_process_score]:checked').val();
+    var identifiedPainScore = $(meddpiccTab).find('input[type=radio][name=identified_pain_score]:checked').val();
+    var championCoachScore = $(meddpiccTab).find('input[type=radio][name=champion_coach_score]:checked').val();
+    var competitionScore = $(meddpiccTab).find('input[type=radio][name=competition_score]:checked').val();
     var meddpiccScore = parseInt(metricsScore) + parseInt(economicBuyerScore) + parseInt(decisionCriteriaScore) + parseInt(decisionProcessScore) + parseInt(paperProcessScore) + parseInt(identifiedPainScore) + parseInt(championCoachScore) + parseInt(competitionScore);
     $(meddpiccTab).find('input[name=meddpicc_score]').val(meddpiccScore);
   });

@@ -169,16 +169,6 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group">
-                        <label for="sponsor">Sponsor</label>
-                        <input class="form-control n-b-r"
-                            type="text"
-                            name="sponsor"
-                            value="@if (isset($main)){{ $main->sponsor }}@endif"
-                        />
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group">
                         <label for="what_new_changed">What's New / Changed</label>
                         <input class="form-control n-b-r"
                             type="text"
@@ -222,7 +212,7 @@
         </form>
     </div>
 
-    <div id="accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif" class="accordion-section mt-4">
+    <div id="accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif" class="accordion-section mt-4 mb-4 p-special-1">
         <div class="card n-b-r">
             <div class="card-header bg-dark n-b-r pt-1 pb-1 pl-1"
                     id="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
@@ -243,7 +233,7 @@
                 aria-labelledby="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
                 data-parent="#accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                 <div class="card-body">
-                    <form action="{{ route('opportunity.save.meddpicc') }}" method="post" autocomplete="off">
+                    <form class="meddpicc-section" action="{{ route('opportunity.save.meddpicc') }}" method="post" autocomplete="off">
                         @csrf
                         <input type="hidden" name="opp-id" value="@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                         <div class="row">
@@ -256,13 +246,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="metrics_score">Metrics Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="metrics_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->metrics_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->metrics_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->metrics_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <label for="metrics_score">Metrics Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="metrics_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->metrics_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="metrics_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="metrics_score" value="1" @if (isset($meddpicc) && $meddpicc->metrics_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="metrics_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="metrics_score" value="2" @if (isset($meddpicc) && $meddpicc->metrics_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="metrics_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -282,13 +281,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label for="economic_buyer_score">Economic Buyer Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="economic_buyer_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->economic_buyer_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->economic_buyer_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->economic_buyer_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="economic_buyer_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->economic_buyer_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="economic_buyer_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="economic_buyer_score" value="1" @if (isset($meddpicc) && $meddpicc->economic_buyer_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="economic_buyer_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="economic_buyer_score" value="2" @if (isset($meddpicc) && $meddpicc->economic_buyer_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="economic_buyer_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -304,13 +312,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label for="decision_criteria_score">Decision Criteria Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="decision_criteria_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->decision_criteria_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->decision_criteria_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->decision_criteria_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="decision_criteria_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->decision_criteria_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_criteria_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="decision_criteria_score" value="1" @if (isset($meddpicc) && $meddpicc->decision_criteria_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_criteria_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="decision_criteria_score" value="2" @if (isset($meddpicc) && $meddpicc->decision_criteria_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_criteria_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -326,13 +343,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label for="decision_process_score">Decision Process Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="decision_process_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->decision_process_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->decision_process_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->decision_process_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="decision_process_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->decision_process_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_process_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="decision_process_score" value="1" @if (isset($meddpicc) && $meddpicc->decision_process_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_process_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="decision_process_score" value="2" @if (isset($meddpicc) && $meddpicc->decision_process_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="decision_process_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -348,13 +374,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label for="paper_process_score">Paper Process Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="paper_process_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->paper_process_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->paper_process_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->paper_process_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="paper_process_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->paper_process_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="paper_process_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="paper_process_score" value="1" @if (isset($meddpicc) && $meddpicc->paper_process_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="paper_process_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="paper_process_score" value="2" @if (isset($meddpicc) && $meddpicc->paper_process_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="paper_process_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -370,13 +405,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="identified_pain_score">Identified Pain Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="identified_pain_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->identified_pain_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->identified_pain_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->identified_pain_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <label for="identified_pain_score">Identified Pain Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="identified_pain_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->identified_pain_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="identified_pain_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="identified_pain_score" value="1" @if (isset($meddpicc) && $meddpicc->identified_pain_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="identified_pain_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="identified_pain_score" value="2" @if (isset($meddpicc) && $meddpicc->identified_pain_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="identified_pain_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -396,13 +440,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="champion_coach_score">Champion/Coach Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="champion_coach_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->champion_coach_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->champion_coach_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->champion_coach_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <label for="champion_coach_score">Champion/Coach Score<i class="bi bi-info-circle-fill ml-2"></i></label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="champion_coach_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->champion_coach_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="champion_coach_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="champion_coach_score" value="1" @if (isset($meddpicc) && $meddpicc->champion_coach_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="champion_coach_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="champion_coach_score" value="2" @if (isset($meddpicc) && $meddpicc->champion_coach_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="champion_coach_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -422,13 +475,22 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="competition_score">Competition Score <i class="bi bi-info-circle-fill ml-2"></i></label>
-                                            <select name="competition_score" class="form-control n-b-r">
-                                                <option value="0" @if (isset($meddpicc) && $meddpicc->competition_score == '0'){{ 'selected' }}@endif>0</option>
-                                                <option value="1" @if (isset($meddpicc) && $meddpicc->competition_score == '1'){{ 'selected' }}@endif>1</option>
-                                                <option value="2" @if (isset($meddpicc) && $meddpicc->competition_score == '2'){{ 'selected' }}@endif>2</option>
-                                            </select>
+                                        <div class="form-group form-row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <label for="competition_score">Competition Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="competition_score" value="0" @if (!isset($meddpicc) || isset($meddpicc) && $meddpicc->competition_score == '0'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="competition_score">0</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="competition_score" value="1" @if (isset($meddpicc) && $meddpicc->competition_score == '1'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="competition_score">1</label>
+                                                
+                                                    <input class="form-check-input" type="radio" name="competition_score" value="2" @if (isset($meddpicc) && $meddpicc->competition_score == '2'){{ 'checked' }}@endif />
+                                                    <label class="form-check-label" for="competition_score">2</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
