@@ -120,6 +120,7 @@
             <div class="form-group">
                 <label for="region">Region</label>
                 <select id="region" name="region" class="form-control selectpicker bg-black p-0 n-b-r">
+                    <option value=""></option>
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
                     <option value="North America" @if (old('region', $user->region) == 'North America'){{ 'selected' }}@endif>North America</option>
@@ -267,7 +268,7 @@
                         </label>
                     </div>
                     @endforeach
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
                         <div class="form-check col-2 pl-1">
                             <a href="javascript:void(0)" id="check-all-actions" class="select-all mr-2">Check All</a>
                             <span class="select-all-slash">/</span>
@@ -292,7 +293,7 @@
                         </label>
                     </div>
                     @endforeach
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
                         <div class="form-check col-20 pl-1">
                             <a href="javascript:void(0)" id="check-all-steps" class="select-all mr-2">Check All</a>
                             <span class="select-all-slash">/</span>
@@ -392,7 +393,7 @@
             <form id="form_scripts_setting" class="mt-4" action="" method='post' autocomplete="off">
                 <h3>New Script</h3>
                 <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
                         <div class="form-group">
                             <label for="script_name">Script Name</label>
                             <input class="form-control n-b-r"
@@ -405,7 +406,7 @@
                             />
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
                         <div class="form-group">
                             <label for="script_content">Script Content</label>
                             <textarea name="script_content"
@@ -415,7 +416,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0 mt-4">
                         <div class="form-group">
                             <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
                                 Save Script
@@ -425,7 +426,7 @@
                 </div>
 
                 <h3>Script List</h3>
-                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="scripts-table-wrapper">
                         <table class="table table-bordered table-hover w-100 mb-0" id="scripts-table">
                             <thead class="thead-dark">
@@ -469,7 +470,7 @@
             <form id="form_emails_setting" class="mt-4" action="" method='post' autocomplete="off">
                 <h3>New Email</h3>
                 <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input class="form-control n-b-r"
@@ -482,7 +483,7 @@
                             />
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
                         <div class="form-group">
                             <label for="subject">Subject</label>
                             <input class="form-control n-b-r"
@@ -495,7 +496,7 @@
                             />
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
                         <div class="form-group">
                             <label for="body">Body</label>
                             <textarea name="body"
@@ -505,7 +506,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4 n-p-lr">
                         <div class="form-group">
                             <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
                                 Save Email
@@ -515,7 +516,7 @@
                 </div>
 
                 <h3>Email List</h3>
-                <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="emails-table-wrapper">
                         <table class="table table-bordered table-hover w-100 mb-0" id="emails-table">
                             <thead class="thead-dark">
@@ -665,7 +666,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="start_month">Month</label>
-                                        <select class="form-control n-b-r"
+                                        <select class="form-control selectpicker n-p-lr n-b-r"
                                                 name="start_month"
                                                 id="start_month">
                                             @for ($i = 1; $i <= 12; $i++)
@@ -683,7 +684,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="start_year">Year</label>
-                                        <select class="form-control n-b-r"
+                                        <select class="form-control selectpicker n-p-lr n-b-r"
                                                 name="start_year"
                                                 id="start_year">
                                             @for ($i = 0; $i < 5; $i++)
@@ -932,7 +933,7 @@
                             <label for="edit_sub_skill_p_id">Parent Skill</label>
                             <select name="edit_sub_skill_p_id"
                                 id="edit_sub_skill_p_id"
-                                class="form-control n-b-r">
+                                class="form-control selectpicker n-p-lr n-b-r">
                             </select>
                         </div>
                     </div>

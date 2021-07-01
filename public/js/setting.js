@@ -75,6 +75,7 @@ $(document).ready(function () {
     $('#edit-sub-skill-modal input#edit_sub_skill_id').val('');
     $('#edit-sub-skill-modal input#edit_sub_skill_name').val('');
     $('#edit-sub-skill-modal select#edit_sub_skill_p_id').html('');
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').selectpicker('refresh');
   }
 
   function drawSkillsTable(skills) {
@@ -687,7 +688,8 @@ $(document).ready(function () {
       newOptions += '<option value="' + sId + '" ' + selected + '>' + sName + '</option>';
     });
     $('#edit-sub-skill-modal select#edit_sub_skill_p_id').html(newOptions);
-    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').val(skillPId); // Set modal inputs
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').selectpicker('refresh');
+    $('#edit-sub-skill-modal select#edit_sub_skill_p_id').selectpicker('val', skillPId); // Set modal inputs
 
     $('#edit-sub-skill-modal input#edit_sub_skill_id').val(skillId);
     $('#edit-sub-skill-modal input#edit_sub_skill_name').val(skillName); // Show Edit Sub Skill Modal
