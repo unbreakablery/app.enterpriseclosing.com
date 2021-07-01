@@ -10041,8 +10041,12 @@ body {
 }
 
 .n-p-lr {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.pr-30-px {
+  padding-right: 30px;
 }
 
 .btn-app-default {
@@ -10903,6 +10907,12 @@ table .dropdown.bootstrap-select button.dropdown-toggle:focus {
 
 .bootstrap-select .dropdown-menu li a {
   color: #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.bootstrap-select.form-control {
+  background-color: #000;
 }
 
 .w-65-px {
@@ -10911,4 +10921,31 @@ table .dropdown.bootstrap-select button.dropdown-toggle:focus {
 
 .w-102-px {
   width: 102px !important;
+}
+
+/*
+* Meddpicc sections
+*/
+.meddpicc-section input[type=radio].form-check-input {
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 0;
+  margin-left: 0;
+}
+.meddpicc-section .form-check {
+  justify-content: left;
+  height: 22px;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+.meddpicc-section label.form-check-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  margin-right: 50px;
 }

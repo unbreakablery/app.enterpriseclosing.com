@@ -120,7 +120,7 @@
             <h3 id="ts-3-person-account-label" data-toggle="tooltip" data-placement="top" title="Required this or person/account!">Opportunity</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <select name="opportunity" aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" class="selectpicker n-b-r">
+                    <select name="opportunity" aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" class="col-12 selectpicker pl-0 pr-0 n-b-r">
                         <option value="0"></option>
                         @foreach ($opportunities as $opp)
                             <option value="{{ $opp->id }}">{{ $opp->opportunity }}</option>
