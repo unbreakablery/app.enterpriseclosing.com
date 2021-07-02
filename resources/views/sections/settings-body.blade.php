@@ -3,7 +3,7 @@
     @csrf
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
     <h3 class="setting-sub-title">General Settings</h3>
-    <div class="row col-lg-12 col-md-12 col-sm-12 mt-2">
+    <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 n-p-lr">
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
                 <label for="first_name">First Name</label>
