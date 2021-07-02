@@ -53,9 +53,19 @@ class OpportunityController extends Controller
             $data[] = $temp;
         }
 
+        $actions = getActions();
+        $steps = getSteps();
+
         $nl_opportunities_class = 'active';
         
-        return view('pages.opportunities', compact('data', 'nl_opportunities_class'));
+        return view('pages.opportunities',
+                    compact(
+                            'data',
+                            'actions',
+                            'steps',
+                            'nl_opportunities_class'
+                    )
+                );
     }
 
     public function saveOpportunityMain(Request $request)

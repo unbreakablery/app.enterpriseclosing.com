@@ -10768,6 +10768,10 @@ a.a-btn-remove-account {
   height: 140px !important;
 }
 
+.h-default-input {
+  height: 1.5rem !important;
+}
+
 .h-3rem-2px {
   height: calc(3rem + 2px) !important;
 }
@@ -10866,6 +10870,14 @@ a.a-btn-remove-account {
     min-width: 200px;
   }
 }
+/*
+* datepicker
+*/
+.datepicker-dropdown {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
 /*
 * bootstrap-select
 */

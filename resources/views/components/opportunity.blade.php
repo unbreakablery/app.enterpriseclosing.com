@@ -1,5 +1,16 @@
 <div class="tab-component">
-    <h4 class="mt-4 p-special-1 opportunity-tasks-title">Tasks To Complete</h4>
+    <div class="row task-section col-md-12 col-sm-12 mb-4">
+        <h4 class="mt-4 p-special-1 opportunity-tasks-title">Tasks To Complete</h4>
+        <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="row task-section col-md-12 col-sm-12 mt-3">
+                    <div class="input-group w-100">
+                        <button type="button" class="btn btn-grad n-b-r text-uppercase w-100 btn-show-task-modal">
+                            Create Task
+                        </button>
+                    </div>
+                </div>
+        </div>
+    </div>
     <div class="table-responsive table-wrapper task-table-wrapper mt-4 mb-4 p-special-1">
         <table class="table table-dark table-hover datatable task-table w-100" 
                 id="task-table-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
