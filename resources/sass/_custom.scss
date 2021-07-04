@@ -384,7 +384,11 @@ table.dataTable tfoot th, table.dataTable tfoot td {
 thead input {
     width: 100%;
 }
-
+table#task-table {
+    max-height: 218px;
+    height: 218px;
+}
+table#task-table tbody td,
 table.dataTable tbody td {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -394,6 +398,7 @@ table.dataTable td.dataTables_empty {
     color: #dc3545!important;
 }
 
+table#task-table thead,
 table.dataTable thead {
     th {
         background: transparent !important;
