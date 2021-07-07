@@ -132,9 +132,9 @@
                             Priority:
                         </label>
                         <select name="priority" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
-                            <option value="1">High</option>
-                            <option value="2">Medium</option>
                             <option value="3">Normal</option>
+                            <option value="2">Medium</option>
+                            <option value="1">High</option>
                         </select>
                     </div>
                 </form>

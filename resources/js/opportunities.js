@@ -24,7 +24,7 @@ $(document).ready(function() {
         orderCellsTop: true,
         fixedHeader: true,
         info: false,
-        scrollY: 187,
+        scrollY: 150,
         scrollCollapse: false,
         paging: false,
         order: [[ 4, "asc" ]],

@@ -112,6 +112,10 @@ body {
     padding-right: calc(15px + 0.25rem);
 }
 
+.b-s-b-b {
+    box-sizing: border-box !important;
+}
+
 /*
 * Modal
 */
@@ -346,7 +350,8 @@ body {
 * datatable
 */
 .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
-    background-color: #fff;
+    background-color: #000;
+    border: 1px solid #fff;
 }
 
 .dataTables_wrapper .dataTables_length select {
@@ -385,15 +390,29 @@ thead input {
     width: 100%;
 }
 table#task-table {
-    max-height: 218px;
-    height: 218px;
+    // max-height: 218px;
+    // height: 218px;
 }
-table#task-table tbody td,
+table#task-table,
+table.task-table {
+    tbody {
+        tr {
+            .btn-task-c-s {
+                padding-top: 1px;
+                padding-bottom: 1px;
+            }
+        }
+    }
+}
+table.task-table tbody td,
 table.dataTable tbody td {
-    padding-top: 1px;
-    padding-bottom: 1px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
-
+table.table-dark,
+.thead-dark th {
+    background-color: #444 !important;
+}
 table.dataTable td.dataTables_empty {
     color: #dc3545!important;
 }
@@ -401,7 +420,7 @@ table.dataTable td.dataTables_empty {
 table#task-table thead,
 table.dataTable thead {
     th {
-        background: transparent !important;
+        // background: transparent !important;
         white-space: nowrap;
 
         .task-table-header {
@@ -417,9 +436,10 @@ table.dataTable thead {
         padding-left: 10px;
     }
 
+    .sorting,
     .sorting_asc,
     .sorting_desc {
-        background: none !important;
+        background-image: none !important;
     }
     span.sort-icon {
         display: inline-block;
@@ -677,6 +697,23 @@ input[type='checkbox'] {
     padding: 0.2rem;
     border-radius: 0;
     height: auto;
+}
+#settingsTabsContent {
+    table#scripts-table,
+    table#emails-table,
+    table#skills-table {
+        tr th {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        tr td {
+            vertical-align: middle;
+            button {
+                padding-top: 1px;
+                padding-bottom: 1px;
+            }
+        }        
+    }
 }
 table#persons-table,
 table#scripts-table,

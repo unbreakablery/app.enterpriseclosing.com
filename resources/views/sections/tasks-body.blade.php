@@ -3,7 +3,7 @@
     <h3 class="mb-0">Tasks To Complete</h3>
     <div class="row col-lg-12 col-md-12 col-sm-12">
         <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper">
-            <table class="table table-dark table-hover datatable w-100" id="task-table">
+            <table class="table table-dark table-hover datatable w-100 border border-white b-s-b-b" id="task-table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"><div class="task-table-header">Action + Step</div></th>
@@ -149,17 +149,17 @@
             <h3 id="priority-label" data-toggle="tooltip" data-placement="left" title="Required field!">Priority</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-high" value="1" required>
-                    <label class="form-check-label mr-4" for="ts-7-rg-high">
-                        High
+                    <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-normal" value="3">
+                    <label class="form-check-label mr-4" for="ts-7-rg-normal">
+                        Normal
                     </label>
                     <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-medium" value="2">
                     <label class="form-check-label mr-4" for="ts-7-rg-medium">
                         Medium
                     </label>
-                    <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-normal" value="3">
-                    <label class="form-check-label" for="ts-7-rg-normal">
-                        Normal
+                    <input class="form-check-input" type="radio" name="priority" id="ts-7-rg-high" value="1" required>
+                    <label class="form-check-label" for="ts-7-rg-high">
+                        High
                     </label>
                 </div>
             </div>
@@ -310,9 +310,9 @@
                             </div>
                             <div class="col-1">
                                 <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="selectpicker col-12 pl-0 pr-0 n-b-r">
-                                    <option value="1">High</option>
-                                    <option value="2">Medium</option>
                                     <option value="3">Normal</option>
+                                    <option value="2">Medium</option>
+                                    <option value="1">High</option>
                                 </select>
                             </div>
                             <div class="col-1 btn-suggest-save-wrapper">
