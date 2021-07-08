@@ -1,6 +1,8 @@
 <?php 
 
 use App\Models\Task;
+use App\Models\TaskSetting;
+use App\Models\TaskSuggestSetting;
 use App\Models\Action;
 use App\Models\Step;
 use App\Models\OutboundMain;
@@ -60,6 +62,68 @@ if (!function_exists('getSteps')) {
         $steps = Step::where('is_other', '0')
                         ->get();
         return $steps;
+    }
+}
+
+if (!function_exists('getStepById')) {
+    function getStepById($id)
+    {
+        $step = Step::where('is_other', '0')
+                    ->where('id', $id)
+                    ->get();
+        return $step;
+    }
+}
+
+if (!function_exists('getActionsForCurrentUser')) {
+    function getActionsForCurrentUser()
+    {
+        $actions = TaskSetting::where('user_id', Auth::user()->id)
+                                ->where('section_type', 1)
+                                ->join('actions', 'tasks_settings.section_id', '=', 'actions.id')
+                                ->select('actions.id', 'actions.name')
+                                ->distinct('actions.id')
+                                ->orderBy('actions.name')
+                                ->get();
+        return $actions;
+    }
+}
+
+if (!function_exists('getStepsForCurrentUser')) {
+    function getStepsForCurrentUser()
+    {
+        $steps = TaskSetting::where('user_id', Auth::user()->id)
+                                ->where('section_type', 2)
+                                ->join('steps', 'tasks_settings.section_id', '=', 'steps.id')
+                                ->select('steps.id', 'steps.name')
+                                ->distinct('steps.id')
+                                ->orderBy('steps.name')
+                                ->get();
+        return $steps;
+    }
+}
+
+if (!function_exists('getSuggestSteps')) {
+    function getSuggestSteps($step)
+    {
+        $suggest_steps = TaskSuggestSetting::where('user_id', Auth::user()->id)
+                                ->where('step_id', (!empty($step)) ? $step : 0)
+                                ->join('steps', 'tasks_suggest_settings.suggest_step_id', '=', 'steps.id')
+                                ->select('steps.id', 'steps.name')
+                                ->distinct('steps.id')
+                                ->orderBy('steps.name')
+                                ->get();
+        return $suggest_steps;
+    }
+}
+
+if (!function_exists('getOpportunities')) {
+    function getOpportunities()
+    {
+        $opportunities = OpportunityMain::where('user', Auth::user()->id)
+                        ->select('id', 'opportunity')
+                        ->get();
+        return $opportunities;
     }
 }
 
