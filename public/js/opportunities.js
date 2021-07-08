@@ -12,6 +12,71 @@ $(document).ready(function () {
     $('#add-task-modal select[name=priority]').selectpicker('val', $("#add-task-modal select[name=priority] option:first").val());
   }
 
+  function drawSuggestTaskModal(suggest) {
+    var innerHtml = '';
+
+    if (suggest != undefined && suggest != null) {
+      suggest.steps.forEach(function (step, idx) {
+        innerHtml += '<div class="form-row pt-1 pb-1 additional-task-item-' + idx + ' col-12">';
+        innerHtml += '<div class="col-2">';
+        innerHtml += '<select name="suggest-action-' + idx + '" id="suggest-action-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+        suggest.actions.forEach(function (action) {
+          innerHtml += '<option value="' + action.id + '" ' + (action.id == suggest.old_action ? 'selected' : '') + '>' + action.name + '</option>';
+        });
+        innerHtml += '</select>';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-2">';
+        innerHtml += '<input type="hidden" value="' + step.id + '" id="suggest-step-' + idx + '" name="suggest-step-' + idx + '"/>';
+        innerHtml += '<input type="text" class="form-control n-b-r h-default-input" value="' + step.name + '" id="suggest-step-name-' + idx + '" name="suggest-step-name-' + idx + '" readonly />';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-1">';
+        innerHtml += '<input type="text" class="form-control n-b-r h-default-input" value="' + suggest.person_account + '" id="suggest-person-account-' + idx + '" name="suggest-person-account-' + idx + '" readonly/>';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-2">';
+        innerHtml += '<select class="selectpicker col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-' + idx + '" name="suggest-opportunity-' + idx + '" readonly>';
+        suggest.opportunities.forEach(function (opp) {
+          innerHtml += '<option value="' + opp.id + '" ' + (opp.id == suggest.old_opportunity ? 'selected' : 'disabled') + '>' + opp.opportunity + '</option>';
+        });
+        innerHtml += '</select>';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-1">';
+        innerHtml += '<input type="text" class="form-control n-b-r h-default-input" id="suggest-note-' + idx + '" name="suggest-note-' + idx + '" placeholder="Note..." />';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-2">';
+        innerHtml += '<input type="text" class="form-control date n-b-r h-default-input" value="' + suggest.by_date + '" id="suggest-by-' + idx + '" name="suggest-by-' + idx + '" placeholder="dd-mm-yyyy" />';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-1">';
+        innerHtml += '<select name="suggest-priority-' + idx + '" id="suggest-priority-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+        innerHtml += '<option value="3">Normal</option>';
+        innerHtml += '<option value="2">Medium</option>';
+        innerHtml += '<option value="1">High</option>';
+        innerHtml += '</select>';
+        innerHtml += '</div>';
+        innerHtml += '<div class="col-1 btn-suggest-save-wrapper">';
+        innerHtml += '<button type="button" class="btn btn-success btn-suggest-save n-b-r" data-id="' + idx + '">Save</button>';
+        innerHtml += '</div>';
+        innerHtml += '</div>';
+      });
+    } else {
+      innerHtml += '<p class="text-center w-100">';
+      innerHtml += 'No suggested additional tasks!';
+      innerHtml += '</p>';
+    }
+
+    $('#suggest-task-modal .modal-body .additional-tasks').append(innerHtml);
+    $('#suggest-task-modal .modal-body .additional-tasks select').selectpicker({
+      noneSelectedText: '',
+      container: 'body'
+    });
+    $('#suggest-task-modal .modal-body .additional-tasks .date').datepicker({
+      format: 'dd-mm-yyyy',
+      todayBtn: "linked",
+      todayHighlight: true,
+      clearBtn: true,
+      autoclose: true
+    });
+  }
+
   var currentTable = null;
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     var table = $.fn.dataTable.tables({
@@ -289,7 +354,7 @@ $(document).ready(function () {
     var priority = $('#add-task-modal select[name=priority]').val();
     loader('show');
     $.ajax({
-      url: "outbound/save-task",
+      url: "opportunities/save-task",
       dataType: "json",
       type: "post",
       data: {
@@ -343,11 +408,82 @@ $(document).ready(function () {
         currentTable.row.add($(innerHtml)).draw(); // Add * sign to tab name
 
         var idx = $('table.task-table').index($('table#task-table-' + oppId)) / 2 - 1;
-        $('#oppTabs a#tab-' + idx).find('strong').text('*');
+        $('#oppTabs a#tab-' + idx).find('strong').text('*'); // Show suggest task modal
+
+        $('#suggest-task-modal').modal({
+          backdrop: 'static'
+        }); // Draw suggest task modal
+
+        var suggest = res.suggest;
+        drawSuggestTaskModal(suggest);
       },
       error: function error(request, status, _error2) {
         loader('hide');
         showMessage('danger', status);
+      }
+    });
+  }); //suggest setting save
+
+  $(document).on('click', '.btn-suggest-save', function () {
+    var id = $(this).data('id');
+    var suggestAction = $('#suggest-action-' + id).val();
+    var suggestStep = $('#suggest-step-' + id).val();
+    var suggestPersonAccount = $('#suggest-person-account-' + id).val();
+    var suggestOpportunity = $('#suggest-opportunity-' + id).val();
+    var suggestOpportunityText = $('#suggest-opportunity-' + id + ' option:selected').text();
+    var suggestNote = $('#suggest-note-' + id).val();
+    var suggestDate = $('#suggest-by-' + id).val();
+    var suggestPriority = $('#suggest-priority-' + id).val();
+    $.ajax({
+      url: "tasks/add",
+      dataType: "json",
+      type: "post",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        suggest_action: suggestAction,
+        suggest_step: suggestStep,
+        suggest_person_account: suggestPersonAccount,
+        suggest_opportunity: suggestOpportunity,
+        suggest_note: suggestNote,
+        suggest_date: suggestDate,
+        suggest_priority: suggestPriority
+      },
+      success: function success(res) {
+        // Show meassge
+        showMessage('success', 'New task (ID: ' + res.task_id + ') was added successfully!'); // Add new row
+
+        var className = '';
+        var priorityName = '';
+
+        if (suggestPriority == 1) {
+          className = 'bg-danger text-white';
+          priorityName = 'High';
+        } else if (suggestPriority == 2) {
+          className = 'bg-warning text-dark';
+          priorityName = 'Medium';
+        } else if (suggestPriority == 3) {
+          className = 'bg-light text-dark';
+          priorityName = 'Normal';
+        } else {
+          className = 'bg-light text-dark';
+          priorityName = '';
+        }
+
+        var innerHtml = '';
+        innerHtml += '<tr class="' + className + '">';
+        innerHtml += '<td>' + res.action_name + ' ' + res.step_name + '</td>';
+        innerHtml += '<td>' + suggestPersonAccount + '</td>';
+        innerHtml += '<td>' + suggestOpportunityText + '</td>';
+        innerHtml += '<td>' + suggestNote + '</td>';
+        innerHtml += '<td>' + suggestDate + '</td>';
+        innerHtml += '<td>' + priorityName + '</td>';
+        innerHtml += '<td>';
+        innerHtml += '<button type="button" class="btn btn-sm btn-task-c-s btn-dark btn-skip" data-id="' + res.task_id + '">Skip</button> ';
+        innerHtml += '<button type="button" class="btn btn-sm btn-task-c-s btn-success btn-done" data-id="' + res.task_id + '">Done</button>';
+        innerHtml += '</td>';
+        innerHtml += '</tr>';
+        currentTable.row.add($(innerHtml)).draw();
+        $('.additional-task-item-' + id + ' *').prop('disabled', true);
       }
     });
   });

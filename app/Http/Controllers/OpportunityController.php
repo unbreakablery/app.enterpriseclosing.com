@@ -53,8 +53,8 @@ class OpportunityController extends Controller
             $data[] = $temp;
         }
 
-        $actions = getActions();
-        $steps = getSteps();
+        $actions = getActionsForCurrentUser();
+        $steps = getStepsForCurrentUser();
 
         $nl_opportunities_class = 'active';
         
@@ -89,5 +89,34 @@ class OpportunityController extends Controller
         $id = storeOpportunityMeddpicc($request);
         
         return redirect(url()->previous())->withInput();
+    }
+
+    public function saveTask(Request $request)
+    {
+        $action             = $request->action;
+        $step               = $request->step;
+        $person_account     = $request->person_account;
+        $opportunity        = empty($request->opportunity) ? 0 : $request->opportunity;
+        $note               = $request->note;
+        $by_date            = $request->by_date;
+        $priority           = $request->priority;
+
+        $task = storeTask($action, $step, $person_account, $opportunity, $note, $by_date, $priority);
+
+        // Get suggest settings
+        $suggest = new \stdClass();
+        $suggest->actions = getActionsForCurrentUser();
+        $suggest->old_action = $action;
+        $suggest->steps = getSuggestSteps($step);
+        $suggest->person_account = (!empty($person_account)) ? $person_account : '';
+        $suggest->opportunities = getOpportunities();
+        $suggest->old_opportunity = $opportunity;
+        $suggest->by_date = $by_date;
+        $suggest->priority = $priority;
+
+        return response()->json([
+            'taskID' => $task->id,
+            'suggest' => $suggest
+        ]);
     }
 }

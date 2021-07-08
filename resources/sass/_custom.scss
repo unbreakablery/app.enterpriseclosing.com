@@ -603,7 +603,8 @@ input[type='checkbox'] {
 /*
 * modal
 */
-#task-add-modal {
+#task-add-modal,
+#suggest-task-modal {
     .additional-tasks {
         padding: 0 1rem;
     }

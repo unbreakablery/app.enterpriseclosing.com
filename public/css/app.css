@@ -10619,19 +10619,24 @@ input[type=checkbox] {
 /*
 * modal
 */
-#task-add-modal .additional-tasks {
+#task-add-modal .additional-tasks,
+#suggest-task-modal .additional-tasks {
   padding: 0 1rem;
 }
-#task-add-modal input.form-control {
+#task-add-modal input.form-control,
+#suggest-task-modal input.form-control {
   border-radius: 0;
   height: 1.5rem;
 }
-#task-add-modal .btn-suggest-save-wrapper {
+#task-add-modal .btn-suggest-save-wrapper,
+#suggest-task-modal .btn-suggest-save-wrapper {
   padding-left: 5px;
   padding-right: 5px;
 }
 #task-add-modal select.form-control,
-#task-add-modal button.btn-suggest-save {
+#task-add-modal button.btn-suggest-save,
+#suggest-task-modal select.form-control,
+#suggest-task-modal button.btn-suggest-save {
   border-radius: 0;
   height: 1.5rem;
   padding-top: 0;

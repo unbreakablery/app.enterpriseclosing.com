@@ -168,53 +168,7 @@
             <div class="modal-body">
                 <h3>Would you like to add these tasks too?</h3>
                 <div class="row additional-tasks">
-                    @if (count($suggest_steps) > 0)
-                        @foreach ($suggest_steps as $idx => $suggest_step)
-                        <div class="form-row pt-1 pb-1 additional-task-item-{{ $idx }} col-12">
-                            <div class="col-2">
-                                <select name="suggest-action-{{ $idx }}" id="suggest-action-{{ $idx }}" class="selectpicker col-12 pl-0 pr-0 n-b-r">
-                                    @foreach ($suggest_actions as $suggest_action)
-                                        <option value="{{ $suggest_action->id }}" @if(old('saved_action') == $suggest_action->id) selected @endif>{{ $suggest_action->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-2">
-                                <input type="hidden" value="{{ $suggest_step->id }}" id="suggest-step-{{ $idx }}" name="suggest-step-{{ $idx }}"/>
-                                <input type="text" class="form-control n-b-r" value="{{ $suggest_step->name }}" id="suggest-step-name-{{ $idx }}" name="suggest-step-name-{{ $idx }}" readonly />
-                            </div>
-                            <div class="col-1">
-                                <input type="text" class="form-control n-b-r" value="{{ old('saved_person_account') }}" id="suggest-person-account-{{ $idx }}" name="suggest-person-account-{{ $idx }}" readonly placeholder="Person/Account..."/>
-                            </div>
-                            <div class="col-2">
-                                <select class="selectpicker col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
-                                    @foreach ($opportunities as $opp)
-                                        <option value="{{ $opp->id }}" @if (old('saved_opportunity') == $opp->id){{ 'selected' }}@else{{ 'disabled' }}@endif>{{ $opp->opportunity }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-1">
-                                <input type="text" class="form-control n-b-r" id="suggest-note-{{ $idx }}" name="suggest-note-{{ $idx }}" placeholder="Note..." />
-                            </div>
-                            <div class="col-2">
-                                <input type="text" class="form-control date n-b-r" value="{{ old('saved_by_date') }}" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
-                            </div>
-                            <div class="col-1">
-                                <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="selectpicker col-12 pl-0 pr-0 n-b-r">
-                                    <option value="3">Normal</option>
-                                    <option value="2">Medium</option>
-                                    <option value="1">High</option>
-                                </select>
-                            </div>
-                            <div class="col-1 btn-suggest-save-wrapper">
-                                <button type="button" class="btn btn-success btn-suggest-save n-b-r" data-id="{{ $idx }}">Save</button>			
-                            </div>
-                        </div>
-                        @endforeach
-                    @else
-                        <p class="text-center w-100">
-                            No suggested additional tasks!
-                        </p>
-                    @endif
+                    
                 </div>
             </div>
             <div class="modal-footer">
