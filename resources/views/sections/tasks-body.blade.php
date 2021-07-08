@@ -63,20 +63,16 @@
     
     <h3 id="action-label" data-toggle="tooltip" data-placement="right" title="Required field!">Action</h3>
     <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-1">
-        @foreach ($settings as $setting)
-            @foreach ($actions as $action)
-                @if ($setting->section_type == 1 && $action->id == $setting->section_id)
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="radio" name="action" 
-                        id="action-{{ $action->id }}" 
-                        value="{{ $action->id }}" 
-                        required />
-                    <label class="form-check-label" for="action-{{ $action->id }}">
-                        {{ $action->name }}
-                    </label>
-                </div>
-                @endif
-            @endforeach
+        @foreach ($actions as $action)
+            <div class="form-check col-2">
+                <input class="form-check-input" type="radio" name="action" 
+                    id="action-{{ $action->id }}" 
+                    value="{{ $action->id }}" 
+                    required />
+                <label class="form-check-label" for="action-{{ $action->id }}">
+                    {{ $action->name }}
+                </label>
+            </div>       
         @endforeach
         <div class="form-check col-2">
             <input class="form-check-input" type="radio" name="action" id="action-other" value="0">
@@ -86,20 +82,16 @@
     
     <h3 id="step-label" data-toggle="tooltip" data-placement="right" title="Required field!">Step</h3>
     <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-2">
-        @foreach ($settings as $setting)
-            @foreach ($steps as $step)
-                @if ($setting->section_type == 2 && $step->id == $setting->section_id)
-                <div class="form-check col-2">
-                    <input class="form-check-input" type="radio" name="step" 
-                        id="step-{{ $step->id }}" 
-                        value="{{ $step->id }}" 
-                        required />
-                    <label class="form-check-label" for="step-{{ $step->id }}">
-                        {{ $step->name }}
-                    </label>
-                </div>
-                @endif
-            @endforeach
+        @foreach ($steps as $step)
+            <div class="form-check col-2">
+                <input class="form-check-input" type="radio" name="step" 
+                    id="step-{{ $step->id }}" 
+                    value="{{ $step->id }}" 
+                    required />
+                <label class="form-check-label" for="step-{{ $step->id }}">
+                    {{ $step->name }}
+                </label>
+            </div>
         @endforeach
         <div class="form-check col-2">
             <input class="form-check-input" type="radio" name="step" id="step-other" value="0">
@@ -316,7 +308,7 @@
                                 </select>
                             </div>
                             <div class="col-1 btn-suggest-save-wrapper">
-                                <button type="button" class="btn btn-success btn-suggest-save n-b-r" data-id="{{ $idx }}">Save</button>			
+                                <button type="button" class="btn btn-success btn-suggest-save n-b-r" data-id="{{ $idx }}">Save</button>
                             </div>
                         </div>
                         @endforeach

@@ -170,6 +170,9 @@ $(document).ready(function() {
                             suggest_priority: suggestPriority,
                         },
             success: function( res ) {
+                // Show meassge
+                showMessage('success', 'New task (ID: ' + res.task_id + ') was added successfully!');
+                
                 let className = '';
                 let priorityName = '';
                 

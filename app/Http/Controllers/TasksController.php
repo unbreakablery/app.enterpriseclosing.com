@@ -89,8 +89,8 @@ class TasksController extends Controller
             return redirect()->route('settings');
         }
 
-        $actions = getActions();
-        $steps = getSteps();
+        $actions = getActionsForCurrentUser();
+        $steps = getStepsForCurrentUser();
         $settings = TaskSetting::where('user_id', Auth::user()->id)
                             ->get();
 
@@ -113,24 +113,9 @@ class TasksController extends Controller
         $suggest_opportunity = (isset($request->opportunity)) ? $request->opportunity : '';
         
         //get suggested steps for additional tasks
-        $suggest_steps = TaskSuggestSetting::where('user_id', Auth::user()->id)
-                                ->where('step_id', (!empty($saved_step)) ? $saved_step : 0)
-                                ->join('steps', 'tasks_suggest_settings.suggest_step_id', '=', 'steps.id')
-                                ->select('steps.id', 'steps.name')
-                                ->distinct('steps.id')
-                                ->orderBy('steps.name')
-                                ->get();
-        $suggest_actions = TaskSetting::where('user_id', Auth::user()->id)
-                                ->where('section_type', 1)
-                                ->join('actions', 'tasks_settings.section_id', '=', 'actions.id')
-                                ->select('actions.id', 'actions.name')
-                                ->distinct('actions.id')
-                                ->orderBy('actions.name')
-                                ->get();
-        $opportunities = OpportunityMain::where('user', Auth::user()->id)
-                                ->select('id', 'opportunity')
-                                ->orderBy('id')
-                                ->get();
+        $suggest_steps = getSuggestSteps($saved_step);
+        $suggest_actions = getActionsForCurrentUser();
+        $opportunities = getOpportunities();
         
         return view('pages.tasks', 
                     compact(
