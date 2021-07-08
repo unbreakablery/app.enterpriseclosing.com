@@ -43,6 +43,7 @@ Route::get('/opportunities', 'OpportunityController@getOpportunities')->name('op
 Route::post('/opportunities/save-main', 'OpportunityController@saveOpportunityMain')->name('opportunity.save.main');
 Route::post('/opportunities/update-main', 'OpportunityController@updateOpportunityMain')->name('opportunity.update.main');
 Route::post('/opportunities/save-meddpicc', 'OpportunityController@saveOpportunityMeddpicc')->name('opportunity.save.meddpicc');
+Route::post('/opportunities/save-task', 'OpportunityController@saveTask')->name('opportunity.save.task');
 
 Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
 Route::delete('/scripts/remove/script-main/{id}', 'ScriptController@removeScriptMain')->name('scripts.remove.main');
