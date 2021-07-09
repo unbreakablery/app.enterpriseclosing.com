@@ -21,14 +21,11 @@ class SkillController extends Controller
 
     public function getSkills()
     {
-        // $user = Auth::user();
         $assessments = getSkillAssessment();
         $groups = getGroupAssessment();
         $startAt = getSkillStartMonthSetting();
-        // dd($start);
-
+        
         $startAt = Carbon::parse($startAt);
-        // dd($startMonth->day);
         
         $startAt = Carbon::create($startAt->year, $startAt->month, 1, 0);
 
@@ -36,13 +33,11 @@ class SkillController extends Controller
         $now = Carbon::create($now->year, $now->month, 1, 0);
         
         $diffMonths = $now->diffInMonths($startAt);
-        // dd($diffMonths);
         
         $dates = [$startAt->format('Y-m-d')];
         for ($i = 1; $i <= $diffMonths; $i++) {
             $dates[] = $startAt->addMonths(1)->format('Y-m-d');
         }
-        // dd($dates);
         
         foreach ($dates as $d) {
             foreach ($assessments as $a) {

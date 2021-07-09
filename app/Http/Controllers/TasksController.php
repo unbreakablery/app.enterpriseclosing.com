@@ -44,7 +44,6 @@ class TasksController extends Controller
             $by_date = '07-' . date('m') . '-' . date('Y');
             
             if (!empty($actionForACMT) && !empty($stepForACMT)) {
-                // dd(DateTime::createFromFormat('d-m-Y', $by_date));
                 $acmt = Task::where('user', Auth::user()->id)
                             ->where('action', $actionForACMT->id)
                             ->where('step', $stepForACMT->id)

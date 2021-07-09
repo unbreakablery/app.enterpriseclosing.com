@@ -10342,7 +10342,7 @@ body {
 */
 .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
   background-color: #000;
-  border: 1px solid #fff;
+  border: 0 !important;
 }
 
 .dataTables_wrapper .dataTables_length select {
@@ -10685,19 +10685,19 @@ input[type=checkbox] {
 .emails-table-wrapper {
   max-height: 315px;
   overflow-y: auto;
-  border: solid 1px #fff;
+  padding-bottom: 1px;
 }
 
 .skills-table-wrapper {
   max-height: 800px;
   overflow-y: auto;
-  border: solid 1px #fff;
+  padding-bottom: 1px;
 }
 
 .assessments-table-wrapper {
-  border: solid 1px #fff;
   max-height: calc(100vh - 200px);
   overflow-y: auto;
+  padding-bottom: 1px;
 }
 .assessments-table-wrapper table#assessments-table input {
   border: 0;
@@ -10721,10 +10721,15 @@ input[type=checkbox] {
 #settingsTabsContent table#skills-table tr th {
   padding-top: 0;
   padding-bottom: 0;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff;
+  border: solid 1px #fff;
 }
 #settingsTabsContent table#scripts-table tr td,
 #settingsTabsContent table#emails-table tr td,
 #settingsTabsContent table#skills-table tr td {
+  border: solid 1px #fff;
   vertical-align: middle;
 }
 #settingsTabsContent table#scripts-table tr td button,
@@ -10732,6 +10737,36 @@ input[type=checkbox] {
 #settingsTabsContent table#skills-table tr td button {
   padding-top: 1px;
   padding-bottom: 1px;
+}
+#settingsTabsContent table#scripts-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+#settingsTabsContent table#emails-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+#settingsTabsContent table#skills-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
+  border-top: none !important;
+}
+
+table#persons-table tr th,
+table#assessments-table tr th {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 0 !important;
+  border-top: 0 !important;
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff;
+  border: solid 1px #fff;
+  z-index: 100;
+}
+table#persons-table tr td,
+table#assessments-table tr td {
+  border: solid 1px #fff;
+  vertical-align: middle;
+}
+table#persons-table tr td button,
+table#assessments-table tr td button {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+table#persons-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
+  border-top: none !important;
 }
 
 table#persons-table input[type=text],
@@ -10785,9 +10820,8 @@ table#emails-table tr th,
 table#skills-table tr th,
 table#assessments-table tr th {
   position: sticky;
-  top: -1px;
+  top: 0px;
   padding: 0.25rem 5px;
-  z-index: 100;
   border-color: #fff;
 }
 table#persons-table tbody tr td,
@@ -10845,6 +10879,11 @@ a.a-btn-remove-account {
 .collapse-section .form-control {
   height: 1.5rem;
   padding: 1px 0.75rem;
+}
+
+#tasks-form #task-table-wrapper .dataTables_scrollBody,
+.opportunities-wrapper .tab-content .dataTables_scrollBody {
+  height: unset !important;
 }
 
 /*
@@ -11004,7 +11043,7 @@ table .dropdown.bootstrap-select button.dropdown-toggle:focus {
 .meddpicc-section input[type=radio].form-check-input {
   width: 15px;
   height: 15px;
-  margin-right: 15px;
+  margin-right: 10px;
   position: relative;
   flex-shrink: 0;
   margin-top: 0;
@@ -11022,5 +11061,4 @@ table .dropdown.bootstrap-select button.dropdown-toggle:focus {
   display: flex;
   align-items: center;
   margin-bottom: 0;
-  margin-right: 50px;
 }
