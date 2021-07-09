@@ -47,6 +47,8 @@ class SettingsController extends Controller
 
         $user = User::where('id', $userId)->get()->first();
 
+        $oppIFs = getOppInputFields();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
@@ -58,7 +60,8 @@ class SettingsController extends Controller
                 'emailSetting',
                 'skillSetting',
                 'skillStartAt',
-                'skillACMT'
+                'skillACMT',
+                'oppIFs'
             )
         );
     }
@@ -167,6 +170,15 @@ class SettingsController extends Controller
                 
         return response()->json([
             'success' => $acmt
+        ]);
+    }
+
+    public function storeOppIFsSettings(Request $request)
+    {
+        $result = storeOppInputFields($request);
+
+        return response()->json([
+            'success' => $result
         ]);
     }
 }

@@ -939,4 +939,35 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#btn-save-opportunities-settings').click(function() {
+        var inputFields = [];
+        $('#form_opportunities_setting input[name="input_fields[]"]:checked').each(function() {
+            inputFields.push($(this).val());
+        });
+
+        loader('show');
+
+        $.ajax({
+            url: "/settings/store/opportunities-input-fields",
+            type: "post",
+            dataType: "json",
+            data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    input_fields: inputFields
+                },
+            success: function(response) {
+                loader('hide');
+                
+                // Show message
+                showMessage('success', 'Available input fields was saved successfully!');
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                loader('hide');
+                
+                // Show message
+                showMessage('danger', 'Error, Please retry!');
+            }
+        });
+    });
 });

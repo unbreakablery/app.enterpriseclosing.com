@@ -9,6 +9,7 @@ use App\Models\OutboundMain;
 use App\Models\OutboundPerson;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
+use App\Models\OpportunitySetting;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
@@ -411,52 +412,50 @@ if (!function_exists('storeOpportunityMeddpicc')) {
         if (empty($meddpicc)) {
             $opportunityMeddpicc = new OpportunityMeddpicc();
             $opportunityMeddpicc->opp_id                    = $oppId;
-            $opportunityMeddpicc->metrics                   = $data->metrics;
-            $opportunityMeddpicc->metrics_score             = $data->metrics_score;
-            $opportunityMeddpicc->economic_buyer            = $data->economic_buyer;
-            $opportunityMeddpicc->economic_buyer_score      = $data->economic_buyer_score;
-            $opportunityMeddpicc->decision_criteria         = $data->decision_criteria;
-            $opportunityMeddpicc->decision_criteria_score   = $data->decision_criteria_score;
-            $opportunityMeddpicc->decision_process          = $data->decision_process;
-            $opportunityMeddpicc->decision_process_score    = $data->decision_process_score;
-            $opportunityMeddpicc->paper_process             = $data->paper_process;
-            $opportunityMeddpicc->paper_process_score       = $data->paper_process_score;
-            $opportunityMeddpicc->identified_pain           = $data->identified_pain;
-            $opportunityMeddpicc->identified_pain_score     = $data->identified_pain_score;
-            $opportunityMeddpicc->champion_coach            = $data->champion_coach;
-            $opportunityMeddpicc->champion_coach_score      = $data->champion_coach_score;
-            $opportunityMeddpicc->competition               = $data->competition;
-            $opportunityMeddpicc->competition_score         = $data->competition_score;
-            $opportunityMeddpicc->meddpicc_score            = $data->meddpicc_score;
+            $opportunityMeddpicc->metrics                   = $data->m_metrics;
+            $opportunityMeddpicc->metrics_score             = $data->m_metrics_score;
+            $opportunityMeddpicc->economic_buyer            = $data->m_economic_buyer;
+            $opportunityMeddpicc->economic_buyer_score      = $data->m_economic_buyer_score;
+            $opportunityMeddpicc->decision_criteria         = $data->m_decision_criteria;
+            $opportunityMeddpicc->decision_criteria_score   = $data->m_decision_criteria_score;
+            $opportunityMeddpicc->decision_process          = $data->m_decision_process;
+            $opportunityMeddpicc->decision_process_score    = $data->m_decision_process_score;
+            $opportunityMeddpicc->paper_process             = $data->m_paper_process;
+            $opportunityMeddpicc->paper_process_score       = $data->m_paper_process_score;
+            $opportunityMeddpicc->identified_pain           = $data->m_identified_pain;
+            $opportunityMeddpicc->identified_pain_score     = $data->m_identified_pain_score;
+            $opportunityMeddpicc->champion_coach            = $data->m_champion_coach;
+            $opportunityMeddpicc->champion_coach_score      = $data->m_champion_coach_score;
+            $opportunityMeddpicc->competition               = $data->m_competition;
+            $opportunityMeddpicc->competition_score         = $data->m_competition_score;
+            $opportunityMeddpicc->meddpicc_score            = $data->m_meddpicc_score;
             
             $opportunityMeddpicc->save();
 
-            // $opportunityMeddpicc->create($data->all());
             return $opportunityMeddpicc->id;
         }
 
         // Update opportunity meddpicc
         OpportunityMeddpicc::where('opp_id', $oppId)
                     ->update([
-                        'metrics'                   => $data->metrics,
-                        'metrics_score'             => $data->metrics_score,
-                        'economic_buyer'            => $data->economic_buyer,
-                        'economic_buyer_score'      => $data->economic_buyer_score,
-                        'decision_criteria'         => $data->decision_criteria,
-                        'decision_criteria_score'   => $data->decision_criteria_score,
-                        'decision_process'          => $data->decision_process,
-                        'decision_process_score'    => $data->decision_process_score,
-                        'paper_process'             => $data->paper_process,
-                        'paper_process_score'       => $data->paper_process_score,
-                        'identified_pain'           => $data->identified_pain,
-                        'identified_pain_score'     => $data->identified_pain_score,
-                        'champion_coach'            => $data->champion_coach,
-                        'champion_coach_score'      => $data->champion_coach_score,
-                        'competition'               => $data->competition,
-                        'competition_score'         => $data->competition_score,
-                        'meddpicc_score'            => $data->meddpicc_score
+                        'metrics'                   => $data->m_metrics,
+                        'metrics_score'             => $data->m_metrics_score,
+                        'economic_buyer'            => $data->m_economic_buyer,
+                        'economic_buyer_score'      => $data->m_economic_buyer_score,
+                        'decision_criteria'         => $data->m_decision_criteria,
+                        'decision_criteria_score'   => $data->m_decision_criteria_score,
+                        'decision_process'          => $data->m_decision_process,
+                        'decision_process_score'    => $data->m_decision_process_score,
+                        'paper_process'             => $data->m_paper_process,
+                        'paper_process_score'       => $data->m_paper_process_score,
+                        'identified_pain'           => $data->m_identified_pain,
+                        'identified_pain_score'     => $data->m_identified_pain_score,
+                        'champion_coach'            => $data->m_champion_coach,
+                        'champion_coach_score'      => $data->m_champion_coach_score,
+                        'competition'               => $data->m_competition,
+                        'competition_score'         => $data->m_competition_score,
+                        'meddpicc_score'            => $data->m_meddpicc_score
                     ]);
-        // $meddpicc->update($data->all());
         return $meddpicc->id;
     }
 }
@@ -869,5 +868,64 @@ if (!function_exists('getSkillACMTSetting')) {
         }
 
         return $acmt->s_value;
+    }
+}
+
+if (!function_exists('getOppInputFields')) {
+    function getOppInputFields()
+    {
+        $userId = Auth::user()->id;
+
+        $oppIFs = OpportunitySetting::where('user', $userId)
+                                    ->where('o_key', 'input-fields')
+                                    ->get();
+
+        $ifs = config('app_setting.opportunities.input_fields');
+        $results = [];
+        foreach ($ifs as $key => $val) {
+            $input = new \stdClass();
+            $input->key = $key;
+            $input->value = $val['name'];
+            $input->type = $val['type'];
+            $input->checked = false;
+            foreach ($oppIFs as $o) {
+                if ($o->o_value == $key) {
+                    $input->checked = true;
+                    break;
+                }
+            }
+            $results[] = $input;
+        }
+        
+        return $results;
+    }
+}
+
+if (!function_exists('storeOppInputFields')) {
+    function storeOppInputFields($data)
+    {
+        $userId = Auth::user()->id;
+        $result = OpportunitySetting::where('user', $userId)
+                                    ->where('o_key', 'input-fields')
+                                    ->delete();
+
+        $settings = [];
+
+        if (empty($data) || empty($data->input_fields)) {
+            return $settings;
+        }
+
+        foreach ($data->input_fields as $input) {
+            $settings[] = [
+                'user' => $userId,
+                'o_key' => 'input-fields',
+                'o_value' => $input,
+                'created_at' => now()
+            ];
+        }
+
+        $result = OpportunitySetting::insert($settings);
+        
+        return $result;
     }
 }

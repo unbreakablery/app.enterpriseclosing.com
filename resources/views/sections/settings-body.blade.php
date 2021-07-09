@@ -376,10 +376,25 @@
             data-idx="opportunities"
             role="tabpanel"
             aria-labelledby="tab-opportunities">
-            <form id="form_opportunities_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
+            <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
                 @csrf
-                <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-opportunities-settings">
+                <h3>Available Input Fields</h3>
+                <div class="row task-section col-md-12 col-sm-12 mb-4">
+                    @foreach ($oppIFs as $idx => $input)
+                    <div class="form-check col-2">
+                        <input class="form-check-input input-action" type="checkbox" name="input_fields[]" 
+                            id="{{ $input->key }}" 
+                            value="{{ $input->key }}"
+                            @if ($input->checked){{ 'checked' }}@endif
+                            >
+                        <label class="form-check-label" for="{{ $input->key }}">
+                            {{ $input->value }}
+                        </label>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="row task-section col-md-12 col-sm-12 mb-4">
+                    <button type="button" class="btn btn-grad col-2 n-b-r" id="btn-save-opportunities-settings">
                             Save Settings
                     </button>
                 </div>
@@ -428,7 +443,7 @@
                 <h3>Script List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="scripts-table-wrapper">
-                        <table class="table table-bordered table-hover w-100 mb-0" id="scripts-table">
+                        <table class="table table-hover w-100 mb-0" id="scripts-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
@@ -518,7 +533,7 @@
                 <h3>Email List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="emails-table-wrapper">
-                        <table class="table table-bordered table-hover w-100 mb-0" id="emails-table">
+                        <table class="table table-hover w-100 mb-0" id="emails-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
@@ -709,7 +724,7 @@
                         <h3>Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                             <div class="skills-table-wrapper">
-                                <table class="table table-hover table-bordered w-100 mb-0" id="skills-table">
+                                <table class="table table-hover w-100 mb-0" id="skills-table">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
