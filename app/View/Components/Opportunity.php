@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Opportunity extends Component
 {
     public $main = null;
+    public $ifs = null;
     public $tasks = null;
     public $meddpicc = null;
 
@@ -15,9 +16,10 @@ class Opportunity extends Component
      *
      * @return void
      */
-    public function __construct($opportunityMain, $opportunityTasks, $opportunityMeddpicc)
+    public function __construct($opportunityMain, $opportunityIfs, $opportunityTasks, $opportunityMeddpicc)
     {
         $this->main = $opportunityMain;
+        $this->ifs = $opportunityIfs;
         $this->tasks = $opportunityTasks;
         $this->meddpicc = $opportunityMeddpicc;
     }

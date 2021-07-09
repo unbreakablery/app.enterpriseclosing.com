@@ -41,8 +41,7 @@ Route::post('/outbound/save-task', 'OutboundController@saveTask')->name('outboun
 
 Route::get('/opportunities', 'OpportunityController@getOpportunities')->name('opportunities');
 Route::post('/opportunities/save-main', 'OpportunityController@saveOpportunityMain')->name('opportunity.save.main');
-Route::post('/opportunities/update-main', 'OpportunityController@updateOpportunityMain')->name('opportunity.update.main');
-Route::post('/opportunities/save-meddpicc', 'OpportunityController@saveOpportunityMeddpicc')->name('opportunity.save.meddpicc');
+Route::post('/opportunities/save', 'OpportunityController@saveOpportunity')->name('opportunity.save');
 Route::post('/opportunities/save-task', 'OpportunityController@saveTask')->name('opportunity.save.task');
 
 Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
@@ -61,6 +60,7 @@ Route::post('/skills/save-assessment', 'SkillController@saveAssessment')->name('
 Route::get('/settings', 'SettingsController@index')->name('settings');
 Route::post('/settings/store/general', 'SettingsController@storeGeneralSettings')->name('settings.store.general');
 Route::post('/settings/store/tasks', 'SettingsController@storeTasksSettings')->name('settings.store.tasks');
+Route::post('/settings/store/opportunities-input-fields', 'SettingsController@storeOppIFsSettings')->name('settings.store.opp.ifs');
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
 Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');
 Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSettings')->name('settings.store.skill.main');

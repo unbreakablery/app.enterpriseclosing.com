@@ -1,6 +1,7 @@
 <div id="opp-component-empty" hidden>
     <x-opportunity
         :opportunityMain="null"
+        :opportunityIfs="$opportunityIfs"
         :opportunityTasks="null"
         :opportunityMeddpicc="null"
     />
@@ -46,6 +47,7 @@
                 aria-labelledby="tab-{{ $idx }}">
                 <x-opportunity
                     :opportunityMain="$opp->main"
+                    :opportunityIfs="$opportunityIfs"
                     :opportunityTasks="$opp->tasks"
                     :opportunityMeddpicc="$opp->meddpicc"
                 />

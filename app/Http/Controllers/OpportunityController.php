@@ -56,6 +56,8 @@ class OpportunityController extends Controller
         $actions = getActionsForCurrentUser();
         $steps = getStepsForCurrentUser();
 
+        $opportunityIfs = getOppInputFields();
+                
         $nl_opportunities_class = 'active';
         
         return view('pages.opportunities',
@@ -63,6 +65,7 @@ class OpportunityController extends Controller
                             'data',
                             'actions',
                             'steps',
+                            'opportunityIfs',
                             'nl_opportunities_class'
                     )
                 );
@@ -118,5 +121,13 @@ class OpportunityController extends Controller
             'taskID' => $task->id,
             'suggest' => $suggest
         ]);
+    }
+
+    public function saveOpportunity(Request $request)
+    {
+        $mainId = storeOpportunityMain($request);
+        $meddpiccId = storeOpportunityMeddpicc($request);
+
+        return redirect(url()->previous())->withInput();
     }
 }

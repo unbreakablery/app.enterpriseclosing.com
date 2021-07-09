@@ -9,6 +9,9 @@ $(document).ready(function() {
 
     function drawSuggestTaskModal(suggest) {
         var innerHtml = '';
+
+        $('#suggest-task-modal .modal-body .additional-tasks').html('');
+
         if (suggest != undefined && suggest != null) {
             suggest.steps.forEach(function(step, idx) {
                 innerHtml += '<div class="form-row pt-1 pb-1 additional-task-item-' + idx + ' col-12">';
@@ -56,6 +59,7 @@ $(document).ready(function() {
             innerHtml += 'No suggested additional tasks!';
             innerHtml += '</p>';
         }
+
         $('#suggest-task-modal .modal-body .additional-tasks').append(innerHtml);
         $('#suggest-task-modal .modal-body .additional-tasks select').selectpicker({noneSelectedText: '', container: 'body'});
         $('#suggest-task-modal .modal-body .additional-tasks .date').datepicker({
@@ -170,9 +174,9 @@ $(document).ready(function() {
                 
                 $('#oppTabs').append(tabNavElement);
                 $('#oppTabsContent').append(tabContent);
-
+                
                 // Add new component to tab
-                $('#opp-tab-' + tabIndex).append($('#opp-component-empty .tab-component').clone(true));
+                $('#opp-tab-' + tabIndex).append($('#opp-component-empty .tab-component').clone(false));
                 $('#opp-tab-' + tabIndex + ' .task-table').attr('id', 'task-table-' + res.id);
                 $('#opp-tab-' + tabIndex + ' .task-table').DataTable({
                     responsive: true,
@@ -201,6 +205,13 @@ $(document).ready(function() {
                     if ($(table.column(idx).header()).find('.task-table-header').find('span.sort-icon').length == 0) {
                         $(table.column(idx).header()).find('.task-table-header').append('<span class="sort-icon"/>');
                     }
+                });
+                $('.date').datepicker({
+                    format: 'dd-mm-yyyy',
+                    todayBtn: "linked",
+                    todayHighlight: true,
+                    clearBtn: true,
+                    autoclose: true
                 });
 
                 // Add opportunity id and name
@@ -291,21 +302,22 @@ $(document).ready(function() {
     //calculate meddpicc value
     $(document).on('click', '.collapse-section input[type=radio].form-check-input', function() {
         var meddpiccTab = $(this).closest('.collapse-section');
-        var metricsScore = $(meddpiccTab).find('input[type=radio][name=metrics_score]:checked').val();
-        var economicBuyerScore = $(meddpiccTab).find('input[type=radio][name=economic_buyer_score]:checked').val();
-        var decisionCriteriaScore = $(meddpiccTab).find('input[type=radio][name=decision_criteria_score]:checked').val();
-        var decisionProcessScore = $(meddpiccTab).find('input[type=radio][name=decision_process_score]:checked').val();
-        var paperProcessScore = $(meddpiccTab).find('input[type=radio][name=paper_process_score]:checked').val();
-        var identifiedPainScore = $(meddpiccTab).find('input[type=radio][name=identified_pain_score]:checked').val();
-        var championCoachScore = $(meddpiccTab).find('input[type=radio][name=champion_coach_score]:checked').val();
-        var competitionScore = $(meddpiccTab).find('input[type=radio][name=competition_score]:checked').val();
+        var metricsScore = $(meddpiccTab).find('input[type=radio][name=m_metrics_score]:checked').val();
+        var economicBuyerScore = $(meddpiccTab).find('input[type=radio][name=m_economic_buyer_score]:checked').val();
+        var decisionCriteriaScore = $(meddpiccTab).find('input[type=radio][name=m_decision_criteria_score]:checked').val();
+        var decisionProcessScore = $(meddpiccTab).find('input[type=radio][name=m_decision_process_score]:checked').val();
+        var paperProcessScore = $(meddpiccTab).find('input[type=radio][name=m_paper_process_score]:checked').val();
+        var identifiedPainScore = $(meddpiccTab).find('input[type=radio][name=m_identified_pain_score]:checked').val();
+        var championCoachScore = $(meddpiccTab).find('input[type=radio][name=m_champion_coach_score]:checked').val();
+        var competitionScore = $(meddpiccTab).find('input[type=radio][name=m_competition_score]:checked').val();
 
         var meddpiccScore = parseInt(metricsScore) + parseInt(economicBuyerScore) +
                             parseInt(decisionCriteriaScore) + parseInt(decisionProcessScore) +
                             parseInt(paperProcessScore) + parseInt(identifiedPainScore) +
                             parseInt(championCoachScore) + parseInt(competitionScore);
 
-        $(meddpiccTab).find('input[name=meddpicc_score]').val(meddpiccScore);
+        $(meddpiccTab).find('input[name=m_meddpicc_score]').val(meddpiccScore);
+        $(meddpiccTab).find('span#meddpicc-score').text(meddpiccScore);
     });
 
     $(document).on('click', 'button.btn-show-task-modal', function() {
@@ -412,7 +424,7 @@ $(document).ready(function() {
 
                 // Draw suggest task modal
                 var suggest = res.suggest;
-                drawSuggestTaskModal(suggest);                
+                drawSuggestTaskModal(suggest);
             },
             error: function (request, status, error) {
                 loader('hide');
