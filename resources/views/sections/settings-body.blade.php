@@ -382,7 +382,7 @@
                 <div class="row task-section col-md-12 col-sm-12 mb-4">
                     @foreach ($oppIFs as $idx => $input)
                     <div class="form-check col-2">
-                        <input class="form-check-input input-action" type="checkbox" name="input_fields[]" 
+                        <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
                             id="{{ $input->key }}" 
                             value="{{ $input->key }}"
                             @if ($input->checked){{ 'checked' }}@endif
@@ -392,6 +392,13 @@
                         </label>
                     </div>
                     @endforeach
+                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
+                        <div class="form-check col-20 pl-1">
+                            <a href="javascript:void(0)" id="check-all-inputs" class="select-all mr-2">Check All</a>
+                            <span class="select-all-slash">/</span>
+                            <a href="javascript:void(0)" id="uncheck-all-inputs" class="select-all ml-2">Uncheck All</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4">
                     <button type="button" class="btn btn-grad col-2 n-b-r" id="btn-save-opportunities-settings">

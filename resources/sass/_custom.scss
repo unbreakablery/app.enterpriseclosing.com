@@ -809,9 +809,14 @@ a.a-btn-remove-account {
     }
 }
 #tasks-form #task-table-wrapper,
-.opportunities-wrapper .tab-content {
+.opportunities-wrapper .tab-content .dataTables_wrapper .dataTables_scroll {
     .dataTables_scrollBody {
         height: unset !important;
+        border-bottom: solid 1px #fff !important;
+
+        table.datatable {
+            border-bottom-width: 0px !important;
+        }
     }
 }
 

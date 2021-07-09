@@ -24,9 +24,10 @@
   padding: 0 0.75rem;
 }
 
-#settings-tab-tasks .select-all-slash {
+.select-all-slash {
   color: #3490dc;
 }
+
 #settings-tab-tasks #suggest_step #tabs {
   margin-left: 0 !important;
 }

@@ -10882,8 +10882,13 @@ a.a-btn-remove-account {
 }
 
 #tasks-form #task-table-wrapper .dataTables_scrollBody,
-.opportunities-wrapper .tab-content .dataTables_scrollBody {
+.opportunities-wrapper .tab-content .dataTables_wrapper .dataTables_scroll .dataTables_scrollBody {
   height: unset !important;
+  border-bottom: solid 1px #fff !important;
+}
+#tasks-form #task-table-wrapper .dataTables_scrollBody table.datatable,
+.opportunities-wrapper .tab-content .dataTables_wrapper .dataTables_scroll .dataTables_scrollBody table.datatable {
+  border-bottom-width: 0px !important;
 }
 
 /*

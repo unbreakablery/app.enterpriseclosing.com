@@ -970,4 +970,16 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#settings-tab-opportunities #uncheck-all-inputs').on('click', function() {
+        $('#settings-tab-opportunities .input-field').each(function(e) {
+            $(this).prop('checked', false);
+        });
+    });
+
+    $('#settings-tab-opportunities #check-all-inputs').on('click', function() {
+        $('#settings-tab-opportunities .input-field').each(function(e) {
+            $(this).prop('checked', true);
+        });
+    });
 });
