@@ -15,6 +15,8 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
+            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('is_first_login')->default(1);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone')->nullable();
