@@ -11,8 +11,11 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         @error('not_active')
-                        <div class="alert alert-danger" role="alert" style="margin-left: 17%; margin-right: 17%;">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: 17%; margin-right: 17%;">
                             <strong>{{ $message }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         @enderror
                         <div class="form-group row">
