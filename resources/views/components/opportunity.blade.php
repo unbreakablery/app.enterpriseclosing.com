@@ -460,14 +460,14 @@
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                                        <div class="form-group">
+                                                        <div class="form-group mb-0">
                                                             <label for=""></label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
-                                                <div class="form-group">
+                                                <div class="form-group mb-0">
                                                     <label for="m_meddpicc_score" class="font-weight-bolder">
                                                         MEDDPICC Score = <span id="meddpicc-score">@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif</span>
                                                     </label>
