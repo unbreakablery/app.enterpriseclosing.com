@@ -64,7 +64,7 @@ class UserController extends Controller
         $name = $request->first_name . ' ' . $request->last_name;
         $email = $request->email;
         // $password = env('WEBHOOK_USER_PASSWORD');
-        $password =  Str::random(32);
+        $password = Str::random(32);
         
         // Create new user
         $user = new User();
@@ -73,15 +73,20 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $email;
         $user->password = Hash::make($password);
-        $user->role = '1';
+        $user->role = '2';
+        $user->active = 0;
+        $user->is_first_login = 1;
         
         $user->save();
 
-        // Send Email with generated password
-        Mail::to($email)->send(new WebhookMail($name, $password));
-
-        return response()->json([
-            'status' => 'SUCCESS'
-        ]);
+        try {
+            // Send Email with generated password
+            Mail::to($email)->send(new WebhookMail($name, $password));
+            return response()->json([
+                'status' => 'SUCCESS'
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
     }
 }

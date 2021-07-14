@@ -81,10 +81,10 @@ class TasksController extends Controller
             }
         }
         
-        // Change User Role
-        if (Auth::user()->role == '2') {
+        // Change is_first_login
+        if (Auth::user()->is_first_login) {
             User::where('id', Auth::user()->id)
-                ->update(['role' => '1']);
+                ->update(['is_first_login' => 0]);
             return redirect()->route('settings');
         }
 

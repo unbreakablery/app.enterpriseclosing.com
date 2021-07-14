@@ -10,7 +10,11 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        @error('not_active')
+                        <div class="alert alert-danger" role="alert" style="margin-left: 17%; margin-right: 17%;">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        @enderror
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function authenticated()
+    {
+        if (! Auth::User()->active) {
+            Auth::logout();
+            return redirect()->back()
+                            ->withErrors([
+                                'not_active' => 'Account not activate, please try again later or contact support.'
+                            ])
+                            ->withInput();
+        }
     }
 }

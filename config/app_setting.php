@@ -1,6 +1,11 @@
 <?php
 
 return  [
+    'roles' => [
+        '0' => 'super_admin',
+        '1' => 'administrator',
+        '2' => 'user'
+    ],
     'opportunities' => [
         'input_fields' => [
             'usecase'           => ['name' => 'Use-Case', 'type' => ''],
