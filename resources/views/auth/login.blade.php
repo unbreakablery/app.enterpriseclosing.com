@@ -8,9 +8,9 @@
                 <div class="card-header"><img src="images/logo.png" alt="" class="img-fluid login-logo "></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         @csrf
-                        @error('not_active')
+                        @error('inactive')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: 17%; margin-right: 17%;">
                             <strong>{{ $message }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

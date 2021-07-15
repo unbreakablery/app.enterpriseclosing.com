@@ -45,7 +45,7 @@ class LoginController extends Controller
             Auth::logout();
             return redirect()->back()
                             ->withErrors([
-                                'not_active' => 'Account not activate, please try again later or contact support.'
+                                'inactive' => 'Account not activate, please try again later or contact support.'
                             ])
                             ->withInput();
         }
