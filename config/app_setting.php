@@ -2,9 +2,12 @@
 
 return  [
     'roles' => [
-        '0' => 'super_admin',
-        '1' => 'administrator',
-        '2' => 'user'
+        '0' => 'Super Admin',
+        '1' => 'Administrator',
+        '2' => 'User'
+    ],
+    'permissions' => [
+        'manage-user' => ['0']
     ],
     'opportunities' => [
         'input_fields' => [

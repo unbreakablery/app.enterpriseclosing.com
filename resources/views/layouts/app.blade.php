@@ -74,6 +74,11 @@
                                     <a class="dropdown-item text-white" href="{{ route('settings') }}">
                                         {{ __('Settings') }}
                                     </a>
+                                    @can('manage-users')
+                                    <a class="dropdown-item text-white" href="{{ route('users') }}">
+                                        {{ __('User Management') }}
+                                    </a>
+                                    @endcan
                                     <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -213,6 +218,10 @@
 
     @if (Route::currentRouteName() == 'skills')
         <script src="js/skills.js"></script>
+    @endif
+
+    @if (Route::currentRouteName() == 'users')
+        <script src="js/users.js"></script>
     @endif
 </body>
 </html>
