@@ -10694,15 +10694,18 @@ input[type=checkbox] {
   padding-bottom: 1px;
 }
 
-.assessments-table-wrapper {
+.assessments-table-wrapper,
+.users-table-wrapper {
   max-height: calc(100vh - 200px);
   overflow-y: auto;
   padding-bottom: 1px;
 }
-.assessments-table-wrapper table#assessments-table input {
+.assessments-table-wrapper table#assessments-table input,
+.users-table-wrapper table#assessments-table input {
   border: 0;
 }
-.assessments-table-wrapper table#assessments-table .input-group-text {
+.assessments-table-wrapper table#assessments-table .input-group-text,
+.users-table-wrapper table#assessments-table .input-group-text {
   border: 0;
 }
 
@@ -10745,7 +10748,8 @@ input[type=checkbox] {
 }
 
 table#persons-table tr th,
-table#assessments-table tr th {
+table#assessments-table tr th,
+table#users-table tr th {
   padding-top: 0;
   padding-bottom: 0;
   border-bottom: 0 !important;
@@ -10755,17 +10759,20 @@ table#assessments-table tr th {
   z-index: 100;
 }
 table#persons-table tr td,
-table#assessments-table tr td {
+table#assessments-table tr td,
+table#users-table tr td {
   border: solid 1px #fff;
   vertical-align: middle;
 }
 table#persons-table tr td button,
-table#assessments-table tr td button {
+table#assessments-table tr td button,
+table#users-table tr td button {
   padding-top: 1px;
   padding-bottom: 1px;
 }
 table#persons-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
-table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
+table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+table#users-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
   border-top: none !important;
 }
 
@@ -10783,7 +10790,10 @@ table#skills-table input[type=number],
 table#skills-table select,
 table#assessments-table input[type=text],
 table#assessments-table input[type=number],
-table#assessments-table select {
+table#assessments-table select,
+table#users-table input[type=text],
+table#users-table input[type=number],
+table#users-table select {
   border-radius: 0;
   height: 1.5rem;
   padding: 0 0.25rem;
@@ -10798,14 +10808,17 @@ table#emails-table input[type=number]::-webkit-outer-spin-button,
 table#skills-table input[type=number]::-webkit-inner-spin-button,
 table#skills-table input[type=number]::-webkit-outer-spin-button,
 table#assessments-table input[type=number]::-webkit-inner-spin-button,
-table#assessments-table input[type=number]::-webkit-outer-spin-button {
+table#assessments-table input[type=number]::-webkit-outer-spin-button,
+table#users-table input[type=number]::-webkit-inner-spin-button,
+table#users-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 table#persons-table .btn.btn-counter,
 table#scripts-table .btn.btn-counter,
 table#emails-table .btn.btn-counter,
 table#skills-table .btn.btn-counter,
-table#assessments-table .btn.btn-counter {
+table#assessments-table .btn.btn-counter,
+table#users-table .btn.btn-counter {
   height: 1.5rem;
   padding: 0 0.25rem;
   margin: 0;
@@ -10818,7 +10831,8 @@ table#persons-table tr th,
 table#scripts-table tr th,
 table#emails-table tr th,
 table#skills-table tr th,
-table#assessments-table tr th {
+table#assessments-table tr th,
+table#users-table tr th {
   position: sticky;
   top: 0px;
   padding: 0.25rem 5px;
@@ -10828,28 +10842,32 @@ table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
 table#emails-table tbody tr td,
 table#skills-table tbody tr td,
-table#assessments-table tbody tr td {
+table#assessments-table tbody tr td,
+table#users-table tbody tr td {
   padding: 0;
 }
 table#persons-table .btn-remove-row,
 table#scripts-table .btn-remove-row,
 table#emails-table .btn-remove-row,
 table#skills-table .btn-remove-row,
-table#assessments-table .btn-remove-row {
+table#assessments-table .btn-remove-row,
+table#users-table .btn-remove-row {
   height: 1.5rem;
 }
 table#persons-table .btn-remove-row i.bi.bi-x:before,
 table#scripts-table .btn-remove-row i.bi.bi-x:before,
 table#emails-table .btn-remove-row i.bi.bi-x:before,
 table#skills-table .btn-remove-row i.bi.bi-x:before,
-table#assessments-table .btn-remove-row i.bi.bi-x:before {
+table#assessments-table .btn-remove-row i.bi.bi-x:before,
+table#users-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
 table#persons-table span.input-group-text,
 table#scripts-table span.input-group-text,
 table#emails-table span.input-group-text,
 table#skills-table span.input-group-text,
-table#assessments-table span.input-group-text {
+table#assessments-table span.input-group-text,
+table#users-table span.input-group-text {
   height: 1.5rem;
 }
 

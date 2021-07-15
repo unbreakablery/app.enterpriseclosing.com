@@ -929,3 +929,63 @@ if (!function_exists('storeOppInputFields')) {
         return $result;
     }
 }
+
+if (!function_exists('getAllUsers')) {
+    function getAllUsers()
+    {
+        $users = User::get()->all();
+        return $users;
+    }
+}
+
+if (!function_exists('getRoleName')) {
+    function getRoleName($role) {
+        $roles = config('app_setting.roles');
+        if (empty($roles[$role])) {
+            return 'Unknown User';
+        }
+        return $roles[$role];
+    }
+}
+
+if (!function_exists('getActiveClass')) {
+    function getActiveClass($active) {
+        if ($active) {
+            return 'text-success';
+        } else {
+            return 'text-danger';
+        }
+    }
+}
+
+if (!function_exists('getActiveName')) {
+    function getActiveName($active) {
+        if ($active) {
+            return 'Active';
+        } else {
+            return 'Inactive';
+        }
+    }
+}
+
+if (!function_exists('setActiveUser')) {
+    function setActiveUser($id, $active = 1)
+    {
+        $user = User::where('id', $id)->get()->first();
+        if (!empty($user)) {
+            $user->active = $active;
+            $user->update();
+        }
+
+        return $user;
+    }
+}
+
+if (!function_exists('removeUser')) {
+    function removeUser($id)
+    {
+        User::where('id', $id)
+            ->delete();
+        return true;
+    }
+}

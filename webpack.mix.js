@@ -19,6 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/scripts.js', 'public/js')
     .js('resources/js/emails.js', 'public/js')
     .js('resources/js/skills.js', 'public/js')
+    .js('resources/js/users.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/sidebar.scss', 'public/css')
     .sass('resources/sass/setting.scss', 'public/css');

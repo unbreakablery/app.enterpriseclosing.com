@@ -664,7 +664,8 @@ input[type='checkbox'] {
     overflow-y: auto;
     padding-bottom: 1px;
 }
-.assessments-table-wrapper {
+.assessments-table-wrapper,
+.users-table-wrapper {
     max-height: calc(100vh - 200px);
     overflow-y: auto;
     padding-bottom: 1px;
@@ -715,7 +716,8 @@ input[type='checkbox'] {
     }
 }
 table#persons-table,
-table#assessments-table {
+table#assessments-table,
+table#users-table {
     tr th {
         padding-top: 0;
         padding-bottom: 0;
@@ -741,7 +743,8 @@ table#persons-table,
 table#scripts-table,
 table#emails-table,
 table#skills-table,
-table#assessments-table {
+table#assessments-table,
+table#users-table {
     input[type=text],
     input[type=number],
     select {
