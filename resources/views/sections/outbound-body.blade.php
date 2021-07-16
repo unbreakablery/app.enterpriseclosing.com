@@ -1,4 +1,6 @@
-<div id="ob-component-empty" hidden><x-outbound-usertable :outbound-main="null" :outbound-persons="null" /></div>
+<div id="ob-component-empty" hidden>
+    <x-outbound-usertable :outbound-main="null" :outbound-persons="null" />
+</div>
 <table id="tr-component-empty" hidden>
     <tbody><x-outbound-usertable-row :person="null" /></tbody>
 </table>
