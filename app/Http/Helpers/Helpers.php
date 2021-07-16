@@ -933,7 +933,9 @@ if (!function_exists('storeOppInputFields')) {
 if (!function_exists('getAllUsers')) {
     function getAllUsers()
     {
-        $users = User::get()->all();
+        $users = User::where('role', '!=', '0')
+                    ->get()
+                    ->all();
         return $users;
     }
 }
@@ -984,8 +986,20 @@ if (!function_exists('setActiveUser')) {
 if (!function_exists('removeUser')) {
     function removeUser($id)
     {
-        User::where('id', $id)
-            ->delete();
+        $user = User::where('id', $id)->get()->first();
+        
+        if (empty($user)) {
+            return false;
+        }
+        
+        // Change role and active
+        // Not remove from table, so it is recoverable
+        $user->active = 0;
+        $user->role = '0';
+        $user->is_first_login = 1;
+        
+        $user->update();
+
         return true;
     }
 }

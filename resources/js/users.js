@@ -85,7 +85,7 @@ $(document).ready(function() {
 
         $.ajax({
             url: "/users/remove",
-            type: "delete",
+            type: "put",
             dataType: "json",
             data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
