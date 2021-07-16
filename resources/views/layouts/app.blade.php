@@ -74,7 +74,7 @@
                                     <a class="dropdown-item text-white" href="{{ route('settings') }}">
                                         {{ __('Settings') }}
                                     </a>
-                                    @can('manage-users')
+                                    @can('manage-user')
                                     <a class="dropdown-item text-white" href="{{ route('users') }}">
                                         {{ __('User Management') }}
                                     </a>

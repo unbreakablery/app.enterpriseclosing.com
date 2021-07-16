@@ -26,22 +26,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(
-            function ($user, $ability) {
-                if ($user->role === '0') {
-                    return true;
-                }
-            }
-        );
+        // Gate::before(
+        //     function ($user, $ability) {
+        //         if ($user->role === '0') {
+        //             return true;
+        //         }
+        //     }
+        // );
         
         $permissions = config('app_setting.permissions');
         foreach ($permissions as $action => $roles) {
             Gate::define(
                 $action,
                 function (User $user) use ($roles) {
-                    if (in_array($user->role, $roles)) {
-                        return true;
-                    }
+                    return in_array($user->role, $roles);
                 }
             );
         }

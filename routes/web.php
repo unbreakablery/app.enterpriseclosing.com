@@ -68,5 +68,5 @@ Route::post('/settings/store/skill-startat', 'SettingsController@storeSkillStart
 Route::post('/settings/store/skill-acmt', 'SettingsController@storeSkillACMTSettings')->name('settings.store.skill.acmt');
 
 Route::get('/users', 'UserController@index')->middleware('can:manage-user')->name('users');
-Route::put('/users/active', 'UserController@setActiveUser')->middleware('can:manage-user')->name('users.active');
-Route::delete('/users/remove', 'UserController@removeUser')->middleware('can:manage-user')->name('users.remove');
+Route::put('/users/active', 'UserController@setActiveUser')->middleware('can:manage-user')->name('user.active');
+Route::delete('/users/remove', 'UserController@removeUser')->middleware('can:manage-user')->name('user.remove');
