@@ -38,8 +38,8 @@ class OutboundController extends Controller
 
         $nl_outbound_class = 'active';
         
-        $actions = getActions();
-        $steps = getSteps();
+        $actions = getActionsForCurrentUser();
+        $steps = getStepsForCurrentUser();
 
         return view('pages.outbound', compact('data', 'actions', 'steps', 'nl_outbound_class'));
     }
