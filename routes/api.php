@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/webhook/user', [UserController::class, 'createNewUser'])->name('api.webhook.user.create');
+Route::post('/webhook/user/test', [UserController::class, 'createNewUser'])->name('api.webhook.user.create.test');
