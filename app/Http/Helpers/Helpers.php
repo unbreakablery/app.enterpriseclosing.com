@@ -940,8 +940,8 @@ if (!function_exists('getAllUsers')) {
     }
 }
 
-if (!function_exists('getRoleName')) {
-    function getRoleName($role) {
+if (!function_exists('getUserRoleName')) {
+    function getUserRoleName($role) {
         $roles = config('app_setting.roles');
         if (empty($roles[$role])) {
             return 'Unknown User';
@@ -950,8 +950,8 @@ if (!function_exists('getRoleName')) {
     }
 }
 
-if (!function_exists('getActiveClass')) {
-    function getActiveClass($active) {
+if (!function_exists('getUserActiveClass')) {
+    function getUserActiveClass($active) {
         if ($active) {
             return 'text-success';
         } else {
@@ -960,8 +960,8 @@ if (!function_exists('getActiveClass')) {
     }
 }
 
-if (!function_exists('getActiveName')) {
-    function getActiveName($active) {
+if (!function_exists('getUserActiveName')) {
+    function getUserActiveName($active) {
         if ($active) {
             return 'Active';
         } else {

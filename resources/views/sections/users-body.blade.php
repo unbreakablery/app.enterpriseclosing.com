@@ -21,8 +21,8 @@
                         <tr data-id="{{ $user->id }}">
                             <td class="text-white pl-2 pr-2">{{ $user->first_name . ' ' . $user->last_name }}</td>
                             <td class="text-white pl-2 pr-2">{{ $user->email }}</td>
-                            <td class="text-white pl-2 pr-2">{{ getRoleName($user->role) }}</td>
-                            <td class="text-white pl-2 pr-2 {{ getActiveClass($user->active) }}">{{ getActiveName($user->active) }}</td>
+                            <td class="text-white pl-2 pr-2">{{ getUserRoleName($user->role) }}</td>
+                            <td class="text-white pl-2 pr-2 {{ getUserActiveClass($user->active) }}">{{ getUserActiveName($user->active) }}</td>
                             <td class="text-white pl-2 pr-2">{{ $user->created_at }}</td>
                             <td class="text-white pl-2 pr-2">{{ $user->updated_at }}</td>
                             <td class="text-center text-white">
