@@ -119,7 +119,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
                 <label for="region">Region</label>
-                <select id="region" name="region" class="form-control selectpicker bg-black p-0 n-b-r">
+                <select id="region" name="region" class="form-control bg-black p-0 n-b-r">
                     <option value=""></option>
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
@@ -688,7 +688,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="start_month">Month</label>
-                                        <select class="form-control selectpicker n-p-lr n-b-r"
+                                        <select class="form-control n-p-lr n-b-r"
                                                 name="start_month"
                                                 id="start_month">
                                             @for ($i = 1; $i <= 12; $i++)
@@ -706,7 +706,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="start_year">Year</label>
-                                        <select class="form-control selectpicker n-p-lr n-b-r"
+                                        <select class="form-control n-p-lr n-b-r"
                                                 name="start_year"
                                                 id="start_year">
                                             @for ($i = 0; $i < 5; $i++)
@@ -955,7 +955,7 @@
                             <label for="edit_sub_skill_p_id">Parent Skill</label>
                             <select name="edit_sub_skill_p_id"
                                 id="edit_sub_skill_p_id"
-                                class="form-control selectpicker n-p-lr n-b-r">
+                                class="form-control n-p-lr n-b-r">
                             </select>
                         </div>
                     </div>

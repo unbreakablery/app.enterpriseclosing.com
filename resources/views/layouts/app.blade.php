@@ -179,7 +179,7 @@
         $(document).ready(function() {
             $.noConflict();
             loader('hide');
-            $('select.selectpicker').selectpicker({noneSelectedText: '', container: 'body'});
+            // $('select.selectpicker').selectpicker({noneSelectedText: '', container: 'body'});
         });
     </script>
 

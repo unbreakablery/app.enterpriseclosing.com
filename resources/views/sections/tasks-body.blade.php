@@ -112,7 +112,7 @@
             <h3 id="ts-3-person-account-label" data-toggle="tooltip" data-placement="top" title="Required this or person/account!">Opportunity</h3>
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <select name="opportunity" aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" class="col-12 selectpicker pl-0 pr-0 n-b-r">
+                    <select name="opportunity" aria-label="Opportunity" aria-describedby="ts-6-opportunity" id="ts-6-opportunity" class="col-12 pl-0 pr-0 n-b-r">
                         <option value="0"></option>
                         @foreach ($opportunities as $opp)
                             <option value="{{ $opp->id }}">{{ $opp->opportunity }}</option>
@@ -274,7 +274,7 @@
                         @foreach ($suggest_steps as $idx => $suggest_step)
                         <div class="form-row pt-1 pb-1 additional-task-item-{{ $idx }} col-12">
                             <div class="col-2">
-                                <select name="suggest-action-{{ $idx }}" id="suggest-action-{{ $idx }}" class="selectpicker col-12 pl-0 pr-0 n-b-r">
+                                <select name="suggest-action-{{ $idx }}" id="suggest-action-{{ $idx }}" class="col-12 pl-0 pr-0 n-b-r">
                                     @foreach ($suggest_actions as $suggest_action)
                                         <option value="{{ $suggest_action->id }}" @if(old('saved_action') == $suggest_action->id) selected @endif>{{ $suggest_action->name }}</option>
                                     @endforeach
@@ -288,7 +288,7 @@
                                 <input type="text" class="form-control n-b-r" value="{{ old('saved_person_account') }}" id="suggest-person-account-{{ $idx }}" name="suggest-person-account-{{ $idx }}" readonly placeholder="Person/Account..."/>
                             </div>
                             <div class="col-2">
-                                <select class="selectpicker col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
+                                <select class="col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-{{ $idx }}" name="suggest-opportunity-{{ $idx }}" readonly>
                                     @foreach ($opportunities as $opp)
                                         <option value="{{ $opp->id }}" @if (old('saved_opportunity') == $opp->id){{ 'selected' }}@else{{ 'disabled' }}@endif>{{ $opp->opportunity }}</option>
                                     @endforeach
@@ -301,7 +301,7 @@
                                 <input type="text" class="form-control date n-b-r" value="{{ old('saved_by_date') }}" id="suggest-by-{{ $idx }}" name="suggest-by-{{ $idx }}" placeholder="dd-mm-yyyy" />
                             </div>
                             <div class="col-1">
-                                <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="selectpicker col-12 pl-0 pr-0 n-b-r">
+                                <select name="suggest-priority-{{ $idx }}" id="suggest-priority-{{ $idx }}" class="col-12 pl-0 pr-0 n-b-r">
                                     <option value="3">Normal</option>
                                     <option value="2">Medium</option>
                                     <option value="1">High</option>

@@ -5,11 +5,10 @@ var __webpack_exports__ = {};
   \***************************************/
 $(document).ready(function () {
   function clearAddTaskModal() {
-    $('#add-task-modal select[name=action]').selectpicker('val', $("#add-task-modal select[name=action] option:first").val());
-    $('#add-task-modal select[name=step]').selectpicker('val', $("#add-task-modal select[name=step] option:first").val());
+    // $('#add-task-modal select[name=action]').selectpicker('val', $("#add-task-modal select[name=action] option:first").val());
+    // $('#add-task-modal select[name=step]').selectpicker('val', $("#add-task-modal select[name=step] option:first").val());
     $('#add-task-modal input[name=note]').val('');
-    $('#add-task-modal input[name=by-date]').val('');
-    $('#add-task-modal select[name=priority]').selectpicker('val', $("#add-task-modal select[name=priority] option:first").val());
+    $('#add-task-modal input[name=by-date]').val(''); // $('#add-task-modal select[name=priority]').selectpicker('val', $("#add-task-modal select[name=priority] option:first").val());
   }
 
   function drawSuggestTaskModal(suggest) {
@@ -19,8 +18,9 @@ $(document).ready(function () {
     if (suggest != undefined && suggest != null) {
       suggest.steps.forEach(function (step, idx) {
         innerHtml += '<div class="form-row pt-1 pb-1 additional-task-item-' + idx + ' col-12">';
-        innerHtml += '<div class="col-2">';
-        innerHtml += '<select name="suggest-action-' + idx + '" id="suggest-action-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+        innerHtml += '<div class="col-2">'; // innerHtml += '<select name="suggest-action-' + idx + '" id="suggest-action-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+
+        innerHtml += '<select name="suggest-action-' + idx + '" id="suggest-action-' + idx + '" class="col-12 pl-0 pr-0 n-b-r">';
         suggest.actions.forEach(function (action) {
           innerHtml += '<option value="' + action.id + '" ' + (action.id == suggest.old_action ? 'selected' : '') + '>' + action.name + '</option>';
         });
@@ -33,8 +33,9 @@ $(document).ready(function () {
         innerHtml += '<div class="col-1">';
         innerHtml += '<input type="text" class="form-control n-b-r h-default-input" value="' + suggest.person_account + '" id="suggest-person-account-' + idx + '" name="suggest-person-account-' + idx + '" readonly/>';
         innerHtml += '</div>';
-        innerHtml += '<div class="col-2">';
-        innerHtml += '<select class="selectpicker col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-' + idx + '" name="suggest-opportunity-' + idx + '" readonly>';
+        innerHtml += '<div class="col-2">'; // innerHtml += '<select class="selectpicker col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-' + idx + '" name="suggest-opportunity-' + idx + '" readonly>';
+
+        innerHtml += '<select class="col-12 pl-0 pr-0 n-b-r" id="suggest-opportunity-' + idx + '" name="suggest-opportunity-' + idx + '" readonly>';
         suggest.opportunities.forEach(function (opp) {
           innerHtml += '<option value="' + opp.id + '" ' + (opp.id == suggest.old_opportunity ? 'selected' : 'disabled') + '>' + opp.opportunity + '</option>';
         });
@@ -46,8 +47,9 @@ $(document).ready(function () {
         innerHtml += '<div class="col-2">';
         innerHtml += '<input type="text" class="form-control date n-b-r h-default-input" value="' + suggest.by_date + '" id="suggest-by-' + idx + '" name="suggest-by-' + idx + '" placeholder="dd-mm-yyyy" />';
         innerHtml += '</div>';
-        innerHtml += '<div class="col-1">';
-        innerHtml += '<select name="suggest-priority-' + idx + '" id="suggest-priority-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+        innerHtml += '<div class="col-1">'; // innerHtml += '<select name="suggest-priority-' + idx + '" id="suggest-priority-' + idx + '" class="selectpicker col-12 pl-0 pr-0 n-b-r">';
+
+        innerHtml += '<select name="suggest-priority-' + idx + '" id="suggest-priority-' + idx + '" class="col-12 pl-0 pr-0 n-b-r">';
         innerHtml += '<option value="3">Normal</option>';
         innerHtml += '<option value="2">Medium</option>';
         innerHtml += '<option value="1">High</option>';
@@ -64,11 +66,8 @@ $(document).ready(function () {
       innerHtml += '</p>';
     }
 
-    $('#suggest-task-modal .modal-body .additional-tasks').append(innerHtml);
-    $('#suggest-task-modal .modal-body .additional-tasks select').selectpicker({
-      noneSelectedText: '',
-      container: 'body'
-    });
+    $('#suggest-task-modal .modal-body .additional-tasks').append(innerHtml); // $('#suggest-task-modal .modal-body .additional-tasks select').selectpicker({noneSelectedText: '', container: 'body'});
+
     $('#suggest-task-modal .modal-body .additional-tasks .date').datepicker({
       format: 'dd-mm-yyyy',
       todayBtn: "linked",

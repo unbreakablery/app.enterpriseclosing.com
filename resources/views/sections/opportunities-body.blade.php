@@ -96,7 +96,7 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Action:
                         </label>
-                        <select name="action" class="selectpicker form-control n-b-r col-lg-8 col-md-8 col-sm-6">
+                        <select name="action" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             @foreach ($actions as $action)
                             <option value="{{ $action->id }}">{{ $action->name }}</option>
                             @endforeach
@@ -106,7 +106,7 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Step:
                         </label>
-                        <select name="step" class="selectpicker form-control n-b-r col-lg-8 col-md-8 col-sm-6">
+                        <select name="step" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             @foreach ($steps as $step)
                             <option value="{{ $step->id }}">{{ $step->name }}</option>
                             @endforeach
@@ -141,7 +141,7 @@
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Priority:
                         </label>
-                        <select name="priority" class="selectpicker form-control n-b-r col-lg-8 col-md-8 col-sm-6">
+                        <select name="priority" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6">
                             <option value="3">Normal</option>    
                             <option value="2">Medium</option>
                             <option value="1">High</option>    

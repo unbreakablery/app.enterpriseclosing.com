@@ -130,11 +130,7 @@ $(document).ready(function () {
 
     $(pTable).find('tbody').append($('#tr-component-empty tbody').html());
     var trObj = $(pTable).find('tbody tr').last();
-    trObj[0].scrollIntoView(true);
-    $(trObj[0]).find('select').selectpicker({
-      noneSelectedText: '',
-      container: 'body'
-    });
+    trObj[0].scrollIntoView(true); // $(trObj[0]).find('select').selectpicker({noneSelectedText: '', container: 'body'});
   });
   $(document).on('change', '.tab-component .main-info input[type=text], .tab-component .main-info textarea', function () {
     var tabComponent = $(this).closest('.tab-component');
@@ -357,15 +353,9 @@ $(document).ready(function () {
           $(newRow).find('select[name=result]').val(person.result);
           $(newRow).find('select[name=linkedin-connected]').val(person.li_connected);
           $(newRow).find('input[name=notes]').val(person.notes);
-          $(newRow).find('input[name=linkedin-address]').val(person.li_address);
-          $(newRow).find('select[name=result]').selectpicker({
-            noneSelectedText: '',
-            container: 'body'
-          });
-          $(newRow).find('select[name=linkedin-connected]').selectpicker({
-            noneSelectedText: '',
-            container: 'body'
-          }); // Add new row
+          $(newRow).find('input[name=linkedin-address]').val(person.li_address); // $(newRow).find('select[name=result]').selectpicker({noneSelectedText: '', container: 'body'});
+          // $(newRow).find('select[name=linkedin-connected]').selectpicker({noneSelectedText: '', container: 'body'});
+          // Add new row
 
           $(pTable).find('tbody').append(newRow);
         }
