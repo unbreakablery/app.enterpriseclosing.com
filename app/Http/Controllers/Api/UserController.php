@@ -83,7 +83,8 @@ class UserController extends Controller
             // Send Email with generated password
             Mail::to($email)->send(new WebhookMail($name, $password));
             return response()->json([
-                'status' => 'SUCCESS'
+                'status' => 'SUCCESS',
+                'message' => 'New user account was created successfully!'
             ]);
         } catch (\Exception $e) {
             dd($e);
