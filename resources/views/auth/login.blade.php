@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container no-max-width bg-black container-login">
+<div class="container no-max-width container-login">
     <div class="row justify-content-center">
-        <div class="col-md-5 login-form">
-            <div class="card bg-black">
+        <div class="d-flex justify-content-center flex-column col-md-5 login-form">
+            <div class="card bg-transparent">
                 <div class="card-header"><img src="images/logo.png" alt="" class="img-fluid login-logo "></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         @csrf
-                        @error('inactive')
+                        @error('role-inactive')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: 17%; margin-right: 17%;">
                             <strong>{{ $message }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

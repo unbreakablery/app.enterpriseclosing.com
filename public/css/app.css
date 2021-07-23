@@ -10004,6 +10004,7 @@ h3 {
 }
 body {
   font-family: "Titillium Web", sans-serif;
+  color: #fff;
 }
 
 .main-content {
@@ -10013,6 +10014,10 @@ body {
 
 .top-layer {
   z-index: 9999;
+}
+
+.bg-ec {
+  background-image: radial-gradient(farthest-corner at 90% 10%, #0000ee 0%, #000 75%) !important;
 }
 
 .bg-black {
@@ -10158,7 +10163,6 @@ body {
 .container-register .card {
   border: 0;
   border-radius: 0;
-  margin-top: 15rem;
 }
 .container-login .card .login-logo,
 .container-register .card .login-logo {
@@ -10391,6 +10395,10 @@ table.task-table tbody td,
 table.dataTable tbody td {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
+}
+
+table.table-black {
+  background-color: #000 !important;
 }
 
 table.table-dark,

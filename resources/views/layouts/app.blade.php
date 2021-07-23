@@ -35,11 +35,11 @@
     @endif
     <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 </head>
-<body class="bg-black">
+<body class="bg-ec">
     <div id="page-loader"></div>
     <div id="app">
         @if (Route::currentRouteName() != 'login')
-        <nav class="navbar navbar-expand-md navbar-light bg-black shadow-sm top-layer border-bottom">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm top-layer border-bottom">
             <div class="container no-max-width">
                 <a class="navbar-brand text-white logo-img" href="{{ url('/') }}">
                     <img src="/images/logo.png" alt="" class="login-logo" height='40'>

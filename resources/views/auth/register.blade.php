@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 container-register">
-            <div class="card bg-black border border-white">
+<div class="container ">
+    <div class="d-flex justify-content-center no-max-width main-container position-relative">
+        <div class="col-md-8 container-register align-self-center">
+            <div class="card bg-transparent border border-white">
                 <div class="card-header border-bottom">{{ __('Register') }}</div>
 
                 <div class="card-body">

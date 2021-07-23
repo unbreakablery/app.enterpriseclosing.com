@@ -457,7 +457,7 @@
                 <h3>Script List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="scripts-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="scripts-table">
+                        <table class="table table-black table-hover w-100 mb-0" id="scripts-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
@@ -547,7 +547,7 @@
                 <h3>Email List</h3>
                 <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
                     <div class="emails-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="emails-table">
+                        <table class="table table-black table-hover w-100 mb-0" id="emails-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
@@ -738,7 +738,7 @@
                         <h3>Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                             <div class="skills-table-wrapper">
-                                <table class="table table-hover w-100 mb-0" id="skills-table">
+                                <table class="table table-black table-hover w-100 mb-0" id="skills-table">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
