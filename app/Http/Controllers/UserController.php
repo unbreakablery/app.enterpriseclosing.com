@@ -45,9 +45,10 @@ class UserController extends Controller
     public function removeUser(Request $request)
     {
         $userId = $request->id;
-        removeUser($userId);
+        $user = removeUser($userId);
         return response()->json([
-            'type' => 'success'
+            'type' => 'success',
+            'user' => $user
         ]);
     }
 }
