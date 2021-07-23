@@ -980,7 +980,7 @@
 <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog" aria-labelledby="delete-account-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="delete-account-modal-header-title">Delete Account</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -990,17 +990,17 @@
                 <div class="row mt-4 mb-4 pl-4 pr-4">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label class=""><i class="bi bi-question-circle-fill"></i> Are you sure you want to delete your account?</label>
+                            <label class="">Are you sure you want to delete your account?</label>
                         </div>
                         <div class="form-group mb-0">
-                            <label class="mb-0">After delete account, it will logout automatically.</label>
+                            <label class="mb-0">All your data will be lost and your account will be cancelled.</label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">No. I was having a moment...</button>
-                <button type="button" class="btn btn-grad" id="btn-delete-account">Yes. I'm allergic to money!</button>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-grad" data-dismiss="modal">No. I was having a moment...</button>
+                <button type="button" class="btn btn-modal-close" id="btn-delete-account">Yes. I'm allergic to money!</button>
             </div>
         </div>
     </div>
