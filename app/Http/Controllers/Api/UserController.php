@@ -16,14 +16,6 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function createNewUser(Request $request) {
-        // $validated = $request->validate([
-        //     'first_name' => ['required', 'string', 'max:255'],
-        //     'last_name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
-        // ], [
-        //     'email.required' => 'Not Uniqued Email'
-        // ]);
-
         // Validate for request
         if (empty($request->api_key) || $request->api_key != env('WEBHOOK_API_KEY')) {
             return response()->json([
@@ -87,7 +79,10 @@ class UserController extends Controller
                 'message' => 'New user account was created successfully!'
             ]);
         } catch (\Exception $e) {
-            dd($e);
+            return response()->json([
+                'status' => 'FAIL',
+                'message' => 'Error while sending mail, please retry later!'
+            ]);
         }
     }
 }
