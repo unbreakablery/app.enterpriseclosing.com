@@ -1000,6 +1000,11 @@ if (!function_exists('removeUser')) {
         
         $user->update();
 
-        return true;
+        $d_user = new \StdClass();
+        $d_user->first_name = $user->first_name;
+        $d_user->last_name = $user->last_name;
+        $d_user->email = $user->email;
+
+        return $d_user;
     }
 }

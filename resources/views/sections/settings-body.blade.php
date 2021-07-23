@@ -141,10 +141,17 @@
             </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
-            <div class="form-group">
-                <button type="submit" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
-                    Save Settings
-                </button>
+            <div class="form-group d-flex justify-content-between">
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
+                        Save Settings
+                    </button>
+                </div>
+                <div class="d-flex justify-content-end align-items-center">
+                    <a class="text-right text-danger n-b-r text-uppercase a-btn-remove-account justify-content-end n-p-lr">
+                        Delete Account
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -964,6 +971,36 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-update-sub-skill">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog" aria-labelledby="delete-account-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-account-modal-header-title">Delete Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-4 mb-4 pl-4 pr-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label class=""><i class="bi bi-question-circle-fill"></i> Are you sure you want to delete your account?</label>
+                        </div>
+                        <div class="form-group mb-0">
+                            <label class="mb-0">After delete account, it will logout automatically.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-modal-close" data-dismiss="modal">No. I was having a moment...</button>
+                <button type="button" class="btn btn-grad" id="btn-delete-account">Yes. I'm allergic to money!</button>
             </div>
         </div>
     </div>

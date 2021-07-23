@@ -982,4 +982,14 @@ $(document).ready(function() {
             $(this).prop('checked', true);
         });
     });
+
+    $('a.a-btn-remove-account').click(function() {
+        $('#delete-account-modal').modal({
+            backdrop: 'static'
+        });
+    });
+
+    $('button#btn-delete-account').click(function() {
+        window.location.href = '/settings/remove/current-user';
+    });
 });
