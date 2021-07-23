@@ -41,11 +41,19 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-        if (! Auth::User()->active) {
+        if (Auth::user()->role == 0 || !Auth::User()->active) {
+            if (Auth::user()->role == 0) {
+                $message = 'Your account was deleted already, please re-signup or contact support.';
+                $message .= ' And then your all data will be recovered.';
+            } else {
+                $message = 'Account not activate, please try again later or contact support.';
+            }
+
             Auth::logout();
+
             return redirect()->back()
                             ->withErrors([
-                                'inactive' => 'Account not activate, please try again later or contact support.'
+                                'role-inactive' => $message
                             ])
                             ->withInput();
         }
