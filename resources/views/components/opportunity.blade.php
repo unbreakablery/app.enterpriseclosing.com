@@ -110,7 +110,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div id="accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif" class="accordion-section mt-4 mb-4 p-special-1">
-                    <div class="card n-b-r">
+                    <div class="card n-b-r bg-transparent border border-white">
                         <div class="card-header bg-dark n-b-r pt-1 pb-1 pl-1"
                                 id="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                             <h3 class="mb-0">
@@ -126,7 +126,7 @@
                         </div>
 
                         <div id="collapseMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
-                            class="collapse-section collapse show bg-black"
+                            class="collapse-section collapse show"
                             aria-labelledby="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
                             data-parent="#accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                             <div class="card-body meddpicc-section">
