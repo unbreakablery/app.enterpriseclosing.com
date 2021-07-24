@@ -10020,6 +10020,10 @@ body {
   background-image: radial-gradient(farthest-corner at 90% 10%, #0000ee 0%, #000 75%) !important;
 }
 
+.bg-dark {
+  background-color: #222 !important;
+}
+
 .bg-black {
   background-color: #000 !important;
   color: #fff;
@@ -10403,7 +10407,7 @@ table.table-black {
 
 table.table-dark,
 .thead-dark th {
-  background-color: #444 !important;
+  background-color: #222 !important;
 }
 
 table.dataTable td.dataTables_empty {
@@ -10502,7 +10506,7 @@ textarea,
 textarea.form-control,
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: #000;
+  background-color: transparent;
   border: solid 1px #fff;
   color: #fff;
   padding-top: 0 !important;
@@ -10519,8 +10523,12 @@ select.form-control:focus,
 textarea:focus,
 textarea.form-control:focus,
 .form-control[readonly]:focus {
-  background-color: #000;
+  background-color: transparent;
   color: #fff;
+}
+
+select option {
+  background-color: #000 !important;
 }
 
 ::-moz-placeholder {
@@ -11009,6 +11017,28 @@ a.a-btn-remove-account {
 .datepicker-dropdown {
   padding-left: 15px !important;
   padding-right: 15px !important;
+}
+.datepicker-dropdown.datepicker-orient-top:before {
+  bottom: -8px;
+  border-top: 8px solid #fff;
+}
+.datepicker-dropdown.datepicker-orient-top:after {
+  border-top: 6px solid #222;
+}
+
+.datepicker {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid white;
+}
+.datepicker table tr td.day:hover,
+.datepicker table tr td.day.focused,
+.datepicker table tr td span:hover,
+.datepicker .datepicker-switch:hover,
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker tfoot tr th:hover {
+  background: #444;
 }
 
 /*
