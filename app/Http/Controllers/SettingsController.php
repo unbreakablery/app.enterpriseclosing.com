@@ -184,57 +184,23 @@ class SettingsController extends Controller
 
     public function removeCurrentUser()
     {
-        $userId = Auth::user()->id;
+        // $userId = Auth::user()->id;
 
-        $user = removeUser($userId);
+        // $user = removeUser($userId);
+        // dd(Auth::user());
 
         // Call webhook
-        $message = $this->sendWebhook($user);
+        if (callWebhook(Auth::user())) {
+            // Remove user
+            $user = removeUser(Auth::user()->id);
 
-        // Logout automatically
-        Auth::logout();
-        return redirect('/login');
-    }
-
-    public function sendWebhook($user)
-    {
-        // Test webhook url
-        // $url = 'https://webhook.site/a149392d-bf08-495c-8caa-89112c2db5a2';
-
-        // Real webhook url
-        $url = env('WEBHOOK_URL');
-        $data = [
-            'status_code' => 200,
-            'status' => 'success',
-            'message' => 'webhook send successfully',
-            'api_key' => env('WEBHOOK_API_KEY'),
-            'extra_data' => [
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'email' => $user->email
-            ],
-        ];
-    	$json_array = json_encode($data);
-        $curl = curl_init();
-        $headers = ['Content-Type: application/json'];
-
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_POST, 1);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_array);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HEADER, 1);
-        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-
-        $response = curl_exec($curl);
-        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
-        curl_close($curl);
-
-        if ($http_code >= 200 && $http_code < 300) {
-            return "webhook send successfully.";
-        } else {
-            return "webhook failed.";
+            // Logout automatically
+            Auth::logout();
+            return redirect('/login');
         }
+
+        return redirect()->back()->withErrors([
+            'errors' => 'Failed to call webhook for deleting your account, Retry later!'
+        ]);
     }
 }

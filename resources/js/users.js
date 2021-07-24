@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var trObj = null;
+
     $('button.btn-active-user').click(function() {
         var trObj = $(this).closest('tr');
         var userId = $(trObj).data('id');
@@ -78,7 +80,20 @@ $(document).ready(function() {
     });
 
     $('button.btn-remove-user').click(function() {
-        var trObj = $(this).closest('tr');
+        trObj = $(this).closest('tr');
+
+        $('#delete-account-modal').modal({
+            backdrop: 'static'
+        });
+    });
+
+    $('button#btn-delete-account').click(function() {
+        if (trObj == undefined || trObj == null) {
+            // Show message
+            showMessage('danger', 'Nobody selected. please select any user!');
+            return;
+        }
+
         var userId = $(trObj).data('id');
 
         loader('show');
@@ -91,21 +106,36 @@ $(document).ready(function() {
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     id: userId
                 },
-            success: function(response) {
+            success: function(res) {
                 loader('hide');
-
-                // Show message
-                showMessage('success', $(trObj).find('td:nth-child(1)').text() + ' was remove successfully!');
                 
-                // Remove tr
-                $(trObj).remove();
+                if (res.type == 'success') {
+                    // Show message
+                    showMessage('success', res.user.first_name + ' ' + res.user.last_name + ' was remove successfully!');
+                                    
+                    // Remove tr
+                    $(trObj).remove();
+                } else {
+                    // Show message
+                    showMessage('danger', 'Error, Please retry!');
+                }
+                               
+                // Hide modal
+                $('#delete-account-modal').modal('hide');
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) {
                 loader('hide');
                 
                 // Show message
                 showMessage('danger', 'Error, Please retry!');
+
+                // Hide modal
+                $('#delete-account-modal').modal('hide');
             }
         });
+    });
+
+    $('#delete-account-modal').on('hidden.bs.modal', function (event) {
+        trObj = null;
     });
 });

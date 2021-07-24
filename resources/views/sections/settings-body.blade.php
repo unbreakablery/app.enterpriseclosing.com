@@ -1,3 +1,16 @@
+@if(count($errors) > 0 )
+<div class="alert alert-danger alert-dismissible fade show mt-4 mr-4" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <ul class="p-0 m-0" style="list-style: none;">
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <h3 class="text-uppercase font-weight-bold mt-4 mb-4">Settings</h3>
 <form class="main-info" action="{{ route('settings.store.general') }}" method='post' autocomplete="off">
     @csrf
@@ -999,8 +1012,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grad" data-dismiss="modal">No. I was having a moment...</button>
-                <button type="button" class="btn btn-modal-close" id="btn-delete-account">Yes. I'm allergic to money!</button>
+                <button type="button" class="btn btn-grad" data-dismiss="modal">No, I was having a moment...</button>
+                <button type="button" class="btn btn-modal-close" id="btn-delete-account">Yes, I'm allergic to money!</button>
             </div>
         </div>
     </div>

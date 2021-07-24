@@ -45,10 +45,21 @@ class UserController extends Controller
     public function removeUser(Request $request)
     {
         $userId = $request->id;
-        $user = removeUser($userId);
-        return response()->json([
-            'type' => 'success',
-            'user' => $user
-        ]);
+        $user = getUserById($userId);
+
+        // Call webhook
+        if (callWebhook($user)) {
+            // Remove user
+            $user = removeUser($userId);
+
+            return response()->json([
+                'type' => 'success',
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'type' => 'failed'
+            ]);
+        }
     }
 }
