@@ -983,6 +983,18 @@ if (!function_exists('setActiveUser')) {
     }
 }
 
+if (!function_exists('getUserById')) {
+    function getUserById($userId)
+    {
+        if (empty($userId)) {
+            return null;
+        }
+
+        $user = User::where('id', $userId)->get()->first();
+        return $user;
+    }
+}
+
 if (!function_exists('removeUser')) {
     function removeUser($id)
     {
@@ -1006,5 +1018,49 @@ if (!function_exists('removeUser')) {
         $d_user->email = $user->email;
 
         return $d_user;
+    }
+}
+
+if (!function_exists('callWebhook')) {
+    function callWebhook($user)
+    {
+        // Test webhook url
+        // $url = 'https://webhook.site/a149392d-bf08-495c-8caa-89112c2db5a2';
+
+        // Real webhook url
+        $url = env('WEBHOOK_URL');
+        $data = [
+            'status_code' => 200,
+            'status' => 'success',
+            'message' => 'webhook send successfully',
+            'api_key' => env('WEBHOOK_API_KEY'),
+            'extra_data' => [
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email
+            ],
+        ];
+    	$json_array = json_encode($data);
+        $curl = curl_init();
+        $headers = ['Content-Type: application/json'];
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_array);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 1);
+        curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+
+        $response = curl_exec($curl);
+        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+
+        if ($http_code >= 200 && $http_code < 300) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
