@@ -5,7 +5,7 @@
     </button>
     <ul class="p-0 m-0" style="list-style: none;">
         @foreach($errors->all() as $error)
-        <li>{{$error}}</li>
+        <li>{{ $error }}</li>
         @endforeach
     </ul>
 </div>
@@ -132,7 +132,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
                 <label for="region">Region</label>
-                <select id="region" name="region" class="form-control bg-black p-0 n-b-r">
+                <select id="region" name="region" class="form-control p-0 n-b-r">
                     <option value=""></option>
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>

@@ -184,11 +184,6 @@ class SettingsController extends Controller
 
     public function removeCurrentUser()
     {
-        // $userId = Auth::user()->id;
-
-        // $user = removeUser($userId);
-        // dd(Auth::user());
-
         // Call webhook
         if (callWebhook(Auth::user())) {
             // Remove user
