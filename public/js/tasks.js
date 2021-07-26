@@ -9,7 +9,7 @@ $(document).ready(function () {
     orderCellsTop: true,
     fixedHeader: true,
     info: false,
-    scrollY: 150,
+    scrollY: 147,
     scrollCollapse: false,
     paging: false,
     order: [[4, "asc"]],

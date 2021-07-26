@@ -3,7 +3,7 @@
     <h3 class="mb-0">Tasks To Complete</h3>
     <div class="row col-lg-12 col-md-12 col-sm-12">
         <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper" style="max-height: 184px; overflow-y: auto;">
-            <table class="table table-dark table-hover datatable w-100 border border-white b-s-b-b" id="task-table">
+            <table class="table table-hover datatable w-100 b-s-b-b" id="task-table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"><div class="task-table-header">Action + Step</div></th>
@@ -169,92 +169,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="table-responsive table-wrapper mt-4 mb-4">
-        <table class="table table-hover datatable w-100" id="table-1">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col" class="text-center">Created By User</th>
-                    <th scope="col" class="text-center">Date Created</th>
-                    <th scope="col" class="text-center">Date Modified</th>
-                    <th scope="col" class="text-center">Date Completed</th>
-                    <th scope="col" class="text-center">Days To Completed</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-danger text-white">
-                    <td>Mark</td>
-                    <td class="text-center">01-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">10</td>
-                </tr>
-                <tr class="bg-light">
-                    <td>Anthony</td>
-                    <td class="text-center">09-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">2</td>
-                </tr>
-                <tr class="bg-warning">
-                    <td>Jacob</td>
-                    <td class="text-center">21-04-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">20</td>
-                </tr>
-                <tr class="bg-danger text-white">
-                    <td>Alex</td>
-                    <td class="text-center">01-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">10</td>
-                </tr>
-                <tr class="bg-light">
-                    <td>Emma</td>
-                    <td class="text-center">09-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">2</td>
-                </tr>
-                <tr class="bg-warning">
-                    <td>Tony</td>
-                    <td class="text-center">21-04-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">20</td>
-                </tr>
-                <tr class="bg-danger text-white">
-                    <td>James</td>
-                    <td class="text-center">01-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">10</td>
-                </tr>
-                <tr class="bg-light">
-                    <td>Toby</td>
-                    <td class="text-center">09-05-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">2</td>
-                </tr>
-                <tr class="bg-warning">
-                    <td>Marco</td>
-                    <td class="text-center">21-04-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">20</td>
-                </tr>
-                <tr class="bg-warning">
-                    <td>Andrew</td>
-                    <td class="text-center">21-04-2021</td>
-                    <td class="text-center">10-05-2021</td>
-                    <td class="text-center">11-05-2021</td>
-                    <td class="text-right">20</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
 </form>
 
 <!-- Modal -->
