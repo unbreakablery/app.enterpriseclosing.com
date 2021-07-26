@@ -4,7 +4,7 @@
     </div>
     <div class="row col-lg-12 col-md-12 col-sm-12">
         <div class="table-responsive table-wrapper users-table-wrapper mb-4">
-            <table class="table table-black w-100" id="users-table">
+            <table class="table w-100" id="users-table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="no-sort pl-2 pr-2">Name</th>

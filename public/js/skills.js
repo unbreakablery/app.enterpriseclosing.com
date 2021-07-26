@@ -6,14 +6,14 @@ var __webpack_exports__ = {};
 $(document).ready(function () {
   function checkAssessment(obj, pObj) {
     var value = $(obj).val();
-    $(obj).removeClass('bg-black bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
+    $(obj).removeClass('bg-transparent bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
     $(obj).removeClass('text-white text-black');
-    $(pObj).removeClass('bg-black bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
+    $(pObj).removeClass('bg-transparent bg-info bg-yellow-dark bg-yellow bg-danger bg-success');
     $(pObj).removeClass('text-white text-black');
 
     if (value == 0) {
-      $(obj).addClass('bg-black text-white');
-      $(pObj).addClass('bg-black text-white');
+      $(obj).addClass('bg-transparent text-white');
+      $(pObj).addClass('bg-transparent text-white');
     } else if (value > 0 && value < 10) {
       $(obj).addClass('bg-info text-white');
       $(pObj).addClass('bg-info text-white');

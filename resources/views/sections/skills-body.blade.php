@@ -6,7 +6,7 @@
     <div class="d-flex justify-content-left">
         <div class="col-{{ 3 + count($dates) }} table-wrapper mt-2 mb-4 pl-0 pr-4">
             <div class="assessments-table-wrapper table-responsive">
-                <table class="table table-black table-hover table-bordered w-100 mb-0" id="assessments-table">
+                <table class="table table-hover table-bordered w-100 mb-0" id="assessments-table">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col" class="no-sort pl-2 pr-2" width="300">Skills</th>

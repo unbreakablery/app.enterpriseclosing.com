@@ -705,7 +705,7 @@ if (!function_exists('getAssessmentClass')) {
     function getAssessmentClass($assessment) {
         $aClass = '';
         if ($assessment == 0) {
-            $aClass = 'bg-black text-white';
+            $aClass = 'bg-transparent text-white';
         } elseif ($assessment > 0 && $assessment < 10) {
             $aClass = 'bg-info text-white';
         } elseif ($assessment >=10 && $assessment < 50) {

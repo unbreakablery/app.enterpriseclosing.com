@@ -291,6 +291,16 @@ body {
         .mw-unset {
             min-width: unset;
         }
+
+        // input[type=checkbox] {
+        //     -webkit-appearance: none;
+        //     background-color: transparent;
+        // }
+
+        // input[type=checkbox]:checked {
+        //     -webkit-appearance: none;
+        //     background-color: transparent;
+        // }
   
         input[type=radio],
         input[type=checkbox] {
@@ -352,9 +362,22 @@ body {
 /*
 * datatable
 */
+.dataTables_wrapper .dataTables_scroll div.dataTables_scrollHeadInner table {
+    border: solid 1px #fff !important;
+    border-bottom: none !important;
+    box-sizing: content-box !important;
+}
 .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody {
-    background-color: #000;
-    border: 0 !important;
+    background-color: transparent;
+    border: solid 1px #fff !important;
+
+    tr {
+        background-color: transparent;
+    }
+    
+    tr:first-child td {
+        border-top: none;
+    }
 }
 
 .dataTables_wrapper .dataTables_length select {
@@ -775,7 +798,7 @@ table#users-table {
         height: 1.5rem;
         padding: 0 0.25rem;
         margin: 0;
-        background-color: #000;
+        background-color: transparent;
         color: #fff;
         border-radius: 0;
         border: 0;
@@ -828,7 +851,7 @@ a.a-btn-remove-account {
 #tasks-form #task-table-wrapper,
 .opportunities-wrapper .tab-content .dataTables_wrapper .dataTables_scroll {
     .dataTables_scrollBody {
-        height: unset !important;
+        // height: unset !important;
         border-bottom: solid 1px #fff !important;
 
         table.datatable {
