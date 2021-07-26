@@ -691,9 +691,9 @@
                         <div class="col-1g-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group pl-4 mt-4 mb-4">
+                                    <div class="form-check mt-4 mb-4 pl-0">
                                         <input type="checkbox" class="form-check-input" id="acmt" @if ($skillACMT == '1'){{ 'checked' }}@endif>
-                                        <label class="form-check-label pl-2" for="acmt">Auto Create Monthly Skill Assessment Task</label>
+                                        <label class="form-check-label" for="acmt">Auto Create Monthly Skill Assessment Task</label>
                                     </div>
                                 </div>
                             </div>
