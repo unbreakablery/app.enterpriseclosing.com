@@ -83,14 +83,6 @@
             <option value="Sent" @if (isset($person) && $person->li_connected == 'Sent'){{ 'selected' }}@endif>Sent</option>
             <option value="Connected" @if (isset($person) && $person->li_connected == 'Connected'){{ 'selected' }}@endif>Connected</option>
         </select>
-        <!-- <div class="select w-102-px" tabindex="1">
-            <input class="selectopt" name="linkedin-connected-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" type="radio" id="opt1-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" checked value="Not Sent">
-            <label for="opt1-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" class="option">Not Sent</label>
-            <input class="selectopt" name="linkedin-connected-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" type="radio" id="opt2-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif"  value="Sent">
-            <label for="opt2-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" class="option">Sent</label>
-            <input class="selectopt" name="linkedin-connected-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" type="radio" id="opt3-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif"  value="Connected">
-            <label for="opt3-@if (isset($person)){{ $person->id }}@else{{ 0 }}@endif" class="option">Connected</label>
-        </div> -->
     </td>
     <td class="text-center">
         <input type="text"

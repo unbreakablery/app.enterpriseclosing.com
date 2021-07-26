@@ -156,12 +156,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="form-group d-flex justify-content-between">
                 <div class="d-flex justify-content-start">
-                    <button type="submit" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
+                    <button type="submit" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
                         Save Settings
                     </button>
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
-                    <a class="text-right text-danger n-b-r text-uppercase a-btn-remove-account justify-content-end n-p-lr">
+                    <a class="text-right text-danger text-uppercase a-btn-remove-account justify-content-end n-p-lr">
                         Delete Account
                     </a>
                 </div>
@@ -371,7 +371,7 @@
                     </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-settings">
+                    <button type="submit" class="btn btn-grad col-20 col-sm-3" id="btn-save-settings">
                             Save Settings
                     </button>
                 </div>
@@ -385,7 +385,7 @@
             <form id="form_outbound_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
                 @csrf    
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-grad col-20 col-sm-3 n-b-r" id="btn-save-outbound-settings">
+                    <button type="submit" class="btn btn-grad col-20 col-sm-3" id="btn-save-outbound-settings">
                             Save Settings
                     </button>
                 </div>
@@ -421,7 +421,7 @@
                     </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4">
-                    <button type="button" class="btn btn-grad col-2 n-b-r" id="btn-save-opportunities-settings">
+                    <button type="button" class="btn btn-grad col-2" id="btn-save-opportunities-settings">
                             Save Settings
                     </button>
                 </div>
@@ -460,7 +460,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0 mt-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
+                            <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
                                 Save Script
                             </button>
                         </div>
@@ -550,7 +550,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 mt-4 n-p-lr">
                         <div class="form-group">
-                            <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
+                            <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
                                 Save Email
                             </button>
                         </div>
@@ -628,7 +628,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
                                             Save Group
                                         </button>
                                     </div>
@@ -681,7 +681,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
                                             Save Skill
                                         </button>
                                     </div>
@@ -739,7 +739,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad n-b-r col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
+                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
                                             Save Month
                                         </button>
                                     </div>

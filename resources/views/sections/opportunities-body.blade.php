@@ -13,7 +13,7 @@
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <button type="button" class="btn btn-grad n-b-r text-uppercase w-100" id="btn-show-modal">
+                    <button type="button" class="btn btn-grad text-uppercase w-100" id="btn-show-modal">
                         Create Opportunity
                     </button>
                 </div>
@@ -174,7 +174,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-grad n-b-r" data-dismiss="modal">That's All For Now</button>
+                <button type="button" class="btn btn-grad" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>
     </div>

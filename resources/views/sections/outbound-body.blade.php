@@ -11,7 +11,7 @@
         <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="w-100">
-                    <button type="button" class="btn btn-grad n-b-r text-uppercase w-100" id="btn-show-modal">
+                    <button type="button" class="btn btn-grad text-uppercase w-100" id="btn-show-modal">
                         Create Account
                     </button>
                 </div>

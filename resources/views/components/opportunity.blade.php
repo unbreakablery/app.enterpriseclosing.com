@@ -4,7 +4,7 @@
         <div class="col-lg-2 col-md-3 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12 mt-3">
                 <div class="input-group w-100">
-                    <button type="button" class="btn btn-grad n-b-r text-uppercase w-100 btn-show-task-modal">
+                    <button type="button" class="btn btn-grad text-uppercase w-100 btn-show-task-modal">
                         Create Task
                     </button>
                 </div>
@@ -100,7 +100,7 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-grad w-100 n-b-r btn-save-opp">Save Info</button>
+                                        <button type="submit" class="btn btn-grad w-100 btn-save-opp">Save Info</button>
                                     </div>
                                 </div>
                             </div>
