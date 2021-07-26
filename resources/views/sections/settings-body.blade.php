@@ -386,7 +386,7 @@
                 @csrf    
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
                     <button type="submit" class="btn btn-grad col-20 col-sm-3" id="btn-save-outbound-settings">
-                            Save Settings
+                        Save Settings
                     </button>
                 </div>
             </form>
@@ -810,7 +810,7 @@
 <div class="modal fade" id="edit-script-modal" tabindex="-1" role="dialog" aria-labelledby="edit-script-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="edit-script-modal-header-title">Edit Script</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -843,7 +843,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-update-script">Update</button>
             </div>
@@ -855,7 +855,7 @@
 <div class="modal fade" id="edit-email-modal" tabindex="-1" role="dialog" aria-labelledby="edit-email-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="edit-email-modal-header-title">Edit Email</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -900,7 +900,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-update-email">Update</button>
             </div>
@@ -912,7 +912,7 @@
 <div class="modal fade" id="edit-main-skill-modal" tabindex="-1" role="dialog" aria-labelledby="edit-main-skill-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="edit-main-skill-modal-header-title">Edit Group</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -936,7 +936,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-update-main-skill">Update</button>
             </div>
@@ -948,7 +948,7 @@
 <div class="modal fade" id="edit-sub-skill-modal" tabindex="-1" role="dialog" aria-labelledby="edit-sub-skill-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="edit-sub-skill-modal-header-title">Edit Sub Skill</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -981,7 +981,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-update-sub-skill">Update</button>
             </div>

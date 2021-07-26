@@ -50,7 +50,7 @@
     </div>
     
     <div class="table-responsive table-wrapper mt-4 p-special-1">
-        <div class="persons-table-wrapper">
+        <div class="persons-table-wrapper border-bottom border-white">
             <table class="table table-hover w-100 mb-0" id="persons-table">
                 <thead class="thead-dark">
                     <tr>

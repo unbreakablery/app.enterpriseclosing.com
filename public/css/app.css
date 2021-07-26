@@ -10285,7 +10285,7 @@ body {
 */
 .form-inline h3 {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
 }
 .form-inline .task-table-wrapper {
@@ -10778,9 +10778,8 @@ input[type=checkbox] {
 .persons-table-wrapper,
 .scripts-table-wrapper,
 .emails-table-wrapper {
-  max-height: 315px;
+  max-height: 310px;
   overflow-y: auto;
-  padding-bottom: 1px;
 }
 
 .skills-table-wrapper {
@@ -10869,6 +10868,11 @@ table#persons-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#users-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
   border-top: none !important;
+}
+table#persons-table tbody tr:last-child td,
+table#assessments-table tbody tr:last-child td,
+table#users-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 table#persons-table input[type=text],

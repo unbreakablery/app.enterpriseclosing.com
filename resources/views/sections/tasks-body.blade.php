@@ -175,7 +175,7 @@
 <div class="modal fade" id="task-add-modal" tabindex="-1" role="dialog" aria-labelledby="task-add-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="task-add-modal-header-title">Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -233,7 +233,7 @@
                     @endif
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-grad" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>

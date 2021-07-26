@@ -3,8 +3,8 @@
         <h3 class="text-uppercase font-weight-bold mt-2 mr-4">User Management</h3>
     </div>
     <div class="row col-lg-12 col-md-12 col-sm-12">
-        <div class="table-responsive table-wrapper users-table-wrapper mb-4">
-            <table class="table w-100" id="users-table">
+        <div class="table-responsive table-wrapper users-table-wrapper border-bottom border-white mb-4">
+            <table class="table w-100 mb-0" id="users-table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="no-sort pl-2 pr-2">Name</th>

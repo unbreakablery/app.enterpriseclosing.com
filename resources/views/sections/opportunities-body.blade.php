@@ -61,7 +61,7 @@
 <div class="modal fade" id="add-opportunity-modal" tabindex="-1" role="dialog" aria-labelledby="add-opportunity-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="add-opportunity-modal-header-title">Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -71,7 +71,7 @@
                 <h3>New Opportunity Name</h3>
                 <input type="text" class="form-control n-b-r" name="tab-name" id="tab-name" value="" />
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-create-new-tab">Create</button>
             </div>
@@ -83,7 +83,7 @@
 <div class="modal fade" id="add-task-modal" tabindex="-1" role="dialog" aria-labelledby="add-task-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="add-task-modal-header-title">Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -149,7 +149,7 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad" id="btn-create-new-task">Create</button>
             </div>
@@ -161,7 +161,7 @@
 <div class="modal fade" id="suggest-task-modal" tabindex="-1" role="dialog" aria-labelledby="suggest-task-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content n-b-r text-dark">
-            <div class="modal-header">
+            <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="suggest-task-modal-header-title">Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -173,7 +173,7 @@
                     
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-grad" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>
