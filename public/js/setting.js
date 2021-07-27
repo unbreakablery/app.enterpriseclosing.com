@@ -94,7 +94,8 @@ $(document).ready(function () {
         var newRow = '<tr data-main-id="' + skill.id + '" data-main-name="' + skill.name + '" data-sub-id="' + sub_skill_id + '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
 
         if (idx == 0) {
-          newRow += '<td class="text-left text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<span class="skill-name">' + skill.name + '</span>' + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">' + '<i class="bi bi-x"></i>' + '</button>';
+          newRow += '<td class="text-left text-white pl-2 pr-2 align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<span class="skill-name">' + skill.name + '</span>' + '</td>';
+          newRow += '<td class="text-white text-center align-middle" rowspan="' + skill.sub_skills.ids.length + '">' + '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill" title="Edit this group">' + '<i class="bi bi-pencil-fill"></i>' + '</button>' + '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">' + '<i class="bi bi-x"></i>' + '</button>';
           newRow += '</td>';
         }
 

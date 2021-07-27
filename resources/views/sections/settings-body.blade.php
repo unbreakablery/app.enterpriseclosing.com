@@ -603,7 +603,7 @@
             aria-labelledby="tab-skills">
             <form id="form_skills_setting" class="mt-4" action="" method='post' autocomplete="off">
                 <div class="row mt-2 pr-4">
-                    <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="col-lg-3 col-md-4 col-sm-12 pl-0">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -747,16 +747,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-8 col-sm-12">
+                    <div class="col-lg-6 col-md-8 col-sm-12 pl-0 pr-0" style="margin: 0 -4px !important">
                         <h3 class="font-weight-normal">Skills</h3>
-                        <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
+                        <div class="table-responsive table-wrapper mt-2 mb-4">
                             <div class="skills-table-wrapper">
                                 <table class="table table-hover w-100 mb-0" id="skills-table">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col" class="no-sort pl-2 pr-2" width="30%">Groups</th>
+                                            <th scope="col" class="no-sort pl-2 pr-2" width="25%">Groups</th>
+                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="63">Actions</th>
                                             <th scope="col" class="no-sort pl-2 pr-2">Skills</th>
-                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                            <th scope="col" class="text-center no-sort pl-2 pr-2" width="63">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -770,7 +771,9 @@
                                                     @if ($idx == 0)
                                                     <td class="text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <span class="skill-name">{{ $skill->name }}</span>
-                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill ml-2" title="Edit this group">
+                                                    </td>
+                                                    <td class="text-white text-center align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill" title="Edit this group">
                                                             <i class="bi bi-pencil-fill"></i>
                                                         </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
                                                             <i class="bi bi-x"></i>
