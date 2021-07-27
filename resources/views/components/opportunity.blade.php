@@ -89,6 +89,7 @@
                                         type="text"
                                         name="{{ $input->key}}"
                                         value="@if (isset($main) && !empty($main->{$input->key}) && $input->type == 'date'){{ date('d-m-Y', strtotime($main->{$input->key})) }}@elseif(isset($main)){{ $main->{$input->key} }}@endif"
+                                        placeholder="{{ $input->placeholder }}"
                                     />
                                 </div>
                             </div>

@@ -887,6 +887,7 @@ if (!function_exists('getOppInputFields')) {
             $input->key = $key;
             $input->value = $val['name'];
             $input->type = $val['type'];
+            $input->placeholder = $val['placeholder'];
             $input->checked = false;
             foreach ($oppIFs as $o) {
                 if ($o->o_value == $key) {
