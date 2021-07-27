@@ -189,7 +189,7 @@ $(document).ready(function() {
                 var innerHtml = '';
                 innerHtml += '<tr data-id="' + response.script.id + '">';
                 innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.name + '</td>';
-                innerHtml += '<td class="text-white pl-2 pr-2">' + response.script.content + '</td>';
+                innerHtml += '<td class="text-white pl-2 pr-2">' + (response.script.content == null ? '' : response.script.content) + '</td>';
                 innerHtml += '<td class="text-white text-center">';
                 innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">';
                 innerHtml += '<i class="bi bi-pencil-fill"></i>';

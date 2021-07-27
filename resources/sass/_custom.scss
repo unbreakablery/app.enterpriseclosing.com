@@ -760,10 +760,14 @@ input[type='checkbox'] {
     padding: 0 0.5rem;
     height: 29px;
 }
-.persons-table-wrapper,
+.persons-table-wrapper {
+    max-height: 310px;
+    overflow-y: auto;
+    // padding-bottom: 1px;
+}
 .scripts-table-wrapper,
 .emails-table-wrapper {
-    max-height: 310px;
+    max-height: 205px;
     overflow-y: auto;
     // padding-bottom: 1px;
 }
@@ -799,6 +803,12 @@ input[type='checkbox'] {
     height: auto;
 }
 #settingsTabsContent {
+    table#scripts-table,
+    table#emails-table {
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
     table#scripts-table,
     table#emails-table,
     table#skills-table {

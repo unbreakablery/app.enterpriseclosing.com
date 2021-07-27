@@ -10790,10 +10790,14 @@ input[type=checkbox] {
   height: 29px;
 }
 
-.persons-table-wrapper,
+.persons-table-wrapper {
+  max-height: 310px;
+  overflow-y: auto;
+}
+
 .scripts-table-wrapper,
 .emails-table-wrapper {
-  max-height: 310px;
+  max-height: 205px;
   overflow-y: auto;
 }
 
@@ -10828,6 +10832,10 @@ input[type=checkbox] {
   height: auto;
 }
 
+#settingsTabsContent table#scripts-table tbody tr:last-child td,
+#settingsTabsContent table#emails-table tbody tr:last-child td {
+  border-bottom: none;
+}
 #settingsTabsContent table#scripts-table tr th,
 #settingsTabsContent table#emails-table tr th,
 #settingsTabsContent table#skills-table tr th {

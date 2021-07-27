@@ -433,74 +433,80 @@
             role="tabpanel"
             aria-labelledby="tab-scripts">
             <form id="form_scripts_setting" class="mt-4" action="" method='post' autocomplete="off">
-                <h3 class="font-weight-normal">New Script</h3>
-                <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
-                        <div class="form-group">
-                            <label for="script_name">Script Name</label>
-                            <input class="form-control n-b-r"
-                                    type="text"
-                                    id="script_name"
-                                    name="script_name"
-                                    value=""
-                                    placeholder="Enter script name..."
-                                    required
-                            />
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 pr-30-px">
+                                <h3 class="font-weight-normal">New Script</h3>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
+                                    <div class="form-group">
+                                        <label for="script_name">Script Name</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="script_name"
+                                                name="script_name"
+                                                value=""
+                                                placeholder="Enter script name..."
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
+                                    <div class="form-group">
+                                        <label for="script_content">Script Content</label>
+                                        <textarea name="script_content"
+                                            id="script_content"
+                                            class="form-control h-px-100 n-b-r"
+                                            placeholder="Enter script content..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0 mt-4">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-scripts-settings">
+                                            Save Script
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 pl-0">
+                                <h3 class="font-weight-normal">Script List</h3>
+                                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
+                                    <div class="scripts-table-wrapper border-bottom border-white">
+                                        <table class="table table-hover w-100 mb-0" id="scripts-table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
+                                                    <th scope="col" class="no-sort pl-2 pr-2">Content</th>
+                                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (isset($scriptSetting) && count($scriptSetting) > 0)
+                                                    @foreach ($scriptSetting as $script)
+                                                    <tr data-id="{{ $script->id }}">
+                                                        <td class="text-white pl-2 pr-2">{{ $script->name }}</td>
+                                                        <td class="text-white pl-2 pr-2">{{ $script->content }}</td>
+                                                        <td class="text-white text-center">
+                                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
+                                                                <i class="bi bi-x"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr id="no-data-row">
+                                                        <td class="text-center text-white" colspan="3">No Scripts</td>
+                                                    </tr>
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
-                        <div class="form-group">
-                            <label for="script_content">Script Content</label>
-                            <textarea name="script_content"
-                                id="script_content"
-                                class="form-control h-px-100 n-b-r"
-                                placeholder="Enter script content..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0 mt-4">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-scripts-settings">
-                                Save Script
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Script List</h3>
-                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
-                    <div class="scripts-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="scripts-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Name</th>
-                                    <th scope="col" class="no-sort pl-2 pr-2">Content</th>
-                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($scriptSetting) && count($scriptSetting) > 0)
-                                    @foreach ($scriptSetting as $script)
-                                    <tr data-id="{{ $script->id }}">
-                                        <td class="text-white pl-2 pr-2">{{ $script->name }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $script->content }}</td>
-                                        <td class="text-white text-center">
-                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-script" title="Edit this script">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-script" title="Remove this script">
-                                                <i class="bi bi-x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                @else
-                                    <tr id="no-data-row">
-                                        <td class="text-center text-white" colspan="3">No Scripts</td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
+                    </div>                    
                 </div>
             </form>
         </div>
