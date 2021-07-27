@@ -10795,9 +10795,13 @@ input[type=checkbox] {
   overflow-y: auto;
 }
 
-.scripts-table-wrapper,
-.emails-table-wrapper {
+.scripts-table-wrapper {
   max-height: 205px;
+  overflow-y: auto;
+}
+
+.emails-table-wrapper {
+  max-height: 275px;
   overflow-y: auto;
 }
 
@@ -10833,7 +10837,11 @@ input[type=checkbox] {
 }
 
 #settingsTabsContent table#scripts-table tbody tr:last-child td,
-#settingsTabsContent table#emails-table tbody tr:last-child td {
+#settingsTabsContent table#emails-table tbody tr:last-child td,
+#settingsTabsContent table#skills-table tbody tr:last-child td {
+  border-bottom: none;
+}
+#settingsTabsContent table#skills-table tbody:last-of-type td[rowspan] {
   border-bottom: none;
 }
 #settingsTabsContent table#scripts-table tr th,

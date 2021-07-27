@@ -319,8 +319,8 @@ $(document).ready(function () {
         var innerHtml = '';
         innerHtml += '<tr data-id="' + response.email.id + '">';
         innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.title + '</td>';
-        innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.subject + '</td>';
-        innerHtml += '<td class="text-white pl-2 pr-2">' + response.email.body + '</td>';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + (response.email.subject == null ? '' : response.email.subject) + '</td>';
+        innerHtml += '<td class="text-white pl-2 pr-2">' + (response.email.body == null ? '' : response.email.body) + '</td>';
         innerHtml += '<td class="text-white text-center">';
         innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">';
         innerHtml += '<i class="bi bi-pencil-fill"></i>';

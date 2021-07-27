@@ -765,9 +765,13 @@ input[type='checkbox'] {
     overflow-y: auto;
     // padding-bottom: 1px;
 }
-.scripts-table-wrapper,
-.emails-table-wrapper {
+.scripts-table-wrapper {
     max-height: 205px;
+    overflow-y: auto;
+    // padding-bottom: 1px;
+}
+.emails-table-wrapper {
+    max-height: 275px;
     overflow-y: auto;
     // padding-bottom: 1px;
 }
@@ -804,8 +808,14 @@ input[type='checkbox'] {
 }
 #settingsTabsContent {
     table#scripts-table,
-    table#emails-table {
+    table#emails-table,
+    table#skills-table {
         tbody tr:last-child td {
+            border-bottom: none;
+        }
+    }
+    table#skills-table {
+        tbody:last-of-type td[rowspan] {
             border-bottom: none;
         }
     }

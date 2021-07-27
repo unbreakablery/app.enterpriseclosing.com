@@ -516,88 +516,94 @@
             role="tabpanel"
             aria-labelledby="tab-emails">
             <form id="form_emails_setting" class="mt-4" action="" method='post' autocomplete="off">
-                <h3 class="font-weight-normal">New Email</h3>
-                <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
-                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input class="form-control n-b-r"
-                                    type="text"
-                                    id="title"
-                                    name="title"
-                                    value=""
-                                    placeholder="Enter title..."
-                                    required
-                            />
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 pr-30-px">
+                                <h3 class="font-weight-normal">New Email</h3>
+                                <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="title"
+                                                name="title"
+                                                value=""
+                                                placeholder="Enter title..."
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="subject"
+                                                name="subject"
+                                                value=""
+                                                placeholder="Enter subject..."
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
+                                    <div class="form-group">
+                                        <label for="body">Body</label>
+                                        <textarea name="body"
+                                            id="body"
+                                            class="form-control h-px-100 n-b-r"
+                                            placeholder="Enter body..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 mt-4 n-p-lr">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-emails-settings">
+                                            Save Email
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 pl-0">
+                                <h3 class="font-weight-normal">Email List</h3>
+                                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
+                                    <div class="emails-table-wrapper border-bottom border-white">
+                                        <table class="table table-hover w-100 mb-0" id="emails-table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
+                                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Subject</th>
+                                                    <th scope="col" class="no-sort pl-2 pr-2">Body</th>
+                                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (isset($emailSetting) && count($emailSetting) > 0)
+                                                    @foreach ($emailSetting as $email)
+                                                    <tr data-id="{{ $email->id }}">
+                                                        <td class="text-white pl-2 pr-2">{{ $email->title }}</td>
+                                                        <td class="text-white pl-2 pr-2">{{ $email->subject }}</td>
+                                                        <td class="text-white pl-2 pr-2">{{ $email->body }}</td>
+                                                        <td class="text-center text-white">
+                                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">
+                                                                <i class="bi bi-pencil-fill"></i>
+                                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
+                                                                <i class="bi bi-x"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                @else
+                                                    <tr id="no-data-row">
+                                                        <td class="text-center text-white" colspan="4">No Emails</td>
+                                                    </tr>
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input class="form-control n-b-r"
-                                    type="text"
-                                    id="subject"
-                                    name="subject"
-                                    value=""
-                                    placeholder="Enter subject..."
-                                    required
-                            />
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
-                        <div class="form-group">
-                            <label for="body">Body</label>
-                            <textarea name="body"
-                                id="body"
-                                class="form-control h-px-100 n-b-r"
-                                placeholder="Enter body..."></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-12 col-md-12 col-sm-12 mt-4 n-p-lr">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-emails-settings">
-                                Save Email
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <h3>Email List</h3>
-                <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
-                    <div class="emails-table-wrapper">
-                        <table class="table table-hover w-100 mb-0" id="emails-table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Title</th>
-                                    <th scope="col" class="no-sort pl-2 pr-2" width="200">Subject</th>
-                                    <th scope="col" class="no-sort pl-2 pr-2">Body</th>
-                                    <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($emailSetting) && count($emailSetting) > 0)
-                                    @foreach ($emailSetting as $email)
-                                    <tr data-id="{{ $email->id }}">
-                                        <td class="text-white pl-2 pr-2">{{ $email->title }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $email->subject }}</td>
-                                        <td class="text-white pl-2 pr-2">{{ $email->body }}</td>
-                                        <td class="text-center text-white">
-                                            <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-email" title="Edit this email">
-                                                <i class="bi bi-pencil-fill"></i>
-                                            </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-email" title="Remove this email">
-                                                <i class="bi bi-x"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                @else
-                                    <tr id="no-data-row">
-                                        <td class="text-center text-white" colspan="4">No Emails</td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </form>
@@ -756,7 +762,7 @@
                     <div class="col-lg-6 col-md-8 col-sm-12 pl-0 pr-0" style="margin: 0 -4px !important">
                         <h3 class="font-weight-normal">Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4">
-                            <div class="skills-table-wrapper">
+                            <div class="skills-table-wrapper border-bottom border-white">
                                 <table class="table table-hover w-100 mb-0" id="skills-table">
                                     <thead class="thead-dark">
                                         <tr>
