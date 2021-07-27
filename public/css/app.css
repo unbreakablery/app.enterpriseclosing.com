@@ -10068,6 +10068,14 @@ body {
   color: #fff;
 }
 
+.btn-w-normal {
+  width: 175px !important;
+}
+
+.btn-w-bigger {
+  width: 250px !important;
+}
+
 .btn-grad {
   FONT-VARIANT: JIS04;
   background-image: linear-gradient(to right, #8a00d0 0%, #52007C 51%, #190061 100%);
@@ -10092,6 +10100,7 @@ body {
 }
 
 .btn-login {
+  FONT-VARIANT: JIS04;
   background-image: linear-gradient(to right, #8a00d0 0%, #52007C 51%, #190061 100%);
   padding: 10px 45px;
   text-align: center;
@@ -10100,7 +10109,7 @@ body {
   background-size: 200% auto;
   color: white;
   box-shadow: 0 0 15px #eee;
-  border-radius: 2px;
+  border-radius: 3px !important;
 }
 
 .btn-modal-close {
@@ -10370,21 +10379,25 @@ body {
   background-color: #262729;
 }
 
-#settings-tab-skills form#form_skills_setting input[type=checkbox] {
+#settings-tab-skills form#form_skills_setting input[type=checkbox],
+#login-form input[type=checkbox] {
   width: 15px;
   height: 15px;
   margin-right: 15px;
 }
-#settings-tab-skills form#form_skills_setting .form-check {
+#settings-tab-skills form#form_skills_setting .form-check,
+#login-form .form-check {
   justify-content: left;
   height: 22px;
   padding: 0.2rem 0.5rem;
 }
-#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input {
+#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input,
+#login-form .form-check input[type=checkbox].form-check-input {
   position: absolute;
   opacity: 0;
 }
-#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label {
+#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label,
+#login-form .form-check input[type=checkbox].form-check-input + label {
   position: relative;
   cursor: pointer;
   padding: 0;
@@ -10392,7 +10405,8 @@ body {
   align-items: center;
   margin-bottom: 0;
 }
-#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label:before {
+#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label:before,
+#login-form .form-check input[type=checkbox].form-check-input + label:before {
   content: "";
   margin-right: 11px;
   width: 19px;
@@ -10400,7 +10414,8 @@ body {
   background: transparent;
   border: 2px solid white;
 }
-#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input:checked + label:after {
+#settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input:checked + label:after,
+#login-form .form-check input[type=checkbox].form-check-input:checked + label:after {
   content: "";
   position: absolute;
   left: 6px;

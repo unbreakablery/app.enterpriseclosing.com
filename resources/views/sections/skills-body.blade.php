@@ -1,6 +1,6 @@
 <div class="assessments-wrapper mt-4">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
-        <h3 class="text-uppercase font-weight-bold mt-2 mr-4">Skills</h3>
+        <h3 class="text-uppercase font-weight-normal mt-2 mr-4">Skills</h3>
     </div>
 
     <div class="d-flex justify-content-left">

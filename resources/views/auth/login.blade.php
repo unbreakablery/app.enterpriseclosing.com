@@ -8,7 +8,7 @@
                 <div class="card-header"><img src="images/logo.png" alt="" class="img-fluid login-logo "></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off" id="login-form">
                         @csrf
                         @error('role-inactive')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-left: 17%; margin-right: 17%;">
@@ -48,7 +48,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                                <div class="form-check pl-0">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
@@ -60,7 +60,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-login">
+                                <button type="submit" class="btn btn-login btn-w-normal">
                                     {{ __('Login') }}
                                 </button>
 

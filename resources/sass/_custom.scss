@@ -64,17 +64,13 @@ body {
     color: #fff;
 }
 
-// .btn-grad {
-//     background-image: linear-gradient(to right, #3500D3 0%, #240090  51%, #190061  100%);
-//     text-align: center;
-//     text-transform: uppercase;
-//     transition: 0.5s;
-//     background-size: 200% auto;
-//     color: white;            
-//     box-shadow: 0 0 15px #eee;
-//     border-radius: 2px;
-//     display: block;
-// }
+.btn-w-normal {
+    width: 175px !important;
+}
+.btn-w-bigger {
+    width: 250px !important;
+}
+
 .btn-grad {
     FONT-VARIANT: JIS04;
     background-image: linear-gradient(to right, #8a00d0 0%, #52007C 51%, #190061 100%);
@@ -98,6 +94,7 @@ body {
 }
 
 .btn-login {
+    FONT-VARIANT: JIS04;
     background-image: linear-gradient(to right, #8a00d0 0%, #52007C 51%, #190061 100%);
     padding: 10px 45px;
     text-align: center;
@@ -106,7 +103,7 @@ body {
     background-size: 200% auto;
     color: white;            
     box-shadow: 0 0 15px #eee;
-    border-radius: 2px;
+    border-radius: 3px !important;
 }
 
 .btn-modal-close {
@@ -387,7 +384,8 @@ body {
     }
 }
 
-#settings-tab-skills form#form_skills_setting {
+#settings-tab-skills form#form_skills_setting,
+#login-form {
     input[type=checkbox] {
         width: 15px;
         height: 15px;

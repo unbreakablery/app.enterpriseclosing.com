@@ -9,11 +9,11 @@
 
 <div class="opportunities-wrapper mt-4">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
-        <h3 class="text-uppercase font-weight-bold mt-2 mr-4">Opportunities</h3>
+        <h3 class="text-uppercase font-weight-normal mt-2 mr-4">Opportunities</h3>
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                    <button type="button" class="btn btn-grad text-uppercase w-100" id="btn-show-modal">
+                    <button type="button" class="btn btn-grad btn-w-bigger text-uppercase" id="btn-show-modal">
                         Create Opportunity
                     </button>
                 </div>

@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="form-group">
-                                <button type="button" class="btn btn-grad btn-save-script w-100">Save Script</button>
+                                <button type="button" class="btn btn-grad btn-w-normal btn-save-script">Save Script</button>
                             </div>
                         </div>
                     </div>

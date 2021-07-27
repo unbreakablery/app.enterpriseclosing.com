@@ -1,6 +1,6 @@
 <div class="scripts-wrapper mt-4">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
-        <h3 class="text-uppercase font-weight-bold mt-2 mr-4">Scripts</h3>
+        <h3 class="text-uppercase font-weight-normal mt-2 mr-4">Scripts</h3>
     </div>
 
     <div class="row col-md-12 col-sm-12">

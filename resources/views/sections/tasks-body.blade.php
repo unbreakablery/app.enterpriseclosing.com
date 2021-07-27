@@ -162,7 +162,7 @@
         <div class="col-2 pl-0 pr-3" id="ts-3">
             <div class="row task-section col-md-12 col-sm-12">
                 <div class="input-group w-100">
-                <button type="button" class="btn btn-grad text-uppercase w-100" id="btn-create-task">
+                <button type="button" class="btn btn-grad btn-w-normal text-uppercase" id="btn-create-task">
                     Create Task
                 </button>
                 </div>

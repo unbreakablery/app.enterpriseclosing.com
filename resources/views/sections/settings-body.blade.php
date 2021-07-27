@@ -11,7 +11,7 @@
 </div>
 @endif
 
-<h3 class="text-uppercase font-weight-bold mt-4 mb-4">Settings</h3>
+<h3 class="text-uppercase font-weight-normal mt-4 mb-4">Settings</h3>
 <form class="main-info" action="{{ route('settings.store.general') }}" method='post' autocomplete="off">
     @csrf
     <input type="hidden" name="user_id" value="{{ $user->id }}" />
@@ -156,7 +156,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
             <div class="form-group d-flex justify-content-between">
                 <div class="d-flex justify-content-start">
-                    <button type="submit" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-general-settings">
+                    <button type="submit" class="btn btn-grad btn-w-normal" id="btn-save-general-settings">
                         Save Settings
                     </button>
                 </div>
@@ -371,7 +371,7 @@
                     </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-grad col-20 col-sm-3" id="btn-save-settings">
+                    <button type="submit" class="btn btn-grad btn-w-normal" id="btn-save-settings">
                             Save Settings
                     </button>
                 </div>
@@ -385,7 +385,7 @@
             <form id="form_outbound_setting" class="form-inline mt-4" action="" method='post' autocomplete="off">
                 @csrf    
                 <div class="row task-section col-md-12 col-sm-12 mb-4" id="ts-9">
-                    <button type="submit" class="btn btn-grad col-20 col-sm-3" id="btn-save-outbound-settings">
+                    <button type="submit" class="btn btn-grad btn-w-normal" id="btn-save-outbound-settings">
                         Save Settings
                     </button>
                 </div>
@@ -421,7 +421,7 @@
                     </div>
                 </div>
                 <div class="row task-section col-md-12 col-sm-12 mb-4">
-                    <button type="button" class="btn btn-grad col-2" id="btn-save-opportunities-settings">
+                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-opportunities-settings">
                             Save Settings
                     </button>
                 </div>
@@ -433,7 +433,7 @@
             role="tabpanel"
             aria-labelledby="tab-scripts">
             <form id="form_scripts_setting" class="mt-4" action="" method='post' autocomplete="off">
-                <h3>New Script</h3>
+                <h3 class="font-weight-normal">New Script</h3>
                 <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
                         <div class="form-group">
@@ -460,7 +460,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0 mt-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-scripts-settings">
+                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-scripts-settings">
                                 Save Script
                             </button>
                         </div>
@@ -510,7 +510,7 @@
             role="tabpanel"
             aria-labelledby="tab-emails">
             <form id="form_emails_setting" class="mt-4" action="" method='post' autocomplete="off">
-                <h3>New Email</h3>
+                <h3 class="font-weight-normal">New Email</h3>
                 <div class="row col-lg-12 col-md-12 col-sm-12 mt-2 mb-2">
                     <div class="col-lg-12 col-md-12 col-sm-12 n-p-lr">
                         <div class="form-group">
@@ -550,7 +550,7 @@
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 mt-4 n-p-lr">
                         <div class="form-group">
-                            <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-emails-settings">
+                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-emails-settings">
                                 Save Email
                             </button>
                         </div>
@@ -607,7 +607,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <h3>Create Group</h3>
+                                    <h3 class="font-weight-normal">Create Group</h3>
                                 </div>
                             </div>
                             <div class="row">
@@ -628,7 +628,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-main-skill-settings">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-main-skill-settings">
                                             Save Group
                                         </button>
                                     </div>
@@ -638,7 +638,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <h3>Create Skill</h3>
+                                    <h3 class="font-weight-normal">Create Skill</h3>
                                 </div>
                             </div>
                             <div class="row">
@@ -681,7 +681,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-sub-skill-settings">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sub-skill-settings">
                                             Save Skill
                                         </button>
                                     </div>
@@ -701,7 +701,7 @@
                         <div class="col-1g-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <h3>Select Start Month</h3>
+                                    <h3 class="font-weight-normal">Select Start Month</h3>
                                 </div>
                             </div>
                             <div class="row">
@@ -739,7 +739,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-grad col-lg-2 col-md-3 col-sm-6" id="btn-save-start-month-settings">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-start-month-settings">
                                             Save Month
                                         </button>
                                     </div>
@@ -748,7 +748,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-8 col-sm-12">
-                        <h3>Skills</h3>
+                        <h3 class="font-weight-normal">Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4 pr-4">
                             <div class="skills-table-wrapper">
                                 <table class="table table-hover w-100 mb-0" id="skills-table">
