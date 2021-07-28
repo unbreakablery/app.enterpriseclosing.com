@@ -17,6 +17,7 @@ use App\Models\SkillAssessment;
 use App\Models\SkillSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 if (!function_exists('formatWithZero')) {
     function formatWithZero($number) {
@@ -1063,5 +1064,27 @@ if (!function_exists('callWebhook')) {
         } else {
             return false;
         }
+    }
+}
+
+if (!function_exists('storeUserPassword')) {
+    function storeUserPassword($data)
+    {
+        $password = $data->get('password');
+        if (empty($password)) {
+            return false;
+        }
+        
+        // Update user password
+        $user = User::where('id', Auth::user()->id)->get()->first();
+
+        if (empty($user)) {
+            return false;
+        }
+        
+        $user->password = Hash::make($password);
+        $user->update();
+        
+        return true;
     }
 }

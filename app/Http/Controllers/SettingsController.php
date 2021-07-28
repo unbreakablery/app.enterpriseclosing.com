@@ -111,8 +111,8 @@ class SettingsController extends Controller
             'first_name' => 'required|min:3',
             'last_name' => 'required|min:3',
             'email' => 'required|email:rfc,dns',
-            'password' => 'required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'same:password',
+            // 'password' => 'required_with:password_confirmation|same:password_confirmation',
+            // 'password_confirmation' => 'same:password',
         ]);
         
         if ($validator->fails()){
@@ -197,5 +197,20 @@ class SettingsController extends Controller
         return redirect()->back()->withErrors([
             'errors' => 'Failed to call webhook for deleting your account, Retry later!'
         ]);
+    }
+
+    public function storePassword(Request $request)
+    {
+        $result = storeUserPassword($request);
+
+        if ($result) {
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        }
     }
 }

@@ -55,40 +55,6 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
-                <label for="password">New Password</label>
-                <input class="form-control n-b-r @error('password') is-invalid @enderror"
-                        type="password"
-                        id="password"
-                        name="password"
-                        value="{{ old('password') }}"
-                        placeholder="You can enter new password..."
-                />
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="form-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <input class="form-control n-b-r @error('password') is-invalid @enderror"
-                        type="password"
-                        id="password_confirmation"
-                        name="password_confirmation"
-                        value="{{ old('password_confirmation') }}"
-                        placeholder="Please enter confirmation password..."
-                />
-                @error('confirmation')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="form-group">
                 <label for="email">Email</label>
                 <input class="form-control n-b-r @error('email') is-invalid @enderror"
                         type="text"
@@ -158,6 +124,9 @@
                 <div class="d-flex justify-content-start">
                     <button type="submit" class="btn btn-grad btn-w-normal" id="btn-save-general-settings">
                         Save Settings
+                    </button>
+                    <button type="button" class="btn btn-grad btn-w-normal ml-4" id="btn-change-password">
+                        Change Password
                     </button>
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
@@ -1031,6 +1000,52 @@
             <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-grad btn-w-bigger" data-dismiss="modal">No, I was having a moment...</button>
                 <button type="button" class="btn btn-modal-close btn-w-bigger" id="btn-delete-account">Yes, I'm allergic to money!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Change Password Modal -->
+<div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="change-password-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="edit-script-modal-header-title">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="new_password">New Password</label>
+                            <input class="form-control n-b-r"
+                                    type="password"
+                                    id="new_password"
+                                    name="new_password"
+                                    value=""
+                                    placeholder="Enter new password..."
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input class="form-control n-b-r"
+                                    type="password"
+                                    id="confirm_password"
+                                    name="confirm_password"
+                                    value=""
+                                    placeholder="Enter confirm password..."
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-password">Update</button>
             </div>
         </div>
     </div>

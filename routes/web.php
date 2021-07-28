@@ -67,6 +67,7 @@ Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSett
 Route::post('/settings/store/skill-startat', 'SettingsController@storeSkillStartAtSettings')->name('settings.store.skill.startat');
 Route::post('/settings/store/skill-acmt', 'SettingsController@storeSkillACMTSettings')->name('settings.store.skill.acmt');
 Route::get('/settings/remove/current-user', 'SettingsController@removeCurrentUser')->name('settings.remove.user.current');
+Route::put('/settings/store/password', 'SettingsController@storePassword')->name('settings.store.password');
 
 Route::get('/users', 'UserController@index')->middleware('can:manage-user')->name('users');
 Route::put('/users/active', 'UserController@setActiveUser')->middleware('can:manage-user')->name('user.active');
