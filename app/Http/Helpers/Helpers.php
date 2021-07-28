@@ -935,7 +935,7 @@ if (!function_exists('storeOppInputFields')) {
 if (!function_exists('getAllUsers')) {
     function getAllUsers()
     {
-        $users = User::where('role', '!=', '0')
+        $users = User::where('role', '!=', '-1')
                     ->get()
                     ->all();
         return $users;
@@ -1018,6 +1018,10 @@ if (!function_exists('removeUser')) {
         $d_user->first_name = $user->first_name;
         $d_user->last_name = $user->last_name;
         $d_user->email = $user->email;
+        $d_user->role = $user->role;
+        $d_user->role_name = getUserRoleName($user->role);
+        $d_user->active = $user->active;
+        $d_user->active_name = getUserActiveName($user->active);
 
         return $d_user;
     }
@@ -1086,5 +1090,35 @@ if (!function_exists('storeUserPassword')) {
         $user->update();
         
         return true;
+    }
+}
+
+if (!function_exists('updateUser')) {
+    function updateUser($data)
+    {
+        $userId = $data->get('id');
+        if (empty($userId)) {
+            return false;
+        }
+        
+        // Update user
+        $user = User::where('id', $userId)->get()->first();
+
+        if (empty($user)) {
+            return false;
+        }
+        
+        $user->role = $data->get('role');
+        $user->active = $data->get('active');
+        $user->update();
+
+        $u_user = new \StdClass();
+        $u_user->role = $user->role;
+        $u_user->role_name = getUserRoleName($user->role);
+        $u_user->active = $user->active;
+        $u_user->active_name = getUserActiveName($user->active);
+        $u_user->active_class = getUserActiveClass($user->active);
+        
+        return $u_user;
     }
 }

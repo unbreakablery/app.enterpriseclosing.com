@@ -21,28 +21,38 @@ class UserController extends Controller
         $this->authorize('manage-user');
 
         $users = getAllUsers();
+
+        // Get all roles
+        $roles = config('app_setting.roles');
         
         $nl_users_class = 'active';
 
         return view('pages.users', 
                     compact(
                         'nl_users_class',
-                        'users'
+                        'users',
+                        'roles'
                     )
         );
     }
 
-    public function setActiveUser(Request $request)
+    public function updateUserAccount(Request $request)
     {
-        $userId = $request->id;
-        $active = isset($request->active) ? $request->active : 1;
-        $user = setActiveUser($userId, $active);
-        return response()->json([
-            'user' => $user
-        ]);
+        $user = updateUser($request);
+
+        if (!empty($user)) {
+            return response()->json([
+                'type' => 'success',
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'type' => 'failed'
+            ]);
+        }
     }
 
-    public function removeUser(Request $request)
+    public function removeUserAccount(Request $request)
     {
         $userId = $request->id;
         $user = getUserById($userId);

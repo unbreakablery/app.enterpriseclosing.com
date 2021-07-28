@@ -70,5 +70,5 @@ Route::get('/settings/remove/current-user', 'SettingsController@removeCurrentUse
 Route::put('/settings/store/password', 'SettingsController@storePassword')->name('settings.store.password');
 
 Route::get('/users', 'UserController@index')->middleware('can:manage-user')->name('users');
-Route::put('/users/active', 'UserController@setActiveUser')->middleware('can:manage-user')->name('user.active');
-Route::put('/users/remove', 'UserController@removeUser')->middleware('can:manage-user')->name('user.remove');
+Route::put('/users/update', 'UserController@updateUserAccount')->middleware('can:manage-user')->name('user.update');
+Route::put('/users/remove', 'UserController@removeUserAccount')->middleware('can:manage-user')->name('user.remove');
