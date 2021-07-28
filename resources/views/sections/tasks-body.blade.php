@@ -234,7 +234,7 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grad" data-dismiss="modal">That's All For Now</button>
+                <button type="button" class="btn btn-grad btn-w-normal" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>
     </div>

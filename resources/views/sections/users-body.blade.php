@@ -44,7 +44,7 @@
 
 <!-- Delete Account Modal -->
 <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog" aria-labelledby="delete-account-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 550px">
         <div class="modal-content n-b-r text-dark">
             <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="delete-account-modal-header-title">Delete Account</h5>
@@ -65,8 +65,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grad" data-dismiss="modal">No, I don’t want to cancel this account</button>
-                <button type="button" class="btn btn-modal-close" id="btn-delete-account">Yes, please cancel this account</button>
+                <button type="button" class="btn btn-grad btn-w-bigger" data-dismiss="modal">No, I don’t want to cancel</button>
+                <button type="button" class="btn btn-modal-close btn-w-bigger" id="btn-delete-account">Yes, please cancel</button>
             </div>
         </div>
     </div>

@@ -96,11 +96,11 @@ $(document).ready(function() {
                             '" data-sub-id="' + sub_skill_id + 
                             '" data-sub-name="' + skill.sub_skills.names[idx] + '">';
                 if (idx == 0) {
-                    newRow += '<td class="text-left text-white pl-2 pr-2 align-middle" rowspan="' + 
+                    newRow += '<td class="text-left text-white pl-2 pr-2" rowspan="' + 
                                 skill.sub_skills.ids.length + '">' + 
                                 '<span class="skill-name">' + skill.name + '</span>' +
                                 '</td>';
-                    newRow += '<td class="text-white text-center align-middle" rowspan="' + 
+                    newRow += '<td class="text-white text-center" rowspan="' + 
                                 skill.sub_skills.ids.length + '">' + 
                                 '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill" title="Edit this group">' + 
                                 '<i class="bi bi-pencil-fill"></i>' +
@@ -111,7 +111,7 @@ $(document).ready(function() {
                     newRow += '</td>';
                 }
                 newRow += '<td class="text-white pl-2 pr-2">' + skill.sub_skills.names[idx] + '</td>';
-                newRow += '<td class="text-white text-center align-middle">';
+                newRow += '<td class="text-white text-center">';
                 if (sub_skill_id != undefined && sub_skill_id != null && sub_skill_id != '' && sub_skill_id != 0) {
                     newRow += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">';
                     newRow += '<i class="bi bi-pencil-fill"></i>';

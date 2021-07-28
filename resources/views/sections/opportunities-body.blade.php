@@ -72,8 +72,8 @@
                 <input type="text" class="form-control n-b-r" name="tab-name" id="tab-name" value="" />
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-create-new-tab">Create</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-create-new-tab">Create</button>
             </div>
         </div>
     </div>
@@ -150,8 +150,8 @@
                 </form>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-create-new-task">Create</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-create-new-task">Create</button>
             </div>
         </div>
     </div>
@@ -174,7 +174,7 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grad" data-dismiss="modal">That's All For Now</button>
+                <button type="button" class="btn btn-grad btn-w-normal" data-dismiss="modal">That's All For Now</button>
             </div>
         </div>
     </div>

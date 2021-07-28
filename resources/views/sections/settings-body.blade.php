@@ -647,59 +647,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <h3 class="font-weight-normal">Create Skill</h3>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="sub_skill_name">Skill Name</label>
-                                        <input class="form-control n-b-r"
-                                                type="text"
-                                                id="sub_skill_name"
-                                                name="sub_skill_name"
-                                                value=""
-                                                placeholder="Enter skill name..."
-                                                required
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 form-inline">
-                                    <div class="row task-section pl-0 mt-1">
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <h6>Groups</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row task-section col-md-12 col-sm-12 mb-4 radio-group">
-                                        @foreach ($skillSetting as $skill)
-                                        <div class="form-check col-12">
-                                            <input class="form-check-input"
-                                                type="radio"
-                                                name="main_skill"
-                                                id="main_skill_{{ $skill->id }}"
-                                                value="{{ $skill->id }}"
-                                            />
-                                            <label class="form-check-label" for="main_skill_{{ $skill->id }}">
-                                                {{$skill->name}}
-                                            </label>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sub-skill-settings">
-                                            Save Skill
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-1g-12 col-md-12 col-sm-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -759,7 +706,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-8 col-sm-12 pl-0 pr-0" style="margin: 0 -4px !important">
+                    <div class="col-lg-3 col-md-4 col-sm-12 pl-0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pr-0">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h3 class="font-weight-normal">Create Skill</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="sub_skill_name">Skill Name</label>
+                                        <input class="form-control n-b-r"
+                                                type="text"
+                                                id="sub_skill_name"
+                                                name="sub_skill_name"
+                                                value=""
+                                                placeholder="Enter skill name..."
+                                                required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-inline">
+                                    <div class="row task-section pl-0 mt-1">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <h6>Groups</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row task-section col-md-12 col-sm-12 mb-4 radio-group">
+                                        @foreach ($skillSetting as $skill)
+                                        <div class="form-check col-12">
+                                            <input class="form-check-input"
+                                                type="radio"
+                                                name="main_skill"
+                                                id="main_skill_{{ $skill->id }}"
+                                                value="{{ $skill->id }}"
+                                            />
+                                            <label class="form-check-label" for="main_skill_{{ $skill->id }}">
+                                                {{$skill->name}}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sub-skill-settings">
+                                            Save Skill
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-8 col-sm-12" style="margin: 0 -4px !important">
                         <h3 class="font-weight-normal">Skills</h3>
                         <div class="table-responsive table-wrapper mt-2 mb-4">
                             <div class="skills-table-wrapper border-bottom border-white">
@@ -781,10 +783,10 @@
                                                     data-sub-id="{{ $sub_skill_id }}" 
                                                     data-sub-name="{{ $skill->sub_skills->names[$idx] }}">
                                                     @if ($idx == 0)
-                                                    <td class="text-white pl-2 pr-2 align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                    <td class="text-white pl-2 pr-2" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <span class="skill-name">{{ $skill->name }}</span>
                                                     </td>
-                                                    <td class="text-white text-center align-middle" rowspan="{{ count($skill->sub_skills->ids) }}">
+                                                    <td class="text-white text-center" rowspan="{{ count($skill->sub_skills->ids) }}">
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-main-skill" title="Edit this group">
                                                             <i class="bi bi-pencil-fill"></i>
                                                         </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-main-skill" title="Remove this group">
@@ -792,8 +794,8 @@
                                                         </button>
                                                     </td>
                                                     @endif
-                                                    <td class="text-white pl-2 pr-2 align-middle">{{ $skill->sub_skills->names[$idx] }}</td>
-                                                    <td class="text-white text-center align-middle">
+                                                    <td class="text-white pl-2 pr-2">{{ $skill->sub_skills->names[$idx] }}</td>
+                                                    <td class="text-white text-center">
                                                         @if (!empty($sub_skill_id))
                                                         <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sub-skill" title="Edit this skill">
                                                             <i class="bi bi-pencil-fill"></i>
@@ -859,8 +861,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-update-script">Update</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-script">Update</button>
             </div>
         </div>
     </div>
@@ -916,8 +918,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-update-email">Update</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-email">Update</button>
             </div>
         </div>
     </div>
@@ -952,8 +954,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-update-main-skill">Update</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-main-skill">Update</button>
             </div>
         </div>
     </div>
@@ -997,8 +999,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-modal-close" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-grad" id="btn-update-sub-skill">Update</button>
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-sub-skill">Update</button>
             </div>
         </div>
     </div>
@@ -1006,7 +1008,7 @@
 
 <!-- Delete Account Modal -->
 <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog" aria-labelledby="delete-account-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px">
         <div class="modal-content n-b-r text-dark">
             <div class="modal-header border-bottom-0">
                 <h5 class="modal-title" id="delete-account-modal-header-title">Delete Account</h5>
@@ -1027,8 +1029,8 @@
                 </div>
             </div>
             <div class="modal-footer border-top-0">
-                <button type="button" class="btn btn-grad" data-dismiss="modal">No, I was having a moment...</button>
-                <button type="button" class="btn btn-modal-close" id="btn-delete-account">Yes, I'm allergic to money!</button>
+                <button type="button" class="btn btn-grad btn-w-bigger" data-dismiss="modal">No, I was having a moment...</button>
+                <button type="button" class="btn btn-modal-close btn-w-bigger" id="btn-delete-account">Yes, I'm allergic to money!</button>
             </div>
         </div>
     </div>

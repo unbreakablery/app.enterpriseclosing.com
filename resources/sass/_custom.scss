@@ -3,6 +3,10 @@ body {
     color: #fff;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 400;
+}
+
 .main-content {
     margin-left: 90px;
     width: 100%;
@@ -13,7 +17,7 @@ body {
 }
 
 .bg-ec {
-    background-image: radial-gradient(farthest-corner at 90% 10%, #0000ee 0%, #000 75%) !important;
+    background-image: radial-gradient(farthest-corner at 90% 10%, #0000ee 0%, #000 65%) !important;
 }
 
 .bg-dark {
@@ -69,6 +73,9 @@ body {
 }
 .btn-w-bigger {
     width: 250px !important;
+}
+.btn-w-biggest {
+    width: 310px !important;
 }
 
 .btn-grad {
@@ -763,20 +770,17 @@ input[type='checkbox'] {
 .persons-table-wrapper {
     max-height: 310px;
     overflow-y: auto;
-    // padding-bottom: 1px;
 }
 .scripts-table-wrapper {
     max-height: 205px;
     overflow-y: auto;
-    // padding-bottom: 1px;
 }
 .emails-table-wrapper {
     max-height: 275px;
     overflow-y: auto;
-    // padding-bottom: 1px;
 }
 .skills-table-wrapper {
-    max-height: 800px;
+    max-height: 410px;
     overflow-y: auto;
     padding-bottom: 1px;
 }
@@ -832,7 +836,7 @@ input[type='checkbox'] {
         }
         tr td {
             border: solid 1px #fff;
-            vertical-align: middle;
+            vertical-align: top;
             button {
                 padding-top: 1px;
                 padding-bottom: 1px;
