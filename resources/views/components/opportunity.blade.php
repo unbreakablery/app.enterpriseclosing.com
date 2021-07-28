@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="table-responsive table-wrapper task-table-wrapper mt-4 mb-4 p-special-1" style="max-height: 184px; overflow-y: auto;">
+    <div class="table-responsive table-wrapper task-table-wrapper mt-4 mb-4 p-special-1" style="max-height: 156px; overflow-y: auto;">
         <table class="table table-hover datatable task-table w-100 b-s-b-b" 
                 id="task-table-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
             <thead class="thead-dark">

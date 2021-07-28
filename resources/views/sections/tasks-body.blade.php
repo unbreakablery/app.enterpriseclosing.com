@@ -2,7 +2,7 @@
     @csrf
     <h3 class="mb-0">Tasks To Complete</h3>
     <div class="row col-lg-12 col-md-12 col-sm-12">
-        <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper" style="max-height: 184px; overflow-y: auto;">
+        <div class="table-responsive table-wrapper mt-4 mb-4" id="task-table-wrapper" style="max-height: 156px; overflow-y: auto;">
             <table class="table table-hover datatable w-100 b-s-b-b" id="task-table">
                 <thead class="thead-dark">
                     <tr>
