@@ -112,10 +112,10 @@
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div id="accordion-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif" class="accordion-section mt-4 mb-4 p-special-1">
                     <div class="card n-b-r bg-transparent border border-white">
-                        <div class="card-header bg-dark n-b-r pt-1 pb-1 pl-1"
+                        <div class="card-header bg-dark n-b-r pt-0 pb-0 pl-1"
                                 id="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                             <h3 class="mb-0">
-                                <a class="btn btn-link text-white"
+                                <a class="btn btn-link text-white pt-0 pb-0"
                                     data-toggle="collapse"
                                     data-target="#collapseMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
                                     aria-expanded="true"
@@ -175,7 +175,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_economic_buyer">Economic Buyer <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_economic_buyer">Economic Buyer / Sponsor <i class="bi bi-info-circle-fill ml-2"></i></label>
                                                     <input class="form-control n-b-r"
                                                         type="text"
                                                         name="m_economic_buyer"
@@ -186,7 +186,7 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_economic_buyer_score">Economic Buyer Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_economic_buyer_score">Economic Buyer / Sponsor Score <i class="bi bi-info-circle-fill ml-2"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
