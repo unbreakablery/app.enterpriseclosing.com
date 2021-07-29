@@ -618,6 +618,9 @@ textarea.form-control:focus,
     background-color: transparent;
     color: #fff;
 }
+textarea.form-control {
+    height: auto !important;
+}
 select option {
     background-color: #000 !important;
 }
@@ -955,6 +958,13 @@ a.a-btn-remove-account {
         table.datatable {
             border-bottom-width: 0px !important;
         }
+    }
+}
+.radio-group {
+    input[type=radio].form-check-input {
+        width: 15px;
+        height: 15px;
+        margin-right: 15px;
     }
 }
 

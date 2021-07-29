@@ -426,6 +426,9 @@ if (!function_exists('storeOpportunityMain')) {
         if (!empty($data->folder_link)) {
             $opportunity->folder_link = $data->folder_link;
         }
+        if (!empty($data->competitive_position)) {
+            $opportunity->competitive_position = $data->competitive_position;
+        }
         $opportunity->update();
         
         return $id;
@@ -920,6 +923,7 @@ if (!function_exists('getOppInputFields')) {
             $input->value = $val['name'];
             $input->type = $val['type'];
             $input->placeholder = $val['placeholder'];
+            $input->cols = $val['cols'];
             $input->checked = false;
             foreach ($oppIFs as $o) {
                 if ($o->o_value == $key) {

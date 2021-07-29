@@ -82,17 +82,47 @@
                     <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
                         @foreach ($ifs as $input)
                             @if ($input->checked)
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="form-group">
-                                    <label for="{{ $input->key}}">{{ $input->value}}</label>
-                                    <input class="form-control n-b-r {{ $input->type }}"
-                                        type="text"
-                                        name="{{ $input->key}}"
-                                        value="@if (isset($main) && !empty($main->{$input->key}) && $input->type == 'date'){{ date('d-m-Y', strtotime($main->{$input->key})) }}@elseif(isset($main)){{ $main->{$input->key} }}@endif"
-                                        placeholder="{{ $input->placeholder }}"
-                                    />
-                                </div>
-                            </div>
+                                @if ($input->type == 'textarea')
+                                    <div class="{{ $input->cols }}">
+                                        <div class="form-group">
+                                            <label for="{{ $input->key}}">{{ $input->value}}</label>
+                                            <textarea class="form-control n-b-r" name="{{ $input->key}}" rows="3" placeholder="{{ $input->placeholder }}">@if(isset($main)){{ $main->{$input->key} }}@endif</textarea>
+                                        </div>
+                                    </div>
+                                @elseif ($input->type == 'radio_group')
+                                    @php
+                                        $radios = config('app_setting.opportunities.radio_groups.' . $input->key);
+                                    @endphp
+                                    <div class="{{ $input->cols }}">
+                                        <label>{{ $input->value }}</label>
+                                        <div class="row radio-group ml-1 mr-0">
+                                        @foreach ($radios as $key => $radio)
+                                            <div class="form-check {{ $radio['cols'] }}">
+                                                <input class="form-check-input"
+                                                    type="{{ $radio['type'] }}"
+                                                    name="{{ $input->key }}"
+                                                    id="{{ $key }}"
+                                                    value="{{ $radio['value'] }}"
+                                                    @if(isset($main) && $radio['value'] == $main->{$input->key}){{ 'checked' }}@endif
+                                                />
+                                                <label class="form-check-label" for="{{ $key }}">{{ $radio['name'] }}</label>
+                                            </div>
+                                        @endforeach
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="{{ $input->cols }}">
+                                        <div class="form-group">
+                                            <label for="{{ $input->key}}">{{ $input->value}}</label>
+                                            <input class="form-control n-b-r {{ $input->type }}"
+                                                type="text"
+                                                name="{{ $input->key}}"
+                                                value="@if (isset($main) && !empty($main->{$input->key}) && $input->type == 'date'){{ date('d-m-Y', strtotime($main->{$input->key})) }}@elseif(isset($main)){{ $main->{$input->key} }}@endif"
+                                                placeholder="{{ $input->placeholder }}"
+                                            />
+                                        </div>
+                                    </div>
+                                @endif
                             @endif
                         @endforeach
                     </div>

@@ -28,9 +28,10 @@ class CreateOpportunitiesMainTable extends Migration
             $table->string('compelling_event')->nullable();
             $table->string('competition')->nullable();
             $table->string('sponsor')->nullable();
-            $table->string('what_new_changed')->nullable();
+            $table->text('what_new_changed')->nullable();
             $table->string('red_flags')->nullable();
             $table->string('folder_link')->nullable();
+            $table->tinyInteger('competitive_position')->nullable();
             $table->timestamps();
         });
     }

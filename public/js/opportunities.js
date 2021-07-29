@@ -244,7 +244,8 @@ $(document).ready(function () {
         }); // Add opportunity id and name
 
         $('#opp-tab-' + tabIndex).find('input[name=opp-id]').val(res.id);
-        $('#opp-tab-' + tabIndex).find('input[name=opportunity-name]').val(tabName); //Set some ids
+        $('#opp-tab-' + tabIndex).find('input[name=opportunity-name]').val(tabName);
+        $('#opp-tab-' + tabIndex).find('input[name=opportunity]').val(tabName); //Set some ids
 
         $('#opp-tab-' + tabIndex).find('.accordion-section').attr('id', 'accordion-' + res.id);
         $('#opp-tab-' + tabIndex).find('.card .card-header').attr('id', 'headingMeddpicc-' + res.id);
@@ -494,6 +495,10 @@ $(document).ready(function () {
         $('.additional-task-item-' + id + ' *').prop('disabled', true);
       }
     });
+  }); // When click label for radio
+
+  $(document).on('click', '.radio-group label', function () {
+    $(this).closest('.form-check').find('input[type=radio]').prop("checked", true);
   });
 });
 /******/ })()
