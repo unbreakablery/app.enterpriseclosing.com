@@ -102,6 +102,12 @@ return  [
                 'placeholder' => '',
                 'cols' => 'col-lg-12 col-md-12 col-sm-12'
             ],
+            'progress_barometer'  => [
+                'name' => 'Progress Barometer', 
+                'type' => 'radio_group', 
+                'placeholder' => '',
+                'cols' => 'col-lg-12 col-md-12 col-sm-12'
+            ],
         ],
         'radio_groups' => [
             'competitive_position' => [
@@ -129,6 +135,26 @@ return  [
                     'value' => 4,
                     'cols' => 'col-lg-3 col-md-3 col-sm-6'
                 ],
+            ],
+            'progress_barometer' => [
+                'stalled' => [
+                    'name' => 'Stalled - Can you provide more value to the customer?',
+                    'type' => 'radio',
+                    'value' => 1,
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
+                ],
+                'progressing' => [
+                    'name' => 'Progressing - What’s the next step?',
+                    'type' => 'radio',
+                    'value' => 2,
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
+                ],
+                'fast' => [
+                    'name' => 'Fast - Can you multithread to move faster?',
+                    'type' => 'radio',
+                    'value' => 3,
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
+                ]
             ]
         ]
     ]

@@ -964,7 +964,10 @@ a.a-btn-remove-account {
     input[type=radio].form-check-input {
         width: 15px;
         height: 15px;
-        margin-right: 15px;
+        cursor: pointer;
+    }
+    label.form-check-label {
+        cursor: pointer;
     }
 }
 

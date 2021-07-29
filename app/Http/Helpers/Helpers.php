@@ -429,6 +429,9 @@ if (!function_exists('storeOpportunityMain')) {
         if (!empty($data->competitive_position)) {
             $opportunity->competitive_position = $data->competitive_position;
         }
+        if (!empty($data->progress_barometer)) {
+            $opportunity->progress_barometer = $data->progress_barometer;
+        }
         $opportunity->update();
         
         return $id;

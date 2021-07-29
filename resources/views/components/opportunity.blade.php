@@ -95,7 +95,7 @@
                                     @endphp
                                     <div class="{{ $input->cols }}">
                                         <label>{{ $input->value }}</label>
-                                        <div class="row radio-group ml-1 mr-0">
+                                        <div class="row radio-group ml-1 mr-0 mb-3">
                                         @foreach ($radios as $key => $radio)
                                             <div class="form-check {{ $radio['cols'] }}">
                                                 <input class="form-check-input"
@@ -105,7 +105,7 @@
                                                     value="{{ $radio['value'] }}"
                                                     @if(isset($main) && $radio['value'] == $main->{$input->key}){{ 'checked' }}@endif
                                                 />
-                                                <label class="form-check-label" for="{{ $key }}">{{ $radio['name'] }}</label>
+                                                <label class="form-check-label pl-2" for="{{ $key }}">{{ $radio['name'] }}</label>
                                             </div>
                                         @endforeach
                                         </div>

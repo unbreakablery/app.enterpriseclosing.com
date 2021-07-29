@@ -32,6 +32,7 @@ class CreateOpportunitiesMainTable extends Migration
             $table->string('red_flags')->nullable();
             $table->string('folder_link')->nullable();
             $table->tinyInteger('competitive_position')->nullable();
+            $table->tinyInteger('progress_barometer')->nullable();
             $table->timestamps();
         });
     }
