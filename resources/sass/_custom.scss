@@ -618,8 +618,12 @@ textarea.form-control:focus,
     background-color: transparent;
     color: #fff;
 }
-textarea.form-control {
-    height: auto !important;
+.opportunities-wrapper {
+    .tab-content{
+        textarea.form-control {
+            height: auto;
+        }
+    }
 }
 select option {
     background-color: #000 !important;

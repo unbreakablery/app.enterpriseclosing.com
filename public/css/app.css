@@ -10629,8 +10629,8 @@ textarea.form-control:focus,
   color: #fff;
 }
 
-textarea.form-control {
-  height: auto !important;
+.opportunities-wrapper .tab-content textarea.form-control {
+  height: auto;
 }
 
 select option {
