@@ -12,6 +12,7 @@ return  [
     ],
     'opportunities' => [
         'input_fields' => [
+            'opportunity'       => ['name' => 'Opportunity Name', 'type' => '', 'placeholder' => ''],
             'usecase'           => ['name' => 'Use-Case', 'type' => '', 'placeholder' => ''],
             'emp_num'           => ['name' => 'No. of Employees', 'type' => '', 'placeholder' => ''],
             'close_date'        => ['name' => 'Close Date', 'type' => 'date', 'placeholder' => 'dd-mm-yyyy'],

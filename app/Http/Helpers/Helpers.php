@@ -380,23 +380,54 @@ if (!function_exists('storeOpportunityMain')) {
         }
 
         // Update opportunity
-        OpportunityMain::where('id', $id)
-                    ->update([
-                        'usecase'           => $data->usecase,
-                        'emp_num'           => $data->emp_num,
-                        'close_date'        => (empty($data->close_date)) ? null : \DateTime::createFromFormat('d-m-Y', $data->close_date),
-                        'stage'             => $data->stage,
-                        'next_step'         => $data->next_step,
-                        'amount'            => $data->amount,
-                        'currency'          => $data->currency,
-                        'lead_source'       => $data->lead_source,
-                        'compelling_event'  => $data->compelling_event,
-                        'competition'       => $data->competition,
-                        'sponsor'           => $data->sponsor,
-                        'what_new_changed'  => $data->what_new_changed,
-                        'red_flags'         => $data->red_flags,
-                        'folder_link'       => $data->folder_link
-                    ]);
+        $opportunity = OpportunityMain::where('id', $id)->get()->first();
+        if (!empty($data->opportunity)) {
+            $opportunity->opportunity = $data->opportunity;
+        }
+        if (!empty($data->usecase)) {
+            $opportunity->usecase = $data->usecase;
+        }
+        if (!empty($data->emp_num)) {
+            $opportunity->emp_num = $data->emp_num;
+        }
+        if (!empty($data->close_date)) {
+            $opportunity->close_date = \DateTime::createFromFormat('d-m-Y', $data->close_date);
+        }
+        if (!empty($data->stage)) {
+            $opportunity->stage = $data->stage;
+        }
+        if (!empty($data->next_step)) {
+            $opportunity->next_step = $data->next_step;
+        }
+        if (!empty($data->amount)) {
+            $opportunity->amount = $data->amount;
+        }
+        if (!empty($data->currency)) {
+            $opportunity->currency = $data->currency;
+        }
+        if (!empty($data->lead_source)) {
+            $opportunity->lead_source = $data->lead_source;
+        }
+        if (!empty($data->compelling_event)) {
+            $opportunity->compelling_event = $data->compelling_event;
+        }
+        if (!empty($data->competition)) {
+            $opportunity->competition = $data->competition;
+        }
+        if (!empty($data->sponsor)) {
+            $opportunity->sponsor = $data->sponsor;
+        }
+        if (!empty($data->what_new_changed)) {
+            $opportunity->what_new_changed = $data->what_new_changed;
+        }
+        if (!empty($data->red_flags)) {
+            $opportunity->red_flags = $data->red_flags;
+        }
+        if (!empty($data->folder_link)) {
+            $opportunity->folder_link = $data->folder_link;
+        }
+        $opportunity->update();
+        
         return $id;
     }
 }
