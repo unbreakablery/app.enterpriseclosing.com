@@ -10941,6 +10941,14 @@ table#users-table select {
   padding: 0 0.25rem;
   font-size: 12px;
 }
+table#persons-table input[type=number],
+table#scripts-table input[type=number],
+table#emails-table input[type=number],
+table#skills-table input[type=number],
+table#assessments-table input[type=number],
+table#users-table input[type=number] {
+  -moz-appearance: textfield;
+}
 table#persons-table input[type=number]::-webkit-inner-spin-button,
 table#persons-table input[type=number]::-webkit-outer-spin-button,
 table#scripts-table input[type=number]::-webkit-inner-spin-button,
