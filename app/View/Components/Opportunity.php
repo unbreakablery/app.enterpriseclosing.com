@@ -10,18 +10,24 @@ class Opportunity extends Component
     public $ifs = null;
     public $tasks = null;
     public $meddpicc = null;
+    public $salesStages = null;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($opportunityMain, $opportunityIfs, $opportunityTasks, $opportunityMeddpicc)
+    public function __construct($opportunityMain,
+                                $opportunityIfs,
+                                $opportunityTasks,
+                                $opportunityMeddpicc,
+                                $opportunitySalesStages)
     {
         $this->main = $opportunityMain;
         $this->ifs = $opportunityIfs;
         $this->tasks = $opportunityTasks;
         $this->meddpicc = $opportunityMeddpicc;
+        $this->salesStages = $opportunitySalesStages;
     }
 
     /**

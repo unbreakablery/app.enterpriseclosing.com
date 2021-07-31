@@ -10807,6 +10807,11 @@ input[type=checkbox] {
   overflow-y: auto;
 }
 
+.sales-stage-table-wrapper {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
 .scripts-table-wrapper {
   max-height: 205px;
   overflow-y: auto;
@@ -10848,14 +10853,13 @@ input[type=checkbox] {
   height: auto;
 }
 
+#settingsTabsContent table#sales-stage-table tbody tr:last-child td,
 #settingsTabsContent table#scripts-table tbody tr:last-child td,
 #settingsTabsContent table#emails-table tbody tr:last-child td,
 #settingsTabsContent table#skills-table tbody tr:last-child td {
   border-bottom: none;
 }
-#settingsTabsContent table#skills-table tbody:last-of-type td[rowspan] {
-  border-bottom: none;
-}
+#settingsTabsContent table#sales-stage-table tr th,
 #settingsTabsContent table#scripts-table tr th,
 #settingsTabsContent table#emails-table tr th,
 #settingsTabsContent table#skills-table tr th {
@@ -10866,22 +10870,28 @@ input[type=checkbox] {
   box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff;
   border: solid 1px #fff;
 }
+#settingsTabsContent table#sales-stage-table tr td,
 #settingsTabsContent table#scripts-table tr td,
 #settingsTabsContent table#emails-table tr td,
 #settingsTabsContent table#skills-table tr td {
   border: solid 1px #fff;
   vertical-align: top;
 }
+#settingsTabsContent table#sales-stage-table tr td button,
 #settingsTabsContent table#scripts-table tr td button,
 #settingsTabsContent table#emails-table tr td button,
 #settingsTabsContent table#skills-table tr td button {
   padding-top: 1px;
   padding-bottom: 1px;
 }
+#settingsTabsContent table#sales-stage-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#scripts-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#emails-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#skills-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
   border-top: none !important;
+}
+#settingsTabsContent table#skills-table tbody:last-of-type td[rowspan] {
+  border-bottom: none;
 }
 
 table#persons-table tr th,
@@ -10918,6 +10928,9 @@ table#users-table tbody tr:last-child td {
   border-bottom: none;
 }
 
+table#sales-stage-table input[type=text],
+table#sales-stage-table input[type=number],
+table#sales-stage-table select,
 table#persons-table input[type=text],
 table#persons-table input[type=number],
 table#persons-table select,
@@ -10941,6 +10954,7 @@ table#users-table select {
   padding: 0 0.25rem;
   font-size: 12px;
 }
+table#sales-stage-table input[type=number],
 table#persons-table input[type=number],
 table#scripts-table input[type=number],
 table#emails-table input[type=number],
@@ -10949,6 +10963,8 @@ table#assessments-table input[type=number],
 table#users-table input[type=number] {
   -moz-appearance: textfield;
 }
+table#sales-stage-table input[type=number]::-webkit-inner-spin-button,
+table#sales-stage-table input[type=number]::-webkit-outer-spin-button,
 table#persons-table input[type=number]::-webkit-inner-spin-button,
 table#persons-table input[type=number]::-webkit-outer-spin-button,
 table#scripts-table input[type=number]::-webkit-inner-spin-button,
@@ -10963,6 +10979,7 @@ table#users-table input[type=number]::-webkit-inner-spin-button,
 table#users-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
+table#sales-stage-table .btn.btn-counter,
 table#persons-table .btn.btn-counter,
 table#scripts-table .btn.btn-counter,
 table#emails-table .btn.btn-counter,
@@ -10977,6 +10994,7 @@ table#users-table .btn.btn-counter {
   border-radius: 0;
   border: 0;
 }
+table#sales-stage-table tr th,
 table#persons-table tr th,
 table#scripts-table tr th,
 table#emails-table tr th,
@@ -10988,6 +11006,7 @@ table#users-table tr th {
   padding: 0.25rem 5px;
   border-color: #fff;
 }
+table#sales-stage-table tbody tr td,
 table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
 table#emails-table tbody tr td,
@@ -10996,6 +11015,7 @@ table#assessments-table tbody tr td,
 table#users-table tbody tr td {
   padding: 0;
 }
+table#sales-stage-table .btn-remove-row,
 table#persons-table .btn-remove-row,
 table#scripts-table .btn-remove-row,
 table#emails-table .btn-remove-row,
@@ -11004,6 +11024,7 @@ table#assessments-table .btn-remove-row,
 table#users-table .btn-remove-row {
   height: 1.5rem;
 }
+table#sales-stage-table .btn-remove-row i.bi.bi-x:before,
 table#persons-table .btn-remove-row i.bi.bi-x:before,
 table#scripts-table .btn-remove-row i.bi.bi-x:before,
 table#emails-table .btn-remove-row i.bi.bi-x:before,
@@ -11012,6 +11033,7 @@ table#assessments-table .btn-remove-row i.bi.bi-x:before,
 table#users-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
+table#sales-stage-table span.input-group-text,
 table#persons-table span.input-group-text,
 table#scripts-table span.input-group-text,
 table#emails-table span.input-group-text,

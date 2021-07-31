@@ -49,6 +49,8 @@ class SettingsController extends Controller
 
         $oppIFs = getOppInputFields();
 
+        $salesStages = getOppSalesStagesSettings();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
@@ -61,7 +63,8 @@ class SettingsController extends Controller
                 'skillSetting',
                 'skillStartAt',
                 'skillACMT',
-                'oppIFs'
+                'oppIFs',
+                'salesStages'
             )
         );
     }
@@ -212,5 +215,46 @@ class SettingsController extends Controller
                 'success' => false
             ]);
         }
+    }
+
+    public function storeOppSalesStageSettings(Request $request)
+    {
+        $salesStage = storeOppSalesStageSettings($request);
+
+        if ($salesStage) {
+            return response()->json([
+                'success' => true,
+                'sales_stage' => $salesStage
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        } 
+    }
+
+    public function updateOppSalesStageSettings(Request $request)
+    {
+        $salesStage = storeOppSalesStageSettings($request);
+
+        if ($salesStage) {
+            return response()->json([
+                'success' => true,
+                'sales_stage' => $salesStage
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        } 
+    }
+
+    public function removeOppSalesStageSettings(Request $request)
+    {
+        $result = deleteOppSalesStageSettings($request);
+
+        return response()->json([
+            'success' => $result
+        ]);
     }
 }

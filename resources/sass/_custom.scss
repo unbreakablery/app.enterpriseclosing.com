@@ -778,6 +778,10 @@ input[type='checkbox'] {
     max-height: 310px;
     overflow-y: auto;
 }
+.sales-stage-table-wrapper {
+    max-height: 260px;
+    overflow-y: auto;
+}
 .scripts-table-wrapper {
     max-height: 205px;
     overflow-y: auto;
@@ -818,21 +822,13 @@ input[type='checkbox'] {
     height: auto;
 }
 #settingsTabsContent {
+    table#sales-stage-table,
     table#scripts-table,
     table#emails-table,
     table#skills-table {
         tbody tr:last-child td {
             border-bottom: none;
         }
-    }
-    table#skills-table {
-        tbody:last-of-type td[rowspan] {
-            border-bottom: none;
-        }
-    }
-    table#scripts-table,
-    table#emails-table,
-    table#skills-table {
         tr th {
             padding-top: 0;
             padding-bottom: 0;
@@ -851,6 +847,11 @@ input[type='checkbox'] {
         }
         tbody:nth-of-type(1) tr:nth-of-type(1) td {
             border-top: none !important;
+        }
+    }
+    table#skills-table {
+        tbody:last-of-type td[rowspan] {
+            border-bottom: none;
         }
     }
 }
@@ -881,6 +882,7 @@ table#users-table {
         border-bottom: none;
     }
 }
+table#sales-stage-table,
 table#persons-table,
 table#scripts-table,
 table#emails-table,

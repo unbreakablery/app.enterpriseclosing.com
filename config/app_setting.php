@@ -155,6 +155,26 @@ return  [
                     'value' => 3,
                     'cols' => 'col-lg-12 col-md-12 col-sm-12'
                 ]
+            ],
+            'sales_stage' => [
+                'weak' => [
+                    'name' => 'Week',
+                    'type' => 'radio',
+                    'value' => 1,
+                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                ],
+                'normal' => [
+                    'name' => 'Normal',
+                    'type' => 'radio',
+                    'value' => 2,
+                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                ],
+                'strong' => [
+                    'name' => 'Strong',
+                    'type' => 'radio',
+                    'value' => 3,
+                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                ]
             ]
         ]
     ]

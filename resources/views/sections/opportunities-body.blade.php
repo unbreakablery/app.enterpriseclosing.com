@@ -4,6 +4,7 @@
         :opportunityIfs="$opportunityIfs"
         :opportunityTasks="null"
         :opportunityMeddpicc="null"
+        :opportunitySalesStages="null"
     />
 </div>
 
@@ -50,6 +51,7 @@
                     :opportunityIfs="$opportunityIfs"
                     :opportunityTasks="$opp->tasks"
                     :opportunityMeddpicc="$opp->meddpicc"
+                    :opportunitySalesStages="$opp->salesStages"
                 />
             </div>
             @endforeach

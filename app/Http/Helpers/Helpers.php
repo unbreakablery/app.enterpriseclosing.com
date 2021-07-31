@@ -10,6 +10,7 @@ use App\Models\OutboundPerson;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\OpportunitySetting;
+use App\Models\OpportunitySalesStage;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
@@ -379,7 +380,7 @@ if (!function_exists('storeOpportunityMain')) {
             return $opportunityMain->id;
         }
 
-        // Update opportunity
+        // Update opportunity main
         $opportunity = OpportunityMain::where('id', $id)->get()->first();
         if (!empty($data->opportunity)) {
             $opportunity->opportunity = $data->opportunity;
@@ -433,7 +434,29 @@ if (!function_exists('storeOpportunityMain')) {
             $opportunity->progress_barometer = $data->progress_barometer;
         }
         $opportunity->update();
-        
+
+        // Update opportunity sales stages
+        foreach($data->all() as $key => $value) {
+            if (Str::is('ss-*', $key)) {
+                $ssId = Str::remove('ss-', $key);
+                $salesStage = OpportunitySalesStage::where('opp_id', $id)
+                                ->where('ss_id', $ssId)
+                                ->get()
+                                ->first();
+
+                if ($salesStage) {
+                    $salesStage->strength_indicator = $value;
+                    $salesStage->save();
+                } else {
+                    $salesStage = new OpportunitySalesStage();
+                    $salesStage->opp_id = $id;
+                    $salesStage->ss_id = $ssId;
+                    $salesStage->strength_indicator = $value;
+                    $salesStage->save();
+                }
+            }
+        }
+
         return $id;
     }
 }
@@ -1158,5 +1181,97 @@ if (!function_exists('updateUser')) {
         $u_user->active_class = getUserActiveClass($user->active);
         
         return $u_user;
+    }
+}
+
+if (!function_exists('storeOppSalesStageSettings')) {
+    function storeOppSalesStageSettings($data)
+    {
+        $userId = Auth::user()->id;
+        $ssn = $data->get('ssn');
+        $ssi = $data->get('ssi');
+
+        if (!isset($data->id)) {
+            // insert
+            $salesStage = OpportunitySetting::where('user', $userId)
+                                            ->where('o_key', 'sales-stage')
+                                            ->where('o_value', $ssn)
+                                            ->get()
+                                            ->first();
+
+            if ($salesStage) {
+                return null;
+            }
+
+            $salesStage = new OpportunitySetting();
+            $salesStage->user = $userId;
+            $salesStage->o_key = 'sales-stage';
+            $salesStage->o_value = $ssn;
+            $salesStage->o_value1 = $ssi;
+            $salesStage->save();
+
+            $result = new \stdClass();
+            $result->id = $salesStage->id;
+            $result->ssn = $salesStage->o_value;
+            $result->ssi = $salesStage->o_value1;
+        } else {
+            // update
+            $id = $data->get('id');
+            $salesStage = OpportunitySetting::where('user', $userId)
+                                                ->where('o_key', 'sales-stage')
+                                                ->where('o_value', $ssn)
+                                                ->get()
+                                                ->first();
+            if ($salesStage != null && $salesStage->id != $id) {
+                return null;
+            }
+
+            $salesStage = OpportunitySetting::where('id', $id)
+                                                ->get()
+                                                ->first();
+            $salesStage->o_value = $ssn;
+            $salesStage->o_value1 = $ssi;
+
+            $salesStage->update();
+
+            $result = new \stdClass();
+            $result->id = $salesStage->id;
+            $result->ssn = $salesStage->o_value;
+            $result->ssi = $salesStage->o_value1;
+        }
+        
+        return $result;
+    }
+}
+
+if (!function_exists('getOppSalesStagesSettings')) {
+    function getOppSalesStagesSettings($show = null)
+    {
+        if ($show == null) {
+            $salesStages = OpportunitySetting::where('user', Auth::user()->id)
+                                            ->where('o_key', 'sales-stage')
+                                            ->select('id', 'o_value', 'o_value1')
+                                            ->get();
+        } else {
+            $salesStages = OpportunitySetting::where('user', Auth::user()->id)
+                                            ->where('o_key', 'sales-stage')
+                                            ->where('o_value1', $show)
+                                            ->select('id', 'o_value', 'o_value1')
+                                            ->get();
+        }
+        
+        return $salesStages;
+    }
+}
+
+if (!function_exists('deleteOppSalesStageSettings')) {
+    function deleteOppSalesStageSettings($data)
+    {
+        $result = OpportunitySetting::find($data->id)->delete();
+
+        // Remove sales stage value associated with this id
+        OpportunitySalesStage::where('ss_id', $data->id)->delete();
+
+        return $result;
     }
 }

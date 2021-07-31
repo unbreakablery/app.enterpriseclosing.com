@@ -125,6 +125,34 @@
                                 @endif
                             @endif
                         @endforeach
+                        <!-- Sales Stages -->
+                        @if (isset($salesStages) && count($salesStages) > 0)
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <label>Sales Stages</label>
+                                @php
+                                    $radios = config('app_setting.opportunities.radio_groups.sales_stage');
+                                @endphp
+                                @foreach ($salesStages as $s)
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label>{{ $s->snn }}</label>
+                                        <div class="row radio-group ml-1 mr-0 mb-3">
+                                            @foreach ($radios as $key => $radio)
+                                                <div class="form-check {{ $radio['cols'] }}">
+                                                    <input class="form-check-input"
+                                                        type="{{ $radio['type'] }}"
+                                                        name="{{ 'ss-' . $s->id }}"
+                                                        id="{{ $key . '-' . $s->id }}"
+                                                        value="{{ $radio['value'] }}"
+                                                        @if(isset($s) && $radio['value'] == $s->si){{ 'checked' }}@endif
+                                                    />
+                                                    <label class="form-check-label pl-2" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                     <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
                         <div class="col-lg-12 col-md-12 col-sm-12">

@@ -365,36 +365,99 @@
             data-idx="opportunities"
             role="tabpanel"
             aria-labelledby="tab-opportunities">
-            <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
-                @csrf
-                <h3>Available Input Fields</h3>
-                <div class="row task-section col-md-12 col-sm-12 mb-4">
-                    @foreach ($oppIFs as $idx => $input)
-                    <div class="form-check col-2">
-                        <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
-                            id="{{ $input->key }}" 
-                            value="{{ $input->key }}"
-                            @if ($input->checked){{ 'checked' }}@endif
-                            >
-                        <label class="form-check-label" for="{{ $input->key }}">
-                            {{ $input->value }}
-                        </label>
-                    </div>
-                    @endforeach
-                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
-                        <div class="form-check col-20 pl-1">
-                            <a href="javascript:void(0)" id="check-all-inputs" class="select-all mr-2">Check All</a>
-                            <span class="select-all-slash">/</span>
-                            <a href="javascript:void(0)" id="uncheck-all-inputs" class="select-all ml-2">Uncheck All</a>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
+                        @csrf
+                        <h3>Available Input Fields</h3>
+                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
+                            @foreach ($oppIFs as $idx => $input)
+                            <div class="form-check col-lg-6 col-md-6 col-sm-12">
+                                <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
+                                    id="{{ $input->key }}" 
+                                    value="{{ $input->key }}"
+                                    @if ($input->checked){{ 'checked' }}@endif
+                                    >
+                                <label class="form-check-label" for="{{ $input->key }}">
+                                    {{ $input->value }}
+                                </label>
+                            </div>
+                            @endforeach
+                            <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
+                                <div class="form-check pl-1">
+                                    <a href="javascript:void(0)" id="check-all-inputs" class="select-all mr-2">Check All</a>
+                                    <span class="select-all-slash">/</span>
+                                    <a href="javascript:void(0)" id="uncheck-all-inputs" class="select-all ml-2">Uncheck All</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
+                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-opportunities-settings">
+                                    Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <form action="" class="form-inline" id="sales-stage-form">
+                        <h3 class="setting-sub-title mt-4">Create Sales Stage</h3>
+                        <div class="task-section col-1g-12 col-md-12 col-sm-12">
+                            <div class="form-group mb-2">
+                                <label for="sales-stage">Sales Stage Name</label>
+                                <input type="text" name="sales-stage" id="sales-stage" class="form-control n-b-r">
+                            </div>
+                            <div class="form-check pl-0">
+                                <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
+                                <label class="form-check-label" for="show-strength-indicators">Show strength indicators</label>
+                            </div>
+                        </div>
+                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
+                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sales-stage">
+                                Save Sales Stage
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <h3 class="setting-sub-title mt-4">Sales Stages</h3>
+                    <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
+                        <div class="sales-stage-table-wrapper border-bottom border-white">
+                            <table class="table table-hover w-100 mb-0" id="sales-stage-table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col" class="no-sort pl-2 pr-2">Name</th>
+                                        <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
+                                        <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (count($salesStages) > 0)
+                                        @foreach ($salesStages as $s)
+                                        <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}">
+                                            <td class="text-white pl-2 pr-2">{{ $s->o_value }}</td>
+                                            <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
+                                            <td class="text-white text-center">
+                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sales-stage" title="Remove">
+                                                    <i class="bi bi-x"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    @else
+                                        <tr class="no-data">
+                                            <td colspan="3" class="text-danger text-center">
+                                                No Sales Stages
+                                            </td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="row task-section col-md-12 col-sm-12 mb-4">
-                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-opportunities-settings">
-                            Save Settings
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
         <div class="tab-pane fade"
             id="settings-tab-scripts"
@@ -1046,6 +1109,52 @@
             <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-password">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Sales Stage Modal -->
+<div class="modal fade" id="edit-sales-stage-modal" tabindex="-1" role="dialog" aria-labelledby="edit-sales-stage-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="edit-sales-stage-modal-header-title">Edit Sales Stage</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit-ss-id" id="edit-ss-id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit-ssn">Sales Stage</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit-ssn"
+                                    name="edit-ssn"
+                                    value=""
+                                    placeholder="Enter Sales Stage..."
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit-ssi">Show Strength Indicators</label>
+                            <select name="edit-ssi"
+                                id="edit-ssi"
+                                class="form-control n-p-lr n-b-r">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-sales-stage">Update</button>
             </div>
         </div>
     </div>

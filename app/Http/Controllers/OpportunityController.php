@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
+use App\Models\OpportunitySetting;
 use App\Models\Task;
 use Auth;
 
@@ -49,15 +50,27 @@ class OpportunityController extends Controller
             $temp->main = $oppMain;
             $temp->tasks = $tasks;
             $temp->meddpicc = $oppMeddpicc;
-            
+            $temp->salesStages = OpportunitySetting::from('opportunities_settings AS os')
+                                    ->where([
+                                                ['os.user', '=', Auth::user()->id],
+                                                ['os.o_key', '=', 'sales-stage'],
+                                                ['os.o_value1', '=', 1]
+                                            ])
+                                    ->leftJoin('opportunities_sales_stage AS oss', function($join) use ($oppMain) {
+                                            $join->on('oss.ss_id', '=', 'os.id')
+                                                ->where('oss.opp_id', '=', $oppMain->id);
+                                        })
+                                    ->select('os.id', 'os.o_value AS snn', 'oss.strength_indicator AS si')
+                                    ->get()
+                                    ->all();
             $data[] = $temp;
         }
-
+        
         $actions = getActionsForCurrentUser();
         $steps = getStepsForCurrentUser();
 
         $opportunityIfs = getOppInputFields();
-                
+        
         $nl_opportunities_class = 'active';
         
         return view('pages.opportunities',

@@ -823,12 +823,12 @@ $(document).ready(function () {
     });
   });
   $('#settings-tab-opportunities #uncheck-all-inputs').on('click', function () {
-    $('#settings-tab-opportunities .input-field').each(function (e) {
+    $('#settings-tab-opportunities #form_opportunities_setting input[name="input_fields[]"]').each(function (e) {
       $(this).prop('checked', false);
     });
   });
   $('#settings-tab-opportunities #check-all-inputs').on('click', function () {
-    $('#settings-tab-opportunities .input-field').each(function (e) {
+    $('#settings-tab-opportunities #form_opportunities_setting input[name="input_fields[]"]').each(function (e) {
       $(this).prop('checked', true);
     });
   });
@@ -901,6 +901,186 @@ $(document).ready(function () {
         $('input#new_password').val('');
         $('input#confirm_password').val('');
         $('#change-password-modal').modal('hide'); // Show message
+
+        showMessage('danger', 'Error, Please retry!');
+      }
+    });
+  });
+  $('button#btn-save-sales-stage').on('click', function () {
+    var ssn = $('form#sales-stage-form input[name=sales-stage]').val();
+    var ssi = $('form#sales-stage-form input[name=show-strength-indicators]:checked').length;
+
+    if (ssn == undefined || ssn == null || ssn == '') {
+      showMessage('danger', 'Please enter sales stage.');
+      return false;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/settings/store/opportunities-sales-stage",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        ssn: ssn,
+        ssi: ssi
+      },
+      success: function success(response) {
+        loader('hide');
+
+        if (response.success) {
+          // Show message
+          showMessage('success', response.sales_stage.ssn + ' was saved successfully!'); // Remove no-data row
+
+          $('table#sales-stage-table tbody tr.no-data').remove(); // Add it into sales stages table
+
+          var innerHtml = '';
+          innerHtml += '<tr data-id="' + response.sales_stage.id + '" data-ssn="';
+          innerHtml += response.sales_stage.ssn + '" data-ssi="';
+          innerHtml += response.sales_stage.ssi + '">';
+          innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.ssn + '</td>';
+          innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssi == 1 ? 'Yes' : 'No') + '</td>';
+          innerHtml += '<td class="text-white text-center">';
+          innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">';
+          innerHtml += '<i class="bi bi-pencil-fill"></i>';
+          innerHtml += '</button>';
+          innerHtml += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sales-stage" title="Remove">';
+          innerHtml += '<i class="bi bi-x"></i>';
+          innerHtml += '</button>';
+          innerHtml += '</td>';
+          innerHtml += '</tr>';
+          $('table#sales-stage-table tbody').append(innerHtml); // Initalize sales stage
+
+          $('#settings-tab-opportunities input#sales-stage').val('');
+          $('#settings-tab-opportunities input#show-strength-indicators').removeAttr('checked'); // Set focus to sales stage
+
+          $('#settings-tab-opportunities input#sales-stage').focus();
+        } else {
+          // Show message
+          showMessage('danger', 'Error, Please retry!');
+        }
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
+
+        showMessage('danger', 'Error, Please retry!');
+      }
+    });
+  });
+  $(document).on('click', 'button.btn-remove-sales-stage', function () {
+    var trObj = $(this).closest('tr');
+    var id = $(trObj).attr('data-id');
+    var ssn = $(trObj).attr('data-ssn');
+
+    if (id == undefined || id == null || id == '' || id == 0) {
+      showMessage('danger', 'Can\'t this sales stage.');
+      return false;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/settings/remove/opportunities-sales-stage",
+      type: "delete",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: id
+      },
+      success: function success(response) {
+        loader('hide');
+
+        if (response.success) {
+          // Show message
+          showMessage('success', ssn + ' was removed successfully!'); // Remove tr
+
+          $(trObj).remove(); // Add no-data row
+
+          if ($('table#sales-stage-table tbody').find('tr').length == 0) {
+            var innerHtml = '<tr class="no-data">';
+            innerHtml += '<td colspan="3" class="text-danger text-center">No Sales Stages</td>';
+            innerHtml += '</tr>';
+            $('table#sales-stage-table tbody').append(innerHtml);
+          }
+        } else {
+          // Show message
+          showMessage('danger', 'Error, Please retry!');
+        }
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
+
+        showMessage('danger', 'Error, Please retry!');
+      }
+    });
+  });
+  $(document).on('click', 'button.btn-edit-sales-stage', function () {
+    var trObj = $(this).closest('tr');
+    var id = $(trObj).attr('data-id');
+    var ssn = $(trObj).attr('data-ssn');
+    var ssi = $(trObj).attr('data-ssi');
+
+    if (id == undefined || id == null || id == 0 || id == '') {
+      showMessage('danger', 'Can\'t edit this sales stage because ID is empty.');
+      return false;
+    }
+
+    $('#edit-sales-stage-modal input[name=edit-ss-id]').val(id);
+    $('#edit-sales-stage-modal input[name=edit-ssn]').val(ssn);
+    $('#edit-sales-stage-modal select[name=edit-ssi]').val(ssi); // Show Edit Sales Stage Modal
+
+    $('#edit-sales-stage-modal').modal({
+      backdrop: 'static'
+    });
+  });
+  $('button#btn-update-sales-stage').click(function () {
+    var id = $('#edit-sales-stage-modal input[name=edit-ss-id]').val();
+    var ssn = $('#edit-sales-stage-modal input[name=edit-ssn]').val();
+    var ssi = $('#edit-sales-stage-modal select[name=edit-ssi]').val();
+
+    if (id == undefined || id == null || id == 0 || id == '') {
+      $('#edit-sales-stage-modal').modal('hide');
+      showMessage('danger', 'Error! Please retry.');
+      return false;
+    }
+
+    if (ssn == undefined || ssn == null || ssn == '') {
+      showMessage('danger', 'Please enter sales stage name.');
+      $('#edit-sales-stage-modal input[name=edit-ssn]').focus();
+      return false;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "/settings/update/opportunities-sales-stage",
+      type: "put",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: id,
+        ssn: ssn,
+        ssi: ssi
+      },
+      success: function success(response) {
+        loader('hide');
+
+        if (response.success) {
+          // Show message
+          showMessage('success', response.sales_stage.ssn + ' was updated successfully!'); // Hide modal
+
+          $('#edit-sales-stage-modal').modal('hide'); // Update tr
+
+          var selectedTr = $('table#sales-stage-table tbody tr[data-id="' + response.sales_stage.id + '"]');
+          $(selectedTr).attr('data-ssn', response.sales_stage.ssn);
+          $(selectedTr).attr('data-ssi', response.sales_stage.ssi);
+          $(selectedTr).find('td:nth-child(1)').text(response.sales_stage.ssn);
+          $(selectedTr).find('td:nth-child(2)').text(response.sales_stage.ssi == 1 ? 'Yes' : 'No');
+        } else {
+          // Show message
+          showMessage('danger', 'Error, Please retry!');
+        }
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
 
         showMessage('danger', 'Error, Please retry!');
       }
