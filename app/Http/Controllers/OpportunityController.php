@@ -66,14 +66,14 @@ class OpportunityController extends Controller
                                     ->all();
             $data[] = $temp;
         }
-        
+
         $actions = getActionsForCurrentUser();
         $steps = getStepsForCurrentUser();
 
         $opportunityIfs = getOppInputFields();
-        
+
         $nl_opportunities_class = 'active';
-        
+
         return view('pages.opportunities',
                     compact(
                             'data',
