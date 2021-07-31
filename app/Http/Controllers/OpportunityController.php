@@ -60,6 +60,7 @@ class OpportunityController extends Controller
                                             $join->on('oss.ss_id', '=', 'os.id')
                                                 ->where('oss.opp_id', '=', $oppMain->id);
                                         })
+                                    ->orderBy('os.id')
                                     ->select('os.id', 'os.o_value AS snn', 'oss.strength_indicator AS si')
                                     ->get()
                                     ->all();
