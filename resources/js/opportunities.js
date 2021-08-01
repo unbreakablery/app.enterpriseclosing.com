@@ -139,7 +139,7 @@ $(document).ready(function() {
         // Hide modal
         $('#add-opportunity-modal').modal('hide');
 
-        // Save blank outbound
+        // Save blank opportunity
         loader('show');
         $.ajax({
             url:        "opportunities/save-main",
@@ -294,16 +294,6 @@ $(document).ready(function() {
         });
     } );
 
-    $('.collapse-section').on('show.bs.collapse', function () {
-        $(this).closest('.card').find('.card-header i.collapse-icon').removeClass('bi-chevron-right');
-        $(this).closest('.card').find('.card-header i.collapse-icon').addClass('bi-chevron-down');
-    });
-    $('.collapse-section').on('hide.bs.collapse', function () {
-        $(this).closest('.card').find('.card-header i.collapse-icon').removeClass('bi-chevron-down');
-        $(this).closest('.card').find('.card-header i.collapse-icon').addClass('bi-chevron-right');
-    });
-
-    //calculate meddpicc value
     $(document).on('click', '.collapse-section input[type=radio].form-check-input', function() {
         var meddpiccTab = $(this).closest('.collapse-section');
         var metricsScore = $(meddpiccTab).find('input[type=radio][name=m_metrics_score]:checked').val();
@@ -320,8 +310,8 @@ $(document).ready(function() {
                             parseInt(paperProcessScore) + parseInt(identifiedPainScore) +
                             parseInt(championCoachScore) + parseInt(competitionScore);
 
-        $(meddpiccTab).find('input[name=m_meddpicc_score]').val(meddpiccScore);
-        $(meddpiccTab).find('span#meddpicc-score').text(meddpiccScore);
+        $(this).closest('.accordion-section').find('input[name=m_meddpicc_score]').val(meddpiccScore);
+        $(this).closest('.accordion-section').find('span#meddpicc-score').text(meddpiccScore);
     });
 
     $(document).on('click', 'button.btn-show-task-modal', function() {
@@ -437,7 +427,7 @@ $(document).ready(function() {
         });
     });
 
-    //suggest setting save
+    //suggest task save
     $(document).on('click', '.btn-suggest-save', function() {
         var id = $(this).data('id');
         var suggestAction = $('#suggest-action-' + id).val();

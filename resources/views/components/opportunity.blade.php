@@ -199,13 +199,19 @@
                         <div class="card-header bg-dark n-b-r pt-0 pb-0 pl-1"
                                 id="headingMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
                             <h3 class="mb-0">
-                                <a class="btn btn-link text-white pt-0 pb-0"
-                                    data-toggle="collapse"
+                                <a class="btn btn-link text-white pt-0 pb-0 text-decoration-none font-weight-bolder"
+                                    data-toggle=""
                                     data-target="#collapseMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
                                     aria-expanded="true"
                                     aria-controls="collapseMeddpicc-@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif"
                                     href="javascript:void(0)">
-                                    <i class="collapse-icon bi bi-chevron-down"></i> MEDDPICC
+                                    MEDDPICC Score = <span id="meddpicc-score">@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif</span>
+                                    <input class="form-control n-b-r bg-dark text-white"
+                                        type="hidden"
+                                        name="m_meddpicc_score"
+                                        value="@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif"
+                                        readonly
+                                    />
                                 </a>
                             </h3>
                         </div>
@@ -458,7 +464,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_champion_coach">Champion/Coach <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_champion_coach">Champion / Coach <i class="bi bi-info-circle-fill ml-2"></i></label>
                                                     <input class="form-control n-b-r"
                                                         type="text"
                                                         name="m_champion_coach"
@@ -469,7 +475,7 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_champion_coach_score">Champion/Coach Score<i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_champion_coach_score">Champion / Coach Score<i class="bi bi-info-circle-fill ml-2"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -534,34 +540,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-6 col-sm-6">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                                        <div class="form-group mb-0">
-                                                            <label for=""></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                                <div class="form-group mb-0">
-                                                    <label for="m_meddpicc_score" class="font-weight-bolder">
-                                                        MEDDPICC Score = <span id="meddpicc-score">@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif</span>
-                                                    </label>
-                                                    <input class="form-control n-b-r bg-dark text-white"
-                                                        type="hidden"
-                                                        name="m_meddpicc_score"
-                                                        value="@if (isset($meddpicc)){{ $meddpicc->meddpicc_score }}@else{{ 0 }}@endif"
-                                                        readonly
-                                                    />
                                                 </div>
                                             </div>
                                         </div>
