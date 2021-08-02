@@ -385,54 +385,27 @@ if (!function_exists('storeOpportunityMain')) {
         if (!empty($data->opportunity)) {
             $opportunity->opportunity = $data->opportunity;
         }
-        if (!empty($data->usecase)) {
-            $opportunity->usecase = $data->usecase;
-        }
-        if (!empty($data->emp_num)) {
-            $opportunity->emp_num = $data->emp_num;
-        }
+        $opportunity->usecase = $data->usecase;
+        $opportunity->emp_num = $data->emp_num;
         if (!empty($data->close_date)) {
             $opportunity->close_date = \DateTime::createFromFormat('d-m-Y', $data->close_date);
+        } else {
+            $opportunity->close_date = null;
         }
-        if (!empty($data->stage)) {
-            $opportunity->stage = $data->stage;
-        }
-        if (!empty($data->next_step)) {
-            $opportunity->next_step = $data->next_step;
-        }
-        if (!empty($data->amount)) {
-            $opportunity->amount = $data->amount;
-        }
-        if (!empty($data->currency)) {
-            $opportunity->currency = $data->currency;
-        }
-        if (!empty($data->lead_source)) {
-            $opportunity->lead_source = $data->lead_source;
-        }
-        if (!empty($data->compelling_event)) {
-            $opportunity->compelling_event = $data->compelling_event;
-        }
-        if (!empty($data->user_num)) {
-            $opportunity->user_num = $data->user_num;
-        }
-        if (!empty($data->sponsor)) {
-            $opportunity->sponsor = $data->sponsor;
-        }
-        if (!empty($data->what_new_changed)) {
-            $opportunity->what_new_changed = $data->what_new_changed;
-        }
-        if (!empty($data->red_flags)) {
-            $opportunity->red_flags = $data->red_flags;
-        }
-        if (!empty($data->folder_link)) {
-            $opportunity->folder_link = $data->folder_link;
-        }
-        if (!empty($data->competitive_position)) {
-            $opportunity->competitive_position = $data->competitive_position;
-        }
-        if (!empty($data->progress_barometer)) {
-            $opportunity->progress_barometer = $data->progress_barometer;
-        }
+        $opportunity->stage = $data->stage;
+        $opportunity->next_step = $data->next_step;
+        $opportunity->amount = $data->amount;
+        $opportunity->currency = $data->currency;
+        $opportunity->lead_source = $data->lead_source;
+        $opportunity->compelling_event = $data->compelling_event;
+        $opportunity->user_num = $data->user_num;
+        $opportunity->sponsor = $data->sponsor;
+        $opportunity->what_new_changed = $data->what_new_changed;
+        $opportunity->red_flags = $data->red_flags;
+        $opportunity->folder_link = $data->folder_link;
+        $opportunity->competitive_position = $data->competitive_position;
+        $opportunity->progress_barometer = $data->progress_barometer;
+        
         $opportunity->save();
 
         // Delete old sales stage data by opp id and ss id with show settings
