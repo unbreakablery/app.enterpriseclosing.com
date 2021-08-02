@@ -26,7 +26,7 @@ class CreateOpportunitiesMainTable extends Migration
             $table->string('currency')->nullable();
             $table->string('lead_source')->nullable();
             $table->string('compelling_event')->nullable();
-            $table->string('competition')->nullable();
+            $table->string('user_num')->nullable();
             $table->string('sponsor')->nullable();
             $table->text('what_new_changed')->nullable();
             $table->string('red_flags')->nullable();

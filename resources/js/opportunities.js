@@ -495,7 +495,7 @@ $(document).ready(function() {
         });
     });
 
-    // When click label for radio
+    // When click label for radio/checkbox
     $(document).on('click', '.radio-group label', function() {
         $(this).closest('.form-check').find('input[type=radio]').prop("checked", true);
         if ($(this).closest('.form-check').find('input[type=checkbox]').is(':checked')) {

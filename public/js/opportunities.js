@@ -486,7 +486,7 @@ $(document).ready(function () {
         $('.additional-task-item-' + id + ' *').prop('disabled', true);
       }
     });
-  }); // When click label for radio
+  }); // When click label for radio/checkbox
 
   $(document).on('click', '.radio-group label', function () {
     $(this).closest('.form-check').find('input[type=radio]').prop("checked", true);

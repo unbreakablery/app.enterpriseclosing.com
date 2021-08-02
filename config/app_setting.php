@@ -66,8 +66,8 @@ return  [
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'competition'       => [
-                'name' => 'Competition', 
+            'user_num'       => [
+                'name' => 'No. of Users', 
                 'type' => '', 
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'

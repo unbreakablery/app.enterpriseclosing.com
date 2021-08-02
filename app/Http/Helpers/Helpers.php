@@ -370,7 +370,7 @@ if (!function_exists('storeOpportunityMain')) {
             $opportunityMain->currency          = $data->currency;
             $opportunityMain->lead_source       = $data->lead_source;
             $opportunityMain->compelling_event  = $data->compelling_event;
-            $opportunityMain->competition       = $data->competition;
+            $opportunityMain->user_num          = $data->user_num;
             $opportunityMain->sponsor           = $data->sponsor;
             $opportunityMain->what_new_changed  = $data->what_new_changed;
             $opportunityMain->red_flags         = $data->red_flags;
@@ -412,8 +412,8 @@ if (!function_exists('storeOpportunityMain')) {
         if (!empty($data->compelling_event)) {
             $opportunity->compelling_event = $data->compelling_event;
         }
-        if (!empty($data->competition)) {
-            $opportunity->competition = $data->competition;
+        if (!empty($data->user_num)) {
+            $opportunity->user_num = $data->user_num;
         }
         if (!empty($data->sponsor)) {
             $opportunity->sponsor = $data->sponsor;
@@ -433,7 +433,7 @@ if (!function_exists('storeOpportunityMain')) {
         if (!empty($data->progress_barometer)) {
             $opportunity->progress_barometer = $data->progress_barometer;
         }
-        $opportunity->update();
+        $opportunity->save();
 
         // Update opportunity sales stages
         foreach($data->all() as $key => $value) {
