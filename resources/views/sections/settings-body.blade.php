@@ -404,7 +404,11 @@
                         <div class="task-section col-1g-12 col-md-12 col-sm-12">
                             <div class="form-group mb-2">
                                 <label for="sales-stage">Sales Stage Name</label>
-                                <input type="text" name="sales-stage" id="sales-stage" class="form-control n-b-r">
+                                <input type="text" name="sales-stage" id="sales-stage" class="form-control n-b-r" placeholder="Enter Sales Stage...">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sales-stage-order">Order</label>
+                                <input type="text" name="sales-stage-order" id="sales-stage-order" class="form-control n-b-r" value="0" placeholder="Enter Sales Stage Order..." min="0">
                             </div>
                             <div class="form-check pl-0">
                                 <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
@@ -427,15 +431,17 @@
                                     <tr>
                                         <th scope="col" class="no-sort pl-2 pr-2">Name</th>
                                         <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
+                                        <th scope="col" class="no-sort pl-2 pr-2">Order</th>
                                         <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($salesStages) > 0)
                                         @foreach ($salesStages as $s)
-                                        <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}">
+                                        <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}" data-sso="{{ $s->o_value2 }}">
                                             <td class="text-white pl-2 pr-2">{{ $s->o_value }}</td>
                                             <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
+                                            <td class="text-white pl-2 pr-2">{{ $s->o_value2 }}</td>
                                             <td class="text-white text-center">
                                                 <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">
                                                     <i class="bi bi-pencil-fill"></i>
@@ -447,7 +453,7 @@
                                         @endforeach
                                     @else
                                         <tr class="no-data">
-                                            <td colspan="3" class="text-danger text-center">
+                                            <td colspan="4" class="text-danger text-center">
                                                 No Sales Stages
                                             </td>
                                         </tr>
@@ -1136,6 +1142,19 @@
                                     name="edit-ssn"
                                     value=""
                                     placeholder="Enter Sales Stage..."
+                            />
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit-sso">Order</label>
+                            <input class="form-control n-b-r"
+                                    type="number"
+                                    id="edit-sso"
+                                    name="edit-sso"
+                                    value=""
+                                    min="0"
+                                    placeholder="Enter Sales Stage order..."
                             />
                         </div>
                     </div>

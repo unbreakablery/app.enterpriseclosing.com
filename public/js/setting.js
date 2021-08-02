@@ -908,6 +908,7 @@ $(document).ready(function () {
   });
   $('button#btn-save-sales-stage').on('click', function () {
     var ssn = $('form#sales-stage-form input[name=sales-stage]').val();
+    var sso = $('form#sales-stage-form input[name=sales-stage-order]').val();
     var ssi = $('form#sales-stage-form input[name=show-strength-indicators]:checked').length;
 
     if (ssn == undefined || ssn == null || ssn == '') {
@@ -923,7 +924,8 @@ $(document).ready(function () {
       data: {
         _token: $('meta[name="csrf-token"]').attr('content'),
         ssn: ssn,
-        ssi: ssi
+        ssi: ssi,
+        sso: sso
       },
       success: function success(response) {
         loader('hide');
@@ -937,9 +939,11 @@ $(document).ready(function () {
           var innerHtml = '';
           innerHtml += '<tr data-id="' + response.sales_stage.id + '" data-ssn="';
           innerHtml += response.sales_stage.ssn + '" data-ssi="';
-          innerHtml += response.sales_stage.ssi + '">';
+          innerHtml += response.sales_stage.ssi + '" data-sso="';
+          innerHtml += response.sales_stage.sso + '">';
           innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.ssn + '</td>';
           innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssi == 1 ? 'Yes' : 'No') + '</td>';
+          innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.sso + '</td>';
           innerHtml += '<td class="text-white text-center">';
           innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">';
           innerHtml += '<i class="bi bi-pencil-fill"></i>';
@@ -1018,6 +1022,7 @@ $(document).ready(function () {
     var id = $(trObj).attr('data-id');
     var ssn = $(trObj).attr('data-ssn');
     var ssi = $(trObj).attr('data-ssi');
+    var sso = $(trObj).attr('data-sso');
 
     if (id == undefined || id == null || id == 0 || id == '') {
       showMessage('danger', 'Can\'t edit this sales stage because ID is empty.');
@@ -1026,7 +1031,8 @@ $(document).ready(function () {
 
     $('#edit-sales-stage-modal input[name=edit-ss-id]').val(id);
     $('#edit-sales-stage-modal input[name=edit-ssn]').val(ssn);
-    $('#edit-sales-stage-modal select[name=edit-ssi]').val(ssi); // Show Edit Sales Stage Modal
+    $('#edit-sales-stage-modal select[name=edit-ssi]').val(ssi);
+    $('#edit-sales-stage-modal input[name=edit-sso]').val(sso); // Show Edit Sales Stage Modal
 
     $('#edit-sales-stage-modal').modal({
       backdrop: 'static'
@@ -1036,6 +1042,7 @@ $(document).ready(function () {
     var id = $('#edit-sales-stage-modal input[name=edit-ss-id]').val();
     var ssn = $('#edit-sales-stage-modal input[name=edit-ssn]').val();
     var ssi = $('#edit-sales-stage-modal select[name=edit-ssi]').val();
+    var sso = $('#edit-sales-stage-modal input[name=edit-sso]').val();
 
     if (id == undefined || id == null || id == 0 || id == '') {
       $('#edit-sales-stage-modal').modal('hide');
@@ -1058,7 +1065,8 @@ $(document).ready(function () {
         _token: $('meta[name="csrf-token"]').attr('content'),
         id: id,
         ssn: ssn,
-        ssi: ssi
+        ssi: ssi,
+        sso: sso
       },
       success: function success(response) {
         loader('hide');
@@ -1074,6 +1082,7 @@ $(document).ready(function () {
           $(selectedTr).attr('data-ssi', response.sales_stage.ssi);
           $(selectedTr).find('td:nth-child(1)').text(response.sales_stage.ssn);
           $(selectedTr).find('td:nth-child(2)').text(response.sales_stage.ssi == 1 ? 'Yes' : 'No');
+          $(selectedTr).find('td:nth-child(3)').text(response.sales_stage.sso);
         } else {
           // Show message
           showMessage('danger', 'Error, Please retry!');

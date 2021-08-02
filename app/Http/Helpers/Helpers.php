@@ -435,23 +435,80 @@ if (!function_exists('storeOpportunityMain')) {
         }
         $opportunity->save();
 
+        // Delete old sales stage data by opp id and ss id with show settings
+        OpportunitySalesStage::where('opp_id', $id)
+                            ->whereIn('ss_id', function($query) {
+                                    $query->select('id')
+                                        ->from('opportunities_settings')
+                                        ->where('o_key', 'sales-stage')
+                                        ->where('o_value1', 1);
+                                })
+                            ->delete();
+
         // Update opportunity sales stages
         foreach($data->all() as $key => $value) {
-            if (Str::is('ss-*', $key)) {
-                $ssId = Str::remove('ss-', $key);
+            if (Str::is('ss-sp-*', $key)) {
+                $ssId = Str::remove('ss-sp-', $key);
                 $salesStage = OpportunitySalesStage::where('opp_id', $id)
                                 ->where('ss_id', $ssId)
                                 ->get()
                                 ->first();
-
                 if ($salesStage) {
-                    $salesStage->strength_indicator = $value;
+                    $salesStage->progress = $value;
                     $salesStage->save();
                 } else {
                     $salesStage = new OpportunitySalesStage();
                     $salesStage->opp_id = $id;
                     $salesStage->ss_id = $ssId;
-                    $salesStage->strength_indicator = $value;
+                    $salesStage->progress = $value;
+                    $salesStage->save();
+                }
+            } elseif (Str::is('ss-si-weak-*', $key)) {
+                $ssId = Str::remove('ss-si-weak-', $key);
+                $salesStage = OpportunitySalesStage::where('opp_id', $id)
+                                ->where('ss_id', $ssId)
+                                ->get()
+                                ->first();
+                if ($salesStage) {
+                    $salesStage->weak = $value;
+                    $salesStage->save();
+                } else {
+                    $salesStage = new OpportunitySalesStage();
+                    $salesStage->opp_id = $id;
+                    $salesStage->ss_id = $ssId;
+                    $salesStage->weak = $value;
+                    $salesStage->save();
+                }
+            } elseif (Str::is('ss-si-normal-*', $key)) {
+                $ssId = Str::remove('ss-si-normal-', $key);
+                $salesStage = OpportunitySalesStage::where('opp_id', $id)
+                                ->where('ss_id', $ssId)
+                                ->get()
+                                ->first();
+                if ($salesStage) {
+                    $salesStage->normal = $value;
+                    $salesStage->save();
+                } else {
+                    $salesStage = new OpportunitySalesStage();
+                    $salesStage->opp_id = $id;
+                    $salesStage->ss_id = $ssId;
+                    $salesStage->normal = $value;
+                    $salesStage->save();
+                }
+            } elseif (Str::is('ss-si-strong-*', $key)) {
+                $ssId = Str::remove('ss-si-strong-', $key);
+                $salesStage = OpportunitySalesStage::where('opp_id', $id)
+                                ->where('ss_id', $ssId)
+                                ->get()
+                                ->first();
+                if ($salesStage) {
+                    $salesStage->strong = $value;
+                    $salesStage->save();
+                } else {
+                    $salesStage = new OpportunitySalesStage();
+                    $salesStage->opp_id = $id;
+                    $salesStage->ss_id = $ssId;
+                    $salesStage->strong = $value;
                     $salesStage->save();
                 }
             }
@@ -1190,6 +1247,7 @@ if (!function_exists('storeOppSalesStageSettings')) {
         $userId = Auth::user()->id;
         $ssn = $data->get('ssn');
         $ssi = $data->get('ssi');
+        $sso = $data->get('sso');
 
         if (!isset($data->id)) {
             // insert
@@ -1208,12 +1266,14 @@ if (!function_exists('storeOppSalesStageSettings')) {
             $salesStage->o_key = 'sales-stage';
             $salesStage->o_value = $ssn;
             $salesStage->o_value1 = $ssi;
+            $salesStage->o_value2 = (empty($sso) || $sso < 0) ? 0 : $sso;
             $salesStage->save();
 
             $result = new \stdClass();
             $result->id = $salesStage->id;
             $result->ssn = $salesStage->o_value;
             $result->ssi = $salesStage->o_value1;
+            $result->sso = $salesStage->o_value2;
         } else {
             // update
             $id = $data->get('id');
@@ -1231,13 +1291,15 @@ if (!function_exists('storeOppSalesStageSettings')) {
                                                 ->first();
             $salesStage->o_value = $ssn;
             $salesStage->o_value1 = $ssi;
+            $salesStage->o_value2 = (empty($sso) || $sso < 0) ? 0 : $sso;
 
-            $salesStage->update();
+            $salesStage->save();
 
             $result = new \stdClass();
             $result->id = $salesStage->id;
             $result->ssn = $salesStage->o_value;
             $result->ssi = $salesStage->o_value1;
+            $result->sso = $salesStage->o_value2;
         }
         
         return $result;
@@ -1250,13 +1312,15 @@ if (!function_exists('getOppSalesStagesSettings')) {
         if ($show == null) {
             $salesStages = OpportunitySetting::where('user', Auth::user()->id)
                                             ->where('o_key', 'sales-stage')
-                                            ->select('id', 'o_value', 'o_value1')
+                                            ->orderBy('o_value2', 'ASC')
+                                            ->select('id', 'o_value', 'o_value1', 'o_value2')
                                             ->get();
         } else {
             $salesStages = OpportunitySetting::where('user', Auth::user()->id)
                                             ->where('o_key', 'sales-stage')
                                             ->where('o_value1', $show)
-                                            ->select('id', 'o_value', 'o_value1')
+                                            ->orderBy('o_value2', 'ASC')
+                                            ->select('id', 'o_value', 'o_value1', 'o_value2')
                                             ->get();
         }
         

@@ -60,8 +60,8 @@ class OpportunityController extends Controller
                                             $join->on('oss.ss_id', '=', 'os.id')
                                                 ->where('oss.opp_id', '=', $oppMain->id);
                                         })
-                                    ->orderBy('os.id')
-                                    ->select('os.id', 'os.o_value AS snn', 'oss.strength_indicator AS si')
+                                    ->orderBy('os.o_value2', 'ASC')
+                                    ->select('os.id', 'os.o_value AS snn', 'oss.weak', 'oss.normal', 'oss.strong', 'oss.progress')
                                     ->get()
                                     ->all();
             $data[] = $temp;
@@ -73,6 +73,7 @@ class OpportunityController extends Controller
         $opportunityIfs = getOppInputFields();
 
         $nl_opportunities_class = 'active';
+        // dd($data);
 
         return view('pages.opportunities',
                     compact(

@@ -157,24 +157,47 @@ return  [
                 ]
             ],
             'sales_stage' => [
-                'weak' => [
-                    'name' => 'Weak',
-                    'type' => 'checkbox',
-                    'value' => 1,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                'strength' => [
+                    'weak' => [
+                        'name' => 'Weak',
+                        'type' => 'checkbox',
+                        'value' => 1,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6 pl-0'
+                    ],
+                    'normal' => [
+                        'name' => 'Normal',
+                        'type' => 'checkbox',
+                        'value' => 1,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6 pl-0'
+                    ],
+                    'strong' => [
+                        'name' => 'Strong',
+                        'type' => 'checkbox',
+                        'value' => 1,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6 pl-0'
+                    ]
                 ],
-                'normal' => [
-                    'name' => 'Normal',
-                    'type' => 'checkbox',
-                    'value' => 2,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
-                ],
-                'strong' => [
-                    'name' => 'Strong',
-                    'type' => 'checkbox',
-                    'value' => 3,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                'stage_progress' => [
+                    'not_started' => [
+                        'name' => 'Not Started',
+                        'type' => 'radio',
+                        'value' => 1,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6'
+                    ],
+                    'in_progress' => [
+                        'name' => 'In Progress',
+                        'type' => 'radio',
+                        'value' => 2,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6'
+                    ],
+                    'completed' => [
+                        'name' => 'Completed',
+                        'type' => 'radio',
+                        'value' => 3,
+                        'cols' => 'col-lg-4 col-md-4 col-sm-6'
+                    ]
                 ]
+                
             ]
         ]
     ]
