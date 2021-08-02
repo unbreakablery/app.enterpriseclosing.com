@@ -89,7 +89,7 @@ $(document).ready(function() {
     var taskTable = $('.opportunities-wrapper .task-table').DataTable({
         responsive: true,
         orderCellsTop: true,
-        fixedHeader: true,
+        fixedHeader: false,
         info: false,
         scrollY: 123,
         scrollCollapse: false,
@@ -184,7 +184,7 @@ $(document).ready(function() {
                 $('#opp-tab-' + tabIndex + ' .task-table').DataTable({
                     responsive: true,
                     orderCellsTop: true,
-                    fixedHeader: true,
+                    fixedHeader: false,
                     info: false,
                     scrollY: 123,
                     scrollCollapse: false,

@@ -2,7 +2,7 @@ $(document).ready(function() {
     var taskTable = $('#task-table').DataTable({
         responsive: true,
         orderCellsTop: true,
-        fixedHeader: true,
+        fixedHeader: false,
         info: false,
         scrollY: 123,
         scrollCollapse: false,
