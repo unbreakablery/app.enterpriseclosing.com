@@ -498,5 +498,10 @@ $(document).ready(function() {
     // When click label for radio
     $(document).on('click', '.radio-group label', function() {
         $(this).closest('.form-check').find('input[type=radio]').prop("checked", true);
+        if ($(this).closest('.form-check').find('input[type=checkbox]').is(':checked')) {
+            $(this).closest('.form-check').find('input[type=checkbox]').prop("checked", false);
+        } else {
+            $(this).closest('.form-check').find('input[type=checkbox]').prop("checked", true);
+        }
     });
 });

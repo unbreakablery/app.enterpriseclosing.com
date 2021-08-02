@@ -72,7 +72,7 @@
         </table>
     </div>
 
-    <form action="{{ route('opportunity.save') }}" method="post" autocomplete="off">
+    <form action="{{ route('opportunity.save') }}" method="post" autocomplete="off" class="opp-main-info-form">
         @csrf
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -127,7 +127,7 @@
                         @endforeach
                         <!-- Sales Stages -->
                         @if (isset($salesStages) && count($salesStages) > 0)
-                            <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 sales-stage-section">
                                 <label>Sales Stages</label>
                                 @php
                                     $radios = config('app_setting.opportunities.radio_groups.sales_stage');
@@ -145,7 +145,7 @@
                                                         value="{{ $radio['value'] }}"
                                                         @if(isset($s) && $radio['value'] == $s->si){{ 'checked' }}@endif
                                                     />
-                                                    <label class="form-check-label pl-2" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
+                                                    <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -157,6 +157,7 @@
                                 $radios = config('app_setting.opportunities.radio_groups.sales_stage');
                                 $salesStages = getOppSalesStagesSettings(1);
                             @endphp
+                            @if (count($salesStages) > 0)
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <label>Sales Stages</label>
                                 @foreach ($salesStages as $s)
@@ -171,13 +172,14 @@
                                                         id="{{ $key . '-' . $s->id }}"
                                                         value="{{ $radio['value'] }}"
                                                     />
-                                                    <label class="form-check-label pl-2" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
+                                                    <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
+                            @endif
                         @endif
                     </div>
                     <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">

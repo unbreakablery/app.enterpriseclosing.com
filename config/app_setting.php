@@ -158,20 +158,20 @@ return  [
             ],
             'sales_stage' => [
                 'weak' => [
-                    'name' => 'Week',
-                    'type' => 'radio',
+                    'name' => 'Weak',
+                    'type' => 'checkbox',
                     'value' => 1,
                     'cols' => 'col-lg-3 col-md-3 col-sm-6'
                 ],
                 'normal' => [
                     'name' => 'Normal',
-                    'type' => 'radio',
+                    'type' => 'checkbox',
                     'value' => 2,
                     'cols' => 'col-lg-3 col-md-3 col-sm-6'
                 ],
                 'strong' => [
                     'name' => 'Strong',
-                    'type' => 'radio',
+                    'type' => 'checkbox',
                     'value' => 3,
                     'cols' => 'col-lg-3 col-md-3 col-sm-6'
                 ]
