@@ -100,13 +100,13 @@ return  [
                 'name' => 'Competitive Position', 
                 'type' => 'radio_group', 
                 'placeholder' => '',
-                'cols' => 'col-lg-12 col-md-12 col-sm-12'
+                'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
             'progress_barometer'  => [
                 'name' => 'Progress Barometer', 
                 'type' => 'radio_group', 
                 'placeholder' => '',
-                'cols' => 'col-lg-12 col-md-12 col-sm-12'
+                'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
         ],
         'radio_groups' => [
@@ -138,7 +138,7 @@ return  [
             ],
             'progress_barometer' => [
                 'stalled' => [
-                    'name' => 'Stalled - Can you provide more value to the customer?',
+                    'name' => 'Stalled - Can you provide more value?',
                     'type' => 'radio',
                     'value' => 1,
                     'cols' => 'col-lg-12 col-md-12 col-sm-12'
