@@ -910,6 +910,7 @@ $(document).ready(function () {
     var ssn = $('form#sales-stage-form input[name=sales-stage]').val();
     var sso = $('form#sales-stage-form input[name=sales-stage-order]').val();
     var ssi = $('form#sales-stage-form input[name=show-strength-indicators]:checked').length;
+    var ssp = $('form#sales-stage-form input[name=show-stage-progress]:checked').length;
 
     if (ssn == undefined || ssn == null || ssn == '') {
       showMessage('danger', 'Please enter sales stage.');
@@ -925,6 +926,7 @@ $(document).ready(function () {
         _token: $('meta[name="csrf-token"]').attr('content'),
         ssn: ssn,
         ssi: ssi,
+        ssp: ssp,
         sso: sso
       },
       success: function success(response) {
@@ -939,10 +941,12 @@ $(document).ready(function () {
           var innerHtml = '';
           innerHtml += '<tr data-id="' + response.sales_stage.id + '" data-ssn="';
           innerHtml += response.sales_stage.ssn + '" data-ssi="';
-          innerHtml += response.sales_stage.ssi + '" data-sso="';
+          innerHtml += response.sales_stage.ssi + '" data-ssp="';
+          innerHtml += response.sales_stage.ssp + '" data-sso="';
           innerHtml += response.sales_stage.sso + '">';
           innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.ssn + '</td>';
           innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssi == 1 ? 'Yes' : 'No') + '</td>';
+          innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssp == 1 ? 'Yes' : 'No') + '</td>';
           innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.sso + '</td>';
           innerHtml += '<td class="text-white text-center">';
           innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">';
@@ -956,7 +960,8 @@ $(document).ready(function () {
           $('table#sales-stage-table tbody').append(innerHtml); // Initalize sales stage
 
           $('#settings-tab-opportunities input#sales-stage').val('');
-          $('#settings-tab-opportunities input#show-strength-indicators').removeAttr('checked'); // Set focus to sales stage
+          $('#settings-tab-opportunities input#show-strength-indicators').removeAttr('checked');
+          $('#settings-tab-opportunities input#show-stage-progress').removeAttr('checked'); // Set focus to sales stage
 
           $('#settings-tab-opportunities input#sales-stage').focus();
         } else {
@@ -1001,7 +1006,7 @@ $(document).ready(function () {
 
           if ($('table#sales-stage-table tbody').find('tr').length == 0) {
             var innerHtml = '<tr class="no-data">';
-            innerHtml += '<td colspan="3" class="text-danger text-center">No Sales Stages</td>';
+            innerHtml += '<td colspan="5" class="text-danger text-center">No Sales Stages</td>';
             innerHtml += '</tr>';
             $('table#sales-stage-table tbody').append(innerHtml);
           }
@@ -1022,6 +1027,7 @@ $(document).ready(function () {
     var id = $(trObj).attr('data-id');
     var ssn = $(trObj).attr('data-ssn');
     var ssi = $(trObj).attr('data-ssi');
+    var ssp = $(trObj).attr('data-ssp');
     var sso = $(trObj).attr('data-sso');
 
     if (id == undefined || id == null || id == 0 || id == '') {
@@ -1032,6 +1038,7 @@ $(document).ready(function () {
     $('#edit-sales-stage-modal input[name=edit-ss-id]').val(id);
     $('#edit-sales-stage-modal input[name=edit-ssn]').val(ssn);
     $('#edit-sales-stage-modal select[name=edit-ssi]').val(ssi);
+    $('#edit-sales-stage-modal select[name=edit-ssp]').val(ssp);
     $('#edit-sales-stage-modal input[name=edit-sso]').val(sso); // Show Edit Sales Stage Modal
 
     $('#edit-sales-stage-modal').modal({
@@ -1042,6 +1049,7 @@ $(document).ready(function () {
     var id = $('#edit-sales-stage-modal input[name=edit-ss-id]').val();
     var ssn = $('#edit-sales-stage-modal input[name=edit-ssn]').val();
     var ssi = $('#edit-sales-stage-modal select[name=edit-ssi]').val();
+    var ssp = $('#edit-sales-stage-modal select[name=edit-ssp]').val();
     var sso = $('#edit-sales-stage-modal input[name=edit-sso]').val();
 
     if (id == undefined || id == null || id == 0 || id == '') {
@@ -1066,6 +1074,7 @@ $(document).ready(function () {
         id: id,
         ssn: ssn,
         ssi: ssi,
+        ssp: ssp,
         sso: sso
       },
       success: function success(response) {
@@ -1080,9 +1089,11 @@ $(document).ready(function () {
           var selectedTr = $('table#sales-stage-table tbody tr[data-id="' + response.sales_stage.id + '"]');
           $(selectedTr).attr('data-ssn', response.sales_stage.ssn);
           $(selectedTr).attr('data-ssi', response.sales_stage.ssi);
+          $(selectedTr).attr('data-ssp', response.sales_stage.ssp);
           $(selectedTr).find('td:nth-child(1)').text(response.sales_stage.ssn);
           $(selectedTr).find('td:nth-child(2)').text(response.sales_stage.ssi == 1 ? 'Yes' : 'No');
-          $(selectedTr).find('td:nth-child(3)').text(response.sales_stage.sso);
+          $(selectedTr).find('td:nth-child(3)').text(response.sales_stage.ssp == 1 ? 'Yes' : 'No');
+          $(selectedTr).find('td:nth-child(4)').text(response.sales_stage.sso);
         } else {
           // Show message
           showMessage('danger', 'Error, Please retry!');

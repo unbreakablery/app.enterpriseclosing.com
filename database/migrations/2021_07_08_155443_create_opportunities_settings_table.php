@@ -20,6 +20,7 @@ class CreateOpportunitiesSettingsTable extends Migration
             $table->string('o_value')->nullable();
             $table->tinyInteger('o_value1')->nullabel();
             $table->tinyInteger('o_value2')->nullabel();
+            $table->tinyInteger('o_value3')->nullabel();
             $table->timestamps();
         });
     }

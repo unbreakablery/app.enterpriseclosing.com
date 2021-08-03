@@ -115,25 +115,25 @@ return  [
                     'name' => 'Unsure',
                     'type' => 'radio',
                     'value' => 1,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
                 ],
                 'behind' => [
                     'name' => 'Behind',
                     'type' => 'radio',
                     'value' => 2,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
                 ],
                 'same_stage' => [
                     'name' => 'Same Stage',
                     'type' => 'radio',
                     'value' => 3,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
                 ],
                 'ahead' => [
                     'name' => 'Ahead',
                     'type' => 'radio',
                     'value' => 4,
-                    'cols' => 'col-lg-3 col-md-3 col-sm-6'
+                    'cols' => 'col-lg-12 col-md-12 col-sm-12'
                 ],
             ],
             'progress_barometer' => [

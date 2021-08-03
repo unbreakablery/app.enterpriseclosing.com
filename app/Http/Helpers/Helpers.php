@@ -1220,6 +1220,7 @@ if (!function_exists('storeOppSalesStageSettings')) {
         $userId = Auth::user()->id;
         $ssn = $data->get('ssn');
         $ssi = $data->get('ssi');
+        $ssp = $data->get('ssp');
         $sso = $data->get('sso');
 
         if (!isset($data->id)) {
@@ -1239,14 +1240,16 @@ if (!function_exists('storeOppSalesStageSettings')) {
             $salesStage->o_key = 'sales-stage';
             $salesStage->o_value = $ssn;
             $salesStage->o_value1 = $ssi;
-            $salesStage->o_value2 = (empty($sso) || $sso < 0) ? 0 : $sso;
+            $salesStage->o_value2 = $ssp;
+            $salesStage->o_value3 = (empty($sso) || $sso < 0) ? 0 : $sso;
             $salesStage->save();
 
             $result = new \stdClass();
             $result->id = $salesStage->id;
             $result->ssn = $salesStage->o_value;
             $result->ssi = $salesStage->o_value1;
-            $result->sso = $salesStage->o_value2;
+            $result->ssp = $salesStage->o_value2;
+            $result->sso = $salesStage->o_value3;
         } else {
             // update
             $id = $data->get('id');
@@ -1264,7 +1267,8 @@ if (!function_exists('storeOppSalesStageSettings')) {
                                                 ->first();
             $salesStage->o_value = $ssn;
             $salesStage->o_value1 = $ssi;
-            $salesStage->o_value2 = (empty($sso) || $sso < 0) ? 0 : $sso;
+            $salesStage->o_value2 = $ssp;
+            $salesStage->o_value3 = (empty($sso) || $sso < 0) ? 0 : $sso;
 
             $salesStage->save();
 
@@ -1272,7 +1276,8 @@ if (!function_exists('storeOppSalesStageSettings')) {
             $result->id = $salesStage->id;
             $result->ssn = $salesStage->o_value;
             $result->ssi = $salesStage->o_value1;
-            $result->sso = $salesStage->o_value2;
+            $result->ssp = $salesStage->o_value2;
+            $result->sso = $salesStage->o_value3;
         }
         
         return $result;
@@ -1285,15 +1290,20 @@ if (!function_exists('getOppSalesStagesSettings')) {
         if ($show == null) {
             $salesStages = OpportunitySetting::where('user', Auth::user()->id)
                                             ->where('o_key', 'sales-stage')
-                                            ->orderBy('o_value2', 'ASC')
-                                            ->select('id', 'o_value', 'o_value1', 'o_value2')
+                                            ->orderBy('o_value3', 'ASC')
+                                            ->orderBy('id', 'ASC')
+                                            ->select('id', 'o_value', 'o_value1', 'o_value2', 'o_value3')
                                             ->get();
         } else {
             $salesStages = OpportunitySetting::where('user', Auth::user()->id)
                                             ->where('o_key', 'sales-stage')
-                                            ->where('o_value1', $show)
-                                            ->orderBy('o_value2', 'ASC')
-                                            ->select('id', 'o_value', 'o_value1', 'o_value2')
+                                            ->where(function($query) use ($show) {
+                                                $query->where('o_value1', '=', $show)
+                                                    ->orWhere('o_value2', '=', $show);
+                                            })
+                                            ->orderBy('o_value3', 'ASC')
+                                            ->orderBy('id', 'ASC')
+                                            ->select('id', 'o_value AS ssn', 'o_value1 AS ssi', 'o_value2 AS ssp', 'o_value3 AS order')
                                             ->get();
         }
         

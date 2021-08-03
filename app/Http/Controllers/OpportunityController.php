@@ -53,15 +53,19 @@ class OpportunityController extends Controller
             $temp->salesStages = OpportunitySetting::from('opportunities_settings AS os')
                                     ->where([
                                                 ['os.user', '=', Auth::user()->id],
-                                                ['os.o_key', '=', 'sales-stage'],
-                                                ['os.o_value1', '=', 1]
+                                                ['os.o_key', '=', 'sales-stage']
                                             ])
+                                    ->where(function($query) {
+                                                $query->where('os.o_value1', '=', 1)
+                                                    ->orWhere('os.o_value2', '=', 1);
+                                            })
                                     ->leftJoin('opportunities_sales_stage AS oss', function($join) use ($oppMain) {
-                                            $join->on('oss.ss_id', '=', 'os.id')
-                                                ->where('oss.opp_id', '=', $oppMain->id);
-                                        })
-                                    ->orderBy('os.o_value2', 'ASC')
-                                    ->select('os.id', 'os.o_value AS snn', 'oss.weak', 'oss.normal', 'oss.strong', 'oss.progress')
+                                                $join->on('oss.ss_id', '=', 'os.id')
+                                                    ->where('oss.opp_id', '=', $oppMain->id);
+                                            })
+                                    ->orderBy('os.o_value3', 'ASC')
+                                    ->orderBy('os.id', 'ASC')
+                                    ->select('os.id', 'os.o_value AS ssn', 'os.o_value1 AS ssi', 'os.o_value2 AS ssp', 'oss.weak', 'oss.normal', 'oss.strong', 'oss.progress')
                                     ->get()
                                     ->all();
             $data[] = $temp;
