@@ -129,7 +129,7 @@
                         @if (isset($salesStages) && count($salesStages) > 0)
                             <div class="col-lg-12 col-md-12 col-sm-12 sales-stage-section">
                                 <label>Sales Stages</label>
-                                <div class="row col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     @php
                                         $checkboxes = config('app_setting.opportunities.radio_groups.sales_stage.strength');
                                         $radios = config('app_setting.opportunities.radio_groups.sales_stage.stage_progress');
@@ -204,7 +204,7 @@
                             @if (count($salesStages) > 0)
                             <div class="col-lg-12 col-md-12 col-sm-12 sales-stage-section">
                                 <label>Sales Stages</label>
-                                <div class="row col-lg-12 col-md-12 col-sm-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
                                     @foreach ($salesStages as $s)
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             @if ($s->ssp == 1 || $s->ssi == 1)
@@ -640,4 +640,55 @@
             </div>
         </div>
     </form>
+
+    <div class="row col-lg-12 col-md-12 col-sm-12 mt-4 pr-0">
+        <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
+            <h4 class="p-special-1">Org Chart</h4>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pr-1 mb-1">
+            <div class="row ml-0 mr-0 pl-1 task-section action-group justify-content-end">
+                <button type="button" class="btn btn-grad text-uppercase btn-upload-orgcharts-modal mr-1" title="Upload From CSV">
+                    <i class="bi bi-upload"></i>
+                </button>
+                <button type="button" class="btn btn-grad text-uppercase btn-download-orgcharts mr-1" title="Download To CSV">
+                    <i class="bi bi-download"></i>
+                </button>
+                <button type="button" class="btn btn-grad text-uppercase btn-add-orgchart-row">
+                    Add Row
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-wrapper mb-4 p-special-1">
+        <div class="orgchart-table-wrapper border-bottom border-white">
+            <table class="table table-hover w-100 mb-0" id="orgchart-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="text-left no-sort" width="46">Order</th>
+                        <th scope="col" class="text-left no-sort" width="100">First Name</th>
+                        <th scope="col" class="text-left no-sort" width="100">Last Name</th>
+                        <th scope="col" class="text-left no-sort" width="">Title</th>
+                        <th scope="col" class="text-left no-sort" width="">Email</th>
+                        <th scope="col" class="text-left no-sort" width="100">Landline</th>
+                        <th scope="col" class="text-left no-sort" width="100">Mobile</th>
+                        <th scope="col" class="text-left no-sort" width="110">Role</th>
+                        <th scope="col" class="text-left no-sort" width="90">Engagement</th>
+                        <th scope="col" class="text-left no-sort" width="">Note</th>
+                        <th scope="col" class="text-left no-sort" width="35"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (isset($orgCharts) && count($orgCharts) > 0)
+                        @foreach ($orgCharts as $chart)
+                            <x-opp-org-chart-row :row="$chart" />
+                        @endforeach
+                    @else
+                        <tr id="no-data-row">
+                            <td class="text-center text-danger" colspan="11">No Data</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>  
 </div>
