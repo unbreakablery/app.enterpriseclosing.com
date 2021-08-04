@@ -129,69 +129,71 @@
                         @if (isset($salesStages) && count($salesStages) > 0)
                             <div class="col-lg-12 col-md-12 col-sm-12 sales-stage-section">
                                 <label>Sales Stages</label>
-                                @php
-                                    $checkboxes = config('app_setting.opportunities.radio_groups.sales_stage.strength');
-                                    $radios = config('app_setting.opportunities.radio_groups.sales_stage.stage_progress');
-                                @endphp
-                                @foreach ($salesStages as $s)
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mr-0">
-                                        @if ($s->ssp == 1 || $s->ssi == 1)
-                                            <label>{{ $s->ssn }}</label>
-                                        @endif
-                                        <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
-                                            @if ($s->ssp == 1)
-                                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label>Stage Progress</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row radio-group ml-0 mr-0 mb-3">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        @foreach ($radios as $key => $radio)
-                                                            <div class="form-check {{ $radio['cols'] }}">
-                                                                <input class="form-check-input"
-                                                                    type="{{ $radio['type'] }}"
-                                                                    name="{{ 'ss-sp-' . $s->id }}"
-                                                                    id="{{ $key . '-' . $s->id }}"
-                                                                    value="{{ $radio['value'] }}"
-                                                                    @if((isset($s) && $radio['value'] == $s->progress) || $radio['default']){{ 'checked' }}@endif
-                                                                />
-                                                                <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="row col-lg-12 col-md-12 col-sm-12">
+                                    @php
+                                        $checkboxes = config('app_setting.opportunities.radio_groups.sales_stage.strength');
+                                        $radios = config('app_setting.opportunities.radio_groups.sales_stage.stage_progress');
+                                    @endphp
+                                    @foreach ($salesStages as $s)
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mr-0">
+                                            @if ($s->ssp == 1 || $s->ssi == 1)
+                                                <label>{{ $s->ssn }}</label>
                                             @endif
-                                            @if ($s->ssi == 1)
-                                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label>Strength Indicator</label>
+                                            <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
+                                                @if ($s->ssp == 1)
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <label>Stage Progress</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row radio-group ml-0 mr-0 mb-3">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            @foreach ($radios as $key => $radio)
+                                                                <div class="form-check {{ $radio['cols'] }}">
+                                                                    <input class="form-check-input"
+                                                                        type="{{ $radio['type'] }}"
+                                                                        name="{{ 'ss-sp-' . $s->id }}"
+                                                                        id="{{ $key . '-' . $s->id }}"
+                                                                        value="{{ $radio['value'] }}"
+                                                                        @if((isset($s) && $radio['value'] == $s->progress) || $radio['default']){{ 'checked' }}@endif
+                                                                    />
+                                                                    <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row radio-group mr-0 mb-3">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        @foreach ($checkboxes as $key => $checkbox)
-                                                            <div class="form-check {{ $checkbox['cols'] }}">
-                                                                <input class="form-check-input"
-                                                                    type="{{ $checkbox['type'] }}"
-                                                                    name="{{ 'ss-si-' . $key . '-' . $s->id }}"
-                                                                    id="{{ $key . '-' . $s->id }}"
-                                                                    value="{{ $checkbox['value'] }}"
-                                                                    @if(isset($s) && $s->{$key} == 1){{ 'checked' }}@endif
-                                                                />
-                                                                <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $checkbox['name'] }}</label>
-                                                            </div>
-                                                        @endforeach
+                                                @endif
+                                                @if ($s->ssi == 1)
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <label>Strength Indicator</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row radio-group mr-0 mb-3">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            @foreach ($checkboxes as $key => $checkbox)
+                                                                <div class="form-check {{ $checkbox['cols'] }}">
+                                                                    <input class="form-check-input"
+                                                                        type="{{ $checkbox['type'] }}"
+                                                                        name="{{ 'ss-si-' . $key . '-' . $s->id }}"
+                                                                        id="{{ $key . '-' . $s->id }}"
+                                                                        value="{{ $checkbox['value'] }}"
+                                                                        @if(isset($s) && $s->{$key} == 1){{ 'checked' }}@endif
+                                                                    />
+                                                                    <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $checkbox['name'] }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
-                                            @endif
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         @else
                             @php
@@ -202,64 +204,66 @@
                             @if (count($salesStages) > 0)
                             <div class="col-lg-12 col-md-12 col-sm-12 sales-stage-section">
                                 <label>Sales Stages</label>
-                                @foreach ($salesStages as $s)
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        @if ($s->ssp == 1 || $s->ssi == 1)
-                                            <label>{{ $s->ssn }}</label>
-                                        @endif
-                                        <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
-                                            @if ($s->ssp == 1)
-                                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label>Stage Progress</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row radio-group ml-0 mr-0 mb-3">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        @foreach ($radios as $key => $radio)
-                                                            <div class="form-check {{ $radio['cols'] }}">
-                                                                <input class="form-check-input"
-                                                                    type="{{ $radio['type'] }}"
-                                                                    name="{{ 'ss-sp-' . $s->id }}"
-                                                                    id="{{ $key . '-' . $s->id }}"
-                                                                    value="{{ $radio['value'] }}"
-                                                                    @if ($radio['default'] == 1){{ 'checked' }}@endif
-                                                                />
-                                                                <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="row col-lg-12 col-md-12 col-sm-12">
+                                    @foreach ($salesStages as $s)
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            @if ($s->ssp == 1 || $s->ssi == 1)
+                                                <label>{{ $s->ssn }}</label>
                                             @endif
-                                            @if ($s->ssi == 1)
-                                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label>Strength Indicator</label>
+                                            <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
+                                                @if ($s->ssp == 1)
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <label>Stage Progress</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row radio-group ml-0 mr-0 mb-3">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            @foreach ($radios as $key => $radio)
+                                                                <div class="form-check {{ $radio['cols'] }}">
+                                                                    <input class="form-check-input"
+                                                                        type="{{ $radio['type'] }}"
+                                                                        name="{{ 'ss-sp-' . $s->id }}"
+                                                                        id="{{ $key . '-' . $s->id }}"
+                                                                        value="{{ $radio['value'] }}"
+                                                                        @if ($radio['default'] == 1){{ 'checked' }}@endif
+                                                                    />
+                                                                    <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="row radio-group mr-0 mb-3">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        @foreach ($checkboxes as $key => $checkbox)
-                                                            <div class="form-check {{ $checkbox['cols'] }}">
-                                                                <input class="form-check-input ml-0"
-                                                                    type="{{ $checkbox['type'] }}"
-                                                                    name="{{ 'ss-si-' . $key . '-' . $s->id }}"
-                                                                    id="{{ $key . '-' . $s->id }}"
-                                                                    value="{{ $checkbox['value'] }}"
-                                                                />
-                                                                <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $checkbox['name'] }}</label>
-                                                            </div>
-                                                        @endforeach
+                                                @endif
+                                                @if ($s->ssi == 1)
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <label>Strength Indicator</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row radio-group mr-0 mb-3">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            @foreach ($checkboxes as $key => $checkbox)
+                                                                <div class="form-check {{ $checkbox['cols'] }}">
+                                                                    <input class="form-check-input ml-0"
+                                                                        type="{{ $checkbox['type'] }}"
+                                                                        name="{{ 'ss-si-' . $key . '-' . $s->id }}"
+                                                                        id="{{ $key . '-' . $s->id }}"
+                                                                        value="{{ $checkbox['value'] }}"
+                                                                    />
+                                                                    <label class="form-check-label" for="{{ $key . '-' . $s->id }}">{{ $checkbox['name'] }}</label>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
-                                            @endif
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                             @endif
                         @endif
