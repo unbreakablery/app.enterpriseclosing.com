@@ -140,7 +140,7 @@
                                         @endif
                                         <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
                                             @if ($s->ssp == 1)
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <label>Stage Progress</label>
@@ -155,7 +155,7 @@
                                                                     name="{{ 'ss-sp-' . $s->id }}"
                                                                     id="{{ $key . '-' . $s->id }}"
                                                                     value="{{ $radio['value'] }}"
-                                                                    @if(isset($s) && $radio['value'] == $s->progress){{ 'checked' }}@endif
+                                                                    @if((isset($s) && $radio['value'] == $s->progress) || $radio['default']){{ 'checked' }}@endif
                                                                 />
                                                                 <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
                                                             </div>
@@ -165,7 +165,7 @@
                                             </div>
                                             @endif
                                             @if ($s->ssi == 1)
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <label>Strength Indicator</label>
@@ -209,7 +209,7 @@
                                         @endif
                                         <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
                                             @if ($s->ssp == 1)
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <label>Stage Progress</label>
@@ -224,6 +224,7 @@
                                                                     name="{{ 'ss-sp-' . $s->id }}"
                                                                     id="{{ $key . '-' . $s->id }}"
                                                                     value="{{ $radio['value'] }}"
+                                                                    @if ($radio['default'] == 1){{ 'checked' }}@endif
                                                                 />
                                                                 <label class="form-check-label pl-1" for="{{ $key . '-' . $s->id }}">{{ $radio['name'] }}</label>
                                                             </div>
@@ -233,7 +234,7 @@
                                             </div>
                                             @endif
                                             @if ($s->ssi == 1)
-                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <label>Strength Indicator</label>

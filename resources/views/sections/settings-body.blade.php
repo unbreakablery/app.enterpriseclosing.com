@@ -411,12 +411,12 @@
                                 <input type="text" name="sales-stage-order" id="sales-stage-order" class="form-control n-b-r" value="0" placeholder="Enter Sales Stage Order..." min="0">
                             </div>
                             <div class="form-check pl-0">
-                                <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
-                                <label class="form-check-label" for="show-strength-indicators">Show strength indicators</label>
-                            </div>
-                            <div class="form-check pl-0">
                                 <input type="checkbox" name="show-stage-progress" id="show-stage-progress" class="form-check-input n-b-r">
                                 <label class="form-check-label" for="show-stage-progress">Show stage progress</label>
+                            </div>
+                            <div class="form-check pl-0">
+                                <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
+                                <label class="form-check-label" for="show-strength-indicators">Show strength indicators</label>
                             </div>
                         </div>
                         <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
@@ -434,8 +434,8 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col" class="no-sort pl-2 pr-2">Name</th>
-                                        <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
                                         <th scope="col" class="no-sort pl-2 pr-2">Show stage progress</th>
+                                        <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
                                         <th scope="col" class="no-sort pl-2 pr-2">Order</th>
                                         <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
                                     </tr>
@@ -445,8 +445,8 @@
                                         @foreach ($salesStages as $s)
                                         <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}" data-ssp="{{ $s->o_value2 }}" data-sso="{{ $s->o_value3 }}">
                                             <td class="text-white pl-2 pr-2">{{ $s->o_value }}</td>
-                                            <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
                                             <td class="text-white pl-2 pr-2">@if($s->o_value2 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
+                                            <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
                                             <td class="text-white pl-2 pr-2">{{ $s->o_value3 }}</td>
                                             <td class="text-white text-center">
                                                 <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">
@@ -1166,9 +1166,9 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="edit-ssi">Show Strength Indicators</label>
-                            <select name="edit-ssi"
-                                id="edit-ssi"
+                            <label for="edit-ssp">Show Stage Progress</label>
+                            <select name="edit-ssp"
+                                id="edit-ssp"
                                 class="form-control n-p-lr n-b-r">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
@@ -1177,9 +1177,9 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="edit-ssp">Show Stage Progress</label>
-                            <select name="edit-ssp"
-                                id="edit-ssp"
+                            <label for="edit-ssi">Show Strength Indicators</label>
+                            <select name="edit-ssi"
+                                id="edit-ssi"
                                 class="form-control n-p-lr n-b-r">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>

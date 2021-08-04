@@ -1107,8 +1107,8 @@ $(document).ready(function() {
                     innerHtml += response.sales_stage.ssp + '" data-sso="';
                     innerHtml += response.sales_stage.sso + '">';
                     innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.ssn + '</td>';
-                    innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssi == 1 ? 'Yes' : 'No') + '</td>';
                     innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssp == 1 ? 'Yes' : 'No') + '</td>';
+                    innerHtml += '<td class="text-white pl-2 pr-2">' + (response.sales_stage.ssi == 1 ? 'Yes' : 'No') + '</td>';
                     innerHtml += '<td class="text-white pl-2 pr-2">' + response.sales_stage.sso + '</td>';
                     innerHtml += '<td class="text-white text-center">';
                     innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">';
@@ -1266,8 +1266,8 @@ $(document).ready(function() {
                     $(selectedTr).attr('data-ssi', response.sales_stage.ssi);
                     $(selectedTr).attr('data-ssp', response.sales_stage.ssp);
                     $(selectedTr).find('td:nth-child(1)').text(response.sales_stage.ssn);
-                    $(selectedTr).find('td:nth-child(2)').text((response.sales_stage.ssi == 1) ? 'Yes' : 'No');
-                    $(selectedTr).find('td:nth-child(3)').text((response.sales_stage.ssp == 1) ? 'Yes' : 'No');
+                    $(selectedTr).find('td:nth-child(2)').text((response.sales_stage.ssp == 1) ? 'Yes' : 'No');
+                    $(selectedTr).find('td:nth-child(3)').text((response.sales_stage.ssi == 1) ? 'Yes' : 'No');
                     $(selectedTr).find('td:nth-child(4)').text(response.sales_stage.sso);
                 } else {
                     // Show message
