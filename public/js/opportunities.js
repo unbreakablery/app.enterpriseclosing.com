@@ -497,6 +497,203 @@ $(document).ready(function () {
       $(this).closest('.form-check').find('input[type=checkbox]').prop("checked", true);
     }
   });
+  $(document).on('click', '.btn-add-orgchart-row', function () {
+    var oTable = $(this).closest('.tab-component').find('#orgchart-table'); // Remove no data row
+
+    $(oTable).find('#no-data-row').remove(); // Add new row
+
+    $(oTable).find('tbody').append($('#orgchart-tr-component-empty tbody').html());
+    var trObj = $(oTable).find('tbody tr').last();
+    trObj[0].scrollIntoView(true);
+  });
+  $(document).on('click', '.btn-remove-orgchart-row', function () {
+    var rowObj = $(this).closest('tr');
+    var id = $(rowObj).data('id');
+
+    if (id == 0) {
+      var orgChartTable = $(rowObj).closest('table'); // Remove row element
+
+      $(rowObj).remove();
+
+      if ($(orgChartTable).find('tbody tr').length == 0) {
+        var innerHtml = '<tr id="no-data-row">';
+        innerHtml += '<td colspan="11" class="text-danger text-center">No Data</td>';
+        innerHtml += '</tr>';
+        $(orgChartTable).find('tbody').append(innerHtml);
+      }
+
+      return;
+    }
+
+    loader('show');
+    $.ajax({
+      url: "opportunities/remove-org-chart",
+      dataType: "json",
+      type: "delete",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: id
+      },
+      success: function success(res) {
+        loader('hide');
+
+        if (res.success) {
+          var orgChartTable = $(rowObj).closest('table'); // Remove row element
+
+          $(rowObj).remove();
+
+          if ($(orgChartTable).find('tbody tr').length == 0) {
+            var innerHtml = '<tr id="no-data-row">';
+            innerHtml += '<td colspan="11" class="text-danger text-center">No Data</td>';
+            innerHtml += '</tr>';
+            $(orgChartTable).find('tbody').append(innerHtml);
+          }
+
+          showMessage('success', 'OrgChart(ID: ' + id + ') was removed successfully.');
+        } else {
+          showMessage('danger', 'Error, please retry later.');
+        }
+      },
+      error: function error(request, status, _error3) {
+        loader('hide');
+        showMessage('danger', 'Error, please retry later.');
+      }
+    });
+  });
+  $(document).on('change', '.tab-component table#orgchart-table input, .tab-component table#orgchart-table select', function () {
+    var tabComponent = $(this).closest('.tab-component');
+    var rowObj = $(this).closest('tr');
+    var oId = $(tabComponent).find('input[name=opp-id]').val();
+    var id = $(rowObj).data('id');
+
+    if (oId == 0) {
+      showMessage('danger', "Type: Input Error<br/>NOTE: Opportunity Tab didn't create yet!");
+      return;
+    }
+
+    var order = $(rowObj).find('input[name=order]').val();
+    var firstName = $(rowObj).find('input[name=first-name]').val();
+    var lastName = $(rowObj).find('input[name=last-name]').val();
+    var title = $(rowObj).find('input[name=title]').val();
+    var landline = $(rowObj).find('input[name=landline]').val();
+    var mobile = $(rowObj).find('input[name=mobile]').val();
+    var email = $(rowObj).find('input[name=email]').val();
+    var role = $(rowObj).find('select[name=role]').val();
+    var engagement = $(rowObj).find('select[name=engagement]').val();
+    var notes = $(rowObj).find('input[name=notes]').val();
+    loader('show');
+    $.ajax({
+      url: "opportunities/save-org-chart",
+      dataType: "json",
+      type: "post",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        id: id,
+        opp_id: oId,
+        order: order,
+        first_name: firstName,
+        last_name: lastName,
+        title: title,
+        landline: landline,
+        mobile: mobile,
+        email: email,
+        role: role,
+        engagement: engagement,
+        notes: notes
+      },
+      success: function success(res) {
+        loader('hide');
+
+        if (res.success) {
+          // Change org chart id
+          $(rowObj).data('id', res.id);
+          showMessage('success', 'Orgchart was saved successfully.');
+        } else {
+          showMessage('danger', 'Error, Please retry later.');
+        }
+      },
+      error: function error(request, status, _error4) {
+        loader('hide');
+        showMessage('danger', 'Error, Please retry later.');
+      }
+    });
+  });
+  $(document).on('click', '#btn-upload-orgcharts', function () {
+    var idx = $('#upload-orgcharts-file-modal').attr('data-idx');
+    var pTable = $('#opp-tab-' + idx + ' .tab-component').find('#orgchart-table');
+    var id = $('#opp-tab-' + idx + ' .tab-component').find('input[name=opp-id]').val();
+    var file_data = $('#upload-orgcharts-file-modal input[name=upload-file]').prop('files')[0];
+
+    if (file_data == undefined) {
+      showMessage('danger', 'Type: Input Error<br />NOTE: Please choose a upload csv file!');
+      return;
+    }
+
+    var form_data = new FormData();
+    form_data.append('upload-file', file_data);
+    form_data.append('id', id);
+    form_data.append('_token', $('meta[name="csrf-token"]').attr('content'));
+    loader('show');
+    $.ajax({
+      url: '/opportunities/upload-orgcharts',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function success(res) {
+        // Remove all rows on table
+        $(pTable).find('tbody tr').remove();
+
+        for (var i = 0; i < res.orgcharts.length; i++) {
+          var orgChart = res.orgcharts[i];
+          var newRow = $('#orgchart-tr-component-empty tbody tr').clone(); // Set values to new row
+
+          $(newRow).attr('data-id', orgChart.id);
+          $(newRow).find('input[name=order]').val(orgChart.order);
+          $(newRow).find('input[name=first-name]').val(orgChart.first_name);
+          $(newRow).find('input[name=last-name]').val(orgChart.last_name);
+          $(newRow).find('input[name=title]').val(orgChart.title);
+          $(newRow).find('input[name=landline]').val(orgChart.landline);
+          $(newRow).find('input[name=mobile]').val(orgChart.mobile);
+          $(newRow).find('input[name=email]').val(orgChart.email);
+          $(newRow).find('select[name=role]').val(orgChart.role);
+          $(newRow).find('select[name=engagement]').val(orgChart.engagement);
+          $(newRow).find('input[name=notes]').val(orgChart.notes); // Add new row
+
+          $(pTable).find('tbody').append(newRow);
+        }
+
+        $('#upload-orgcharts-file-modal').modal('hide');
+        loader('hide');
+        showMessage('success', 'File was uploaded successfully.');
+      },
+      error: function error(request, status, _error5) {
+        loader('hide');
+        showMessage('danger', 'Error, Please retry later.');
+      }
+    });
+  });
+  $(document).on('click', '.btn-upload-orgcharts-modal', function () {
+    var idx = $(this).closest('.tab-pane').attr('data-idx');
+    $('#upload-orgcharts-file-modal').attr('data-idx', idx);
+    $('#upload-orgcharts-file-modal input[name=upload-file]').val(''); //Show modal
+
+    $('#upload-orgcharts-file-modal').modal({
+      backdrop: 'static'
+    });
+  });
+  $(document).on('click', '.btn-download-orgcharts', function () {
+    var id = $(this).closest('.tab-component').find('input[name=opp-id]').val();
+
+    if (id == 0 || id == '' || id == undefined) {
+      showMessage('danger', "Error, Please retry later.");
+      return;
+    }
+
+    window.location.href = '/opportunities/download-orgcharts/' + id;
+  });
 });
 /******/ })()
 ;

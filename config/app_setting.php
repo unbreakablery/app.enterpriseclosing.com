@@ -202,6 +202,44 @@ return  [
                 ]
                 
             ]
+        ],
+        'dropdown_values' => [
+            'org_chart_role' => [
+                'default' => [
+                    'name' => '',
+                    'value' => 0
+                ],
+                'spoc' => [
+                    'name' => 'SPOC',
+                    'value' => 1
+                ],
+                'influencer' => [
+                    'name' => 'Influencer',
+                    'value' => 2
+                ],
+                'decision_maker' => [
+                    'name' => 'Decision Maker',
+                    'value' => 3
+                ]
+            ],
+            'org_chart_engagement' => [
+                'default' => [
+                    'name' => '',
+                    'value' => 0
+                ],
+                'low' => [
+                    'name' => 'Low',
+                    'value' => 1
+                ],
+                'medium' => [
+                    'name' => 'Medium',
+                    'value' => 2
+                ],
+                'high' => [
+                    'name' => 'High',
+                    'value' => 3
+                ]
+            ]
         ]
     ]
 ];

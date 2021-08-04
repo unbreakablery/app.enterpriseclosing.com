@@ -10804,11 +10804,14 @@ input[type=checkbox] {
 }
 
 #outboundTabsContent .action-group .btn-app-default,
-#outboundTabsContent .action-group .btn-grad {
+#outboundTabsContent .action-group .btn-grad,
+#oppTabsContent .action-group .btn-app-default,
+#oppTabsContent .action-group .btn-grad {
   padding: 0 0.5rem;
   height: 29px;
 }
 
+.orgchart-table-wrapper,
 .persons-table-wrapper {
   max-height: 310px;
   overflow-y: auto;
@@ -10850,10 +10853,18 @@ input[type=checkbox] {
   border: 0;
 }
 
-.persons-table-wrapper table#persons-table input, .persons-table-wrapper table#persons-table select {
+.orgchart-table-wrapper table#orgchart-table input, .orgchart-table-wrapper table#orgchart-table select,
+.orgchart-table-wrapper table#persons-table input,
+.orgchart-table-wrapper table#persons-table select,
+.persons-table-wrapper table#orgchart-table input,
+.persons-table-wrapper table#orgchart-table select,
+.persons-table-wrapper table#persons-table input,
+.persons-table-wrapper table#persons-table select {
   border: 0;
 }
 
+#upload-file-modal input[type=file].form-control,
+#upload-orgcharts-file-modal input[type=file].form-control,
 #upload-file-modal input[type=file].form-control {
   padding: 0.2rem;
   border-radius: 0;
@@ -10901,6 +10912,7 @@ input[type=checkbox] {
   border-bottom: none;
 }
 
+table#orgchart-table tr th,
 table#persons-table tr th,
 table#assessments-table tr th,
 table#users-table tr th {
@@ -10912,23 +10924,27 @@ table#users-table tr th {
   border: solid 1px #fff;
   z-index: 100;
 }
+table#orgchart-table tr td,
 table#persons-table tr td,
 table#assessments-table tr td,
 table#users-table tr td {
   border: solid 1px #fff;
   vertical-align: middle;
 }
+table#orgchart-table tr td button,
 table#persons-table tr td button,
 table#assessments-table tr td button,
 table#users-table tr td button {
   padding-top: 1px;
   padding-bottom: 1px;
 }
+table#orgchart-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#persons-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#users-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
   border-top: none !important;
 }
+table#orgchart-table tbody tr:last-child td,
 table#persons-table tbody tr:last-child td,
 table#assessments-table tbody tr:last-child td,
 table#users-table tbody tr:last-child td {
@@ -10938,6 +10954,9 @@ table#users-table tbody tr:last-child td {
 table#sales-stage-table input[type=text],
 table#sales-stage-table input[type=number],
 table#sales-stage-table select,
+table#orgchart-table input[type=text],
+table#orgchart-table input[type=number],
+table#orgchart-table select,
 table#persons-table input[type=text],
 table#persons-table input[type=number],
 table#persons-table select,
@@ -10962,6 +10981,7 @@ table#users-table select {
   font-size: 12px;
 }
 table#sales-stage-table input[type=number],
+table#orgchart-table input[type=number],
 table#persons-table input[type=number],
 table#scripts-table input[type=number],
 table#emails-table input[type=number],
@@ -10972,6 +10992,8 @@ table#users-table input[type=number] {
 }
 table#sales-stage-table input[type=number]::-webkit-inner-spin-button,
 table#sales-stage-table input[type=number]::-webkit-outer-spin-button,
+table#orgchart-table input[type=number]::-webkit-inner-spin-button,
+table#orgchart-table input[type=number]::-webkit-outer-spin-button,
 table#persons-table input[type=number]::-webkit-inner-spin-button,
 table#persons-table input[type=number]::-webkit-outer-spin-button,
 table#scripts-table input[type=number]::-webkit-inner-spin-button,
@@ -10987,6 +11009,7 @@ table#users-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 table#sales-stage-table .btn.btn-counter,
+table#orgchart-table .btn.btn-counter,
 table#persons-table .btn.btn-counter,
 table#scripts-table .btn.btn-counter,
 table#emails-table .btn.btn-counter,
@@ -11002,6 +11025,7 @@ table#users-table .btn.btn-counter {
   border: 0;
 }
 table#sales-stage-table tr th,
+table#orgchart-table tr th,
 table#persons-table tr th,
 table#scripts-table tr th,
 table#emails-table tr th,
@@ -11014,6 +11038,7 @@ table#users-table tr th {
   border-color: #fff;
 }
 table#sales-stage-table tbody tr td,
+table#orgchart-table tbody tr td,
 table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
 table#emails-table tbody tr td,
@@ -11023,6 +11048,7 @@ table#users-table tbody tr td {
   padding: 0;
 }
 table#sales-stage-table .btn-remove-row,
+table#orgchart-table .btn-remove-row,
 table#persons-table .btn-remove-row,
 table#scripts-table .btn-remove-row,
 table#emails-table .btn-remove-row,
@@ -11032,6 +11058,7 @@ table#users-table .btn-remove-row {
   height: 1.5rem;
 }
 table#sales-stage-table .btn-remove-row i.bi.bi-x:before,
+table#orgchart-table .btn-remove-row i.bi.bi-x:before,
 table#persons-table .btn-remove-row i.bi.bi-x:before,
 table#scripts-table .btn-remove-row i.bi.bi-x:before,
 table#emails-table .btn-remove-row i.bi.bi-x:before,
@@ -11041,6 +11068,7 @@ table#users-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
 table#sales-stage-table span.input-group-text,
+table#orgchart-table span.input-group-text,
 table#persons-table span.input-group-text,
 table#scripts-table span.input-group-text,
 table#emails-table span.input-group-text,

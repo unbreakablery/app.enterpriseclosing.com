@@ -5,8 +5,12 @@
         :opportunityTasks="null"
         :opportunityMeddpicc="null"
         :opportunitySalesStages="null"
+        :opportunityOrgCharts="null"
     />
 </div>
+<table id="orgchart-tr-component-empty" hidden>
+    <tbody><x-opp-org-chart-row :row="null" /></tbody>
+</table>
 
 <div class="opportunities-wrapper mt-4">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
@@ -52,6 +56,7 @@
                     :opportunityTasks="$opp->tasks"
                     :opportunityMeddpicc="$opp->meddpicc"
                     :opportunitySalesStages="$opp->salesStages"
+                    :opportunityOrgCharts="$opp->orgCharts"
                 />
             </div>
             @endforeach
@@ -177,6 +182,28 @@
             </div>
             <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-grad btn-w-normal" data-dismiss="modal">That's All For Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Orgcharts File Modal -->
+<div class="modal fade" id="upload-orgcharts-file-modal" tabindex="-1" role="dialog" aria-labelledby="upload-orgcharts-file-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="upload-orgcharts-file-modal-header-title">Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Upload File:</h3>
+                <input type="file" class="form-control" name="upload-file" accept=".csv" />
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-upload-orgcharts">Upload</button>
             </div>
         </div>
     </div>

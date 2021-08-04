@@ -771,11 +771,20 @@ input[type='checkbox'] {
         }
     }
 }
-#outboundTabsContent .action-group .btn-app-default,
-#outboundTabsContent .action-group .btn-grad {
-    padding: 0 0.5rem;
-    height: 29px;
+#outboundTabsContent,
+#oppTabsContent {
+    .action-group .btn-app-default,
+    .action-group .btn-grad {
+        padding: 0 0.5rem;
+        height: 29px;
+    }
 }
+// #outboundTabsContent .action-group .btn-app-default,
+// #outboundTabsContent .action-group .btn-grad {
+//     padding: 0 0.5rem;
+//     height: 29px;
+// }
+.orgchart-table-wrapper,
 .persons-table-wrapper {
     max-height: 310px;
     overflow-y: auto;
@@ -811,18 +820,25 @@ input[type='checkbox'] {
         }
     }
 }
+.orgchart-table-wrapper,
 .persons-table-wrapper {
+    table#orgchart-table,
     table#persons-table {
         input, select {
             border: 0;
         }
     }
 }
-#upload-file-modal input[type=file].form-control {
-    padding: 0.2rem;
-    border-radius: 0;
-    height: auto;
+#upload-file-modal,
+#upload-orgcharts-file-modal,
+#upload-file-modal {
+    input[type=file].form-control {
+        padding: 0.2rem;
+        border-radius: 0;
+        height: auto;
+    }
 }
+
 #settingsTabsContent {
     table#sales-stage-table,
     table#scripts-table,
@@ -857,6 +873,7 @@ input[type='checkbox'] {
         }
     }
 }
+table#orgchart-table,
 table#persons-table,
 table#assessments-table,
 table#users-table {
@@ -885,6 +902,7 @@ table#users-table {
     }
 }
 table#sales-stage-table,
+table#orgchart-table,
 table#persons-table,
 table#scripts-table,
 table#emails-table,

@@ -11,6 +11,7 @@ use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\OpportunitySetting;
 use App\Models\OpportunitySalesStage;
+use App\Models\OpportunityOrgChart;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
@@ -1320,5 +1321,75 @@ if (!function_exists('deleteOppSalesStageSettings')) {
         OpportunitySalesStage::where('ss_id', $data->id)->delete();
 
         return $result;
+    }
+}
+
+if (!function_exists('deleteOrgChart')) {
+    function deleteOrgChart($data)
+    {
+        if (empty($data->id)) {
+            return null;
+        }
+
+        $orgChart = OpportunityOrgChart::find($data->id);
+
+        return $orgChart->delete();
+    }
+}
+
+if (!function_exists('storeOrgChart')) {
+    function storeOrgChart($data)
+    {
+        $id = $data->id;
+
+        if ($id == 0) {
+            $orgChart = new OpportunityOrgChart();
+        } else {
+            $orgChart = OpportunityOrgChart::find($data->id);
+        }
+
+        $orgChart->opp_id       = $data->opp_id;
+        $orgChart->order        = $data->order;
+        $orgChart->first_name   = $data->first_name;
+        $orgChart->last_name    = $data->last_name;
+        $orgChart->title        = $data->title;
+        $orgChart->email        = $data->email;
+        $orgChart->landline     = $data->landline;
+        $orgChart->mobile       = $data->mobile;
+        $orgChart->role         = $data->role;
+        $orgChart->engagement   = $data->engagement;
+        $orgChart->notes        = $data->notes;
+
+        $orgChart->save();
+
+        return $orgChart;
+    }
+}
+
+if (!function_exists('getOppDropdownValueByName')) {
+    function getOppDropdownValueByName($setting, $name = '')
+    {
+        $roles = config('app_setting.opportunities.dropdown_values.' . $setting);
+        foreach ($roles as $key => $role) {
+            if (strtolower($role['name']) == strtolower($name)) {
+                return $role['value'];
+            }
+        }
+
+        return 0;
+    }
+}
+
+if (!function_exists('getOppDropdownNameByValue')) {
+    function getOppDropdownNameByValue($setting, $value = 0)
+    {
+        $roles = config('app_setting.opportunities.dropdown_values.' . $setting);
+        foreach ($roles as $key => $role) {
+            if ($role['value'] == $value) {
+                return $role['name'];
+            }
+        }
+
+        return '';
     }
 }

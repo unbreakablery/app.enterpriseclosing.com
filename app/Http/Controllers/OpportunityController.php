@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\OpportunitySetting;
+use App\Models\OpportunityOrgChart;
 use App\Models\Task;
 use Auth;
 
@@ -66,6 +67,11 @@ class OpportunityController extends Controller
                                     ->orderBy('os.o_value3', 'ASC')
                                     ->orderBy('os.id', 'ASC')
                                     ->select('os.id', 'os.o_value AS ssn', 'os.o_value1 AS ssi', 'os.o_value2 AS ssp', 'oss.weak', 'oss.normal', 'oss.strong', 'oss.progress')
+                                    ->get()
+                                    ->all();
+
+            $temp->orgCharts = OpportunityOrgChart::where('opp_id', $oppMain->id)
+                                    ->orderBy('order', 'ASC')
                                     ->get()
                                     ->all();
             $data[] = $temp;
@@ -148,5 +154,138 @@ class OpportunityController extends Controller
         $meddpiccId = storeOpportunityMeddpicc($request);
 
         return redirect(url()->previous())->withInput();
+    }
+
+    public function removeOrgChart(Request $request)
+    {
+        $orgChart = deleteOrgChart($request);
+
+        if ($orgChart) {
+            return response()->json([
+                'success' => true,
+                'org_chart' => $orgChart
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+    }
+
+    public function saveOrgChart(Request $request)
+    {
+        $orgChart = storeOrgChart($request);
+
+        if ($orgChart) {
+            return response()->json([
+                'success' => true,
+                'id' => $orgChart->id
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+    }
+
+    public function uploadOrgcharts(Request $request)
+    {
+        $oppId = $request->id;
+        $file = $request->file('upload-file');
+
+        $uploadedRowCount = 0;
+        if ($file) {
+            if (($handle = fopen($file, "r")) !== FALSE) {
+                $header = true;
+                while ($csvLine = fgetcsv($handle, 1000, ",")) {
+                    if ($header) {
+                        $header = false;
+                    } else {
+                        $orgChart = new OpportunityOrgChart();
+                        $orgChart->opp_id       = $oppId;
+                        $orgChart->order        = $csvLine[0];
+                        $orgChart->first_name   = $csvLine[1];
+                        $orgChart->last_name    = $csvLine[2];
+                        $orgChart->title        = $csvLine[3];
+                        $orgChart->email        = $csvLine[4];
+                        $orgChart->landline     = $csvLine[5];
+                        $orgChart->mobile       = $csvLine[6];
+                        $orgChart->role         = getOppDropdownValueByName('org_chart_role', $csvLine[7]);
+                        $orgChart->engagement   = getOppDropdownValueByName('org_chart_engagement', $csvLine[8]);
+                        $orgChart->notes        = $csvLine[9];
+                                                
+                        $orgChart->save();
+
+                        $uploadedRowCount++;
+                    }
+                }
+            }
+        }
+
+        $orgCharts = OpportunityOrgChart::where('opp_id', $oppId)
+                                    ->orderBy('order', 'ASC')
+                                    ->get()
+                                    ->all();
+
+        return response()->json([
+            'uploadedRowCount' => $uploadedRowCount,
+            'orgcharts' => $orgCharts
+        ]);
+    }
+
+    public function downloadOrgcharts(Request $request)
+    {
+        $oppId = $request->id;
+        $opportunity = OpportunityMain::where('id', $oppId)
+                            ->get()
+                            ->first();
+        
+        $fileName = 'OrgChart-' . $opportunity->opportunity . '.csv';
+
+        $orgCharts = OpportunityOrgChart::where('opp_id', $oppId)
+                            ->orderBy('order', 'ASC')
+                            ->get();
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Order', 'First Name', 'Last Name', 
+                        'Title', 'Email', 'Landline', 
+                        'Mobile', 'Role', 'Engagement', 'Notes'
+                    );
+        $callback = function() use($orgCharts, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            
+            foreach ($orgCharts as $orgChart) {
+                $row['order']       = $orgChart->order;
+                $row['first_name']  = $orgChart->first_name;
+                $row['last_name']   = $orgChart->last_name;
+                $row['title']       = $orgChart->title;
+                $row['email']       = $orgChart->email;
+                $row['landline']    = $orgChart->landline;
+                $row['mobile']      = $orgChart->mobile;
+                $row['role']        = getOppDropdownNameByValue('org_chart_role', $orgChart->role);
+                $row['engagement']  = getOppDropdownNameByValue('org_chart_engagement', $orgChart->engagement);
+                $row['notes']       = $orgChart->notes;
+                                
+                fputcsv($file, array(
+                                    $row['order'], $row['first_name'], $row['last_name'],
+                                    $row['title'], $row['email'], $row['landline'],
+                                    $row['mobile'], $row['role'], $row['engagement'],
+                                    $row['notes']
+                                )
+                            );
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }

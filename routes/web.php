@@ -43,6 +43,10 @@ Route::get('/opportunities', 'OpportunityController@getOpportunities')->name('op
 Route::post('/opportunities/save-main', 'OpportunityController@saveOpportunityMain')->name('opportunity.save.main');
 Route::post('/opportunities/save', 'OpportunityController@saveOpportunity')->name('opportunity.save');
 Route::post('/opportunities/save-task', 'OpportunityController@saveTask')->name('opportunity.save.task');
+Route::delete('/opportunities/remove-org-chart', 'OpportunityController@removeOrgChart')->name('opportunity.remove.org-chart');
+Route::post('/opportunities/save-org-chart', 'OpportunityController@saveOrgChart')->name('opportunity.save.org-chart');
+Route::post('/opportunities/upload-orgcharts', 'OpportunityController@uploadOrgcharts')->name('opportunity.upload.orgcharts');
+Route::get('/opportunities/download-orgcharts/{id}', 'OpportunityController@downloadOrgcharts')->name('opportunity.download.orgcharts');
 
 Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
 Route::delete('/scripts/remove/script-main/{id}', 'ScriptController@removeScriptMain')->name('scripts.remove.main');
