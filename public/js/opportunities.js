@@ -561,6 +561,7 @@ $(document).ready(function () {
     });
   });
   $(document).on('change', '.tab-component table#orgchart-table input, .tab-component table#orgchart-table select', function () {
+    var objName = $(this).attr('name');
     var tabComponent = $(this).closest('.tab-component');
     var rowObj = $(this).closest('tr');
     var oId = $(tabComponent).find('input[name=opp-id]').val();
@@ -602,13 +603,39 @@ $(document).ready(function () {
         notes: notes
       },
       success: function success(res) {
-        loader('hide');
-
         if (res.success) {
-          // Change org chart id
-          $(rowObj).data('id', res.id);
+          if (objName == 'order') {
+            // Remove all rows on table
+            var pTable = $(rowObj).closest('#orgchart-table');
+            $(pTable).find('tbody tr').remove();
+
+            for (var i = 0; i < res.orgcharts.length; i++) {
+              var orgChart = res.orgcharts[i];
+              var newRow = $('#orgchart-tr-component-empty tbody tr').clone(); // Set values to new row
+
+              $(newRow).attr('data-id', orgChart.id);
+              $(newRow).find('input[name=order]').val(orgChart.order);
+              $(newRow).find('input[name=first-name]').val(orgChart.first_name);
+              $(newRow).find('input[name=last-name]').val(orgChart.last_name);
+              $(newRow).find('input[name=title]').val(orgChart.title);
+              $(newRow).find('input[name=landline]').val(orgChart.landline);
+              $(newRow).find('input[name=mobile]').val(orgChart.mobile);
+              $(newRow).find('input[name=email]').val(orgChart.email);
+              $(newRow).find('select[name=role]').val(orgChart.role);
+              $(newRow).find('select[name=engagement]').val(orgChart.engagement);
+              $(newRow).find('input[name=notes]').val(orgChart.notes); // Add new row
+
+              $(pTable).find('tbody').append(newRow);
+            }
+          } else {
+            // Change org chart id
+            $(rowObj).data('id', res.id);
+          }
+
+          loader('hide');
           showMessage('success', 'Orgchart was saved successfully.');
         } else {
+          loader('hide');
           showMessage('danger', 'Error, Please retry later.');
         }
       },

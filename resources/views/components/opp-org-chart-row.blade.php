@@ -1,10 +1,10 @@
 <tr data-id="@if (isset($row)){{ $row->id }}@else{{ 0 }}@endif">
     <td class="text-center">
-        <input type="text"
+        <input type="number"
                 class="form-control w-100"
                 name="order"
                 placeholder=""
-                value="@if (isset($row)){{ $row->order }}@endif"
+                value="@if (isset($row)){{ $row->order }}@else{{ '0' }}@endif"
         />
     </td>
     <td class="text-center">

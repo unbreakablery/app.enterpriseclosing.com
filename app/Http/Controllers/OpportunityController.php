@@ -175,11 +175,15 @@ class OpportunityController extends Controller
     public function saveOrgChart(Request $request)
     {
         $orgChart = storeOrgChart($request);
+        $orgCharts = OpportunityOrgChart::where('opp_id', $request->opp_id)
+                                    ->orderBy('order', 'ASC')
+                                    ->get();
 
         if ($orgChart) {
             return response()->json([
                 'success' => true,
-                'id' => $orgChart->id
+                'id' => $orgChart->id,
+                'orgcharts' => $orgCharts
             ]);
         } else {
             return response()->json([

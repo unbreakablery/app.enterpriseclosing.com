@@ -1349,7 +1349,7 @@ if (!function_exists('storeOrgChart')) {
         }
 
         $orgChart->opp_id       = $data->opp_id;
-        $orgChart->order        = $data->order;
+        $orgChart->order        = empty($data->order) ? 0 : $data->order;
         $orgChart->first_name   = $data->first_name;
         $orgChart->last_name    = $data->last_name;
         $orgChart->title        = $data->title;
