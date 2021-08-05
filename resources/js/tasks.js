@@ -212,8 +212,10 @@ $(document).ready(function() {
 
     //show modal
     if (user_action == 'add-task') {
-        $('#task-add-modal').modal({
-            backdrop: 'static'
-        });
+        if ($('#task-add-modal button.btn-suggest-save').length > 0) {
+            $('#task-add-modal').modal({
+                backdrop: 'static'
+            });
+        }
     }
 });

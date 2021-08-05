@@ -408,14 +408,17 @@ $(document).ready(function () {
         currentTable.row.add($(innerHtml)).draw(); // Add * sign to tab name
 
         var idx = $('table.task-table').index($('table#task-table-' + oppId)) / 2 - 1;
-        $('#oppTabs a#tab-' + idx).find('strong').text('*'); // Show suggest task modal
-
-        $('#suggest-task-modal').modal({
-          backdrop: 'static'
-        }); // Draw suggest task modal
+        $('#oppTabs a#tab-' + idx).find('strong').text('*'); // Draw suggest task modal
 
         var suggest = res.suggest;
-        drawSuggestTaskModal(suggest);
+
+        if (res.suggest.steps.length > 0) {
+          drawSuggestTaskModal(suggest); // Show suggest task modal
+
+          $('#suggest-task-modal').modal({
+            backdrop: 'static'
+          });
+        }
       },
       error: function error(request, status, _error2) {
         loader('hide');
