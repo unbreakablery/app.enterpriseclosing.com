@@ -149,6 +149,12 @@ $(document).ready(function() {
         let prArticles = $(tabComponent).find('input[name=pr-articles]').val();
         let orgHooks = $.trim($(tabComponent).find('textarea[name=org-hooks]').val());
         let additionalNuggets = $.trim($(tabComponent).find('textarea[name=additional-nuggets]').val());
+
+        if (accountName == undefined || accountName == null || accountName == '') {
+            showMessage('danger', 'Error, Please enter account name.');
+            $(tabComponent).find('input[name=account-name]').focus();
+            return false;
+        }
         
         loader('show');
 
@@ -168,6 +174,10 @@ $(document).ready(function() {
             success: function( res ) {
                 // Change outbound id
                 $(tabComponent).find('input[name=o-id]').val(res.id);
+
+                // Change tab name
+                var idx = $(tabComponent).closest('.tab-pane').attr('data-idx');
+                $('#outboundTabs #tab-' + idx).text(accountName);
                 
                 loader('hide');
             },

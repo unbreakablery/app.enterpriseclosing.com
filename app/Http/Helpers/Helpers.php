@@ -269,6 +269,7 @@ if (!function_exists('storeOutboundMain')) {
         // Update outbound
         OutboundMain::where('id', $id)
                     ->update([
+                        'account_name'          => $data->account_name,
                         'annual_report'         => $data->annual_report,
                         'pr_articles'           => $data->pr_articles,
                         'org_hooks'             => $data->org_hooks,

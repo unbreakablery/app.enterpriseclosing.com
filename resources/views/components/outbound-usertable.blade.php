@@ -1,7 +1,19 @@
 <div class="tab-component">
     <div class="main-info">
         <input type="hidden" name="o-id" value="@if (isset($main)){{ $main->id }}@else{{ 0 }}@endif">
-        <input type="hidden" name="account-name" value="@if (isset($main)){{ $main->account_name }}@endif">
+        <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="account-name">Account Name</label>
+                    <input class="form-control n-b-r"
+                            type="text"
+                            id="account-name"
+                            name="account-name"
+                            value="@if (isset($main)){{ $main->account_name }}@endif"
+                    />
+                </div>
+            </div>
+        </div>
         <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
