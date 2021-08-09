@@ -78,6 +78,12 @@ return  [
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
+            'opp_organisation'  => [
+                'name' => 'Organisation', 
+                'type' => '', 
+                'placeholder' => '',
+                'cols' => 'col-lg-6 col-md-6 col-sm-6'
+            ],
             'next_step'         => [
                 'name' => 'Next Step', 
                 'type' => '', 
@@ -108,6 +114,7 @@ return  [
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
+            
         ],
         'radio_groups' => [
             'competitive_position' => [
@@ -238,6 +245,20 @@ return  [
                 'high' => [
                     'name' => 'High',
                     'value' => 3
+                ]
+            ],
+            'jpp_soe_completed' => [
+                'default' => [
+                    'name' => 'No',
+                    'value' => 0
+                ],
+                'wip' => [
+                    'name' => 'WIP',
+                    'value' => 1
+                ],
+                'yes' => [
+                    'name' => 'Yes',
+                    'value' => 2
                 ]
             ]
         ]

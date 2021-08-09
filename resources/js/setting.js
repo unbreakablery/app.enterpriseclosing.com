@@ -1116,13 +1116,14 @@ $(document).ready(function() {
                     innerHtml += '</button>';
                     innerHtml += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sales-stage" title="Remove">';
                     innerHtml += '<i class="bi bi-x"></i>';
-                    innerHtml += '</button>'
+                    innerHtml += '</button>';
                     innerHtml += '</td>';
-                    innerHtml += '</tr>'
+                    innerHtml += '</tr>';
                     $('table#sales-stage-table tbody').append(innerHtml);
 
                     // Initalize sales stage
                     $('#settings-tab-opportunities input#sales-stage').val('');
+                    $('#settings-tab-opportunities input#sales-stage-order').val('');
                     $('#settings-tab-opportunities input#show-strength-indicators').removeAttr('checked');
                     $('#settings-tab-opportunities input#show-stage-progress').removeAttr('checked');
 
@@ -1282,5 +1283,192 @@ $(document).ready(function() {
             }
         });
 
+    });
+
+    $('button#btn-save-task-event').on('click', function() {
+        var teName = $('form#task-event-form input[name=task-event]').val();
+        if (teName == undefined || teName == null || teName == '') {
+            showMessage('danger', 'Please enter task / event.');
+            return false;
+        }
+
+        loader('show');
+
+        $.ajax({
+            url: "/settings/store/opportunities-task-event",
+            type: "post",
+            dataType: "json",
+            data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    name: teName
+                },
+            success: function(response) {
+                loader('hide');
+                
+                if (response.success) {
+                    // Show message
+                    showMessage('success', response.task_event.name + ' was saved successfully!');
+
+                    // Remove no-data row
+                    $('table#task-event-table tbody tr.no-data').remove();
+
+                    // Add it into task event table
+                    var innerHtml = '';
+                    innerHtml += '<tr data-id="' + response.task_event.id + '" data-name="';
+                    innerHtml += response.task_event.name + '">';
+                    innerHtml += '<td class="text-white pl-2 pr-2">' + response.task_event.name + '</td>';
+                    innerHtml += '<td class="text-white text-center">';
+                    innerHtml += '<button type="button" class="btn btn-sm btn-success n-b-r btn-edit-task-event" title="Edit">';
+                    innerHtml += '<i class="bi bi-pencil-fill"></i>';
+                    innerHtml += '</button>';
+                    innerHtml += '<button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-task-event" title="Remove">';
+                    innerHtml += '<i class="bi bi-x"></i>';
+                    innerHtml += '</button>';
+                    innerHtml += '</td>';
+                    innerHtml += '</tr>';
+                    $('table#task-event-table tbody').append(innerHtml);
+
+                    // Initalize task event
+                    $('#settings-tab-opportunities input#task-event').val('');
+                    
+                    // Set focus to task event
+                    $('#settings-tab-opportunities input#task-event').focus();
+                } else {
+                    // Show message
+                    showMessage('danger', 'Error, Please retry!');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                loader('hide');
+                
+                // Show message
+                showMessage('danger', 'Error, Please retry!');
+            }
+        });
+    });
+
+    $(document).on('click', 'button.btn-remove-task-event', function() {
+        var trObj = $(this).closest('tr');
+        var id = $(trObj).attr('data-id');
+        var teName = $(trObj).attr('data-name');
+        if (id == undefined || id == null || id == '' || id == 0) {
+            showMessage('danger', 'Can\'t this task event.');
+            return false;
+        }
+
+        loader('show');
+
+        $.ajax({
+            url: "/settings/remove/opportunities-task-event",
+            type: "delete",
+            dataType: "json",
+            data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    id: id
+                },
+            success: function(response) {
+                loader('hide');
+                
+                if (response.success) {
+                    // Show message
+                    showMessage('success', teName + ' was removed successfully!');
+                    
+                    // Remove tr
+                    $(trObj).remove();
+                    
+                    // Add no-data row
+                    if ($('table#task-event-table tbody').find('tr').length == 0) {
+                        var innerHtml = '<tr class="no-data">';
+                        innerHtml += '<td colspan="2" class="text-danger text-center">No Task / Event(s)</td>';
+                        innerHtml += '</tr>';
+                        $('table#task-event-table tbody').append(innerHtml);
+                    }
+                } else {
+                    // Show message
+                    showMessage('danger', 'Error, Please retry!');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                loader('hide');
+                
+                // Show message
+                showMessage('danger', 'Error, Please retry!');
+            }
+        });
+    });
+
+    $(document).on('click', 'button.btn-edit-task-event', function() {
+        var trObj = $(this).closest('tr');
+        var id = $(trObj).attr('data-id');
+        var teName = $(trObj).attr('data-name');
+        
+        if (id == undefined || id == null || id == 0 || id == '') {
+            showMessage('danger', 'Can\'t edit this task / event because ID is empty.');
+            return false;
+        }
+
+        $('#edit-task-event-modal input[name=edit-task-event-id').val(id);
+        $('#edit-task-event-modal input[name=edit-task-event-name]').val(teName);
+        
+        // Show Edit Task / Event Modal
+        $('#edit-task-event-modal').modal({
+            backdrop: 'static'
+        });
+    });
+
+    $('button#btn-update-task-event').click(function() {
+        var id = $('#edit-task-event-modal input[name=edit-task-event-id]').val();
+        var teName = $('#edit-task-event-modal input[name=edit-task-event-name]').val();
+        
+
+        if (id == undefined || id == null || id == 0 || id == '') {
+            $('#edit-task-event-modal').modal('hide');
+            showMessage('danger', 'Error! Please retry.');
+            return false;
+        }
+
+        if (teName == undefined || teName == null || teName == '') {
+            showMessage('danger', 'Please enter task / event name.');
+            $('#edit-task-event-modal input[name=edit-task-event-name]').focus();
+            return false;
+        }
+
+        loader('show');
+
+        $.ajax({
+            url: "/settings/update/opportunities-task-event",
+            type: "put",
+            dataType: "json",
+            data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    id: id,
+                    name: teName
+                },
+            success: function(response) {
+                loader('hide');
+                
+                if (response.success) {
+                    // Show message
+                    showMessage('success', response.task_event.name + ' was updated successfully!');
+                    
+                    // Hide modal
+                    $('#edit-task-event-modal').modal('hide');
+
+                    // Update tr
+                    var selectedTr = $('table#task-event-table tbody tr[data-id="' + response.task_event.id + '"]');
+                    $(selectedTr).attr('data-name', response.task_event.name);
+                    $(selectedTr).find('td:nth-child(1)').text(response.task_event.name);
+                } else {
+                    // Show message
+                    showMessage('danger', 'Error, Please retry!');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                loader('hide');
+                
+                // Show message
+                showMessage('danger', 'Error, Please retry!');
+            }
+        });
     });
 });

@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    function initializeDatePicker() {
+        $('.date').datepicker({
+            format: 'dd-mm-yyyy',
+            todayBtn: "linked",
+            todayHighlight: true,
+            clearBtn: true,
+            autoclose: true
+        });
+    }
     function clearAddTaskModal() {
         // $('#add-task-modal select[name=action]').selectpicker('val', $("#add-task-modal select[name=action] option:first").val());
         // $('#add-task-modal select[name=step]').selectpicker('val', $("#add-task-modal select[name=step] option:first").val());
@@ -112,13 +121,8 @@ $(document).ready(function() {
         $($.fn.dataTable.tables( {visible: true, api: true} ).column(idx).header()).find('.task-table-header').append('<span class="sort-icon"/>');
     });
     
-    $('.date').datepicker({
-        format: 'dd-mm-yyyy',
-        todayBtn: "linked",
-        todayHighlight: true,
-        clearBtn: true,
-        autoclose: true
-    });
+    initializeDatePicker();
+
     $('#btn-show-modal').click(function() {
         //Show modal
         $('#add-opportunity-modal').modal({
@@ -209,13 +213,7 @@ $(document).ready(function() {
                         $(table.column(idx).header()).find('.task-table-header').append('<span class="sort-icon"/>');
                     }
                 });
-                $('.date').datepicker({
-                    format: 'dd-mm-yyyy',
-                    todayBtn: "linked",
-                    todayHighlight: true,
-                    clearBtn: true,
-                    autoclose: true
-                });
+                initializeDatePicker();
 
                 // Add opportunity id and name
                 $('#opp-tab-' + tabIndex).find('input[name=opp-id]').val(res.id);
@@ -497,15 +495,20 @@ $(document).ready(function() {
     });
 
     // When click label for radio/checkbox
-    $(document).on('click', '.radio-group label', function() {
+    $(document).on('click', '.radio-group label, table#jppsoe-table .form-check input[type=checkbox] + label', function(e) {
+        e.preventDefault();
         $(this).closest('.form-check').find('input[type=radio]').prop("checked", true);
         if ($(this).closest('.form-check').find('input[type=checkbox]').is(':checked')) {
             $(this).closest('.form-check').find('input[type=checkbox]').prop("checked", false);
         } else {
             $(this).closest('.form-check').find('input[type=checkbox]').prop("checked", true);
         }
+
+        $(this).closest('.form-check').find('input[type=checkbox]').trigger('change');
     });
 
+
+    // Actions for Org Chart Table
     $(document).on('click', '.btn-add-orgchart-row', function() {
         let oTable = $(this).closest('.tab-component').find('#orgchart-table');
         // Remove no data row
@@ -748,5 +751,166 @@ $(document).ready(function() {
         }
         
         window.location.href = '/opportunities/download-orgcharts/' + id;
+    });
+
+    // Actions for Joint Project Plan / SoE Table
+    $(document).on('click', '.btn-add-jppsoe-row', function() {
+        let jTable = $(this).closest('.tab-component').find('#jppsoe-table');
+        // Remove no data row
+        $(jTable).find('#no-data-row').remove();
+        
+        // Add new row
+        $(jTable).find('tbody').append($('#jppsoe-tr-component-empty tbody').html());
+        initializeDatePicker();
+        let trObj = $(jTable).find('tbody tr').last();
+
+        // Add organisation element
+        let organisation = $(this).closest('.tab-component').find('.opp-main-info-form input[name=opp_organisation]').val();
+        if (organisation != undefined && organisation != null & organisation != '') {
+            let newElement = '<div class="form-check pt-0">';
+            newElement += '<input type="checkbox" class="form-check-input" name="opp_organisation" id="opp_organisation-0">';
+            newElement += '<label class="form-check-label" for="opp_organisation-0">' + organisation + '</label>';
+            newElement += '</div>';
+            $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
+        }
+        
+        trObj[0].scrollIntoView(true);
+    });
+
+    $(document).on('change', '.tab-component table#jppsoe-table input, .tab-component table#jppsoe-table select', function() {
+        // Prevent change event when initialize datepicker
+        if ($(this).attr("name") == 'target_date' && 
+            $(this).val() == '' && 
+            $(this).closest('tr').data('id') == 0) {
+            return false;
+        }
+        
+        let tabComponent = $(this).closest('.tab-component');
+        let rowObj = $(this).closest('tr');
+        let oId = $(tabComponent).find('input[name=opp-id]').val();
+        let id = $(rowObj).data('id');
+        
+        if (oId == 0) {
+            showMessage('danger', "Type: Input Error<br/>NOTE: Opportunity Tab didn't create yet!");
+            return;
+        }
+
+        let no = $(rowObj).find('input[name=no]').val();
+        let taskEvent = $(rowObj).find('select[name=task_event]').val();
+        let ownership = 0;
+        if ($(rowObj).find('input[name=user_company]').is(':checked') == true &&
+            $(rowObj).find('input[name=opp_organisation]').is(':checked') == true) {
+            ownership = 3;
+        } else if ($(rowObj).find('input[name=user_company]').is(':checked') == true &&
+            $(rowObj).find('input[name=opp_organisation]').is(':checked') == false) {
+            ownership = 1;
+        } else if ($(rowObj).find('input[name=user_company]').is(':checked') == false &&
+            $(rowObj).find('input[name=opp_organisation]').is(':checked') == true) {
+            ownership = 2;
+        }
+        let targetDate = $(rowObj).find('input[name=target_date]').val();
+        let completed = $(rowObj).find('select[name=completed]').val();
+        let comments = $(rowObj).find('input[name=comments]').val();
+                
+        loader('show');
+
+        $.ajax({
+            url:        "opportunities/save-jpp-soe",
+            dataType:   "json",
+            type:       "post",
+            data:       {
+                            _token: $('meta[name="csrf-token"]').attr('content'),
+                            id:             id,
+                            opp_id:         oId,
+                            no:             no,
+                            task_event:     taskEvent,
+                            ownership:      ownership,
+                            target_date:    targetDate,
+                            completed:      completed,
+                            comments:       comments
+                        },
+            success: function( res ) {
+                loader('hide');
+
+                if (res.success) {
+                    showMessage('success', 'Data was saved successfully.');
+
+                    // Change jpp soe id
+                    $(rowObj).data('id', res.id);
+                } else {
+                    showMessage('danger', 'Error, Please retry later.');
+                }
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                showMessage('danger', 'Error, Please retry later.');
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-remove-jppsoe-row', function() {
+        let rowObj = $(this).closest('tr');
+        let id = $(rowObj).data('id');
+
+        if (id == 0) {
+            var jppSoeTable = $(rowObj).closest('table');
+            // Remove row element
+            $(rowObj).remove();
+
+            if ($(jppSoeTable).find('tbody tr').length == 0) {
+                var innerHtml = '<tr id="no-data-row">';
+                innerHtml += '<td colspan="7" class="text-danger text-center">No Data</td>';
+                innerHtml += '</tr>';
+                $(jppSoeTable).find('tbody').append(innerHtml);
+            }
+            return;
+        }
+
+        loader('show');
+
+        $.ajax({
+            url:        "opportunities/remove-jpp-soe",
+            dataType:   "json",
+            type:       "delete",
+            data:       {
+                            _token: $('meta[name="csrf-token"]').attr('content'),
+                            id: id
+                        },
+            success: function( res ) {
+                loader('hide');
+
+                if (res.success) {
+                    var jppSoeTable = $(rowObj).closest('table');
+                    // Remove row element
+                    $(rowObj).remove();
+
+                    if ($(jppSoeTable).find('tbody tr').length == 0) {
+                        var innerHtml = '<tr id="no-data-row">';
+                        innerHtml += '<td colspan="11" class="text-danger text-center">No Data</td>';
+                        innerHtml += '</tr>';
+                        $(jppSoeTable).find('tbody').append(innerHtml);
+                    }
+                
+                    showMessage('success', 'Joint Project Plan / SoE(ID: ' + id + ') was removed successfully.');
+                } else {
+                    showMessage('danger', 'Error, please retry later.');
+                }
+            },
+            error: function (request, status, error) {
+                loader('hide');
+                showMessage('danger', 'Error, please retry later.');
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-download-jppsoe', function() {
+        let id = $(this).closest('.tab-component').find('input[name=opp-id]').val();
+
+        if (id == 0 || id == '' || id == undefined) {
+            showMessage('danger', "Error, Please retry later.");
+            return;
+        }
+        
+        window.location.href = '/opportunities/download-jppsoes/' + id;
     });
 });

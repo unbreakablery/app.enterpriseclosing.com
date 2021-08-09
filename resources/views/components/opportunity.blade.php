@@ -673,7 +673,7 @@
                         <th scope="col" class="text-left no-sort" width="100">Mobile</th>
                         <th scope="col" class="text-left no-sort" width="110">Role</th>
                         <th scope="col" class="text-left no-sort" width="90">Engagement</th>
-                        <th scope="col" class="text-left no-sort" width="">Note</th>
+                        <th scope="col" class="text-left no-sort" width="">Notes</th>
                         <th scope="col" class="text-left no-sort" width="35"></th>
                     </tr>
                 </thead>
@@ -690,5 +690,52 @@
                 </tbody>
             </table>
         </div>
-    </div>  
+    </div>
+
+    <div class="row col-lg-12 col-md-12 col-sm-12 mt-4 pr-0">
+        <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
+            <h4 class="p-special-1">Joint Project Plan / SoE</h4>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pr-1 mb-1">
+            <div class="row ml-0 mr-0 pl-1 task-section action-group justify-content-end">
+                <!-- <button type="button" class="btn btn-grad text-uppercase btn-upload-jppsoe-modal mr-1" title="Upload From CSV">
+                    <i class="bi bi-upload"></i>
+                </button> -->
+                <button type="button" class="btn btn-grad text-uppercase btn-download-jppsoe mr-1" title="Download To CSV">
+                    <i class="bi bi-download"></i>
+                </button>
+                <button type="button" class="btn btn-grad text-uppercase btn-add-jppsoe-row">
+                    Add Row
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive table-wrapper mb-4 p-special-1">
+        <div class="jppsoe-table-wrapper border-bottom border-white">
+            <table class="table table-hover w-100 mb-0" id="jppsoe-table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="text-left no-sort" width="46">No.</th>
+                        <th scope="col" class="text-left no-sort" width="">Task / Event</th>
+                        <th scope="col" class="text-left no-sort" width="">Ownership</th>
+                        <th scope="col" class="text-left no-sort" width="">Target Date</th>
+                        <th scope="col" class="text-left no-sort" width="">Completed</th>
+                        <th scope="col" class="text-left no-sort" width="">Coments</th>
+                        <th scope="col" class="text-left no-sort" width="35"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (isset($jppSoes) && count($jppSoes) > 0)
+                        @foreach ($jppSoes as $js)
+                            <x-opp-jpp-soe-row :row="$js" />
+                        @endforeach
+                    @else
+                        <tr id="no-data-row">
+                            <td class="text-center text-danger" colspan="7">No Data</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div> 
 </div>

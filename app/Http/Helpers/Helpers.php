@@ -12,6 +12,7 @@ use App\Models\OpportunityMeddpicc;
 use App\Models\OpportunitySetting;
 use App\Models\OpportunitySalesStage;
 use App\Models\OpportunityOrgChart;
+use App\Models\OpportunityJppSoe;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
@@ -377,6 +378,7 @@ if (!function_exists('storeOpportunityMain')) {
             $opportunityMain->what_new_changed  = $data->what_new_changed;
             $opportunityMain->red_flags         = $data->red_flags;
             $opportunityMain->folder_link       = $data->folder_link;
+            $opportunityMain->opp_organisation  = $data->opp_organisation;
             
             $opportunityMain->save();
             return $opportunityMain->id;
@@ -407,6 +409,7 @@ if (!function_exists('storeOpportunityMain')) {
         $opportunity->folder_link = $data->folder_link;
         $opportunity->competitive_position = $data->competitive_position;
         $opportunity->progress_barometer = $data->progress_barometer;
+        $opportunity->opp_organisation = $data->opp_organisation;
         
         $opportunity->save();
 
@@ -1206,6 +1209,8 @@ if (!function_exists('updateUser')) {
         $user->update();
 
         $u_user = new \StdClass();
+        $u_user->first_name = $user->first_name;
+        $u_user->last_name = $user->last_name;
         $u_user->role = $user->role;
         $u_user->role_name = getUserRoleName($user->role);
         $u_user->active = $user->active;
@@ -1392,5 +1397,151 @@ if (!function_exists('getOppDropdownNameByValue')) {
         }
 
         return '';
+    }
+}
+
+if (!function_exists('getOppTaskEventsSettings')) {
+    function getOppTaskEventsSettings()
+    {
+        $taskEvents = OpportunitySetting::where('user', Auth::user()->id)
+                                        ->where('o_key', 'task-event')
+                                        ->orderBy('id', 'ASC')
+                                        ->select('id', 'o_value')
+                                        ->get();
+        return $taskEvents;
+    }
+}
+
+if (!function_exists('storeOppTaskEventSettings')) {
+    function storeOppTaskEventSettings($data)
+    {
+        $userId = Auth::user()->id;
+        $task_event_name = $data->get('name');
+        
+        if (!isset($data->id)) {
+            // insert
+            $taskEvent = OpportunitySetting::where('user', $userId)
+                                            ->where('o_key', 'task-event')
+                                            ->where('o_value', $task_event_name)
+                                            ->get()
+                                            ->first();
+            if ($taskEvent) {
+                return null;
+            }
+
+            $taskEvent = new OpportunitySetting();
+            $taskEvent->user = $userId;
+            $taskEvent->o_key = 'task-event';
+            $taskEvent->o_value = $task_event_name;
+            $taskEvent->save();
+            
+            $result = new \stdClass();
+            $result->id = $taskEvent->id;
+            $result->name = $taskEvent->o_value;
+        } else {
+            // update
+            $id = $data->get('id');
+            $taskEvent = OpportunitySetting::where('user', $userId)
+                                                ->where('o_key', 'task-event')
+                                                ->where('o_value', $task_event_name)
+                                                ->get()
+                                                ->first();
+            if ($taskEvent != null && $taskEvent->id != $id) {
+                return null;
+            }
+
+            $taskEvent = OpportunitySetting::where('id', $id)
+                                                ->get()
+                                                ->first();
+            $taskEvent->o_value = $task_event_name;
+            
+            $taskEvent->save();
+
+            $result = new \stdClass();
+            $result->id = $taskEvent->id;
+            $result->name = $taskEvent->o_value;
+        }
+        
+        return $result;
+    }
+}
+
+if (!function_exists('deleteOppTaskEventSettings')) {
+    function deleteOppTaskEventSettings($data)
+    {
+        $result = OpportunitySetting::find($data->id)->delete();
+
+        // Change task event value associated with this id
+        OpportunityJppSoe::where('task_event', $data->id)
+                            ->update([
+                                'task_event' => NULL
+                            ]);
+
+        return $result;
+    }
+}
+
+if (!function_exists('getOppJppSoeOwnerships')) {
+    function getOppJppSoeOwnerships($opp_id = null)
+    {
+        $user = User::find(Auth::user()->id);
+        $result = null;
+
+        if (!empty($opp_id)) {
+            $opp = OpportunityMain::find($opp_id);
+            if (!empty($opp->opp_organisation)) {
+                if ($result == null) {
+                    $result = [];
+                }
+                $result['opp_organisation'] = $opp->opp_organisation;
+            }
+        }
+        
+        if (!empty($user->organisation)) {
+            if ($result == null) {
+                $result = [];
+            }
+            $result['user_company'] = $user->organisation;
+        }
+        
+        return $result;
+    }
+}
+
+if (!function_exists('storeJppSoe')) {
+    function storeJppSoe($data)
+    {
+        $id = $data->id;
+
+        if ($id == 0) {
+            $jppSoe = new OpportunityJppSoe();
+        } else {
+            $jppSoe = OpportunityJppSoe::find($data->id);
+        }
+
+        $jppSoe->opp_id         = $data->opp_id;
+        $jppSoe->no             = empty($data->no) ? 0 : $data->no;
+        $jppSoe->task_event     = $data->task_event;
+        $jppSoe->ownership      = $data->ownership;
+        $jppSoe->target_date    = (empty($data->target_date)) ? null : \DateTime::createFromFormat('d-m-Y', $data->target_date);
+        $jppSoe->completed      = $data->completed;
+        $jppSoe->comments       = $data->comments;
+        
+        $jppSoe->save();
+
+        return $jppSoe;
+    }
+}
+
+if (!function_exists('deleteJppSoe')) {
+    function deleteJppSoe($data)
+    {
+        if (empty($data->id)) {
+            return null;
+        }
+
+        $jppSoe = OpportunityJppSoe::find($data->id);
+
+        return $jppSoe->delete();
     }
 }

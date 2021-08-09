@@ -7,6 +7,7 @@ use App\Models\OpportunityMain;
 use App\Models\OpportunityMeddpicc;
 use App\Models\OpportunitySetting;
 use App\Models\OpportunityOrgChart;
+use App\Models\OpportunityJppSoe;
 use App\Models\Task;
 use Auth;
 
@@ -72,6 +73,11 @@ class OpportunityController extends Controller
 
             $temp->orgCharts = OpportunityOrgChart::where('opp_id', $oppMain->id)
                                     ->orderBy('order', 'ASC')
+                                    ->get()
+                                    ->all();
+
+            $temp->jppSoes = OpportunityJppSoe::where('opp_id', $oppMain->id)
+                                    ->orderBy('no', 'ASC')
                                     ->get()
                                     ->all();
             $data[] = $temp;
@@ -283,6 +289,88 @@ class OpportunityController extends Controller
                                     $row['title'], $row['email'], $row['landline'],
                                     $row['mobile'], $row['role'], $row['engagement'],
                                     $row['notes']
+                                )
+                            );
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function saveJppSoe(Request $request)
+    {
+        $jppSoe = storeJppSoe($request);
+        return response()->json([
+            'success' => true,
+            'id' => $jppSoe->id
+        ]);
+    }
+
+    public function removeJppSoe(Request $request)
+    {
+        $jppSoe = deleteJppSoe($request);
+
+        return response()->json([
+            'success' => $jppSoe
+        ]);
+    }
+
+    public function downloadJppSoes(Request $request)
+    {
+        $oppId = $request->id;
+        $opportunity = OpportunityMain::where('id', $oppId)
+                            ->get()
+                            ->first();
+        
+        $fileName = 'JppSoE-' . $opportunity->opportunity . '.csv';
+
+        $jppSoes = OpportunityJppSoe::from('opportunities_jpp_soe AS ojs')
+                            ->where('opp_id', $oppId)
+                            ->leftJoin('opportunities_settings AS os', 'os.id', '=', 'ojs.task_event')
+                            ->select('ojs.no', 'ojs.target_date', 'ojs.comments', 
+                                    'os.o_value AS task_event', 'ojs.completed', 'ojs.ownership')
+                            ->orderBy('ojs.no', 'ASC')
+                            ->get();
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('No.', 'Task / Event', 'Ownership', 
+                        'Target Date', 'Completed', 'Comments'
+                    );
+        $callback = function() use($jppSoes, $columns, $opportunity) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            
+            foreach ($jppSoes as $jppSoe) {
+                $row['no']          = $jppSoe->no;
+                $row['task_event']  = $jppSoe->task_event;
+                $row['ownership']   = '';
+                switch ($jppSoe->ownership) {
+                    case 1:
+                        $row['ownership'] = Auth::user()->organisation;
+                        break;
+                    case 2:
+                        $row['ownership'] = $opportunity->opp_organisation;
+                        break;
+                    case 3:
+                        $row['ownership'] = $opportunity->opp_organisation . ', ' . Auth::user()->organisation;
+                        break;
+                }
+                $row['target_date'] = $jppSoe->target_date;
+                $row['completed']   = getOppDropdownNameByValue('jpp_soe_completed', $jppSoe->completed);
+                $row['comments']    = $jppSoe->comments;
+                                                
+                fputcsv($file, array(
+                                    $row['no'], $row['task_event'], $row['ownership'],
+                                    $row['target_date'], $row['completed'], $row['comments']
                                 )
                             );
             }

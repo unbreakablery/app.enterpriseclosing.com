@@ -47,6 +47,9 @@ Route::delete('/opportunities/remove-org-chart', 'OpportunityController@removeOr
 Route::post('/opportunities/save-org-chart', 'OpportunityController@saveOrgChart')->name('opportunity.save.org-chart');
 Route::post('/opportunities/upload-orgcharts', 'OpportunityController@uploadOrgcharts')->name('opportunity.upload.orgcharts');
 Route::get('/opportunities/download-orgcharts/{id}', 'OpportunityController@downloadOrgcharts')->name('opportunity.download.orgcharts');
+Route::post('/opportunities/save-jpp-soe', 'OpportunityController@saveJppSoe')->name('opportunity.save.jpp-soe');
+Route::delete('/opportunities/remove-jpp-soe', 'OpportunityController@removeJppSoe')->name('opportunity.remove.jpp-soe');
+Route::get('/opportunities/download-jppsoes/{id}', 'OpportunityController@downloadJppSoes')->name('opportunity.download.jppsoes');
 
 Route::get('/scripts', 'ScriptController@getScripts')->name('scripts');
 Route::delete('/scripts/remove/script-main/{id}', 'ScriptController@removeScriptMain')->name('scripts.remove.main');
@@ -68,6 +71,9 @@ Route::post('/settings/store/opportunities-input-fields', 'SettingsController@st
 Route::post('/settings/store/opportunities-sales-stage', 'SettingsController@storeOppSalesStageSettings')->name('settings.store.opp.salesstage');
 Route::delete('/settings/remove/opportunities-sales-stage', 'SettingsController@removeOppSalesStageSettings')->name('settings.remove.opp.salesstage');
 Route::put('/settings/update/opportunities-sales-stage', 'SettingsController@updateOppSalesStageSettings')->name('settings.update.opp.salesstage');
+Route::post('/settings/store/opportunities-task-event', 'SettingsController@storeOppTaskEventSettings')->name('settings.store.opp.taskevent');
+Route::delete('/settings/remove/opportunities-task-event', 'SettingsController@removeOppTaskEventSettings')->name('settings.remove.opp.taskevent');
+Route::put('/settings/update/opportunities-task-event', 'SettingsController@updateOppTaskEventSettings')->name('settings.update.opp.taskevent');
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
 Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');
 Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSettings')->name('settings.store.skill.main');

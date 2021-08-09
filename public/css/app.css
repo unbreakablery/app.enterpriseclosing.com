@@ -10390,6 +10390,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 #settings-tab-skills form#form_skills_setting input[type=checkbox],
 .opp-main-info-form .sales-stage-section input[type=checkbox],
+table#jppsoe-table input[type=checkbox],
 #login-form input[type=checkbox] {
   width: 15px;
   height: 15px;
@@ -10397,6 +10398,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 #settings-tab-skills form#form_skills_setting .form-check,
 .opp-main-info-form .sales-stage-section .form-check,
+table#jppsoe-table .form-check,
 #login-form .form-check {
   justify-content: left;
   height: 22px;
@@ -10404,12 +10406,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 #settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input,
 .opp-main-info-form .sales-stage-section .form-check input[type=checkbox].form-check-input,
+table#jppsoe-table .form-check input[type=checkbox].form-check-input,
 #login-form .form-check input[type=checkbox].form-check-input {
   position: absolute;
   opacity: 0;
 }
 #settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label,
 .opp-main-info-form .sales-stage-section .form-check input[type=checkbox].form-check-input + label,
+table#jppsoe-table .form-check input[type=checkbox].form-check-input + label,
 #login-form .form-check input[type=checkbox].form-check-input + label {
   position: relative;
   cursor: pointer;
@@ -10417,9 +10421,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: flex;
   align-items: center;
   margin-bottom: 0;
+  color: #ffffff;
 }
 #settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input + label:before,
 .opp-main-info-form .sales-stage-section .form-check input[type=checkbox].form-check-input + label:before,
+table#jppsoe-table .form-check input[type=checkbox].form-check-input + label:before,
 #login-form .form-check input[type=checkbox].form-check-input + label:before {
   content: "";
   margin-right: 11px;
@@ -10430,6 +10436,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 #settings-tab-skills form#form_skills_setting .form-check input[type=checkbox].form-check-input:checked + label:after,
 .opp-main-info-form .sales-stage-section .form-check input[type=checkbox].form-check-input:checked + label:after,
+table#jppsoe-table .form-check input[type=checkbox].form-check-input:checked + label:after,
 #login-form .form-check input[type=checkbox].form-check-input:checked + label:after {
   content: " ";
   position: absolute;
@@ -10812,13 +10819,19 @@ input[type=checkbox] {
 }
 
 .orgchart-table-wrapper,
+.jppsoe-table-wrapper,
 .persons-table-wrapper {
   max-height: 310px;
   overflow-y: auto;
 }
 
+.task-event-table-wrapper {
+  max-height: 121px;
+  overflow-y: auto;
+}
+
 .sales-stage-table-wrapper {
-  max-height: 260px;
+  max-height: 218px;
   overflow-y: auto;
 }
 
@@ -10854,10 +10867,20 @@ input[type=checkbox] {
 }
 
 .orgchart-table-wrapper table#orgchart-table input, .orgchart-table-wrapper table#orgchart-table select,
+.orgchart-table-wrapper table#jppsoe-table input,
+.orgchart-table-wrapper table#jppsoe-table select,
 .orgchart-table-wrapper table#persons-table input,
 .orgchart-table-wrapper table#persons-table select,
+.jppsoe-table-wrapper table#orgchart-table input,
+.jppsoe-table-wrapper table#orgchart-table select,
+.jppsoe-table-wrapper table#jppsoe-table input,
+.jppsoe-table-wrapper table#jppsoe-table select,
+.jppsoe-table-wrapper table#persons-table input,
+.jppsoe-table-wrapper table#persons-table select,
 .persons-table-wrapper table#orgchart-table input,
 .persons-table-wrapper table#orgchart-table select,
+.persons-table-wrapper table#jppsoe-table input,
+.persons-table-wrapper table#jppsoe-table select,
 .persons-table-wrapper table#persons-table input,
 .persons-table-wrapper table#persons-table select {
   border: 0;
@@ -10872,12 +10895,14 @@ input[type=checkbox] {
 }
 
 #settingsTabsContent table#sales-stage-table tbody tr:last-child td,
+#settingsTabsContent table#task-event-table tbody tr:last-child td,
 #settingsTabsContent table#scripts-table tbody tr:last-child td,
 #settingsTabsContent table#emails-table tbody tr:last-child td,
 #settingsTabsContent table#skills-table tbody tr:last-child td {
   border-bottom: none;
 }
 #settingsTabsContent table#sales-stage-table tr th,
+#settingsTabsContent table#task-event-table tr th,
 #settingsTabsContent table#scripts-table tr th,
 #settingsTabsContent table#emails-table tr th,
 #settingsTabsContent table#skills-table tr th {
@@ -10887,8 +10912,10 @@ input[type=checkbox] {
   border-top: 0 !important;
   box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 #fff;
   border: solid 1px #fff;
+  vertical-align: middle;
 }
 #settingsTabsContent table#sales-stage-table tr td,
+#settingsTabsContent table#task-event-table tr td,
 #settingsTabsContent table#scripts-table tr td,
 #settingsTabsContent table#emails-table tr td,
 #settingsTabsContent table#skills-table tr td {
@@ -10896,6 +10923,7 @@ input[type=checkbox] {
   vertical-align: top;
 }
 #settingsTabsContent table#sales-stage-table tr td button,
+#settingsTabsContent table#task-event-table tr td button,
 #settingsTabsContent table#scripts-table tr td button,
 #settingsTabsContent table#emails-table tr td button,
 #settingsTabsContent table#skills-table tr td button {
@@ -10903,6 +10931,7 @@ input[type=checkbox] {
   padding-bottom: 1px;
 }
 #settingsTabsContent table#sales-stage-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+#settingsTabsContent table#task-event-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#scripts-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#emails-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 #settingsTabsContent table#skills-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
@@ -10913,6 +10942,7 @@ input[type=checkbox] {
 }
 
 table#orgchart-table tr th,
+table#jppsoe-table tr th,
 table#persons-table tr th,
 table#assessments-table tr th,
 table#users-table tr th {
@@ -10925,6 +10955,7 @@ table#users-table tr th {
   z-index: 100;
 }
 table#orgchart-table tr td,
+table#jppsoe-table tr td,
 table#persons-table tr td,
 table#assessments-table tr td,
 table#users-table tr td {
@@ -10932,6 +10963,7 @@ table#users-table tr td {
   vertical-align: middle;
 }
 table#orgchart-table tr td button,
+table#jppsoe-table tr td button,
 table#persons-table tr td button,
 table#assessments-table tr td button,
 table#users-table tr td button {
@@ -10939,12 +10971,14 @@ table#users-table tr td button {
   padding-bottom: 1px;
 }
 table#orgchart-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
+table#jppsoe-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#persons-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#assessments-table tbody:nth-of-type(1) tr:nth-of-type(1) td,
 table#users-table tbody:nth-of-type(1) tr:nth-of-type(1) td {
   border-top: none !important;
 }
 table#orgchart-table tbody tr:last-child td,
+table#jppsoe-table tbody tr:last-child td,
 table#persons-table tbody tr:last-child td,
 table#assessments-table tbody tr:last-child td,
 table#users-table tbody tr:last-child td {
@@ -10954,9 +10988,15 @@ table#users-table tbody tr:last-child td {
 table#sales-stage-table input[type=text],
 table#sales-stage-table input[type=number],
 table#sales-stage-table select,
+table#task-event-table input[type=text],
+table#task-event-table input[type=number],
+table#task-event-table select,
 table#orgchart-table input[type=text],
 table#orgchart-table input[type=number],
 table#orgchart-table select,
+table#jppsoe-table input[type=text],
+table#jppsoe-table input[type=number],
+table#jppsoe-table select,
 table#persons-table input[type=text],
 table#persons-table input[type=number],
 table#persons-table select,
@@ -10981,7 +11021,9 @@ table#users-table select {
   font-size: 12px;
 }
 table#sales-stage-table input[type=number],
+table#task-event-table input[type=number],
 table#orgchart-table input[type=number],
+table#jppsoe-table input[type=number],
 table#persons-table input[type=number],
 table#scripts-table input[type=number],
 table#emails-table input[type=number],
@@ -10992,8 +11034,12 @@ table#users-table input[type=number] {
 }
 table#sales-stage-table input[type=number]::-webkit-inner-spin-button,
 table#sales-stage-table input[type=number]::-webkit-outer-spin-button,
+table#task-event-table input[type=number]::-webkit-inner-spin-button,
+table#task-event-table input[type=number]::-webkit-outer-spin-button,
 table#orgchart-table input[type=number]::-webkit-inner-spin-button,
 table#orgchart-table input[type=number]::-webkit-outer-spin-button,
+table#jppsoe-table input[type=number]::-webkit-inner-spin-button,
+table#jppsoe-table input[type=number]::-webkit-outer-spin-button,
 table#persons-table input[type=number]::-webkit-inner-spin-button,
 table#persons-table input[type=number]::-webkit-outer-spin-button,
 table#scripts-table input[type=number]::-webkit-inner-spin-button,
@@ -11009,7 +11055,9 @@ table#users-table input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 table#sales-stage-table .btn.btn-counter,
+table#task-event-table .btn.btn-counter,
 table#orgchart-table .btn.btn-counter,
+table#jppsoe-table .btn.btn-counter,
 table#persons-table .btn.btn-counter,
 table#scripts-table .btn.btn-counter,
 table#emails-table .btn.btn-counter,
@@ -11025,7 +11073,9 @@ table#users-table .btn.btn-counter {
   border: 0;
 }
 table#sales-stage-table tr th,
+table#task-event-table tr th,
 table#orgchart-table tr th,
+table#jppsoe-table tr th,
 table#persons-table tr th,
 table#scripts-table tr th,
 table#emails-table tr th,
@@ -11038,7 +11088,9 @@ table#users-table tr th {
   border-color: #fff;
 }
 table#sales-stage-table tbody tr td,
+table#task-event-table tbody tr td,
 table#orgchart-table tbody tr td,
+table#jppsoe-table tbody tr td,
 table#persons-table tbody tr td,
 table#scripts-table tbody tr td,
 table#emails-table tbody tr td,
@@ -11048,7 +11100,9 @@ table#users-table tbody tr td {
   padding: 0;
 }
 table#sales-stage-table .btn-remove-row,
+table#task-event-table .btn-remove-row,
 table#orgchart-table .btn-remove-row,
+table#jppsoe-table .btn-remove-row,
 table#persons-table .btn-remove-row,
 table#scripts-table .btn-remove-row,
 table#emails-table .btn-remove-row,
@@ -11058,7 +11112,9 @@ table#users-table .btn-remove-row {
   height: 1.5rem;
 }
 table#sales-stage-table .btn-remove-row i.bi.bi-x:before,
+table#task-event-table .btn-remove-row i.bi.bi-x:before,
 table#orgchart-table .btn-remove-row i.bi.bi-x:before,
+table#jppsoe-table .btn-remove-row i.bi.bi-x:before,
 table#persons-table .btn-remove-row i.bi.bi-x:before,
 table#scripts-table .btn-remove-row i.bi.bi-x:before,
 table#emails-table .btn-remove-row i.bi.bi-x:before,
@@ -11068,7 +11124,9 @@ table#users-table .btn-remove-row i.bi.bi-x:before {
   vertical-align: 0;
 }
 table#sales-stage-table span.input-group-text,
+table#task-event-table span.input-group-text,
 table#orgchart-table span.input-group-text,
+table#jppsoe-table span.input-group-text,
 table#persons-table span.input-group-text,
 table#scripts-table span.input-group-text,
 table#emails-table span.input-group-text,

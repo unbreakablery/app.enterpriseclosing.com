@@ -6,10 +6,14 @@
         :opportunityMeddpicc="null"
         :opportunitySalesStages="null"
         :opportunityOrgCharts="null"
+        :opportunityJppSoes="null"
     />
 </div>
 <table id="orgchart-tr-component-empty" hidden>
     <tbody><x-opp-org-chart-row :row="null" /></tbody>
+</table>
+<table id="jppsoe-tr-component-empty" hidden>
+    <tbody><x-opp-jpp-soe-row :row="null" /></tbody>
 </table>
 
 <div class="opportunities-wrapper mt-4">
@@ -57,6 +61,7 @@
                     :opportunityMeddpicc="$opp->meddpicc"
                     :opportunitySalesStages="$opp->salesStages"
                     :opportunityOrgCharts="$opp->orgCharts"
+                    :opportunityJppSoes="$opp->jppSoes"
                 />
             </div>
             @endforeach
