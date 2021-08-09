@@ -51,6 +51,8 @@ class SettingsController extends Controller
 
         $salesStages = getOppSalesStagesSettings();
 
+        $taskEvents = getOppTaskEventsSettings();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
@@ -64,7 +66,8 @@ class SettingsController extends Controller
                 'skillStartAt',
                 'skillACMT',
                 'oppIFs',
-                'salesStages'
+                'salesStages',
+                'taskEvents'
             )
         );
     }
@@ -256,5 +259,46 @@ class SettingsController extends Controller
         return response()->json([
             'success' => $result
         ]);
+    }
+
+    public function storeOppTaskEventSettings(Request $request)
+    {
+        $taskEvent = storeOppTaskEventSettings($request);
+
+        if ($taskEvent) {
+            return response()->json([
+                'success' => true,
+                'task_event' => $taskEvent
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        } 
+    }
+
+    public function removeOppTaskEventSettings(Request $request)
+    {
+        $result = deleteOppTaskEventSettings($request);
+
+        return response()->json([
+            'success' => $result
+        ]);
+    }
+
+    public function updateOppTaskEventSettings(Request $request)
+    {
+        $taskEvent = storeOppTaskEventSettings($request);
+
+        if ($taskEvent) {
+            return response()->json([
+                'success' => true,
+                'task_event' => $taskEvent
+            ]);
+        } else {
+            return response()->json([
+                'success' => false
+            ]);
+        } 
     }
 }

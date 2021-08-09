@@ -398,74 +398,133 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <form action="" class="form-inline" id="sales-stage-form">
-                        <h3 class="setting-sub-title mt-4">Create Sales Stage</h3>
-                        <div class="task-section col-1g-12 col-md-12 col-sm-12">
-                            <div class="form-group mb-2">
-                                <label for="sales-stage">Sales Stage Name</label>
-                                <input type="text" name="sales-stage" id="sales-stage" class="form-control n-b-r" placeholder="Enter Sales Stage...">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="sales-stage-order">Order</label>
-                                <input type="text" name="sales-stage-order" id="sales-stage-order" class="form-control n-b-r" value="0" placeholder="Enter Sales Stage Order..." min="0">
-                            </div>
-                            <div class="form-check pl-0">
-                                <input type="checkbox" name="show-stage-progress" id="show-stage-progress" class="form-check-input n-b-r">
-                                <label class="form-check-label" for="show-stage-progress">Show stage progress</label>
-                            </div>
-                            <div class="form-check pl-0">
-                                <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
-                                <label class="form-check-label" for="show-strength-indicators">Show strength indicators</label>
+                <div class="col-lg-8 col-md-8 col-sm-6">
+                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            <form action="" class="form-inline" id="sales-stage-form">
+                                <h3 class="setting-sub-title mt-4">Create Sales Stage</h3>
+                                <div class="task-section col-1g-12 col-md-12 col-sm-12">
+                                    <div class="form-group mb-2">
+                                        <label for="sales-stage">Sales Stage Name</label>
+                                        <input type="text" name="sales-stage" id="sales-stage" class="form-control n-b-r" placeholder="Enter Sales Stage...">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="sales-stage-order">Order</label>
+                                        <input type="text" name="sales-stage-order" id="sales-stage-order" class="form-control n-b-r" value="0" placeholder="Enter Sales Stage Order..." min="0">
+                                    </div>
+                                    <div class="form-check pl-0">
+                                        <input type="checkbox" name="show-stage-progress" id="show-stage-progress" class="form-check-input n-b-r">
+                                        <label class="form-check-label" for="show-stage-progress">Show stage progress</label>
+                                    </div>
+                                    <div class="form-check pl-0">
+                                        <input type="checkbox" name="show-strength-indicators" id="show-strength-indicators" class="form-check-input n-b-r">
+                                        <label class="form-check-label" for="show-strength-indicators">Show strength indicators</label>
+                                    </div>
+                                </div>
+                                <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
+                                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sales-stage">
+                                        Save Sales Stage
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 pr-0">
+                            <h3 class="setting-sub-title mt-4">Sales Stages</h3>
+                            <div class="table-responsive table-wrapper mt-2 mb-4">
+                                <div class="sales-stage-table-wrapper border-bottom border-white">
+                                    <table class="table table-hover w-100 mb-0" id="sales-stage-table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col" class="no-sort pl-2 pr-2">Name</th>
+                                                <th scope="col" class="no-sort pl-2 pr-2">Show stage progress</th>
+                                                <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
+                                                <th scope="col" class="no-sort pl-2 pr-2">Order</th>
+                                                <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (count($salesStages) > 0)
+                                                @foreach ($salesStages as $s)
+                                                <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}" data-ssp="{{ $s->o_value2 }}" data-sso="{{ $s->o_value3 }}">
+                                                    <td class="text-white pl-2 pr-2">{{ $s->o_value }}</td>
+                                                    <td class="text-white pl-2 pr-2">@if($s->o_value2 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
+                                                    <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
+                                                    <td class="text-white pl-2 pr-2">{{ $s->o_value3 }}</td>
+                                                    <td class="text-white text-center">
+                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">
+                                                            <i class="bi bi-pencil-fill"></i>
+                                                        </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sales-stage" title="Remove">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @else
+                                                <tr class="no-data">
+                                                    <td colspan="5" class="text-danger text-center">
+                                                        No Sales Stages
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
-                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-sales-stage">
-                                Save Sales Stage
-                            </button>
+                    </div>
+                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            <form action="" class="form-inline" id="task-event-form">
+                                <h3 class="setting-sub-title mt-4">Create Task / Event</h3>
+                                <div class="task-section col-1g-12 col-md-12 col-sm-12">
+                                    <div class="form-group mb-2">
+                                        <label for="task-event">Task / Event</label>
+                                        <input type="text" name="task-event" id="task-event" class="form-control n-b-r" placeholder="Enter Task / Event...">
+                                    </div>
+                                </div>
+                                <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
+                                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-task-event">
+                                        Save Task / Event
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-6">
-                    <h3 class="setting-sub-title mt-4">Sales Stages</h3>
-                    <div class="table-responsive table-wrapper mt-2 mb-4 pr-30-px">
-                        <div class="sales-stage-table-wrapper border-bottom border-white">
-                            <table class="table table-hover w-100 mb-0" id="sales-stage-table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col" class="no-sort pl-2 pr-2">Name</th>
-                                        <th scope="col" class="no-sort pl-2 pr-2">Show stage progress</th>
-                                        <th scope="col" class="no-sort pl-2 pr-2">Show strength indicators</th>
-                                        <th scope="col" class="no-sort pl-2 pr-2">Order</th>
-                                        <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (count($salesStages) > 0)
-                                        @foreach ($salesStages as $s)
-                                        <tr data-id="{{ $s->id }}" data-ssn="{{ $s->o_value }}" data-ssi="{{ $s->o_value1 }}" data-ssp="{{ $s->o_value2 }}" data-sso="{{ $s->o_value3 }}">
-                                            <td class="text-white pl-2 pr-2">{{ $s->o_value }}</td>
-                                            <td class="text-white pl-2 pr-2">@if($s->o_value2 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
-                                            <td class="text-white pl-2 pr-2">@if($s->o_value1 == 1){{ 'Yes' }}@else{{ 'No' }}@endif</td>
-                                            <td class="text-white pl-2 pr-2">{{ $s->o_value3 }}</td>
-                                            <td class="text-white text-center">
-                                                <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-sales-stage" title="Edit">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-sales-stage" title="Remove">
-                                                    <i class="bi bi-x"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    @else
-                                        <tr class="no-data">
-                                            <td colspan="5" class="text-danger text-center">
-                                                No Sales Stages
-                                            </td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
+                        <div class="col-lg-7 col-md-7 col-sm-12 pr-0">
+                            <h3 class="setting-sub-title mt-4">Task / Events</h3>
+                            <div class="table-responsive table-wrapper mt-2 mb-4">
+                                <div class="task-event-table-wrapper border-bottom border-white">
+                                    <table class="table table-hover w-100 mb-0" id="task-event-table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col" class="no-sort pl-2 pr-2">Name</th>
+                                                <th scope="col" class="text-center no-sort pl-2 pr-2" width="65">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (count($taskEvents) > 0)
+                                                @foreach ($taskEvents as $t)
+                                                <tr data-id="{{ $t->id }}" data-name="{{ $t->o_value }}">
+                                                    <td class="text-white pl-2 pr-2">{{ $t->o_value }}</td>
+                                                    <td class="text-white text-center">
+                                                        <button type="button" class="btn btn-sm btn-success n-b-r btn-edit-task-event" title="Edit">
+                                                            <i class="bi bi-pencil-fill"></i>
+                                                        </button><button type="button" class="btn btn-sm btn-danger n-b-r btn-remove-task-event" title="Remove">
+                                                            <i class="bi bi-x"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @else
+                                                <tr class="no-data">
+                                                    <td colspan="2" class="text-danger text-center">
+                                                        No Task / Event(s)
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1191,6 +1250,41 @@
             <div class="modal-footer border-top-0">
                 <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-sales-stage">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Task / Event Modal -->
+<div class="modal fade" id="edit-task-event-modal" tabindex="-1" role="dialog" aria-labelledby="edit-task-event-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content n-b-r text-dark">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="edit-task-event-modal-header-title">Edit Task / Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-2 mb-2 pl-4 pr-4">
+                    <input type="hidden" name="edit-task-event-id" id="edit-task-event-id" />
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="edit-task-event-name">Task / Event</label>
+                            <input class="form-control n-b-r"
+                                    type="text"
+                                    id="edit-task-event-name"
+                                    name="edit-task-event-name"
+                                    value=""
+                                    placeholder="Enter Task / Event..."
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-modal-close btn-w-normal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-grad btn-w-normal" id="btn-update-task-event">Update</button>
             </div>
         </div>
     </div>
