@@ -1,5 +1,3 @@
-const { stubFalse } = require("lodash");
-
 $(document).ready(function() {
     var trObj = null;
 
