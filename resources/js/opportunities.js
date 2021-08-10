@@ -758,7 +758,7 @@ $(document).ready(function() {
         let jTable = $(this).closest('.tab-component').find('#jppsoe-table');
         // Remove no data row
         $(jTable).find('#no-data-row').remove();
-        
+
         // Add new row
         $(jTable).find('tbody').append($('#jppsoe-tr-component-empty tbody').html());
         initializeDatePicker();
@@ -766,24 +766,26 @@ $(document).ready(function() {
 
         // Add organisation element
         let organisation = $(this).closest('.tab-component').find('.opp-main-info-form input[name=opp_organisation]').val();
-        if (organisation != undefined && organisation != null & organisation != '') {
-            let newElement = '<div class="form-check pt-0">';
-            newElement += '<input type="checkbox" class="form-check-input" name="opp_organisation" id="opp_organisation-0">';
-            newElement += '<label class="form-check-label" for="opp_organisation-0">' + organisation + '</label>';
-            newElement += '</div>';
-            $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
+
+        if (organisation == undefined || organisation == null || organisation == '') {
+            organisation = 'Organisation';
         }
-        
+        let newElement = '<div class="form-check pt-0">';
+        newElement += '<input type="checkbox" class="form-check-input" name="opp_organisation" id="opp_organisation-0">';
+        newElement += '<label class="form-check-label" for="opp_organisation-0">' + organisation + '</label>';
+        newElement += '</div>';
+        $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
+
         trObj[0].scrollIntoView(true);
     });
 
     $(document).on('change', '.tab-component table#jppsoe-table input, .tab-component table#jppsoe-table select', function() {
         // Prevent change event when initialize datepicker
-        if ($(this).attr("name") == 'target_date' && 
-            $(this).val() == '' && 
-            $(this).closest('tr').data('id') == 0) {
-            return false;
-        }
+        // if ($(this).attr("name") == 'target_date' &&
+        //     $(this).val() == '' &&
+        //     $(this).closest('tr').data('id') == 0) {
+        //     return false;
+        // }
         
         let tabComponent = $(this).closest('.tab-component');
         let rowObj = $(this).closest('tr');

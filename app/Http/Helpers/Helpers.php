@@ -1489,11 +1489,11 @@ if (!function_exists('getOppJppSoeOwnerships')) {
 
         if (!empty($opp_id)) {
             $opp = OpportunityMain::find($opp_id);
+            $result = [];
             if (!empty($opp->opp_organisation)) {
-                if ($result == null) {
-                    $result = [];
-                }
                 $result['opp_organisation'] = $opp->opp_organisation;
+            } else {
+                $result['opp_organisation'] = 'Organisation';
             }
         }
         
