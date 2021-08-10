@@ -135,13 +135,13 @@
                                         $radios = config('app_setting.opportunities.radio_groups.sales_stage.stage_progress');
                                     @endphp
                                     @foreach ($salesStages as $s)
-                                        <div class="col-lg-6 col-md-6 col-sm-12 mr-0">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 mr-0">
                                             @if ($s->ssp == 1 || $s->ssi == 1)
                                                 <label>{{ $s->ssn }}</label>
                                             @endif
-                                            <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
+                                            <div class="row col-lg-12 col-md-12 col-sm-12 ml-2 mr-0 d-flex">
                                                 @if ($s->ssp == 1)
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="stage-progress-section mr-4">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <label>Stage Progress</label>
@@ -166,7 +166,7 @@
                                                 </div>
                                                 @endif
                                                 @if ($s->ssi == 1)
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="strength-indicator-section">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <label>Strength Indicator</label>
@@ -206,13 +206,13 @@
                                 <label>Sales Stages</label>
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     @foreach ($salesStages as $s)
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
                                             @if ($s->ssp == 1 || $s->ssi == 1)
                                                 <label>{{ $s->ssn }}</label>
                                             @endif
-                                            <div class="row col-lg-12 col-md-12 col-sm-12 mr-0 d-flex">
+                                            <div class="row col-lg-12 col-md-12 col-sm-12 ml-2 mr-0 d-flex">
                                                 @if ($s->ssp == 1)
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="stage-progress-section mr-4">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <label>Stage Progress</label>
@@ -237,7 +237,7 @@
                                                 </div>
                                                 @endif
                                                 @if ($s->ssi == 1)
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="strength-indicator-section">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <label>Strength Indicator</label>
