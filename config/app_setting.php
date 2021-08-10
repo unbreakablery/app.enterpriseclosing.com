@@ -12,109 +12,108 @@ return  [
     ],
     'opportunities' => [
         'input_fields' => [
-            'opportunity'       => [
-                'name' => 'Opportunity Name', 
-                'type' => '', 
+            'opportunity'           => [
+                'name' => 'Opportunity Name',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'usecase'           => [
-                'name' => 'Use-Case', 
-                'type' => '', 
+            'usecase'               => [
+                'name' => 'Use-Case',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'emp_num'           => [
-                'name' => 'No. of Employees', 
-                'type' => '', 
+            'emp_num'               => [
+                'name' => 'No. of Employees',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'close_date'        => [
-                'name' => 'Close Date', 
-                'type' => 'date', 
+            'close_date'            => [
+                'name' => 'Close Date',
+                'type' => 'date',
                 'placeholder' => 'dd-mm-yyyy',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'stage'             => [
-                'name' => 'Stage', 
-                'type' => '', 
+            'stage'                 => [
+                'name' => 'Stage',
+                'type' => 'select',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'amount'            => [
-                'name' => 'Amount', 
-                'type' => '', 
+            'amount'                => [
+                'name' => 'Amount',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'currency'          => [
-                'name' => 'Currency', 
-                'type' => '', 
+            'currency'              => [
+                'name' => 'Currency',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'lead_source'       => [
-                'name' => 'Lead Source', 
-                'type' => '', 
+            'lead_source'           => [
+                'name' => 'Lead Source',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'compelling_event'  => [
-                'name' => 'Compelling Event', 
-                'type' => '', 
+            'compelling_event'      => [
+                'name' => 'Compelling Event',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'user_num'       => [
-                'name' => 'No. of Users', 
-                'type' => '', 
+            'user_num'              => [
+                'name' => 'No. of Users',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'red_flags'         => [
-                'name' => 'Red Flags', 
-                'type' => '', 
+            'red_flags'             => [
+                'name' => 'Red Flags',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'opp_organisation'  => [
-                'name' => 'Organisation', 
-                'type' => '', 
+            'opp_organisation'      => [
+                'name' => 'Organisation',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'next_step'         => [
-                'name' => 'Next Step', 
-                'type' => '', 
+            'next_step'             => [
+                'name' => 'Next Step',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-12 col-md-12 col-sm-12'
             ],
-            'folder_link'       => [
-                'name' => 'Link to Folder', 
-                'type' => '', 
+            'folder_link'           => [
+                'name' => 'Link to Folder',
+                'type' => '',
                 'placeholder' => '',
                 'cols' => 'col-lg-12 col-md-12 col-sm-12'
             ],
-            'what_new_changed'  => [
-                'name' => 'What\'s New / Changed', 
-                'type' => 'textarea', 
+            'what_new_changed'      => [
+                'name' => 'What\'s New / Changed',
+                'type' => 'textarea',
                 'placeholder' => '',
                 'cols' => 'col-lg-12 col-md-12 col-sm-12'
             ],
             'competitive_position'  => [
-                'name' => 'Competitive Position', 
-                'type' => 'radio_group', 
+                'name' => 'Competitive Position',
+                'type' => 'radio_group',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
             ],
-            'progress_barometer'  => [
-                'name' => 'Progress Barometer', 
-                'type' => 'radio_group', 
+            'progress_barometer'    => [
+                'name' => 'Progress Barometer',
+                'type' => 'radio_group',
                 'placeholder' => '',
                 'cols' => 'col-lg-6 col-md-6 col-sm-6'
-            ],
-            
+            ]
         ],
         'radio_groups' => [
             'competitive_position' => [

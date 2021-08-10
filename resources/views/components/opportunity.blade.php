@@ -110,6 +110,27 @@
                                         @endforeach
                                         </div>
                                     </div>
+                                @elseif ($input->type == 'select' && $input->key == 'stage')
+                                    @php
+                                        $options = getOppSalesStagesSettings();
+                                    @endphp
+                                    @if (!empty($options))
+                                        <div class="{{ $input->cols }}">
+                                            <div class="form-group">
+                                                <label for="{{ $input->key}}">{{ $input->value}}</label>
+                                                <select name="{{ $input->key}}" id="" class="form-control p-0 n-b-r">
+                                                    <option value=""></option>
+                                                    @foreach ($options as $option)
+                                                        <option value="{{ $option->id }}"
+                                                            @if (isset($main) && !empty($main->{$input->key}) && ($main->{$input->key} == $option->id)){{ 'selected' }}@endif
+                                                        >
+                                                            {{ $option->o_value }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
                                 @else
                                     <div class="{{ $input->cols }}">
                                         <div class="form-group">

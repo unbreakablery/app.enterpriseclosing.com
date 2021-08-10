@@ -20,7 +20,7 @@ class CreateOpportunitiesMainTable extends Migration
             $table->string('usecase')->nullable();
             $table->string('emp_num')->nullable();
             $table->date('close_date')->format('dd-mm-yyyy')->nullable();
-            $table->string('stage')->nullable();
+            $table->integer('stage')->nullable();
             $table->string('next_step')->nullable();
             $table->string('amount')->nullable();
             $table->string('currency')->nullable();
