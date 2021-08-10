@@ -1545,3 +1545,45 @@ if (!function_exists('deleteJppSoe')) {
         return $jppSoe->delete();
     }
 }
+
+if (!function_exists('storeOppOwnershipSettings')) {
+    function storeOppOwnershipSettings($data)
+    {
+        $userId = Auth::user()->id;
+        $ownership = OpportunitySetting::where('user', $userId)
+                                    ->where('o_key', 'ownership')
+                                    ->get()
+                                    ->first();
+        if (empty($ownership)) {
+            // save
+            $ownership = new OpportunitySetting();
+            $ownership->user = $userId;
+            $ownership->o_key = 'ownership';
+            $ownership->o_value = '';
+            $ownership->o_value1 = isset($data->ownership) ? $data->ownership : 0;
+            $result = $ownership->save();
+        } else {
+            // update
+            $ownership->o_value1 = isset($data->ownership) ? $data->ownership : 0;
+            $result = $ownership->save();
+        }
+        
+        return $result;
+    }
+}
+
+if (!function_exists('getOppOwnershipSettings')) {
+    function getOppOwnershipSettings()
+    {
+        $userId = Auth::user()->id;
+        $ownership = OpportunitySetting::where('user', $userId)
+                                    ->where('o_key', 'ownership')
+                                    ->get()
+                                    ->first();
+        if (empty($ownership)) {
+            return 0;
+        } else {
+            return $ownership->o_value1;
+        }
+    }
+}

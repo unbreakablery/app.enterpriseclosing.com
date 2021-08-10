@@ -1471,4 +1471,46 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('button#btn-save-ownership-setting').on('click', function() {
+        var t_opp_org = $('form#ownership-setting-form input[name=opp-org-tick]:checked').length;
+        var t_user_company = $('form#ownership-setting-form input[name=user-company-tick]:checked').length;
+        var ownership = 0;
+        if (t_opp_org == 1 && t_user_company == 0) {
+            ownership = 1;
+        } else if (t_opp_org == 0 && t_user_company == 1) {
+            ownership = 2;
+        } else if (t_opp_org == 1 && t_user_company == 1) {
+            ownership = 3;
+        }
+        
+        loader('show');
+
+        $.ajax({
+            url: "/settings/store/opportunities-ownership",
+            type: "post",
+            dataType: "json",
+            data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    ownership: ownership
+                },
+            success: function(response) {
+                loader('hide');
+                
+                if (response.success) {
+                    // Show message
+                    showMessage('success', 'Ownership setting was saved successfully.');
+                } else {
+                    // Show message
+                    showMessage('danger', 'Error, Please retry!');
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                loader('hide');
+                
+                // Show message
+                showMessage('danger', 'Error, Please retry!');
+            }
+        });
+    });
 });

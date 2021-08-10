@@ -733,7 +733,6 @@ $(document).ready(function () {
     $(jTable).find('#no-data-row').remove(); // Add new row
 
     $(jTable).find('tbody').append($('#jppsoe-tr-component-empty tbody').html());
-    initializeDatePicker();
     var trObj = $(jTable).find('tbody tr').last(); // Add organisation element
 
     var organisation = $(this).closest('.tab-component').find('.opp-main-info-form input[name=opp_organisation]').val();
@@ -746,8 +745,21 @@ $(document).ready(function () {
     newElement += '<input type="checkbox" class="form-check-input" name="opp_organisation" id="opp_organisation-0">';
     newElement += '<label class="form-check-label" for="opp_organisation-0">' + organisation + '</label>';
     newElement += '</div>';
-    $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
+    $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement); // Set checked
+
+    var ownershipSetting = $('#ownership-setting').val();
+
+    if (ownershipSetting == 1) {
+      $(trObj).find('td:nth-child(3) input[name=opp_organisation]').prop('checked', true);
+    } else if (ownershipSetting == 2) {
+      $(trObj).find('td:nth-child(3) input[name=user_company]').prop('checked', true);
+    } else if (ownershipSetting == 3) {
+      $(trObj).find('td:nth-child(3) input[name=user_company]').prop('checked', true);
+      $(trObj).find('td:nth-child(3) input[name=opp_organisation]').prop('checked', true);
+    }
+
     trObj[0].scrollIntoView(true);
+    initializeDatePicker();
   });
   $(document).on('change', '.tab-component table#jppsoe-table input, .tab-component table#jppsoe-table select', function () {
     // Prevent change event when initialize datepicker

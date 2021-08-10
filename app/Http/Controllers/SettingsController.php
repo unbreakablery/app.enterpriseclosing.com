@@ -53,6 +53,8 @@ class SettingsController extends Controller
 
         $taskEvents = getOppTaskEventsSettings();
 
+        $ownership = getOppOwnershipSettings();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
@@ -67,7 +69,8 @@ class SettingsController extends Controller
                 'skillACMT',
                 'oppIFs',
                 'salesStages',
-                'taskEvents'
+                'taskEvents',
+                'ownership'
             )
         );
     }
@@ -300,5 +303,14 @@ class SettingsController extends Controller
                 'success' => false
             ]);
         } 
+    }
+
+    public function storeOppOwnershipSettings(Request $request)
+    {
+        $result = storeOppOwnershipSettings($request);
+
+        return response()->json([
+            'success' => $result
+        ]);
     }
 }

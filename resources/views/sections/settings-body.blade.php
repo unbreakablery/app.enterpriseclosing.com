@@ -366,13 +366,13 @@
             role="tabpanel"
             aria-labelledby="tab-opportunities">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-4 col-sm-12">
                     <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
                         @csrf
                         <h3>Available Input Fields</h3>
                         <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
                             @foreach ($oppIFs as $idx => $input)
-                            <div class="form-check col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-check col-lg-12 col-md-12 col-sm-12">
                                 <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
                                     id="{{ $input->key }}" 
                                     value="{{ $input->key }}"
@@ -398,7 +398,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-6">
+                <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
                         <div class="col-lg-5 col-md-5 col-sm-12">
                             <form action="" class="form-inline" id="sales-stage-form">
@@ -525,6 +525,38 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            <form action="" class="form-inline" id="ownership-setting-form">
+                                <h3 class="setting-sub-title mt-4">Setting For Ownership</h3>
+                                <div class="task-section col-1g-12 col-md-12 col-sm-12">
+                                    <div class="form-check pl-0">
+                                        <input type="checkbox"
+                                                name="opp-org-tick"
+                                                id="opp-org-tick"
+                                                class="form-check-input n-b-r"
+                                                @if ($ownership == 1 || $ownership == 3){{ 'checked' }}@endif
+                                        />
+                                        <label class="form-check-label" for="opp-org-tick">Organisation</label>
+                                    </div>
+                                    <div class="form-check pl-0">
+                                        <input type="checkbox"
+                                                name="user-company-tick"
+                                                id="user-company-tick"
+                                                class="form-check-input n-b-r"
+                                                @if ($ownership == 2 || $ownership == 3){{ 'checked' }}@endif
+                                        />
+                                        <label class="form-check-label" for="user-company-tick">Organisation user works for</label>
+                                    </div>
+                                </div>
+                                <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
+                                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-ownership-setting">
+                                        Save Settings
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

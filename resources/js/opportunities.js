@@ -761,7 +761,7 @@ $(document).ready(function() {
 
         // Add new row
         $(jTable).find('tbody').append($('#jppsoe-tr-component-empty tbody').html());
-        initializeDatePicker();
+        
         let trObj = $(jTable).find('tbody tr').last();
 
         // Add organisation element
@@ -776,7 +776,20 @@ $(document).ready(function() {
         newElement += '</div>';
         $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
 
+        // Set checked
+        let ownershipSetting = $('#ownership-setting').val();
+        if (ownershipSetting == 1) {
+            $(trObj).find('td:nth-child(3) input[name=opp_organisation]').prop('checked', true);
+        } else if (ownershipSetting == 2) {
+            $(trObj).find('td:nth-child(3) input[name=user_company]').prop('checked', true);
+        } else if (ownershipSetting == 3) {
+            $(trObj).find('td:nth-child(3) input[name=user_company]').prop('checked', true);
+            $(trObj).find('td:nth-child(3) input[name=opp_organisation]').prop('checked', true);
+        }
+
         trObj[0].scrollIntoView(true);
+
+        initializeDatePicker();
     });
 
     $(document).on('change', '.tab-component table#jppsoe-table input, .tab-component table#jppsoe-table select', function() {

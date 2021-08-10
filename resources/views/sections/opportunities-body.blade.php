@@ -15,6 +15,7 @@
 <table id="jppsoe-tr-component-empty" hidden>
     <tbody><x-opp-jpp-soe-row :row="null" /></tbody>
 </table>
+<input type="hidden" name="ownership-setting" id="ownership-setting" value="{{ getOppOwnershipSettings() }}" />
 
 <div class="opportunities-wrapper mt-4">
     <div class="row task-section col-md-12 col-sm-12 mb-4">
