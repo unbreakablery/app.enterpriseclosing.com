@@ -761,7 +761,7 @@ $(document).ready(function() {
 
         // Add new row
         $(jTable).find('tbody').append($('#jppsoe-tr-component-empty tbody').html());
-        
+
         let trObj = $(jTable).find('tbody tr').last();
 
         // Add organisation element
@@ -775,7 +775,7 @@ $(document).ready(function() {
         newElement += '<label class="form-check-label" for="opp_organisation-0">' + organisation + '</label>';
         newElement += '</div>';
         $(trObj).find('td:nth-child(3) .d-flex').prepend(newElement);
-
+        
         // Set checked
         let ownershipSetting = $('#ownership-setting').val();
         if (ownershipSetting == 1) {

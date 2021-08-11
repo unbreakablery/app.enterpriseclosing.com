@@ -1497,11 +1497,13 @@ if (!function_exists('getOppJppSoeOwnerships')) {
             }
         }
         
+        if ($result == null) {
+            $result = [];
+        }
         if (!empty($user->organisation)) {
-            if ($result == null) {
-                $result = [];
-            }
             $result['user_company'] = $user->organisation;
+        } else {
+            $result['user_company'] = 'Organisation';
         }
         
         return $result;
