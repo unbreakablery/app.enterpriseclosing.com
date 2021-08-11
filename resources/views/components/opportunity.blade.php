@@ -737,11 +737,11 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col" class="text-left no-sort" width="46">No.</th>
-                        <th scope="col" class="text-left no-sort" width="">Task / Event</th>
+                        <th scope="col" class="text-left no-sort" width="215">Task / Event</th>
                         <th scope="col" class="text-left no-sort" width="">Ownership</th>
-                        <th scope="col" class="text-left no-sort" width="">Target Date</th>
-                        <th scope="col" class="text-left no-sort" width="">Completed</th>
-                        <th scope="col" class="text-left no-sort" width="">Coments</th>
+                        <th scope="col" class="text-left no-sort" width="85">Target Date</th>
+                        <th scope="col" class="text-left no-sort" width="90">Completed</th>
+                        <th scope="col" class="text-left no-sort" width="40%">Coments</th>
                         <th scope="col" class="text-left no-sort" width="35"></th>
                     </tr>
                 </thead>
