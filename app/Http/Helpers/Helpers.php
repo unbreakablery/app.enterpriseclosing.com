@@ -1503,7 +1503,7 @@ if (!function_exists('getOppJppSoeOwnerships')) {
         if (!empty($user->organisation)) {
             $result['user_company'] = $user->organisation;
         } else {
-            $result['user_company'] = 'Organisation';
+            $result['user_company'] = 'Company';
         }
         
         return $result;
