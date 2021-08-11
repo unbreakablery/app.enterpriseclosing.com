@@ -518,6 +518,9 @@ $(document).ready(function() {
         $(oTable).find('tbody').append($('#orgchart-tr-component-empty tbody').html());
         let trObj = $(oTable).find('tbody tr').last();
         trObj[0].scrollIntoView(true);
+
+        // Trigger 'change' event so will save new empty row automatically
+        $(trObj).find('td:nth-child(1) input[name=order]').trigger('change');
     });
 
     $(document).on('click', '.btn-remove-orgchart-row', function() {
@@ -789,6 +792,8 @@ $(document).ready(function() {
 
         trObj[0].scrollIntoView(true);
 
+        // Will occur change event when datepicker initializing
+        // So, new empty row will be saved automatically
         initializeDatePicker();
     });
 
