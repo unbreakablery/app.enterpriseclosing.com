@@ -75,6 +75,7 @@ Route::post('/settings/store/opportunities-task-event', 'SettingsController@stor
 Route::delete('/settings/remove/opportunities-task-event', 'SettingsController@removeOppTaskEventSettings')->name('settings.remove.opp.taskevent');
 Route::put('/settings/update/opportunities-task-event', 'SettingsController@updateOppTaskEventSettings')->name('settings.update.opp.taskevent');
 Route::post('/settings/store/opportunities-ownership', 'SettingsController@storeOppOwnershipSettings')->name('settings.store.opp.ownership');
+Route::post('/settings/store/opportunities-tooltip', 'SettingsController@storeOppTooltipSettings')->name('settings.store.opp.tooltip');
 Route::post('/settings/store/script-main', 'SettingsController@storeScriptSettings')->name('settings.store.script.main');
 Route::post('/settings/store/email-main', 'SettingsController@storeEmailSettings')->name('settings.store.email.main');
 Route::post('/settings/store/skill-main', 'SettingsController@storeSkillMainSettings')->name('settings.store.skill.main');

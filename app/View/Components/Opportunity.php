@@ -13,6 +13,7 @@ class Opportunity extends Component
     public $salesStages = null;
     public $orgCharts = null;
     public $jppSoes = null;
+    public $meddpiccTooltip = null;
 
     /**
      * Create a new component instance.
@@ -34,6 +35,7 @@ class Opportunity extends Component
         $this->salesStages = $opportunitySalesStages;
         $this->orgCharts = $opportunityOrgCharts;
         $this->jppSoes = $opportunityJppSoes;
+        $this->meddpiccTooltip = getOppMeddpiccTooltip();
     }
 
     /**

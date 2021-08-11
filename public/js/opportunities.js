@@ -4,6 +4,8 @@ var __webpack_exports__ = {};
   !*** ./resources/js/opportunities.js ***!
   \***************************************/
 $(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+
   function initializeDatePicker() {
     $('.date').datepicker({
       format: 'dd-mm-yyyy',

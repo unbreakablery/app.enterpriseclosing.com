@@ -1316,6 +1316,65 @@ $(document).ready(function () {
       }
     });
   });
+  $('button#btn-save-tooltips').on('click', function () {
+    var ttt_m = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-metrics]').val();
+    var ttt_m_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-metrics-score]').val();
+    var ttt_eb = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-economic-buyer]').val();
+    var ttt_eb_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-economic-buyer-score]').val();
+    var ttt_dc = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-decision-criteria]').val();
+    var ttt_dc_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-decision-criteria-score]').val();
+    var ttt_dp = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-decision-process]').val();
+    var ttt_dp_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-decision-process-score]').val();
+    var ttt_pp = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-paper-process]').val();
+    var ttt_pp_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-paper-process-score]').val();
+    var ttt_ip = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-identified-pain]').val();
+    var ttt_ip_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-identified-pain-score]').val();
+    var ttt_cc = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-champion-coach]').val();
+    var ttt_cc_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-champion-coach-score]').val();
+    var ttt_c = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-competition]').val();
+    var ttt_c_score = $('.meddpicc-tooltip-texts-settings textarea[name=ttt-competition-score]').val();
+    loader('show');
+    $.ajax({
+      url: "/settings/store/opportunities-tooltip",
+      type: "post",
+      dataType: "json",
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content'),
+        ttt_m: ttt_m,
+        ttt_m_score: ttt_m_score,
+        ttt_eb: ttt_eb,
+        ttt_eb_score: ttt_eb_score,
+        ttt_dc: ttt_dc,
+        ttt_dc_score: ttt_dc_score,
+        ttt_dp: ttt_dp,
+        ttt_dp_score: ttt_dp_score,
+        ttt_pp: ttt_pp,
+        ttt_pp_score: ttt_pp_score,
+        ttt_ip: ttt_ip,
+        ttt_ip_score: ttt_ip_score,
+        ttt_cc: ttt_cc,
+        ttt_cc_score: ttt_cc_score,
+        ttt_c: ttt_c,
+        ttt_c_score: ttt_c_score
+      },
+      success: function success(response) {
+        loader('hide');
+
+        if (response.success) {
+          // Show message
+          showMessage('success', 'Tooltips was saved successfully.');
+        } else {
+          // Show message
+          showMessage('danger', 'Error, Please retry!');
+        }
+      },
+      error: function error(XMLHttpRequest, textStatus, errorThrown) {
+        loader('hide'); // Show message
+
+        showMessage('danger', 'Error, Please retry!');
+      }
+    });
+  });
 });
 /******/ })()
 ;

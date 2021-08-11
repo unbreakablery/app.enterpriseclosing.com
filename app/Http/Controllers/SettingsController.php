@@ -55,6 +55,8 @@ class SettingsController extends Controller
 
         $ownership = getOppOwnershipSettings();
 
+        $meddpiccTooltip = getOppMeddpiccTooltip();
+
         return view('pages.settings', compact(
                 'actions', 
                 'steps', 
@@ -70,7 +72,8 @@ class SettingsController extends Controller
                 'oppIFs',
                 'salesStages',
                 'taskEvents',
-                'ownership'
+                'ownership',
+                'meddpiccTooltip'
             )
         );
     }
@@ -308,6 +311,15 @@ class SettingsController extends Controller
     public function storeOppOwnershipSettings(Request $request)
     {
         $result = storeOppOwnershipSettings($request);
+
+        return response()->json([
+            'success' => $result
+        ]);
+    }
+
+    public function storeOppTooltipSettings(Request $request)
+    {
+        $result = storeOppMeddpiccTooltip($request);
 
         return response()->json([
             'success' => $result

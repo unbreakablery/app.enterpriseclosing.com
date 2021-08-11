@@ -13,6 +13,7 @@ use App\Models\OpportunitySetting;
 use App\Models\OpportunitySalesStage;
 use App\Models\OpportunityOrgChart;
 use App\Models\OpportunityJppSoe;
+use App\Models\OpportunityMeddpiccTooltip;
 use App\Models\ScriptMain;
 use App\Models\EmailMain;
 use App\Models\SkillMain;
@@ -1587,5 +1588,51 @@ if (!function_exists('getOppOwnershipSettings')) {
         } else {
             return $ownership->o_value1;
         }
+    }
+}
+
+if (!function_exists('storeOppMeddpiccTooltip')) {
+    function storeOppMeddpiccTooltip($data)
+    {
+        $userId = Auth::user()->id;
+        $tooltip = OpportunityMeddpiccTooltip::where('user', $userId)
+                                    ->get()
+                                    ->first();
+        if (empty($tooltip)) {
+            $tooltip = new OpportunityMeddpiccTooltip();
+        }
+
+        $tooltip->user                      = $userId;
+        $tooltip->metrics                   = $data->ttt_m;
+        $tooltip->metrics_score             = $data->ttt_m_score;
+        $tooltip->economic_buyer            = $data->ttt_eb;
+        $tooltip->economic_buyer_score      = $data->ttt_eb_score;
+        $tooltip->decision_criteria         = $data->ttt_dc;
+        $tooltip->decision_criteria_score   = $data->ttt_dc_score;
+        $tooltip->decision_process          = $data->ttt_dp;
+        $tooltip->decision_process_score    = $data->ttt_dp_score;
+        $tooltip->paper_process             = $data->ttt_pp;
+        $tooltip->paper_process_score       = $data->ttt_pp_score;
+        $tooltip->identified_pain           = $data->ttt_ip;
+        $tooltip->identified_pain_score     = $data->ttt_ip_score;
+        $tooltip->champion_coach            = $data->ttt_cc;
+        $tooltip->champion_coach_score      = $data->ttt_cc_score;
+        $tooltip->competition               = $data->ttt_c;
+        $tooltip->competition_score         = $data->ttt_c_score;
+
+        $result = $tooltip->save();
+        
+        return $result;
+    }
+}
+
+if (!function_exists('getOppMeddpiccTooltip')) {
+    function getOppMeddpiccTooltip()
+    {
+        $userId = Auth::user()->id;
+        $tooltip = OpportunityMeddpiccTooltip::where('user', $userId)
+                                    ->get()
+                                    ->first();
+        return $tooltip;
     }
 }

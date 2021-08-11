@@ -335,14 +335,14 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_metrics">Metrics <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_metrics">Metrics <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->metrics }}@endif"></i></label>
                                                     <textarea class="form-control h-3rem-2px n-b-r" name="m_metrics">@if (isset($meddpicc)){{ $meddpicc->metrics }}@endif</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_metrics_score">Metrics Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_metrics_score">Metrics Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->metrics_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -374,7 +374,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_economic_buyer">Economic Buyer / Sponsor <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_economic_buyer">Economic Buyer / Sponsor <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->economic_buyer }}@endif"></i></label>
                                                     <input class="form-control n-b-r"
                                                         type="text"
                                                         name="m_economic_buyer"
@@ -385,7 +385,7 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_economic_buyer_score">Economic Buyer / Sponsor Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_economic_buyer_score">Economic Buyer / Sponsor Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->economic_buyer_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -417,14 +417,14 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_decision_criteria">Decision Criteria <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_decision_criteria">Decision Criteria <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_criteria }}@endif"></i></label>
                                                     <textarea class="form-control h-3rem-2px n-b-r" name="m_decision_criteria">@if (isset($meddpicc)){{ $meddpicc->decision_criteria }}@endif</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <label for="m_decision_criteria_score">Decision Criteria Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_decision_criteria_score">Decision Criteria Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_criteria_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -456,14 +456,14 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_decision_process">Decision Process <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_decision_process">Decision Process <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_process }}@endif"></i></label>
                                                     <textarea class="form-control h-3rem-2px n-b-r" name="m_decision_process">@if (isset($meddpicc)){{ $meddpicc->decision_process }}@endif</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_decision_process_score">Decision Process Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_decision_process_score">Decision Process Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_process_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -495,14 +495,14 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_paper_process">Paper Process <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_paper_process">Paper Process <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->paper_process }}@endif"></i></label>
                                                     <textarea class="form-control h-3rem-2px n-b-r" name="m_paper_process">@if (isset($meddpicc)){{ $meddpicc->paper_process }}@endif</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_paper_process_score">Paper Process Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_paper_process_score">Paper Process Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->paper_process_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -534,14 +534,14 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_identified_pain">Identified Pain <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_identified_pain">Identified Pain <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->identified_pain }}@endif"></i></label>
                                                     <textarea class="form-control h-3rem-2px n-b-r" name="m_identified_pain">@if (isset($meddpicc)){{ $meddpicc->identified_pain }}@endif</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_identified_pain_score">Identified Pain Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_identified_pain_score">Identified Pain Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->identified_pain_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -573,7 +573,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_champion_coach">Champion / Coach <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_champion_coach">Champion / Coach <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->champion_coach }}@endif"></i></label>
                                                     <input class="form-control n-b-r"
                                                         type="text"
                                                         name="m_champion_coach"
@@ -584,7 +584,7 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_champion_coach_score">Champion / Coach Score<i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_champion_coach_score">Champion / Coach Score<i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->champion_coach_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -616,7 +616,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 col-md-6 col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="m_competition">Competition <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                    <label for="m_competition">Competition <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->competition }}@endif"></i></label>
                                                     <input class="form-control n-b-r"
                                                         type="text"
                                                         name="m_competition"
@@ -627,7 +627,7 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6">
                                                 <div class="form-group form-row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <label for="m_competition_score">Competition Score <i class="bi bi-info-circle-fill ml-2"></i></label>
+                                                        <label for="m_competition_score">Competition Score <i class="bi bi-info-circle-fill ml-2" data-toggle="tooltip" data-placement="top" data-html="true" title="@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->competition_score }}@endif"></i></label>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex">
                                                         <div class="col-lg-4 col-md-4 col-sm-4 n-p-lr">
@@ -719,9 +719,6 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pr-1 mb-1">
             <div class="row ml-0 mr-0 pl-1 task-section action-group justify-content-end">
-                <!-- <button type="button" class="btn btn-grad text-uppercase btn-upload-jppsoe-modal mr-1" title="Upload From CSV">
-                    <i class="bi bi-upload"></i>
-                </button> -->
                 <button type="button" class="btn btn-grad text-uppercase btn-download-jppsoe mr-1" title="Download To CSV">
                     <i class="bi bi-download"></i>
                 </button>

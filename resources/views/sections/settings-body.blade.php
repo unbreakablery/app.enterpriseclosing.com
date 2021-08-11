@@ -366,39 +366,71 @@
             role="tabpanel"
             aria-labelledby="tab-opportunities">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-12">
-                    <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
-                        @csrf
-                        <h3>Available Input Fields</h3>
-                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
-                            @foreach ($oppIFs as $idx => $input)
-                            <div class="form-check col-lg-12 col-md-12 col-sm-12">
-                                <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
-                                    id="{{ $input->key }}" 
-                                    value="{{ $input->key }}"
-                                    @if ($input->checked){{ 'checked' }}@endif
-                                    >
-                                <label class="form-check-label" for="{{ $input->key }}">
-                                    {{ $input->value }}
-                                </label>
-                            </div>
-                            @endforeach
-                            <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
-                                <div class="form-check pl-1">
-                                    <a href="javascript:void(0)" id="check-all-inputs" class="select-all mr-2">Check All</a>
-                                    <span class="select-all-slash">/</span>
-                                    <a href="javascript:void(0)" id="uncheck-all-inputs" class="select-all ml-2">Uncheck All</a>
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
+                        <form id="form_opportunities_setting" class="form-inline mt-4" action="" method="post" autocomplete="off">
+                            @csrf
+                            <h3>Available Input Fields</h3>
+                            <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
+                                @foreach ($oppIFs as $idx => $input)
+                                <div class="form-check col-lg-12 col-md-12 col-sm-12">
+                                    <input class="form-check-input input-field" type="checkbox" name="input_fields[]" 
+                                        id="{{ $input->key }}" 
+                                        value="{{ $input->key }}"
+                                        @if ($input->checked){{ 'checked' }}@endif
+                                        >
+                                    <label class="form-check-label" for="{{ $input->key }}">
+                                        {{ $input->value }}
+                                    </label>
+                                </div>
+                                @endforeach
+                                <div class="col-lg-12 col-md-12 col-sm-12 pl-0 pt-1">
+                                    <div class="form-check pl-1">
+                                        <a href="javascript:void(0)" id="check-all-inputs" class="select-all mr-2">Check All</a>
+                                        <span class="select-all-slash">/</span>
+                                        <a href="javascript:void(0)" id="uncheck-all-inputs" class="select-all ml-2">Uncheck All</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4">
-                            <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-opportunities-settings">
+                            <div class="row task-section col-lg-12 col-md-12 col-sm-12 mb-4 pl-4">
+                                <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-opportunities-settings">
+                                        Save Settings
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
+                        <form action="" class="form-inline" id="ownership-setting-form">
+                            <h3 class="setting-sub-title mt-4">Setting For Ownership</h3>
+                            <div class="task-section col-1g-12 col-md-12 col-sm-12 pl-2">
+                                <div class="form-check pl-0">
+                                    <input type="checkbox"
+                                            name="opp-org-tick"
+                                            id="opp-org-tick"
+                                            class="form-check-input n-b-r"
+                                            @if ($ownership == 1 || $ownership == 3){{ 'checked' }}@endif
+                                    />
+                                    <label class="form-check-label" for="opp-org-tick">Organisation</label>
+                                </div>
+                                <div class="form-check pl-0">
+                                    <input type="checkbox"
+                                            name="user-company-tick"
+                                            id="user-company-tick"
+                                            class="form-check-input n-b-r"
+                                            @if ($ownership == 2 || $ownership == 3){{ 'checked' }}@endif
+                                    />
+                                    <label class="form-check-label" for="user-company-tick">Company user works for</label>
+                                </div>
+                            </div>
+                            <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0 pl-2">
+                                <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-ownership-setting">
                                     Save Settings
-                            </button>
-                        </div>
-                    </form>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
                     <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
                         <div class="col-lg-5 col-md-5 col-sm-12">
                             <form action="" class="form-inline" id="sales-stage-form">
@@ -527,36 +559,226 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row col-lg-12 col-md-12 col-sm-12 d-flex">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <form action="" class="form-inline" id="ownership-setting-form">
-                                <h3 class="setting-sub-title mt-4">Setting For Ownership</h3>
-                                <div class="task-section col-1g-12 col-md-12 col-sm-12">
-                                    <div class="form-check pl-0">
-                                        <input type="checkbox"
-                                                name="opp-org-tick"
-                                                id="opp-org-tick"
-                                                class="form-check-input n-b-r"
-                                                @if ($ownership == 1 || $ownership == 3){{ 'checked' }}@endif
-                                        />
-                                        <label class="form-check-label" for="opp-org-tick">Organisation</label>
-                                    </div>
-                                    <div class="form-check pl-0">
-                                        <input type="checkbox"
-                                                name="user-company-tick"
-                                                id="user-company-tick"
-                                                class="form-check-input n-b-r"
-                                                @if ($ownership == 2 || $ownership == 3){{ 'checked' }}@endif
-                                        />
-                                        <label class="form-check-label" for="user-company-tick">Organisation user works for</label>
+                    <div class="row col-lg-12 col-md-12 col-sm-12 meddpicc-tooltip-texts-settings pr-0">
+                        <div class="row col-lg-12 col-md-12 col-sm-12">
+                            <h3 class="setting-sub-title pl-3 mt-4 w-100">MEDDPICC Tooltip Texts</h3>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-metrics">Metrics</label>
+                                        <textarea name="ttt-metrics"
+                                            id="ttt-metrics"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for metrics...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->metrics }}@endif</textarea>
                                     </div>
                                 </div>
-                                <div class="row task-section col-lg-12 col-md-12 col-sm-12 mt-4 mb-4 ml-0">
-                                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-ownership-setting">
-                                        Save Settings
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-metrics-score">Metrics Score</label>
+                                        <textarea name="ttt-metrics-score"
+                                            id="ttt-metrics-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for metrics score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->metrics_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-economic-buyer">Economic Buyer / Sponsor</label>
+                                        <textarea name="ttt-economic-buyer"
+                                            id="ttt-economic-buyer"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for economic buyer / sponsor...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->economic_buyer }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-economic-buyer-score">Economic Buyer / Sponsor Score</label>
+                                        <textarea name="ttt-economic-buyer-score"
+                                            id="ttt-economic-buyer-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for economic buyer / sponsor score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->economic_buyer_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-decision-criteria">Decision Criteria</label>
+                                        <textarea name="ttt-decision-criteria"
+                                            id="ttt-decision-criteria"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for decision criteria...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_criteria }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-decision-criteria-score">Decision Criteria Score</label>
+                                        <textarea name="ttt-decision-criteria-score"
+                                            id="ttt-decision-criteria-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for decision criteria score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_criteria_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-decision-process">Decision Process</label>
+                                        <textarea name="ttt-decision-process"
+                                            id="ttt-decision-process"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for decision process...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_process }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-decision-process-score">Decision Process Score</label>
+                                        <textarea name="ttt-decision-process-score"
+                                            id="ttt-decision-process-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for decision process score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->decision_process_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-paper-process">Paper Process</label>
+                                        <textarea name="ttt-paper-process"
+                                            id="ttt-paper-process"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for paper process...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->paper_process }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-paper-process-score">Paper Process Score</label>
+                                        <textarea name="ttt-paper-process-score"
+                                            id="ttt-paper-process-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for paper process score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->paper_process_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-identified-pain">Identified Pain</label>
+                                        <textarea name="ttt-identified-pain"
+                                            id="ttt-identified-pain"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for identified pain...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->identified_pain }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-identified-pain-score">Identified Pain Score</label>
+                                        <textarea name="ttt-identified-pain-score"
+                                            id="ttt-identified-pain-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for identified pain score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->identified_pain_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-champion-coach">Champion / Coach</label>
+                                        <textarea name="ttt-champion-coach"
+                                            id="ttt-champion-coach"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for champion / coach...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->champion_coach }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-champion-coach-score">Champion / Coach Score</label>
+                                        <textarea name="ttt-champion-coach-score"
+                                            id="ttt-champion-coach-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for champion / coach score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->champion_coach_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0 mb-4">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-competition">Competition</label>
+                                        <textarea name="ttt-competition"
+                                            id="ttt-competition"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for competition...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->competition }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <div class="form-group mb-2">
+                                        <label for="ttt-competition-score">Competition Score</label>
+                                        <textarea name="ttt-competition-score"
+                                            id="ttt-competition-score"
+                                            class="form-control n-b-r h-3rem-2px"
+                                            rows="2"
+                                            placeholder="Enter tooltip text for competition score...">@if(isset($meddpiccTooltip)){{ $meddpiccTooltip->competition_score }}@endif</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12 col-md-12 col-sm-12 pr-0 mb-4">
+                            <div class="col-lg-6 col-md-6 col-sm-12 pr-0">
+                                <div class="col-1g-12 col-md-12 col-sm-12 pr-0">
+                                    <button type="button" class="btn btn-grad btn-w-normal" id="btn-save-tooltips">
+                                        Save Tooltips
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

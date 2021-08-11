@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+
     function initializeDatePicker() {
         $('.date').datepicker({
             format: 'dd-mm-yyyy',
