@@ -13,8 +13,30 @@
                     />
                 </div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="annual-report">Annual Report</label>
+                    <input class="form-control n-b-r"
+                            type="text"
+                            id="annual-report"
+                            name="annual-report"
+                            value="@if (isset($main)){{ $main->annual_report }}@endif"
+                    />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <label for="pr-articles">PR / Articles</label>
+                    <input class="form-control n-b-r"
+                            type="text"
+                            id="pr-articles"
+                            name="pr-articles"
+                            value="@if (isset($main)){{ $main->pr_articles }}@endif"
+                    />
+                </div>
+            </div>
         </div>
-        <div class="row mt-4 ml-0 mr-0 pl-1 pr-1">
+        <div class="row mt-0 ml-0 mr-0 pl-1 pr-1">
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="form-group">
                     <label for="org-hooks">Organisational Hooks</label>
@@ -27,26 +49,8 @@
                     <textarea class="form-control h-px-140 n-b-r" id="additional-nuggets" name="additional-nuggets" rows="5">@if (isset($main)){{ $main->additional_nuggets }}@endif</textarea>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <label for="annual-report">Annual Report</label>
-                    <input class="form-control n-b-r"
-                            type="text"
-                            id="annual-report"
-                            name="annual-report"
-                            value="@if (isset($main)){{ $main->annual_report }}@endif"
-                    />
-                </div>
-                <div class="form-group">
-                    <label for="pr-articles">PR / Articles</label>
-                    <input class="form-control n-b-r"
-                            type="text"
-                            id="pr-articles"
-                            name="pr-articles"
-                            value="@if (isset($main)){{ $main->pr_articles }}@endif"
-                    />
-                </div>
-                <div class="row ml-0 mr-0 mt-3 pl-1 task-section action-group justify-content-end">
+            <div class="col-lg-4 col-md-4 col-sm-12 d-flex justify-content-end align-items-end">
+                <div class="row ml-0 mr-0 mb-3 pl-1 task-section action-group">
                     <button type="button" class="btn btn-grad text-uppercase btn-upload-persons-modal mr-1">
                         <i class="bi bi-upload"></i>
                     </button>
@@ -61,7 +65,7 @@
         </div>
     </div>
     
-    <div class="table-responsive table-wrapper mt-4 p-special-1">
+    <div class="table-responsive table-wrapper mt-0 p-special-1">
         <div class="persons-table-wrapper border-bottom border-white">
             <table class="table table-hover w-100 mb-0" id="persons-table">
                 <thead class="thead-dark">
