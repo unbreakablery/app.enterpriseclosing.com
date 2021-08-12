@@ -98,7 +98,7 @@
         <div class="col-lg-3 col-md-3 col-sm-6">
             <div class="form-group">
                 <label for="region">Region</label>
-                <select id="region" name="region" class="form-control p-0 n-b-r">
+                <select id="region" name="region" class="form-control n-b-r">
                     <option value=""></option>
                     <option value="APAC" @if (old('region', $user->region) == 'APAC'){{ 'selected' }}@endif>APAC</option>
                     <option value="EMEA" @if (old('region', $user->region) == 'EMEA'){{ 'selected' }}@endif>EMEA</option>
@@ -1349,7 +1349,7 @@
                             <label for="edit_sub_skill_p_id">Parent Skill</label>
                             <select name="edit_sub_skill_p_id"
                                 id="edit_sub_skill_p_id"
-                                class="form-control n-p-lr n-b-r">
+                                class="form-control n-b-r">
                             </select>
                         </div>
                     </div>
@@ -1482,7 +1482,7 @@
                             <label for="edit-ssp">Show Stage Progress</label>
                             <select name="edit-ssp"
                                 id="edit-ssp"
-                                class="form-control n-p-lr n-b-r">
+                                class="form-control n-b-r">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
@@ -1493,7 +1493,7 @@
                             <label for="edit-ssi">Show Strength Indicators</label>
                             <select name="edit-ssi"
                                 id="edit-ssi"
-                                class="form-control n-p-lr n-b-r">
+                                class="form-control n-b-r">
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>

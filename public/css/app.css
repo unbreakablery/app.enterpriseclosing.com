@@ -10165,6 +10165,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .modal-body {
   color: #fff;
 }
+.modal-body input[type=text],
+.modal-body input[type=number],
+.modal-body input[type=password],
+.modal-body select {
+  height: 1.5rem;
+}
 
 .main-container,
 .container-login {

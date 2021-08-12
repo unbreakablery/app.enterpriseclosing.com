@@ -154,6 +154,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .modal-body {
     color: #fff;
+
+    input[type=text],
+    input[type=number],
+    input[type=password],
+    select {
+        height: 1.5rem;
+    }
 }
 
 .main-container,

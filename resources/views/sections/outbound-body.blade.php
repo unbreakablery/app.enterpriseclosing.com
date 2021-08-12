@@ -85,7 +85,7 @@
             <div class="modal-body">
                 <h3>Do you want to turn this into a task?</h3>
                 <form class="form-inline mt-4" autocomplete="off" method="post">
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Action:
                         </label>
@@ -95,7 +95,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Step:
                         </label>
@@ -105,25 +105,25 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Person / Account:
                         </label>
                         <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="person-account" readonly/>
                     </div>
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Opportunity:
                         </label>
                         <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="opportunity" readonly/>
                     </div>
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             Note:
                         </label>
                         <input type="text" class="form-control n-b-r col-lg-8 col-md-8 col-sm-6" name="note" />
                     </div>
-                    <div class="row col-md-12 col-sm-12">
+                    <div class="row col-md-12 col-sm-12 mb-2">
                         <label class="col-lg-4 col-md-4 col-sm-6 justify-content-end" for="">
                             By:
                         </label>
