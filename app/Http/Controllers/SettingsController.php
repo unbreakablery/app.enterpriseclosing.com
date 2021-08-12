@@ -56,8 +56,6 @@ class SettingsController extends Controller
         $ownership = getOppOwnershipSettings();
 
         $meddpiccTooltip = getOppMeddpiccTooltip();
-        // dd(request()->ip());
-        dd(request()->getClientIp());
 
         return view('pages.settings', compact(
                 'actions', 
