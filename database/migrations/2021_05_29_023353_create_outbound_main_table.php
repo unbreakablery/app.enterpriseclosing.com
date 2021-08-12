@@ -18,7 +18,7 @@ class CreateOutboundMainTable extends Migration
             $table->integer('user');
             $table->string('account_name');
             $table->string('annual_report')->nullable();
-            $table->text('pr_articles')->nullable();
+            $table->string('pr_articles')->nullable();
             $table->text('org_hooks')->nullable();
             $table->text('additional_nuggets')->nullable();
             $table->timestamps();

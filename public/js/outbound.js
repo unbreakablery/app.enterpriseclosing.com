@@ -137,7 +137,7 @@ $(document).ready(function () {
     var oId = $(tabComponent).find('input[name=o-id]').val();
     var accountName = $(tabComponent).find('input[name=account-name]').val();
     var annualReport = $(tabComponent).find('input[name=annual-report]').val();
-    var prArticles = $(tabComponent).find('textarea[name=pr-articles]').val();
+    var prArticles = $(tabComponent).find('input[name=pr-articles]').val();
     var orgHooks = $.trim($(tabComponent).find('textarea[name=org-hooks]').val());
     var additionalNuggets = $.trim($(tabComponent).find('textarea[name=additional-nuggets]').val());
 
